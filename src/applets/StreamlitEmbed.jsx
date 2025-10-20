@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Alert } from "antd";
 import Header from "../layout/Header";
 import { Helmet } from "react-helmet";
@@ -25,7 +25,47 @@ export default function StreamlitEmbed({
   width,
 }) {
   const windowHeight = useWindowHeight();
-  const [alertVisible, setAlertVisible] = useState(true);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const iframeRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  // Generate a unique storage key for this app
+  const storageKey = `streamlit-notice-dismissed-${embedUrl}`;
+
+  useEffect(() => {
+    // Check if user has previously dismissed this notice
+    const wasDismissed = sessionStorage.getItem(storageKey);
+
+    // Set a timeout to show the alert if iframe takes too long to load
+    // This is a heuristic to detect if the app might be sleeping
+    timeoutRef.current = setTimeout(() => {
+      if (!isLoaded && !wasDismissed) {
+        setAlertVisible(true);
+      }
+    }, 8000); // Show alert after 8 seconds if not loaded
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [embedUrl, isLoaded, storageKey]);
+
+  const handleIframeLoad = () => {
+    setIsLoaded(true);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    // If it loaded quickly, hide the alert
+    setAlertVisible(false);
+  };
+
+  const handleAlertClose = () => {
+    setAlertVisible(false);
+    // Remember that user dismissed this notice
+    sessionStorage.setItem(storageKey, "true");
+  };
 
   // Calculate iframe dimensions
   const iframeHeight = height || `calc(100vh - ${style.spacing.HEADER_HEIGHT})`;
@@ -64,7 +104,7 @@ export default function StreamlitEmbed({
             }
             type="info"
             closable
-            onClose={() => setAlertVisible(false)}
+            onClose={handleAlertClose}
             style={{
               margin: "16px",
               marginBottom: "0",
@@ -80,11 +120,13 @@ export default function StreamlitEmbed({
           }}
         >
           <iframe
+            ref={iframeRef}
             src={embedUrl}
             title={iframeTitle}
             height={iframeHeight}
             width={iframeWidth}
             style={{ overflow: "hidden" }}
+            onLoad={handleIframeLoad}
           />
         </div>
       </div>
