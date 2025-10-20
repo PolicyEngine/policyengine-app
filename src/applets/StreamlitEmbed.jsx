@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Alert } from "antd";
 import Header from "../layout/Header";
 import { Helmet } from "react-helmet";
 import style from "../style";
@@ -62,30 +61,46 @@ export default function StreamlitEmbed({
         }}
       >
         {alertVisible && (
-          <Alert
-            message="App Sleep Notice"
-            description={
-              <span>
-                If you see a message that this app is sleeping, please visit{" "}
-                <a
-                  href={directUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "underline" }}
-                >
-                  the app directly
-                </a>{" "}
-                to wake it up, then return to this page.
-              </span>
-            }
-            type="info"
-            closable
-            onClose={handleAlertClose}
+          <div
             style={{
-              margin: "16px",
-              marginBottom: "0",
+              backgroundColor: "#f0f2f5",
+              borderBottom: "1px solid #d9d9d9",
+              padding: "8px 16px",
+              fontSize: "13px",
+              color: "#595959",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
-          />
+          >
+            <span>
+              If the app is sleeping,{" "}
+              <a
+                href={directUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#1890ff", textDecoration: "none" }}
+              >
+                visit it directly
+              </a>{" "}
+              to wake it up.
+            </span>
+            <button
+              onClick={handleAlertClose}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#8c8c8c",
+                cursor: "pointer",
+                fontSize: "16px",
+                padding: "0 4px",
+                lineHeight: "1",
+              }}
+              aria-label="Close notice"
+            >
+              ×
+            </button>
+          </div>
         )}
         <div
           style={{
