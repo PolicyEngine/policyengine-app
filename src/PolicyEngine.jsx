@@ -52,6 +52,7 @@ import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
 import CTCCalculator from "./applets/CTCCalculator";
 import GiveCalc from "./applets/GiveCalc";
+import ACACalc from "./applets/ACACalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 import SALTernative from "./applets/SALTernative";
@@ -407,6 +408,7 @@ export default function PolicyEngine() {
           element={<CTCCalculator />}
         />
         <Route path="/us/givecalc" element={<GiveCalc />} />
+        <Route path="/us/aca-calc" element={<ACACalc />} />
         <Route
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}

@@ -1,4 +1,5 @@
 - bump: minor
   changes:
     added:
-      - A blog post for VAT threshold analysis tool for UK policy analysis
+      - UK two-child limit policy comparison app as a featured tile
+      - Slug validation test to prevent conflicts between app slugs and post filenames
