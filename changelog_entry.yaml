@@ -1,4 +1,4 @@
 - bump: patch
   changes:
     added:
-      - Added blog post comparing PolicyEngine and official UK poverty rates
+      - Add sleep state notice to all embedded Streamlit apps, instructing users to visit the direct link if the app is sleeping
