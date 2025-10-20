@@ -71,20 +71,44 @@ export default function StreamlitEmbed({
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              gap: "12px",
             }}
           >
-            <span>
-              If the app is sleeping,{" "}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+              }}
+            >
+              <span>If the app is sleeping:</span>
               <a
                 href={directUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: "#1890ff", textDecoration: "none" }}
+                style={{
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #d9d9d9",
+                  borderRadius: "4px",
+                  padding: "2px 12px",
+                  fontSize: "12px",
+                  color: "#595959",
+                  textDecoration: "none",
+                  display: "inline-block",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = "#1890ff";
+                  e.target.style.color = "#1890ff";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.color = "#595959";
+                }}
               >
-                visit it directly
-              </a>{" "}
-              to wake it up.
-            </span>
+                Wake it up
+              </a>
+            </div>
             <button
               onClick={handleAlertClose}
               style={{
