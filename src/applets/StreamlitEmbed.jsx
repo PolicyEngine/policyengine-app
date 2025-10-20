@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Alert } from "antd";
 import Header from "../layout/Header";
 import { Helmet } from "react-helmet";
@@ -7,6 +7,9 @@ import { useWindowHeight } from "../hooks/useWindow";
 
 /**
  * Reusable component for embedding Streamlit apps with sleep state handling
+ *
+ * Note: Due to CORS restrictions, we cannot detect if a Streamlit app is sleeping
+ * from the parent page. The notice is shown by default and users can dismiss it.
  *
  * @param {Object} props
  * @param {string} props.embedUrl - The Streamlit app URL with ?embedded=true
@@ -25,45 +28,18 @@ export default function StreamlitEmbed({
   width,
 }) {
   const windowHeight = useWindowHeight();
-  const [alertVisible, setAlertVisible] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const iframeRef = useRef(null);
-  const timeoutRef = useRef(null);
 
   // Generate a unique storage key for this app
   const storageKey = `streamlit-notice-dismissed-${embedUrl}`;
 
-  useEffect(() => {
-    // Check if user has previously dismissed this notice
-    const wasDismissed = sessionStorage.getItem(storageKey);
-
-    // Set a timeout to show the alert if iframe takes too long to load
-    // This is a heuristic to detect if the app might be sleeping
-    timeoutRef.current = setTimeout(() => {
-      if (!isLoaded && !wasDismissed) {
-        setAlertVisible(true);
-      }
-    }, 8000); // Show alert after 8 seconds if not loaded
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [embedUrl, isLoaded, storageKey]);
-
-  const handleIframeLoad = () => {
-    setIsLoaded(true);
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    // If it loaded quickly, hide the alert
-    setAlertVisible(false);
-  };
+  // Check if user has previously dismissed this notice in this session
+  const [alertVisible, setAlertVisible] = useState(() => {
+    return !sessionStorage.getItem(storageKey);
+  });
 
   const handleAlertClose = () => {
     setAlertVisible(false);
-    // Remember that user dismissed this notice
+    // Remember that user dismissed this notice for this session
     sessionStorage.setItem(storageKey, "true");
   };
 
@@ -120,13 +96,11 @@ export default function StreamlitEmbed({
           }}
         >
           <iframe
-            ref={iframeRef}
             src={embedUrl}
             title={iframeTitle}
             height={iframeHeight}
             width={iframeWidth}
             style={{ overflow: "hidden" }}
-            onLoad={handleIframeLoad}
           />
         </div>
       </div>
