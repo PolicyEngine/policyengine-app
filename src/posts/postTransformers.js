@@ -3,7 +3,15 @@ import posts from "./posts.json";
 const postsSorted = posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of postsSorted) {
-  post.slug = post.filename.substring(0, post.filename.indexOf("."));
+  if (post.filename) {
+    post.slug = post.filename.substring(0, post.filename.indexOf("."));
+  } else if (post.external_url) {
+    // For external URLs, generate a slug from the title
+    post.slug = post.title
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+  }
 }
 
 const tags = postsSorted.map((post) => post.tags);
@@ -23,6 +31,9 @@ const topicLabels = {
   impact: "Impact",
   policy: "Policy analysis",
   technical: "Technical report",
+  api: "API",
+  "benefit-access": "Benefit access",
+  reconciliation: "Reconciliation",
 };
 
 const locationLabels = {

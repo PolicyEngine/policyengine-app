@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
       - uses: psf/black@stable
         with:
           options: ". -l 79 --check"
@@ -24,7 +24,7 @@ jobs:
         # by our package.json.
         # Hopefully this allows us to catch problems
         # with differing versions ahead of time.
-        node-version: [19.x]
+        node-version: [22.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +35,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install repository
         run: npm ci
+      - name: Validate blog posts
+        run: npm run validate-posts
       - name: Lint repository
         run: npm run lint
       - name: Build package

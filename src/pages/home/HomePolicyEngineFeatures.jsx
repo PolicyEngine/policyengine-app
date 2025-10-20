@@ -48,7 +48,7 @@ export default function HomePolicyEngineFeatures() {
       />
       <ShowcaseItem
         title="See how reforms affect households"
-        description="Evaluate the impact of changes to policy rules on households or entire economics within seconds, and iterate quickly over policy ideas."
+        description="Evaluate the impact of changes to policy rules on households or entire economies within seconds, and iterate quickly over policy ideas."
         linkTitle="Explore the documentation"
         link={`https://policyengine.github.io/policyengine-${countryId}`}
         image={decileChartScreenshot}

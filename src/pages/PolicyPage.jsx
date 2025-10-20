@@ -14,12 +14,14 @@ import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import ErrorComponent from "../layout/ErrorComponent";
+import ErrorBoundary from "../layout/ErrorBoundary";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import DeprecationModal from "../modals/DeprecationModal";
 import { impactKeys } from "../pages/policy/output/ImpactTypes.jsx";
+import { determineIfMultiYear } from "./policy/output/utils.js";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -73,7 +75,14 @@ function PolicyLeftSidebar(props) {
   const sortTreeInPlace = (tree) => {
     if (!Array.isArray(tree)) return [];
 
-    tree.sort((a, b) => a.label.localeCompare(b.label));
+    // Check if all nodes are bracket nodes
+    const allBrackets = tree.every((item) => /^Bracket \d+$/.test(item.label));
+    // If all nodes are bracket nodes, sort numerically by index else sort alphabetically by label
+    if (allBrackets) {
+      tree.sort((a, b) => a.index - b.index);
+    } else {
+      tree.sort((a, b) => a.label.localeCompare(b.label));
+    }
 
     tree.forEach((item) => {
       if (Array.isArray(item.children)) {
@@ -110,6 +119,7 @@ export default function PolicyPage(props) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
+  const isMultiYear = determineIfMultiYear(searchParams);
 
   const isOutput = focus.includes("policyOutput");
   // Evaluate if policy is deprecated or not
@@ -188,6 +198,7 @@ export default function PolicyPage(props) {
     // Check if the current focus is within validFocusValues
     if (
       focus === "policyOutput.policyBreakdown" ||
+      (isMultiYear && focus === "policyOutput.budgetaryImpact") ||
       focus === "policyOutput.codeReproducibility" ||
       validFocusValues.includes(stripped_focus)
     ) {
@@ -230,9 +241,22 @@ export default function PolicyPage(props) {
     }
   }
 
+  // Ensure middle is never null for mobile rendering
+  if (!middle) {
+    console.error("PolicyPage: middle content is null", {
+      focus,
+      isOutput,
+      policy: policy?.reform?.data ? "loaded" : "not loaded",
+    });
+    middle = <LoadingCentered />;
+  }
+
   if (mobile) {
     return (
-      <>
+      <ErrorBoundary
+        context={{ component: "PolicyPage Mobile", focus, isOutput }}
+        fallbackMessage="Error loading policy page. Please try refreshing."
+      >
         <Helmet>
           <title>Policy | PolicyEngine</title>
         </Helmet>
@@ -242,7 +266,7 @@ export default function PolicyPage(props) {
           policy={policy}
           type="policy"
         />
-      </>
+      </ErrorBoundary>
     );
   }
 
@@ -324,7 +348,10 @@ export default function PolicyPage(props) {
   );
 
   return (
-    <>
+    <ErrorBoundary
+      context={{ component: "PolicyPage Desktop", focus, isOutput }}
+      fallbackMessage="Error loading policy page. Please try refreshing."
+    >
       <Helmet>
         <title>Policy | PolicyEngine</title>
       </Helmet>
@@ -344,7 +371,7 @@ export default function PolicyPage(props) {
           />
         }
       />
-    </>
+    </ErrorBoundary>
   );
 }
 

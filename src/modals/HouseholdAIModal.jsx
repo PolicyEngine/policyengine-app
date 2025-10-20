@@ -1,21 +1,19 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
-import { countryApiCall } from "../api/call";
-import useCountryId from "../hooks/useCountryId";
-import { MarkdownFormatter } from "../layout/MarkdownFormatter";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { countryApiCall } from "../api/call";
 import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
-import LoadingCentered from "../layout/LoadingCentered";
+import useCountryId from "../hooks/useCountryId";
 import ErrorComponent from "../layout/ErrorComponent";
+import LoadingCentered from "../layout/LoadingCentered";
+import { MarkdownFormatter } from "../layout/MarkdownFormatter";
 
 /**
  * Modal for displaying AI output
  * @param {Object} props
  * @param {Object} props.variableName The name of the variable
- * @param {String} props.value The value of the variable
  * @param {Boolean} props.isModalVisible Whether the modal is visible
  * @param {Function} props.setIsModalVisible Function to set the visibility of the modal
- * @param {Boolean} props.isDemo Whether this is a demo of the feature (used on AI landing page)
  * @returns {React.Component} The modal component
  */
 
@@ -24,13 +22,7 @@ export default function HouseholdAIModal(props) {
     isModalVisible = false,
     setIsModalVisible,
     variableName,
-    isDemo = false,
   } = props || {};
-
-  // For demo version on the AI page
-  const [internalModalVisible, setInternalModalVisible] = useState(false);
-  const showModal = isDemo ? internalModalVisible : isModalVisible;
-  const setShowModal = isDemo ? setInternalModalVisible : setIsModalVisible;
 
   const [analysis, setAnalysis] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -49,45 +41,11 @@ export default function HouseholdAIModal(props) {
 
   // Function to hide modal
   const handleCancel = () => {
-    setShowModal(false);
+    setIsModalVisible(false);
   };
-
-  // Example explanation for demo mode
-  const demoExplanation = `# WIC Benefits Explanation
-
-You qualify for $475 in WIC (Women, Infants, and Children) benefits based on your household's income and composition.
-
-## Eligibility Criteria
-
-Your household qualifies for WIC because:
-- You have a 3-year-old child (WIC serves children up to age 5)
-- Your household income of $47,000 is below 185% of the Federal Poverty Level for a family of 4
-- Your household meets categorical eligibility requirements
-
-## Benefit Calculation
-
-Your WIC benefit is calculated as follows:
-- Food package value for a child 1-4 years old: approximately $39.60 per month
-- Annual calculation: $39.60 × 12 months = $475.20 (rounded to $475)
-
-## Factors That Could Change Your Benefit
-
-Your WIC benefit amount could change if:
-- Your child turns 5 (you would lose eligibility)
-- Your income increases above the 185% FPL threshold ($54,385 for a family of 4)
-- Your household composition changes (adding an infant or pregnant woman would increase benefits)
-- You move to a different state (WIC food package values vary by state)
-`;
 
   // Convert this and fetchTracer to async/await
   const fetchAnalysis = useCallback(async () => {
-    // If demo mode, use the sample explanation
-    if (isDemo) {
-      setIsLoading(false);
-      setAnalysis(demoExplanation);
-      return;
-    }
-
     setIsError(false);
     const jsonObject = {
       household_id: householdId,
@@ -147,7 +105,7 @@ Your WIC benefit amount could change if:
         }
       }
     }
-  }, [countryId, householdId, policyId, variableName, isDemo, demoExplanation]);
+  }, [countryId, householdId, policyId, variableName]);
 
   useEffect(() => {
     function resetModalData() {
@@ -155,54 +113,19 @@ Your WIC benefit amount could change if:
     }
 
     // If modal isn't shown, don't do anything
-    if (!showModal) {
+    if (!isModalVisible) {
       return;
     }
 
     // If variable hasn't changed and we generated analysis,
     // don't do anything (e.g., user clicked on same variable)
-    if (!isDemo && variableName === prevVariableName.current) {
+    if (variableName === prevVariableName.current) {
       return;
     }
 
     fetchAnalysis();
     resetModalData();
-  }, [showModal, variableName, fetchAnalysis, isDemo]);
-
-  // For demo purposes on the AI page
-  if (isDemo) {
-    return (
-      <>
-        <Button
-          type="primary"
-          onClick={() => setInternalModalVisible(true)}
-          style={{ marginTop: "1rem" }}
-        >
-          Try AI Explanation Demo
-        </Button>
-
-        <Modal
-          title="AI Household Explanation Demo"
-          open={internalModalVisible}
-          onCancel={handleCancel}
-          footer={[
-            <Button key="back" onClick={handleCancel}>
-              Close
-            </Button>,
-          ]}
-          width="60%"
-        >
-          {isLoading ? (
-            <LoadingCentered />
-          ) : isError ? (
-            <ErrorComponent message="Error loading demo. Please try again later." />
-          ) : (
-            <MarkdownFormatter markdown={analysis} pSize={14} />
-          )}
-        </Modal>
-      </>
-    );
-  }
+  }, [isModalVisible, variableName, fetchAnalysis]);
 
   return (
     <Modal

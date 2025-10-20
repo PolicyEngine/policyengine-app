@@ -22,6 +22,9 @@ import {
   GithubOutlined,
   DownOutlined,
   DeploymentUnitOutlined,
+  TeamOutlined,
+  UserAddOutlined,
+  BankOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
@@ -46,19 +49,37 @@ export const LEARN_DROPDOWN_LINKS = [
     icon: <BarChartOutlined />,
   },
   {
-    title: "Benefit Access",
+    title: "Benefit access",
     link: "benefits",
     icon: <QuestionCircleOutlined />,
   },
   {
-    title: "Educational Use",
+    title: "Educational use",
     link: "education",
     icon: <BookOutlined />,
   },
   {
-    title: "Open Source",
+    title: "Open source",
     link: "open-source",
     icon: <GithubOutlined />,
+  },
+];
+
+export const ABOUT_DROPDOWN_LINKS = [
+  {
+    title: "Team",
+    link: "about",
+    icon: <TeamOutlined />,
+  },
+  {
+    title: "Careers",
+    link: "jobs",
+    icon: <UserAddOutlined />,
+  },
+  {
+    title: "Supporters",
+    link: "supporters",
+    icon: <BankOutlined />,
   },
 ];
 
@@ -69,7 +90,8 @@ const LINKS = [
   },
   {
     title: "About",
-    link: "about",
+    isDropdown: true,
+    items: ABOUT_DROPDOWN_LINKS,
   },
   {
     title: "Donate",
@@ -413,7 +435,7 @@ function DesktopCalculatorButton() {
   return (
     <LinkButton
       link={`/${countryId}/calculator`}
-      text="Compute Policy Impact"
+      text="Compute policy impact"
       style={{ padding: "10px" }}
     />
   );
@@ -599,7 +621,7 @@ const MobileStandardLink = ({ link, countryId, isOpen, index }) => {
       <HoverBox
         hoverStart="left"
         size="100vw"
-        hoverBackgroundColor={style.colors.WHITE}
+        hoverBackgroundColor={style.colors.BLUE_PRESSED}
         style={{
           margin: 30,
         }}
@@ -667,7 +689,7 @@ const MobileDropdownHeader = ({
     <HoverBox
       hoverStart="left"
       size="100vw"
-      hoverBackgroundColor={style.colors.WHITE}
+      hoverBackgroundColor={style.colors.BLUE_PRESSED}
       style={{
         margin: 30,
       }}
@@ -730,7 +752,7 @@ const MobileDropdownItem = ({ item, countryId, index }) => {
       <HoverBox
         hoverStart="left"
         size="100vw"
-        hoverBackgroundColor={style.colors.WHITE}
+        hoverBackgroundColor={style.colors.BLUE_PRESSED}
         style={{
           margin: "15px 30px",
         }}

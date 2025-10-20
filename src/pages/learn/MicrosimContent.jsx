@@ -24,7 +24,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
     heroTitle: "Tax-Benefit Microsimulation",
     heroSubtitle: `PolicyEngine uses microsimulation models to ${analyze} the impact of policy reforms on real households`,
     heroImage: require("../../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png"),
-    heroButtonText: "Try Policy Analysis",
+    heroButtonText: "Try policy analysis",
     heroButtonLink: `/${countryId}/policy`,
     sections: [
       {
@@ -63,7 +63,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
         ),
       },
       {
-        title: "How PolicyEngine's Models Work",
+        title: "How PolicyEngine's models work",
         id: "model-architecture",
         className: "model-section",
         content: (
@@ -95,7 +95,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
                 </li>
               </ul>
 
-              <h3>Machine Learning Enhancement</h3>
+              <h3>Machine learning enhancement</h3>
               <p>
                 We apply machine learning techniques to {optimize} our
                 population samples:
@@ -125,7 +125,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
         ),
       },
       {
-        title: "Model Accuracy and Validation",
+        title: "Model accuracy and validation",
         id: "validation",
         content: (
           <div className="validation-section">
@@ -173,7 +173,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
         {/* Additional microsimulation-specific content */}
         <section className="section">
           <div className="section-content">
-            <h2>Technical Documentation</h2>
+            <h2>Technical documentation</h2>
             <div className="documentation-links">
               <div className="doc-card">
                 <h3>US Model Documentation</h3>

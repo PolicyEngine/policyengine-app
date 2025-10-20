@@ -1,5 +1,237 @@
 [
   {
+    "title": "Comparing PolicyEngine and official UK poverty rates",
+    "description": "We compare PolicyEngine poverty estimates with official DWP statistics and explain the methodological factors behind the differences.",
+    "date": "2025-10-10 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-poverty-analysis.md",
+    "image": "uk-poverty-analysis.jpg"
+  },
+  {
+    "title": "How removing the two-child benefit limit would affect the UK",
+    "description": "Removing the two-child limit would cost £2.7 billion in 2026-27 and reduce child poverty by 16.2%.",
+    "date": "2025-10-06 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-two-child-limit.md",
+    "image": "uk-reeves.jpg"
+  },
+  {
+    "title": "How we used Claude Code to choose our DC office",
+    "description": "We used Claude Code to build an interactive comparison tool for choosing our DC office. The winner: Open Gov Hub. Join us Oct 22 to celebrate!",
+    "date": "2025-10-05",
+    "tags": ["us", "org", "ai"],
+    "authors": ["max-ghenis", "daphne-hansell"],
+    "filename": "dc-office-ai-coding.md",
+    "image": "dc-office-ai-coding.png"
+  },
+  {
+    "title": "Introducing ACA-Calc: Calculate your household's premium tax credits",
+    "description": "New interactive calculator shows how Affordable Care Act subsidies affect households under current enhanced schedule and original schedule.",
+    "date": "2025-09-30",
+    "tags": ["us", "policy", "featured", "healthcare", "interactives"],
+    "authors": ["daphne-hansell"],
+    "filename": "introducing-aca-calc.md",
+    "image": "biden-arpa.png"
+  },
+  {
+    "title": "How carbon tax and dividend policies affect UK households",
+    "description": "PolicyEngine analysis of £100/200 per tonne carbon taxes with full dividend redistribution shows approximately 71% of UK residents would gain.",
+    "date": "2025-09-30 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-carbon-tax-dividend.md",
+    "image": "uk-carbon-tax.png"
+  },
+  {
+    "title": "Enhanced Premium Tax Credits: Analyzing Household Impacts of an Extension Beyond 2025",
+    "description": "PolicyEngine analyzes extending the enhanced premium tax credits enacted through the American Rescue Plan Act beyond their 2025 expiration.",
+    "date": "2025-09-30",
+    "tags": ["us", "policy", "featured", "healthcare"],
+    "authors": ["daphne-hansell"],
+    "filename": "enhanced-premium-tax-credits-extension.md",
+    "image": "enhanced-premium-tax-credits-extension.jpg"
+  },
+  {
+    "title": "Event: PolicyEngine 2.0 and the Future of Public Policy Analysis",
+    "description": "Join us on the afternoon of November 3rd in London for an exclusive showcase of PolicyEngine's latest innovations in evidence-based policy analysis, featuring live demos and networking.",
+    "date": "2025-09-12",
+    "tags": ["uk", "org", "featured", "event"],
+    "filename": "sep-2025-london-event.md",
+    "image": "sep-2025-london-event.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "PolicyEngine and NBER sign memorandum of understanding for TAXSIM emulator development",
+    "description": "Partnership ensures continuity of tax microsimulation capabilities for the research community through open-source development.",
+    "date": "2025-09-05",
+    "tags": ["us", "org", "featured"],
+    "filename": "policyengine-nber-mou-taxsim.md",
+    "image": "policyengine-nber-mou-taxsim.png",
+    "authors": ["max-ghenis", "pavel-makarchuk"]
+  },
+  {
+    "title": "National Science Foundation awards PolicyEngine $300,000 grant",
+    "description": "NSF's Pathways to Enable Open-Source Ecosystems program will support PolicyEngine's work to expand access to policy analysis tools.",
+    "date": "2025-08-18",
+    "tags": ["us", "uk", "org", "featured"],
+    "filename": "nsf-pose-phase-1-grant.md",
+    "image": "nsf-official-logo.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "Analysis of the American Worker Rebate Act of 2025",
+    "description": "The bill would cost $141 billion and benefit 80% of American residents.",
+    "date": "2025-08-13",
+    "tags": ["us", "tariffs", "featured"],
+    "filename": "american-worker-rebate-act.md",
+    "image": "american-worker-rebate-act.jpg",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
+    "description": "The Enhanced Current Population Survey now includes tip, overtime, and auto loan interest imputations, plus upcoming state and congressional district calibration.",
+    "date": "2025-08-11",
+    "tags": ["us", "data", "featured"],
+    "filename": "enhanced-cps-launch.md",
+    "image": "enhanced-cps-launch.png",
+    "authors": ["max-ghenis", "nikhil-woodruff", "ben-ogorek", "maria-juaristi"]
+  },
+  {
+    "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
+    "title": "The One Big Beautiful Bill Act, household by household",
+    "description": "Our latest interactive shows how the reconciliation bill affects each of 20,000 representative households across income levels, states, and provisions.",
+    "date": "2025-08-11",
+    "tags": ["us", "policy", "featured", "reconciliation", "interactives"],
+    "filename": "obbba-household-by-household-dummy.md",
+    "external_url": "/us/obbba-household-by-household",
+    "image": "obbba-household-by-household.png",
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk",
+      "ben-ogorek",
+      "nikhil-woodruff"
+    ]
+  },
+  {
+    "title": "Analysis of individual income tax provisions in the final reconciliation bill",
+    "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
+    "date": "2025-07-04",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "final-2025-reconciliation-tax.md",
+    "image": "final-2025-reconciliation-tax.png",
+    "authors": ["david-trimmer", "pavel-makarchuk"]
+  },
+  {
+    "title": "Introducing the OBBBA Household Explorer",
+    "description": "New interactive tool reveals household-level impacts of the One Big Beautiful Bill Act.",
+    "date": "2025-07-03",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "introducing-obbba-household-explorer.md",
+    "image": "introducing-obbba-household-explorer.png",
+    "authors": ["max-ghenis", "pavel-makarchuk", "elena-cura"]
+  },
+  {
+    "title": "The 2025 American Family Act",
+    "description": "The Child Tax Credit expansion would cost the federal government $2.5 trillion over ten years and lower child poverty by 25%.",
+    "date": "2025-06-16",
+    "tags": ["us", "policy", "featured", "child-tax-credit"],
+    "filename": "american-family-act-2025.md",
+    "image": "american-family-act-2025.webp",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Childcare programmes in PolicyEngine UK",
+    "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
+    "date": "2025-06-06",
+    "tags": ["uk", "benefit", "featured"],
+    "filename": "uk-childcare-report.md",
+    "image": "uk_childcare_report.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
+    "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
+    "date": "2025-05-24",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
+    "filename": "managers-amendment-to-hr1.md",
+    "image": "managers-amendment-to-hr1.png"
+  },
+  {
+    "title": "Montana Reduces Top Income Tax Rate and Expands EITC",
+    "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in 2027.",
+    "date": "2025-05-22",
+    "tags": ["us", "featured", "us-mt"],
+    "filename": "montana-tax-cuts-2026.md",
+    "image": "montana-tax-cuts-2026.jpg",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "The SALT Caucus's Proposed Cap",
+    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
+    "date": "2025-05-15",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "salt-caucus-62k-cap.md",
+    "image": "salt-caucus-62k-cap.png",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Ways and Means Committee's SALT Cap",
+    "description": "We project that limiting state and local tax deductions to $30,000, phasing down to $10,000 at high incomes, would raise $937 billion over the budget window.",
+    "date": "2025-05-14",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "ways-and-means-salt-cap.md",
+    "image": "ways-and-means-salt-cap.webp",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"]
+  },
+  {
+    "title": "Tax changes in effect in April 2025",
+    "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of £1,133 per household.",
+    "date": "2025-04-25",
+    "tags": ["uk", "tax", "policy", "featured"],
+    "filename": "impact-of-tax-changes-2025-2026.md",
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Analyzing Energy Policy with PolicyEngine",
+    "description": "We provide an Earth Day recap of our capabilities in the US and UK.",
+    "date": "2025-04-22",
+    "tags": ["us", "uk", "featured"],
+    "filename": "earth-day-2025.md",
+    "image": "earth-day-2025.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "What's the SALTernative?",
+    "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
+    "date": "2025-04-21",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "introducing-salternative.md",
+    "image": "introducing-salternative.png",
+    "authors": ["pavel-makarchuk", "max-ghenis"]
+  },
+  {
+    "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
+    "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
+    "date": "2025-04-05",
+    "tags": ["us", "us-nc", "featured", "api", "benefit-access"],
+    "filename": "myfriendben-nc.md",
+    "image": "myfriendben-nc.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "New Ways to Give to PolicyEngine",
+    "description": "Exploring state tax credits for charitable giving.",
+    "date": "2025-04-01",
+    "tags": ["us", "april-fools", "featured"],
+    "filename": "april-1st-2025.md",
+    "image": "april-1st-2025.png",
+    "authors": ["daphne-hansell"]
+  },
+  {
     "title": "Analysis of the Spring 2025 OBR forecast",
     "description": "PolicyEngine integrates the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
     "date": "2025-03-26",
@@ -1173,12 +1405,75 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
+    "title": "The Tax Cuts for Workers Act",
+    "date": "2025-06-16",
+    "authors": ["pavel-makarchuk", "max-ghenis"],
+    "tags": ["us", "policy", "featured"],
+    "description": "We simulate the new bill to restore the American Rescue Plan Act’s Earned Income Tax Credit expansion.",
+    "filename": "tax-cuts-for-workers-act.ipynb",
+    "image": "tax-cuts-for-workers-act.png"
+  },
+  {
+    "title": "Benefits in PolicyEngine",
+    "date": "2025-05-28 00:00:00",
+    "authors": ["vahid-ahmadi"],
+    "tags": ["uk", "policy", "featured", "benefit"],
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
+    "filename": "uk-benefits-post.md",
+    "image": "uk-benefit-post.png"
+  },
+  {
+    "title": "Idaho’s New Individual Income Tax Changes",
+    "date": "2025-04-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-id", "featured", "policy"],
+    "description": "The lower top marginal rate and larger grocery tax credit will cost the state $225 million in 2025.",
+    "filename": "idaho-2025-tax-change.ipynb",
+    "image": "idaho-2025-tax-change.jpg"
+  },
+  {
     "title": "Taxes in PolicyEngine",
     "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-27 00:00:00",
+    "date": "2025-04-08 00:00:00",
     "tags": ["uk", "policy", "featured", "tax"],
-    "authors": ["vahid-ahmadi"],
+    "authors": ["vahid-ahmadi", "nikhil-woodruff"],
     "filename": "uk-taxes-post.md",
     "image": "uk-tax-post.jpg"
+  },
+  {
+    "title": "Utah Cuts Income Tax Rate and Expands Credits",
+    "date": "2025-05-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ut", "featured", "policy"],
+    "description": "Utah’s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
+    "filename": "utah-income-tax-changes.ipynb",
+    "image": "utah-income-tax-changes.jpg"
+  },
+  {
+    "title": "Reform UK's tax-benefit reform proposals",
+    "description": "Nigel Farage has confirmed that Reform UK's manifesto will include four tax-benefit reforms that PolicyEngine estimates would cost £75 billion in 2025-26.",
+    "date": "2025-05-27 19:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "farage-speech-may-2025.ipynb",
+    "image": "farage-speech-may-2025.jpg"
+  },
+  {
+    "title": "Extending the Winter Fuel Allowance",
+    "description": "The government has reversed its Winter Fuel Allowance means testing, expanding eligibility to 9 million pensioners through a £35,000 income threshold.",
+    "date": "2025-06-11 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "wfa-means-test.ipynb",
+    "image": "wfa-repeal.jpeg"
+  },
+  {
+    "title": "How changing the VAT threshold affects UK revenues",
+    "description": "PolicyEngine's new firm microsimulation model estimates revenue and business impacts of VAT thresholds from £70,000 to £120,000.",
+    "date": "2025-09-10 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-vat-thresholds.md",
+    "image": "uk-vat-reeves.jpg"
   }
 ]

@@ -19,13 +19,13 @@ export default function DeveloperLayout() {
   return (
     <main>
       <Helmet>
-        <title>Developer Tools | PolicyEngine</title>
+        <title>Developer tools | PolicyEngine</title>
       </Helmet>
       <div>
         <Header />
 
         <PageHeader
-          title="Developer Tools"
+          title="Developer tools"
           backgroundColor={style.colors.BLUE_98}
         >
           <p style={{ margin: 0 }}>

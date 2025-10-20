@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
 import Jobs from "./pages/Jobs";
+import Supporters from "./pages/Supporters";
 import {
   Navigate,
   Outlet,
@@ -12,6 +13,7 @@ import {
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
+import AppPage from "./pages/AppPage";
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
@@ -28,6 +30,7 @@ import Testimonials from "./pages/Testimonials";
 import CalculatorInterstitial from "./pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "./applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "./pages/learn/APIDocumentationPage";
+import ApiTermsOfService from "./pages/learn/ApiTermsOfService";
 import SimulationsPage from "./pages/Simulations";
 import CookieConsent from "./modals/CookieConsent";
 import TrafwaCalculator from "./applets/TrafwaCalculator";
@@ -49,14 +52,16 @@ import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
 import CTCCalculator from "./applets/CTCCalculator";
 import GiveCalc from "./applets/GiveCalc";
+import ACACalc from "./applets/ACACalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
-import SaltAMTCalculator from "./applets/SaltAMTCalculator";
+import SALTernative from "./applets/SALTernative";
 import AIPage from "./pages/learn/AI";
 import MicrosimPage from "./pages/learn/MicrosimPage";
 import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
+import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -77,6 +82,13 @@ export default function PolicyEngine() {
   const countryId = extractCountryId();
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const updatedSearchParams = updateDeprecatedSearchParams(searchParams);
+  if (updatedSearchParams) {
+    // If we have updated search params, set them
+    setSearchParams(updatedSearchParams);
+  }
+
   const householdId = searchParams.get("household");
 
   let defaultBaselinePolicy = 1;
@@ -313,6 +325,7 @@ export default function PolicyEngine() {
           <Route index={true} element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="jobs" element={<Jobs />} />
+          <Route path="supporters" element={<Supporters />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />
@@ -333,6 +346,7 @@ export default function PolicyEngine() {
           <Route path="benefits" element={<BenefitAccessPage />} />
           <Route path="education" element={<EducationPage />} />
           <Route path="open-source" element={<OpenSourcePage />} />
+          <Route path=":appName" element={<AppPage />} />
 
           <Route
             path="household/*"
@@ -368,10 +382,13 @@ export default function PolicyEngine() {
             }
           />
 
-          <Route
-            path="api"
-            element={<APIDocumentationPage metadata={metadata} />}
-          />
+          <Route path="api" element={<Outlet />}>
+            <Route
+              index
+              element={<APIDocumentationPage metadata={metadata} />}
+            />
+            <Route path="terms" element={<ApiTermsOfService />} />
+          </Route>
           {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
           <Route path="blog/:postName" element={<RedirectBlogPost />} />
         </Route>
@@ -391,11 +408,12 @@ export default function PolicyEngine() {
           element={<CTCCalculator />}
         />
         <Route path="/us/givecalc" element={<GiveCalc />} />
+        <Route path="/us/aca-calc" element={<ACACalc />} />
         <Route
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}
         />
-        <Route path="/us/salt-amt-calculator" element={<SaltAMTCalculator />} />
+        <Route path="/us/salternative" element={<SALTernative />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />

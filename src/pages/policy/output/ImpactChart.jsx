@@ -122,7 +122,7 @@ export function absoluteChangeMessage(
  * and it is not us or uk
  */
 export function regionName(metadata) {
-  const ignoreList = ["us", "uk", "enhanced_us"];
+  const ignoreList = ["us", "uk"];
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   if (ignoreList.includes(region)) return;

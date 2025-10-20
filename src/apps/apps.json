@@ -1,0 +1,23 @@
+[
+  {
+    "title": "OBBBA household impact explorer",
+    "description": "Interactive tool to explore household-level impacts of the One Big Beautiful Bill Act",
+    "url": "https://obbba-household-explorer.streamlit.app/?embed=true",
+    "slug": "obbba-household-explorer",
+    "tags": ["us", "featured", "policy"]
+  },
+  {
+    "title": "OBBBA household-by-household analysis",
+    "description": "Detailed household-by-household impact analysis of the One Big Beautiful Bill Act",
+    "url": "https://policyengine.github.io/obbba-household-by-household",
+    "slug": "obbba-household-by-household",
+    "tags": ["us", "featured", "policy"]
+  },
+  {
+    "title": "UK two-child limit policy comparison",
+    "description": "Compare multiple policy scenarios for the UK two-child benefit limit and their impacts on household incomes, government spending, and child poverty",
+    "url": "https://uk-two-child-limit-app.vercel.app",
+    "slug": "two-child-limit-comparison",
+    "tags": ["uk", "featured", "policy"]
+  }
+]

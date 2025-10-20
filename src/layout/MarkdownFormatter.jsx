@@ -143,13 +143,13 @@ export function PlotlyChartCode({ data, backgroundColor }) {
 
   // Use the margins defined in the plotly data, falling back to reasonable defaults
   // Don't override what's in the data, but ensure we have at least some bottom margin
-  const defaultMargins = { l: 50, r: 50, t: 50, b: 50 };
+  const defaultMargins = { l: 20, r: 20, t: 20, b: 20 };
   const margins = { ...defaultMargins, ...(plotlyData.layout?.margin || {}) };
 
   return (
     <div
       style={{
-        paddingLeft: 20,
+        paddingLeft: 0,
         width: "100%",
         display: "flex",
         justifyContent: "center",
@@ -319,7 +319,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
               .props.children.find(
                 (child) => child?.props?.node.tagName === "a",
               ).props.node.properties.href;
-            value = footnoteLinkBack.split("-").pop();
+            value = footnoteLinkBack?.split("-").pop() || "";
             validValue = /^-?\d+$/.test(value);
           } catch (e) {
             // Do nothing
@@ -369,7 +369,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
           // If href=#user-content-fn-1, id should be user-content-fnref-1 and vice versa
           if (href.startsWith("#user-content-fn-")) {
             id = href.replace("#user-content-fn-", "user-content-fnref-");
-            footnoteNumber = parseInt(id.split("-").pop());
+            footnoteNumber = parseInt(id?.split("-").pop() || "0");
           } else if (href.startsWith("#user-content-fnref-")) {
             id = href.replace("#user-content-fnref-", "user-content-fn-");
           } else {
@@ -475,7 +475,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
           }
         },
         h2: ({ children: headerText }) => {
-          if (!headerText.split) {
+          if (!headerText?.split) {
             headerText = "";
           }
           // Remove slashes and commas, and replace spaces with dashes to create a

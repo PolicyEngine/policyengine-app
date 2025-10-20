@@ -49,25 +49,29 @@ export default function BlogPage() {
   // /uk/research/blog-slug-here
   const { postName } = useParams();
   const countryId = useCountryId();
+  const [content, setContent] = useState("");
 
   const post = posts.find((post) => post.slug === postName);
-  const postDate = formatFullDate(moment(post.date), countryId);
 
-  const imageUrl = post.image ? handleImageLoad(post.image) : "";
-  const file = require(`../posts/articles/${post.filename}`);
+  const isNotebook =
+    post && post.filename ? post.filename.endsWith(".ipynb") : false;
+  const file =
+    post && post.filename
+      ? require(`../posts/articles/${post.filename}`)
+      : null;
 
-  const [content, setContent] = useState("");
-  const isNotebook = post.filename.endsWith(".ipynb");
   useEffect(() => {
-    fetch(file)
-      .then((response) => response.text())
-      .then((text) => {
-        if (isNotebook) {
-          setContent(JSON.parse(text));
-        } else {
-          setContent(text);
-        }
-      });
+    if (file) {
+      fetch(file)
+        .then((response) => response.text())
+        .then((text) => {
+          if (isNotebook) {
+            setContent(JSON.parse(text));
+          } else {
+            setContent(text);
+          }
+        });
+    }
   }, [file, isNotebook]);
 
   // Some old links might point to a dated URL format
@@ -75,6 +79,19 @@ export default function BlogPage() {
   if (YYYYMMDDFormat.test(postName)) {
     return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
   }
+
+  // Handle external URL redirects
+  if (post && post.external_url) {
+    return <Navigate to={post.external_url} replace />;
+  }
+
+  // Handle missing post or filename
+  if (!post || !post.filename) {
+    return <Navigate to={`/${countryId}/research`} replace />;
+  }
+
+  const postDate = formatFullDate(moment(post.date), countryId);
+  const imageUrl = post.image ? handleImageLoad(post.image) : "";
 
   let markdown;
 
@@ -125,7 +142,6 @@ function NotebookCell({ data }) {
     outputCellComponent = null;
   } else {
     const outputType = Object.keys(outputCell)[0];
-    console.log(outputType);
     if (outputType === "text/plain") {
       outputCellComponent = (
         <NotebookOutputPlain data={outputCell[outputType]} />
@@ -213,7 +229,6 @@ function NotebookOutputMarkdown({ data }) {
 }
 
 function NotebookOutputPlotly({ data }) {
-  console.log(data);
   const title = data.layout?.title?.text;
   const displayCategory = useDisplayCategory();
 
@@ -608,9 +623,13 @@ function DesktopShareLink({ icon, url, action, text }) {
     <div
       style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
       onClick={() => {
-        if (url) {
-          window.open(url, "_blank");
-        } else action();
+        if (typeof window !== "undefined") {
+          if (url) {
+            window.open(url, "_blank");
+          } else if (typeof action === "function") {
+            action();
+          }
+        }
       }}
     >
       {React.createElement(icon, {
@@ -638,6 +657,8 @@ function DesktopShareLink({ icon, url, action, text }) {
 function ShareLinks({ post }) {
   const displayCategory = useDisplayCategory();
   const desktop = displayCategory === "desktop";
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
   return (
     <div
       style={{
@@ -650,27 +671,27 @@ function ShareLinks({ post }) {
       {desktop && <p className="spaced-sans-serif">Share</p>}
       <DesktopShareLink
         icon={TwitterOutlined}
-        url={`https://twitter.com/intent/tweet?text=${post.title}&url=${window.location.href}`}
+        url={`https://twitter.com/intent/tweet?text=${post.title}&url=${currentUrl}`}
         text={desktop && "Twitter"}
       />
       <DesktopShareLink
         icon={FacebookOutlined}
-        url={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+        url={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
         text={desktop && "Facebook"}
       />
       <DesktopShareLink
         icon={LinkedinOutlined}
-        url={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${post.title}&summary=${post.description}`}
+        url={`https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${post.title}&summary=${post.description}`}
         text={desktop && "LinkedIn"}
       />
       <DesktopShareLink
         icon={MailOutlined}
-        url={`mailto:?subject=${post.title}&body=${window.location.href}`}
+        url={`mailto:?subject=${post.title}&body=${currentUrl}`}
         text={desktop && "Email"}
       />
       <DesktopShareLink
         icon={PrinterOutlined}
-        action={window.print}
+        action={typeof window !== "undefined" ? window.print : () => {}}
         text={desktop && "Print"}
       />
     </div>
@@ -721,12 +742,17 @@ function LeftContents(props) {
             marginTop: 0,
           }}
           onClick={() => {
-            const element = document.getElementById(headerSlug);
-            if (element) {
-              window.scrollTo({
-                top: element.offsetTop - 200,
-                behavior: "smooth",
-              });
+            if (
+              typeof window !== "undefined" &&
+              typeof document !== "undefined"
+            ) {
+              const element = document.getElementById(headerSlug);
+              if (element) {
+                window.scrollTo({
+                  top: element.offsetTop - 200,
+                  behavior: "smooth",
+                });
+              }
             }
           }}
         >

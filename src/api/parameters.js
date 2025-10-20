@@ -31,8 +31,10 @@ export function buildParameterTree(parameters) {
         (cumulativePath in parameters && parameters[cumulativePath].label) ||
         key;
       // Transform e.g. "0]" -> 1
+      let bracketIndex = 0;
       if (key.endsWith("]")) {
-        label = `Bracket ${parseInt(key.slice(0, -1)) + 1}`;
+        bracketIndex = parseInt(key.slice(0, -1));
+        label = `Bracket ${bracketIndex + 1}`;
       }
       label = label.replaceAll("_", " ");
       if (!currentNode.children) {
@@ -46,7 +48,7 @@ export function buildParameterTree(parameters) {
         currentNode.children.push({
           label: label,
           name: cumulativePath,
-          index: 0,
+          index: bracketIndex,
           children: [],
         });
       }

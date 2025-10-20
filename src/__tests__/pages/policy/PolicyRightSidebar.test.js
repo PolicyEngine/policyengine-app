@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 import PolicyRightSidebar, {
   SinglePolicyChange,
@@ -48,7 +48,7 @@ const standardPolicyUK = {
 };
 
 describe("Enhanced CPS selector", () => {
-  test("Should be present for the US site", async () => {
+  test("Should not be present (selector removed)", async () => {
     const testSearchParams = {
       focus: "gov",
     };
@@ -67,10 +67,10 @@ describe("Enhanced CPS selector", () => {
       defaultOpen: true,
     };
 
-    const { getByTestId } = render(<PolicyRightSidebar {...props} />);
+    const { queryByTestId } = render(<PolicyRightSidebar {...props} />);
 
     await waitFor(() => {
-      expect(getByTestId("enhanced_cps_switch")).toBeInTheDocument();
+      expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument();
     });
   });
   test("Should not render for the UK site", async () => {
@@ -98,7 +98,7 @@ describe("Enhanced CPS selector", () => {
       expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument();
     });
   });
-  test("Should be enabled when region is 'us'", async () => {
+  test("Should not be present when region is 'us' (selector removed)", async () => {
     const testSearchParams = {
       focus: "gov",
       region: "us",
@@ -118,39 +118,11 @@ describe("Enhanced CPS selector", () => {
       defaultOpen: true,
     };
 
-    const { getByTestId } = render(<PolicyRightSidebar {...props} />);
+    const { queryByTestId } = render(<PolicyRightSidebar {...props} />);
 
-    expect(getByTestId("enhanced_cps_switch").classList).not.toContain(
-      "ant-switch-disabled",
-    );
+    expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument();
   });
-  test("Should be enabled when region is 'enhanced_us'", async () => {
-    const testSearchParams = {
-      focus: "gov",
-      region: "enhanced_us",
-    };
-
-    useSearchParams.mockImplementation(() => {
-      return [new URLSearchParams(testSearchParams), jest.fn()];
-    });
-
-    // Declare props
-    const props = {
-      metadata: {
-        ...metadataUS,
-        countryId: "us",
-      },
-      policy: standardPolicyUS,
-      defaultOpen: true,
-    };
-
-    const { getByTestId } = render(<PolicyRightSidebar {...props} />);
-
-    expect(getByTestId("enhanced_cps_switch").classList).not.toContain(
-      "ant-switch-disabled",
-    );
-  });
-  test("Should be enabled when region is 'null'", async () => {
+  test("Should not be present when region is 'null' (selector removed)", async () => {
     const testSearchParams = {
       focus: "gov",
     };
@@ -169,22 +141,14 @@ describe("Enhanced CPS selector", () => {
       defaultOpen: true,
     };
 
-    const { getByTestId } = render(<PolicyRightSidebar {...props} />);
+    const { queryByTestId } = render(<PolicyRightSidebar {...props} />);
 
-    expect(getByTestId("enhanced_cps_switch").classList).not.toContain(
-      "ant-switch-disabled",
-    );
+    expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument();
   });
-  test("Should change region when selected", () => {
+  test("Should not have selector to change dataset (selector removed)", () => {
     const testSearchParams = {
       focus: "gov",
       region: "us",
-    };
-
-    const expectedSearchParams = {
-      focus: "gov",
-      region: "us",
-      dataset: "enhanced_cps",
     };
 
     const mockSetSearchParams = jest.fn();
@@ -203,11 +167,8 @@ describe("Enhanced CPS selector", () => {
       defaultOpen: true,
     };
 
-    const { getByTestId } = render(<PolicyRightSidebar {...props} />);
-    fireEvent.click(getByTestId("enhanced_cps_switch"));
-    expect(mockSetSearchParams).toHaveBeenCalledWith(
-      new URLSearchParams(expectedSearchParams),
-    );
+    const { queryByTestId } = render(<PolicyRightSidebar {...props} />);
+    expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument();
   });
 });
 

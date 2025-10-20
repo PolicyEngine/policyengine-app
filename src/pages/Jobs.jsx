@@ -82,7 +82,7 @@ export default function Jobs() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/data/jobOpenings.json")
+    fetch("/data/job-openings.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch job openings");
@@ -141,7 +141,7 @@ export default function Jobs() {
         <ApplyButton />
         {/* Update this section depending on open positions */}
         <p>
-          We&apos;re currently searching for a US Research Analyst and interns.
+          We&apos;re currently accepting applications for internship positions.
         </p>
       </Section>
       <Section backgroundColor={style.colors.LIGHT_GRAY}>
@@ -164,7 +164,7 @@ export default function Jobs() {
       )}
       {internshipPositions.length > 0 && (
         <Section backgroundColor={style.colors.LIGHT_GRAY}>
-          <h2>Internship Opportunities</h2>
+          <h2>Internship opportunities</h2>
           {internshipPositions.map((position, index) =>
             renderJobSection(position, index, false),
           )}
