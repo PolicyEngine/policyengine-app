@@ -4,8 +4,6 @@ import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
 import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch";
 
-const POLICYENGINE_API = "https://api.policyengine.org";
-
 /**
  * returns an api call function that can be used to make requests
  * against the policyengine api endpoint.
@@ -47,13 +45,17 @@ export function apiCall(
   secondAttempt = false,
   fetchMethod = fetch,
 ) {
-  return fetchMethod(POLICYENGINE_API + path, {
-    method: method || (body ? "POST" : "GET"),
-    headers: {
-      "Content-Type": "application/json",
+  return fetchMethod(
+    process.env.REACT_APP_POLICYENGINE_API ||
+      "https://api.policyengine.org" + path,
+    {
+      method: method || (body ? "POST" : "GET"),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body ? wrappedJsonStringify(body) : null,
     },
-    body: body ? wrappedJsonStringify(body) : null,
-  }).then((response) => {
+  ).then((response) => {
     // If the response is a 500, try again once.
     if (response.status === 500 && !secondAttempt) {
       return apiCall(path, body, method, true);
