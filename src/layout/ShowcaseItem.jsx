@@ -46,6 +46,7 @@ export default function ShowcaseItem({
         <p>{description}</p>
         <EmphasisedLink url={link} text={linkTitle} />
       </div>
+
       {imageIsMissing ? (
         <div
           style={{
@@ -66,7 +67,7 @@ export default function ShowcaseItem({
             }}
           />
         </div>
-      ) : (
+      ) : typeof image === "string" ? (
         <img
           src={image}
           width={displayCategory === "desktop" ? 400 : "100%"}
@@ -76,7 +77,17 @@ export default function ShowcaseItem({
           }}
           alt={altText}
         />
+      ) : (
+        <div
+          style={{
+            width: displayCategory === "desktop" ? 400 : "100%",
+            marginTop: displayCategory === "desktop" ? 0 : 20,
+          }}
+        >
+          {image}
+        </div>
       )}
+
     </div>
   );
 }
