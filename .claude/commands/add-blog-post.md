@@ -72,19 +72,33 @@ echo "Description length: ${#DESC} characters"
 [RSVP link](https://example.com)
 ```
 
-## Step 4: Handle Images
+## Step 4: Handle Images and Charts
 
 ### Cover Image
 
 ```bash
-# IMPORTANT: Cover image filename MUST match post slug
-# Example: dc-office-ai-coding.md → dc-office-ai-coding.png
+# IMPORTANT: Cover image filename MUST match post slug exactly
+# Example: california-billionaire-tax-marginal-rates.md → california-billionaire-tax-marginal-rates.jpg
 
 # Cover images go in src/images/posts/ (loaded via require() at build time)
-mv [source-path] src/images/posts/[post-slug].png
+mv [source-path] src/images/posts/[post-slug].jpg
 
 # Verify it exists
-ls -lh src/images/posts/[post-slug].png
+ls -lh src/images/posts/[post-slug].jpg
+```
+
+### Interactive Charts (Plotly HTML)
+
+```bash
+# Charts organized in subfolder matching post slug
+mkdir -p public/charts/[post-slug]
+
+# Simple names: phase-in.html, liability.html, mtr.html, etc.
+cp chart1.html public/charts/[post-slug]/phase-in.html
+cp chart2.html public/charts/[post-slug]/liability.html
+
+# Reference in markdown as:
+# <iframe src="/charts/[post-slug]/phase-in.html" width="100%" height="650" frameborder="0"></iframe>
 ```
 
 ### In-Post Images
@@ -97,10 +111,11 @@ cp [source-path] public/images/posts/[image-name].jpg
 # ![Alt text](/images/posts/[image-name].jpg)
 ```
 
-**Image Location Summary**:
+**File Location Summary**:
 
-- **Cover images**: `src/images/posts/` (webpack require())
-- **In-post images**: `public/images/posts/` (runtime URL serving)
+- **Cover image**: `src/images/posts/[post-slug].jpg` (webpack require(), must match slug)
+- **Interactive charts**: `public/charts/[post-slug]/simple-name.html` (organized by post)
+- **In-post images**: `public/images/posts/[image-name].jpg` (runtime URL serving)
 
 ## Step 5: Update posts.json
 
