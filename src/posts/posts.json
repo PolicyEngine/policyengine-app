@@ -1,5 +1,16 @@
 [
   {
+    "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
+    "title": "UK two-child limit policy comparison",
+    "description": "Compare multiple policy scenarios for the UK two-child benefit limit and their impacts on household incomes, government spending, and child poverty.",
+    "date": "2025-10-28",
+    "tags": ["uk", "featured", "policy", "interactives"],
+    "filename": "uk-two-child-limit-comparison-dummy.md",
+    "external_url": "/uk/two-child-limit-comparison",
+    "image": "young-child-exemption-two-child-limit.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
     "title": "Marginal tax rates in California's proposed billionaire tax",
     "description": "The 5% tax creates marginal tax rates between 50% and 60% on wealth between $1 billion and $1.1 billion.",
     "date": "2025-10-25",
