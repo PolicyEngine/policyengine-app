@@ -1,5 +1,4 @@
 - bump: minor
   changes:
     added:
-      - UK two-child limit policy comparison app as a featured tile
-      - Slug validation test to prevent conflicts between app slugs and post filenames
+      - UK two-child limit policy comparison dashboard as a featured tile on UK homepage
