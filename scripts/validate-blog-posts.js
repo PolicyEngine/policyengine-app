@@ -81,6 +81,16 @@ function validate() {
       if (stat.size === 0) {
         errors.push(`${postNum}: Cover image ${post.image} is empty (0 bytes)`);
       }
+
+      // Check image size (cover images should be < 5MB)
+      const MAX_COVER_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+      if (stat.size > MAX_COVER_IMAGE_SIZE) {
+        const sizeMB = (stat.size / (1024 * 1024)).toFixed(1);
+        errors.push(
+          `${postNum}: Cover image ${post.image} is ${sizeMB}MB (max 5MB). ` +
+          `Optimize with: convert ${post.image} -resize 1200x800 ${post.image}`
+        );
+      }
     }
 
     // Check markdown file exists (unless it's an external_url post)
