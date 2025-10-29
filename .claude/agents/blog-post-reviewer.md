@@ -51,6 +51,7 @@ For research tiles that link to interactive calculators or tools instead of mark
 - **Tags**: Include "interactives" tag plus country and content tags
 
 **Example**:
+
 ```json
 {
   "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
