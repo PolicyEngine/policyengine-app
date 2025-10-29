@@ -88,7 +88,7 @@ function validate() {
         const sizeMB = (stat.size / (1024 * 1024)).toFixed(1);
         errors.push(
           `${postNum}: Cover image ${post.image} is ${sizeMB}MB (max 5MB). ` +
-          `Optimize with: convert ${post.image} -resize 1200x800 ${post.image}`
+            `Optimize with: convert ${post.image} -resize 1200x800 ${post.image}`,
         );
       }
     }
