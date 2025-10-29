@@ -5,6 +5,7 @@
 **NEVER run `gh pr merge` until ALL CI checks show "pass" status.**
 
 Before merging ANY PR:
+
 1. Run `gh pr checks [PR_NUMBER] --repo PolicyEngine/policyengine-app`
 2. Verify EVERY check shows "pass" (not "pending" or "fail")
 3. Wait if any checks are still "pending"
