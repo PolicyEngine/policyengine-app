@@ -1,4 +1,4 @@
-- bump: minor
+- bump: patch
   changes:
-    added:
-      - UK two-child limit policy comparison dashboard as a featured tile on UK homepage
+    changed:
+      - Updated blog-post-reviewer agent documentation for interactive tools pattern
