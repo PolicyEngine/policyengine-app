@@ -281,6 +281,21 @@ grep "^#" src/posts/articles/[filename].md
 **Problem**: "The regressive policy burdens the poor"
 **Fix**: "The policy increases taxes for lower-income households by an average of £340"
 
+### Issue: Hedging Language
+
+**Problem**: "That's probably the right approach" or "We're planning to deploy"
+**Fix**: "That's the right approach" or "We're deploying" (remove unnecessary hedging)
+
+### Issue: Weak Intro Phrases
+
+**Problem**: "The interesting part: the system handles coordination"
+**Fix**: "The system handles coordination" (remove editorial labels)
+
+### Issue: Subtle Passive Voice
+
+**Problem**: "The time advantage showed up on repetitive tasks"
+**Fix**: "The system saved the most time on repetitive tasks" (clear active subject)
+
 ## Review Response Template
 
 ### For Policy Reports
