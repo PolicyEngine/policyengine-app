@@ -1,8 +1,8 @@
 [
   {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
-    "title": "UK two-child limit policy comparison",
-    "description": "Compare multiple policy scenarios for the UK two-child benefit limit and their impacts on household incomes, government spending, and child poverty.",
+    "title": "Two-child limit calculator",
+    "description": "Explore policy reforms to the two-child benefit limit and their impacts on households, government spending, and child poverty.",
     "date": "2025-10-28",
     "tags": ["uk", "featured", "policy", "interactives"],
     "filename": "uk-two-child-limit-comparison-dummy.md",
