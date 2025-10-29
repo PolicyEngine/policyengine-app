@@ -1,5 +1,17 @@
 # PolicyEngine App Development Guidelines
 
+## CRITICAL: NEVER MERGE WITHOUT CI PASSING
+
+**NEVER run `gh pr merge` until ALL CI checks show "pass" status.**
+
+Before merging ANY PR:
+1. Run `gh pr checks [PR_NUMBER] --repo PolicyEngine/policyengine-app`
+2. Verify EVERY check shows "pass" (not "pending" or "fail")
+3. Wait if any checks are still "pending"
+4. Only merge when you see: `CI (22.x)	pass`, `Lint	pass`, `Vercel	pass`
+
+**If you merge before CI completes, you risk breaking production.**
+
 ## Build & Test Commands
 
 - Install: `make install` (npm ci & black)
