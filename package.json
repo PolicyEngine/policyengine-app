@@ -36,7 +36,7 @@
     "react-ga": "^3.3.1",
     "react-helmet": "^6.1.0",
     "react-hook-reading-time": "^1.0.0",
-    "react-markdown": "^9.0.3",
+    "react-markdown": "^10.1.0",
     "react-plotly.js": "^2.6.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.27.0",
@@ -70,7 +70,8 @@
     "eject": "react-scripts eject",
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
     "lint": "eslint --ext js,jsx --max-warnings 0 . && prettier -c .",
-    "prepare-husky": "husky"
+    "prepare-husky": "husky",
+    "validate-posts": "node scripts/validate-blog-posts.js"
   },
   "browserslist": {
     "production": [

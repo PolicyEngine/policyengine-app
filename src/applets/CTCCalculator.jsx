@@ -1,33 +1,12 @@
-import Header from "../layout/Header";
-import { Helmet } from "react-helmet";
-import style from "../style";
-import { useWindowHeight } from "../hooks/useWindow";
+import StreamlitEmbed from "./StreamlitEmbed";
 
 export default function CTCCalculator() {
-  const windowHeight = useWindowHeight();
-
   return (
-    <>
-      <Helmet>
-        <title>Child tax credit calculator | PolicyEngine</title>
-      </Helmet>
-      <Header />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          height: windowHeight - style.spacing.HEADER_HEIGHT,
-          width: "100vw",
-        }}
-      >
-        <iframe
-          src="https://ctc-calculator.streamlit.app?embedded=true"
-          title="Child tax credit calculator"
-          height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
-          width="100%"
-          style={{ overflow: "hidden" }}
-        />
-      </div>
-    </>
+    <StreamlitEmbed
+      embedUrl="https://ctc-calculator.streamlit.app?embedded=true"
+      directUrl="https://ctc-calculator.streamlit.app"
+      title="Child tax credit calculator"
+      iframeTitle="Child tax credit calculator"
+    />
   );
 }
