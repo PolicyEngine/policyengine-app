@@ -1498,7 +1498,7 @@
   },
   {
     "title": "Testing multi-agent AI workflows for policy research",
-    "description": "A multi-agent Claude Code system we built fared better on distributional analysis than benefit interactions; we're using these insights to enhance our forthcoming plugin.",
+    "description": "A multi-agent Claude Code system fared better on distributional analysis than benefit interactions; insights inform our forthcoming plugin.",
     "date": "2025-10-28",
     "tags": ["uk", "featured", "technology", "ai"],
     "authors": ["vahid-ahmadi"],
