@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "autoInstall": {
+      "PolicyEngine/policyengine-claude": {
+        "source": "github",
+        "ref": "master"
+      }
+    }
+  }
+}
