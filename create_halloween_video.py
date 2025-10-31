@@ -44,16 +44,18 @@ async def capture_frames():
         print("Creating MP4 video with ffmpeg...")
         output_video = Path(__file__).parent / "halloween-policyengine.mp4"
 
-        # Use ffmpeg to create high-quality video
+        # Use ffmpeg with QuickTime-compatible settings
         ffmpeg_cmd = [
             'ffmpeg', '-y',
             '-framerate', str(fps),
             '-i', str(output_dir / 'frame_%04d.png'),
             '-c:v', 'libx264',
-            '-preset', 'slow',
-            '-crf', '18',
+            '-profile:v', 'high',
+            '-level', '4.0',
             '-pix_fmt', 'yuv420p',
-            '-vf', 'loop=-1:1:240',  # Loop the video
+            '-crf', '18',
+            '-movflags', '+faststart',
+            '-t', str(duration),  # Exact duration
             str(output_video)
         ]
 
