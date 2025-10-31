@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
 Create a high-quality MP4 video from the Halloween graphic HTML.
-Requires: pip install pillow playwright
-Then: playwright install chromium
+Captures at native 30fps to match real-time animation speed.
 """
 
 import asyncio
-import os
 import subprocess
 from pathlib import Path
 from playwright.async_api import async_playwright
@@ -23,51 +21,58 @@ async def capture_frames():
         # Load the HTML file
         await page.goto(f"file://{html_path.absolute()}")
 
-        # Wait for page to be ready and animations to start
+        # Wait for page to be ready
         await page.wait_for_timeout(1000)
 
-        # Capture one full animation cycle
-        # Wait 100ms between frames to match real-time animation speed
-        capture_duration = 12  # seconds (longest animation is ~11s)
-        frame_interval_ms = 100  # ms between frames
-        num_frames = int(capture_duration * 1000 / frame_interval_ms)
+        # Capture at 30fps for smooth video that matches real-time
+        fps = 30
+        duration = 12  # seconds - one full animation cycle
+        frame_time_ms = 1000 / fps  # ~33ms per frame
+        num_frames = int(fps * duration)
 
-        print(f"Capturing {num_frames} frames over {capture_duration} seconds (one frame every {frame_interval_ms}ms)...")
+        print(f"Capturing {num_frames} frames at {fps}fps over {duration} seconds...")
+        print(f"Each frame captured every {frame_time_ms:.1f}ms to match real-time")
+
         for i in range(num_frames):
             screenshot_path = output_dir / f"frame_{i:04d}.png"
-            await page.screenshot(path=screenshot_path)
-            await page.wait_for_timeout(frame_interval_ms)
-            if i % 10 == 0:
-                elapsed = i * frame_interval_ms / 1000
+            await page.screenshot(path=screenshot_path, type='png')
+            await page.wait_for_timeout(int(frame_time_ms))
+
+            if i % 30 == 0:
+                elapsed = i / fps
                 print(f"Progress: {i}/{num_frames} ({elapsed:.1f}s)")
 
         await browser.close()
 
-        print("Creating MP4 video with ffmpeg...")
+        print("\nCreating MP4 video with ffmpeg...")
         output_video = Path(__file__).parent / "halloween-policyengine.mp4"
 
-        # Input is 10 fps (100ms per frame), output smooth 30fps
-        input_fps = 1000 / frame_interval_ms  # 10 fps
-        output_fps = 30
-
+        # No framerate conversion needed - input and output both 30fps
         ffmpeg_cmd = [
-            'ffmpeg', '-y',
-            '-framerate', str(input_fps),
+            'ffmpeg', '-y', '-loglevel', 'warning', '-stats',
+            '-framerate', str(fps),
             '-i', str(output_dir / 'frame_%04d.png'),
             '-c:v', 'libx264',
             '-profile:v', 'high',
             '-level', '4.0',
             '-pix_fmt', 'yuv420p',
-            '-crf', '12',  # Very high quality
-            '-preset', 'slow',
+            '-crf', '10',  # Maximum quality
+            '-preset', 'slower',
             '-movflags', '+faststart',
-            '-r', str(output_fps),
             str(output_video)
         ]
 
-        subprocess.run(ffmpeg_cmd, check=True)
+        result = subprocess.run(ffmpeg_cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"FFmpeg error: {result.stderr}")
+            raise Exception("FFmpeg failed")
 
-        print(f"Video created: {output_video}")
+        print(f"\n✓ Video created: {output_video}")
+
+        # Get file size
+        size_mb = output_video.stat().st_size / 1024 / 1024
+        print(f"✓ File size: {size_mb:.1f} MB")
+        print(f"✓ Duration: {duration}s at {fps}fps")
 
         # Clean up frames
         print("Cleaning up frames...")
