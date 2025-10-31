@@ -1,23 +1,37 @@
 # Halloween Social Media Post Ideas
 
-## Option 1: Fun & Light
-Happy Halloween from PolicyEngine! 🎃
+## Option 1: Candy Tax Edition
+The real horror story: your kid's trick-or-treat haul faces a 100% marginal tax rate when you "check for safety" 🎃
 
-No tricks here—just data-driven policy analysis to help you understand the real impact of tax and benefit programs.
+At least with PolicyEngine, you can model tax policy changes that are actually transparent.
 
-Whether you're calculating household impacts or analyzing nationwide reforms, PolicyEngine makes policy less scary. 👻
+## Option 2: Evidence-Based Spooks
+Ghosts and goblins? Not scary.
 
-## Option 2: Policy-Themed
-This Halloween, the scariest thing isn't ghosts or goblins—it's making policy decisions without data. 🎃
+Zombies? Please.
 
-PolicyEngine helps policymakers, researchers, and advocates understand the real impacts of tax and benefit reforms. Turn frightening unknowns into clear, actionable insights.
+Making billion-dollar policy decisions based on vibes instead of microsimulation? *Terrifying.* 👻
 
-Try it out: [policyengine.org](https://policyengine.org)
+## Option 3: Redistribution Joke
+This Halloween, remember: taking candy from babies has a 0% approval rating, but optimal redistribution policy is still an open question.
 
-## Option 3: Short & Sweet
-Happy Halloween! 🎃👻
+Model the evidence at policyengine.org 🎃
 
-PolicyEngine: Making policy analysis less scary since 2019.
+## Option 4: Universal Basic Candy
+Proposed reform: Universal Basic Candy (UBC)
+
+- Replaces current trick-or-treat system
+- Means-tested by costume quality
+- Work requirement: must say "trick or treat"
+
+Model it yourself: [link] 👻
+
+## Option 5: Short & Punchy
+Your Halloween candy distribution strategy: vibes-based
+
+Your tax policy: hopefully not
+
+🎃 policyengine.org
 
 ## Visual Suggestions
 - Use the orange or purple Halloween logo as profile picture for the day
