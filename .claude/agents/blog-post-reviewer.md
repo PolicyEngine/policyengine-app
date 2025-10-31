@@ -18,9 +18,11 @@ You review PolicyEngine blog posts to ensure they follow formatting standards, a
 - **Description length**: < 160 characters (fits in social previews)
 - **Post ordering**: New posts at beginning of array
 - **Required fields**: title, description, date, tags, authors, filename, image
+- **Optional fields**: external_url (for interactive calculators/tools that link to app routes instead of markdown posts)
 - **Tags**: Must include country tag ("us" or "uk") plus content tags ("org", "policy", "ai", etc.)
 - **Date format**: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS
 - **Authors**: Array of author slugs (e.g., ["max-ghenis", "daphne-hansell"])
+- **Title style**: Avoid redundant location markers on country-specific sites (e.g., "Two-child limit calculator" not "UK two-child limit calculator" when appearing only on UK site)
 
 ### Markdown File Standards
 
@@ -36,6 +38,33 @@ You review PolicyEngine blog posts to ensure they follow formatting standards, a
 - **Naming convention**: Cover image filename should match post slug (e.g., `dc-office-ai-coding.md` → `dc-office-ai-coding.png`)
 - **In-post images**: Must exist in `public/images/posts/` (served at runtime via /images/posts/ URL)
 - **Format**: PNG or JPG, optimized for web
+
+### Interactive Tools and Calculators
+
+For research tiles that link to interactive calculators or tools instead of markdown articles:
+
+- **Use external_url**: Add `"external_url": "/uk/calculator-route"` field to posts.json
+- **Dummy filename**: Still provide filename (e.g., `"filename": "calculator-name-dummy.md"`) even though no markdown exists
+- **Add comment**: Include `"_comment"` field explaining the external_url usage
+- **Title naming**: Use concise names like "Two-child limit calculator" (avoid "policy comparison" or wordy descriptions)
+- **Description**: Action-oriented, describing what users can explore/calculate/compare
+- **Tags**: Include "interactives" tag plus country and content tags
+
+**Example**:
+
+```json
+{
+  "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
+  "title": "Two-child limit calculator",
+  "description": "Explore policy reforms to the two-child benefit limit and their impacts on households, government spending, and child poverty.",
+  "date": "2025-10-28",
+  "tags": ["uk", "featured", "policy", "interactives"],
+  "filename": "uk-two-child-limit-comparison-dummy.md",
+  "external_url": "/uk/two-child-limit-comparison",
+  "image": "young-child-exemption-two-child-limit.jpg",
+  "authors": ["vahid-ahmadi"]
+}
+```
 
 ### Writing Style
 
