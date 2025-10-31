@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyEngine Halloween</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a0b2e 0%, #4a1942 50%, #ff6b35 100%);
+        }
+
+        .container {
+            width: 1200px;
+            height: 630px;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 71, 137, 0.3) 0%, transparent 50%),
+                linear-gradient(180deg, #0d0221 0%, #1f0318 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Floating bats */
+        .bat {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .bat:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .bat:nth-child(2) { top: 20%; right: 20%; animation-delay: 1s; }
+        .bat:nth-child(3) { bottom: 15%; left: 25%; animation-delay: 2s; }
+        .bat:nth-child(4) { bottom: 25%; right: 15%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Spooky branches */
+        .branch {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80"><path d="M0,20 Q50,10 100,25 T200,20 Q250,15 300,30 T400,25 Q450,20 500,35 T600,30 Q650,25 700,40 T800,35 Q850,30 900,45 T1000,40 Q1050,35 1100,50 T1200,45" stroke="%232C7A7B" stroke-width="3" fill="none"/><path d="M50,25 L45,35 M100,20 L95,30 M150,25 L145,35 M250,15 L245,25 M300,30 L295,40 M450,20 L445,30 M500,35 L495,45 M650,25 L645,35 M700,40 L695,50 M850,30 L845,40 M900,45 L895,55" stroke="%232C7A7B" stroke-width="2"/></svg>') no-repeat;
+            background-size: cover;
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        .branch.bottom {
+            top: auto;
+            bottom: 0;
+            transform: rotate(180deg);
+        }
+
+        /* Main text */
+        .text-container {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Nosifer', cursive;
+            font-size: 120px;
+            color: #2C7A7B;
+            text-shadow:
+                0 0 20px rgba(255, 107, 53, 0.8),
+                0 0 40px rgba(139, 71, 137, 0.6),
+                5px 5px 0px rgba(0, 0, 0, 0.5);
+            margin: 0;
+            letter-spacing: 8px;
+            filter: drop-shadow(0 0 30px #FF6B35);
+        }
+
+        .subtitle {
+            font-family: 'Creepster', cursive;
+            font-size: 36px;
+            color: #FF6B35;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+            margin: 20px 0 0 0;
+            letter-spacing: 4px;
+        }
+
+        /* Pumpkins */
+        .pumpkin {
+            position: absolute;
+            font-size: 80px;
+            filter: drop-shadow(0 0 20px #FF6B35);
+            animation: glow 2s infinite alternate;
+        }
+
+        .pumpkin.left { bottom: 100px; left: 100px; }
+        .pumpkin.right { bottom: 100px; right: 100px; transform: scaleX(-1); }
+
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 20px #FF6B35); }
+            100% { filter: drop-shadow(0 0 40px #FF6B35) brightness(1.2); }
+        }
+
+        /* Spider web */
+        .web {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.2;
+        }
+
+        .web svg {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bats -->
+        <div class="bat">🦇</div>
+        <div class="bat">🦇</div>
+        <div class="bat">🦇</div>
+        <div class="bat">🦇</div>
+
+        <!-- Branches -->
+        <div class="branch"></div>
+        <div class="branch bottom"></div>
+
+        <!-- Spider web -->
+        <div class="web">
+            <svg viewBox="0 0 100 100">
+                <path d="M50,50 L50,0 M50,50 L100,0 M50,50 L100,50 M50,50 L100,100 M50,50 L50,100 M50,50 L0,100 M50,50 L0,50 M50,50 L0,0"
+                      stroke="#2C7A7B" stroke-width="0.5" fill="none"/>
+                <circle cx="50" cy="50" r="10" stroke="#2C7A7B" stroke-width="0.5" fill="none"/>
+                <circle cx="50" cy="50" r="20" stroke="#2C7A7B" stroke-width="0.5" fill="none"/>
+                <circle cx="50" cy="50" r="35" stroke="#2C7A7B" stroke-width="0.5" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- Pumpkins -->
+        <div class="pumpkin left">🎃</div>
+        <div class="pumpkin right">🎃</div>
+
+        <!-- Main text -->
+        <div class="text-container">
+            <h1 class="title">POLICYENGINE</h1>
+            <p class="subtitle">Evidence-based policy. No tricks.</p>
+        </div>
+    </div>
+</body>
+</html>
