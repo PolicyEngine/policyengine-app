@@ -19,5 +19,12 @@
     "url": "https://uk-two-child-limit-app.vercel.app",
     "slug": "two-child-limit-comparison",
     "tags": ["uk", "featured", "policy"]
+  },
+  {
+    "title": "Rhode Island Child Tax Credit calculator",
+    "description": "Interactive calculator for estimating Rhode Island Child Tax Credit benefits",
+    "url": "https://frontend-neon-seven.vercel.app/",
+    "slug": "rhode-island-ctc-calculator",
+    "tags": ["us", "policy"]
   }
 ]
