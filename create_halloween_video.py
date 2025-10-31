@@ -23,39 +23,45 @@ async def capture_frames():
         # Load the HTML file
         await page.goto(f"file://{html_path.absolute()}")
 
-        # Wait for page to be ready
+        # Wait for page to be ready and animations to start
         await page.wait_for_timeout(1000)
 
-        # Capture frames for 8 seconds at 30 fps for smooth video
-        duration = 8  # seconds
-        fps = 30
-        num_frames = duration * fps
+        # Capture one full animation cycle
+        # Wait 100ms between frames to match real-time animation speed
+        capture_duration = 12  # seconds (longest animation is ~11s)
+        frame_interval_ms = 100  # ms between frames
+        num_frames = int(capture_duration * 1000 / frame_interval_ms)
 
-        print(f"Capturing {num_frames} frames at {fps} fps...")
+        print(f"Capturing {num_frames} frames over {capture_duration} seconds (one frame every {frame_interval_ms}ms)...")
         for i in range(num_frames):
             screenshot_path = output_dir / f"frame_{i:04d}.png"
             await page.screenshot(path=screenshot_path)
-            await page.wait_for_timeout(int(1000 / fps))
-            if i % 30 == 0:
-                print(f"Progress: {i}/{num_frames}")
+            await page.wait_for_timeout(frame_interval_ms)
+            if i % 10 == 0:
+                elapsed = i * frame_interval_ms / 1000
+                print(f"Progress: {i}/{num_frames} ({elapsed:.1f}s)")
 
         await browser.close()
 
         print("Creating MP4 video with ffmpeg...")
         output_video = Path(__file__).parent / "halloween-policyengine.mp4"
 
-        # Use ffmpeg with QuickTime-compatible settings
+        # Input is 10 fps (100ms per frame), output smooth 30fps
+        input_fps = 1000 / frame_interval_ms  # 10 fps
+        output_fps = 30
+
         ffmpeg_cmd = [
             'ffmpeg', '-y',
-            '-framerate', str(fps),
+            '-framerate', str(input_fps),
             '-i', str(output_dir / 'frame_%04d.png'),
             '-c:v', 'libx264',
             '-profile:v', 'high',
             '-level', '4.0',
             '-pix_fmt', 'yuv420p',
-            '-crf', '18',
+            '-crf', '12',  # Very high quality
+            '-preset', 'slow',
             '-movflags', '+faststart',
-            '-t', str(duration),  # Exact duration
+            '-r', str(output_fps),
             str(output_video)
         ]
 
