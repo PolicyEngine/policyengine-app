@@ -357,13 +357,12 @@ The following table compares cost estimates for abolishing the two-child limit f
 | 2026-27 | [£2.7bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | — | £3.2bn[^2] | — |
 | 2027-28 | [£2.9bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) | — | — | — |
 | 2028-29 | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) | — | — | — |
-| 2029-30 | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | £3.4-3.6bn | — | £3.5bn[^3] |
-| Full coverage[^4] | — | £3.6bn | — | £3.6bn |
+| 2029-30 | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | £3.4-3.6bn | — | — |
+| Full coverage[^3] | — | £3.6bn | — | £3.6bn |
 
 [^1]: IFS estimates range from £3.0bn to £3.6bn in 2025-26 prices
 [^2]: IPPR estimate includes both two-child limit and benefit cap removal
-[^3]: Resolution Foundation estimate for "by the end of this Parliament"
-[^4]: Full coverage expected around 2035 when all children potentially affected
+[^3]: Full coverage expected around 2035 when all children potentially affected
 
 Sources:
 - PolicyEngine: This analysis
