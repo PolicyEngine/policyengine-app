@@ -87,16 +87,7 @@ At lower income ranges, the reform delivers larger increases in household net in
 
 ## Budgetary impact
 
-PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection.
-
-| Year | Cost                                                                                                                                    |
-| ---- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026 | [£2.7 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) |
-| 2027 | [£2.9 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) |
-| 2028 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) |
-| 2029 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) |
-
-The Institute for Fiscal Studies estimates the cost at [£3.4 billion](https://www.dailyrecord.co.uk/news/politics/rachel-reeves-decision-axe-two-35993258), while the Institute for Public Policy Research estimates [£3.2 billion](https://www.independent.co.uk/news/uk/politics/two-child-benefit-cap-bridget-phillipson-labour-b2836482.html) in 2026-27.
+PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection. See the Appendix for a comparison of cost estimates from different organizations across years.
 
 ## Distributional impact
 
@@ -348,6 +339,28 @@ The impact of removing the two-child limit [varies](https://policyengine.org/uk/
 ![](/images/posts/two-child-limit/map-impact.png)
 
 The constituencies experiencing the largest relative income gains include Bradford East, Birmingham Hodge Hill and Solihull North, Bradford South, Luton North, and Birmingham Hall Green and Moseley. The constituencies with the smallest gains include South Down, Lagan Valley, Upper Bann, Glasgow East, and Cities of London and Westminster.
+
+## Appendix: Cost estimates by organization and year
+
+The following table compares cost estimates for abolishing the two-child limit from different organizations. Note that IPPR's estimate includes both the two-child limit and benefit cap removal, while others show the two-child limit only.
+
+| Year    | PolicyEngine | IFS | IPPR | Resolution Foundation |
+|---------|-------------|-----|------|-----------------------|
+| 2024-25 | —           | £2.5bn | — | £2.5bn |
+| 2025-26 | —           | £3.0-3.6bn* | — | — |
+| 2026-27 | [£2.7bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | — | £3.2bn** | — |
+| 2027-28 | [£2.9bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) | — | — | — |
+| 2028-29 | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) | — | — | — |
+| 2029-30 | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | £3.4-3.6bn | — | £3.5bn |
+
+\* IFS estimates range from £3.0bn to £3.6bn in 2025-26 prices
+\** IPPR estimate includes both two-child limit and benefit cap removal
+
+Sources:
+- PolicyEngine: This analysis
+- IFS: [The two-child limit: poverty, incentives and cost](https://ifs.org.uk/articles/two-child-limit-poverty-incentives-and-cost)
+- IPPR: [Reforming gambling taxation](https://www.ippr.org/articles/reforming-gambling-taxation)
+- Resolution Foundation: [Catastrophic caps](https://www.resolutionfoundation.org/publications/catastophic-caps/)
 
 ## Conclusion
 
