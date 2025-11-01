@@ -87,7 +87,7 @@ At lower income ranges, the reform delivers larger increases in household net in
 
 ## Budgetary impact
 
-PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection. See the Appendix for a comparison of cost estimates from different organizations across years.
+PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection. See the Appendix for a comparison of cost estimates from different organisations across years.
 
 ## Distributional impact
 
@@ -340,9 +340,9 @@ The impact of removing the two-child limit [varies](https://policyengine.org/uk/
 
 The constituencies experiencing the largest relative income gains include Bradford East, Birmingham Hodge Hill and Solihull North, Bradford South, Luton North, and Birmingham Hall Green and Moseley. The constituencies with the smallest gains include South Down, Lagan Valley, Upper Bann, Glasgow East, and Cities of London and Westminster.
 
-## Appendix: Cost estimates by organization and year
+## Appendix: Cost estimates by organisation and year
 
-The following table compares cost estimates for abolishing the two-child limit from different organizations. Note that IPPR's estimate includes both the two-child limit and benefit cap removal, while others show the two-child limit only.
+The following table compares cost estimates for abolishing the two-child limit from different organisations. Note that IPPR's estimate includes both the two-child limit and benefit cap removal, while others show the two-child limit only.
 
 | Year    | PolicyEngine | IFS | IPPR | Resolution Foundation |
 |---------|-------------|-----|------|-----------------------|
