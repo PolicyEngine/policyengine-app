@@ -311,7 +311,7 @@ Figure 3 shows that 4.6% of the population would see income gains from removing 
 
 ## Poverty impact
 
-By age group, removing the two-child limit would reduce poverty rates most for children across all years. The child poverty rate would fall by 16.2% in 2026-27 and by 16.4% in 2029-30, while the overall poverty rate would decline by 7.1% in 2026-27 and by 7.4% in 2029-30.
+By age group, removing the two-child limit would reduce poverty rates most for children across all years. Using the absolute poverty measure before housing costs, the child poverty rate would fall by 16.2% in 2026-27 and by 16.4% in 2029-30, while the overall poverty rate would decline by 7.1% in 2026-27 and by 7.4% in 2029-30.
 
 | Year | Children                                                                                                                        | All                                                                                                                            |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -366,6 +366,6 @@ Sources:
 
 ## Conclusion
 
-Removing the two-child benefit limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The reform would reduce child poverty by 16.2% and overall poverty by 7.1% in 2026-27.
+Removing the two-child benefit limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The reform would reduce absolute child poverty (before housing costs) by 16.2% and overall absolute poverty by 7.1% in 2026-27.
 
 We invite you to explore the [PolicyEngine webapp](https://policyengine.org/) to model your own customised reforms.
