@@ -87,16 +87,7 @@ At lower income ranges, the reform delivers larger increases in household net in
 
 ## Budgetary impact
 
-PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection.
-
-| Year | Cost                                                                                                                                    |
-| ---- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026 | [£2.7 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) |
-| 2027 | [£2.9 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) |
-| 2028 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) |
-| 2029 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) |
-
-The Institute for Fiscal Studies estimates the cost at [£3.4 billion](https://www.dailyrecord.co.uk/news/politics/rachel-reeves-decision-axe-two-35993258), while the Institute for Public Policy Research estimates [£3.2 billion](https://www.independent.co.uk/news/uk/politics/two-child-benefit-cap-bridget-phillipson-labour-b2836482.html) in 2026-27.
+PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2025-26, rising to £3.1 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection. See the Appendix for a comparison of cost estimates from different organisations across years.
 
 ## Distributional impact
 
@@ -320,14 +311,15 @@ Figure 3 shows that 4.6% of the population would see income gains from removing 
 
 ## Poverty impact
 
-By age group, removing the two-child limit would reduce poverty rates most for children across all years. The child poverty rate would fall by 16.2% in 2026-27 and by 16.4% in 2029-30, while the overall poverty rate would decline by 7.1% in 2026-27 and by 7.4% in 2029-30.
+By age group, removing the two-child limit would reduce poverty rates most for children across all years. Using the absolute poverty measure before housing costs, the child poverty rate would fall by 13.6% in 2025-26 and by 15.5% in 2029-30, while the overall poverty rate would decline by 6.5% in 2025-26 and by 7.3% in 2029-30.
 
 | Year | Children                                                                                                                        | All                                                                                                                            |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 2026 | [-16.2%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) | [-7.1%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
-| 2027 | [-17.7%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) | [-7.9%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) |
-| 2028 | [-16.9%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) | [-7.6%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) |
-| 2029 | [-16.4%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) | [-7.4%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) |
+| 2025 | [-13.6%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2025&baseline=1) | [-6.5%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2025&baseline=1) |
+| 2026 | [-15.7%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) | [-7.4%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
+| 2027 | [-15.8%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) | [-7.4%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) |
+| 2028 | [-16.3%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) | [-7.8%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) |
+| 2029 | [-15.5%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) | [-7.3%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) |
 
 ## Inequality impact
 
@@ -351,6 +343,36 @@ The constituencies experiencing the largest relative income gains include Bradfo
 
 ## Conclusion
 
-Removing the two-child benefit limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The reform would reduce child poverty by 16.2% and overall poverty by 7.1% in 2026-27.
+Removing the two-child benefit limit would cost £2.7 billion in 2025-26, rising to £3.1 billion by 2029-30. The reform would reduce absolute child poverty (before housing costs) by 13.6% and overall absolute poverty by 6.5% in 2025-26.
 
 We invite you to explore the [PolicyEngine webapp](https://policyengine.org/) to model your own customised reforms.
+
+## Appendix: Cost estimates by organisation and year
+
+The following table compares cost estimates for abolishing the two-child limit from different organisations.
+
+| Year              | PolicyEngine                                                                                                                      | IFS        | JRF        | Resolution Foundation |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | --------------------- |
+| 2024-25           | —                                                                                                                                 | —          | —          | £2.5bn                |
+| 2025-26           | [£2.7bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2025&baseline=1) | —          | £2.7bn[^1] | —                     |
+| 2026-27           | [£2.8bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | —          | —          | —                     |
+| 2027-28           | [£2.9bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) | —          | —          | —                     |
+| 2028-29           | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) | —          | —          | —                     |
+| 2029-30           | [£3.1bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | —          | £2.8bn[^2] | —                     |
+| Long run          | —                                                                                                                                 | £2.5bn[^3] | —          | —                     |
+| Full coverage[^4] | —                                                                                                                                 | —          | —          | £3.6bn                |
+
+[^1]: JRF estimate includes both two-child limit and benefit cap removal. Source: JRF analysis using IPPR tax-benefit model (Parkes et al 2025). JRF's earlier estimate from May 2025 showed £2.0bn for two-child limit only in 2025/26
+
+[^2]: JRF estimate for two-child limit only. JRF's earlier estimate from May 2025 also showed £2.8bn for 2029/30
+
+[^3]: IFS estimate from October 2024 report "Child poverty: trends and policy options". Would cost £3.3bn if household benefit cap also removed
+
+[^4]: Full coverage expected around 2035 when all children potentially affected
+
+Sources:
+
+- PolicyEngine: This analysis
+- IFS: [The two-child limit: poverty, incentives and cost](https://ifs.org.uk/articles/two-child-limit-poverty-incentives-and-cost)
+- JRF: [Getting the child poverty strategy we need](https://www.ippr.org/articles/getting-the-child-poverty-strategy-we-need) (IPPR/JRF collaboration), [Two policies to boost family living standards and reduce child poverty](https://www.jrf.org.uk/child-poverty/two-policies-to-boost-family-living-standards-and-reduce-child-poverty), and [Three policies to reduce child poverty this parliament](https://www.jrf.org.uk/child-poverty/three-policies-to-reduce-child-poverty-this-parliament)
+- Resolution Foundation: [Catastrophic caps](https://www.resolutionfoundation.org/publications/catastophic-caps/)
