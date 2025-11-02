@@ -349,25 +349,26 @@ We invite you to explore the [PolicyEngine webapp](https://policyengine.org/) to
 
 ## Appendix: Cost estimates by organisation and year
 
-The following table compares cost estimates for abolishing the two-child limit from different organisations. Note that IPPR's estimate includes both the two-child limit and benefit cap removal, while others show the two-child limit only.
+The following table compares cost estimates for abolishing the two-child limit from different organisations.
 
-| Year    | PolicyEngine | IFS | IPPR | Resolution Foundation |
-|---------|-------------|-----|------|-----------------------|
+| Year    | PolicyEngine | IFS | JRF | Resolution Foundation |
+|---------|-------------|-----|-----|-----------------------|
 | 2024-25 | —           | — | — | £2.5bn |
-| 2025-26 | [£2.7bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2025&baseline=1) | — | — | — |
-| 2026-27 | [£2.8bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | — | £3.2bn[^1] | — |
+| 2025-26 | [£2.7bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2025&baseline=1) | — | £2.7bn[^1] | — |
+| 2026-27 | [£2.8bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | — | — | — |
 | 2027-28 | [£2.9bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) | — | — | — |
 | 2028-29 | [£3.0bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) | — | — | — |
-| 2029-30 | [£3.1bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | — | — | — |
-| Long run | — | £2.5bn[^2] | — | — |
-| Full coverage[^3] | — | — | — | £3.6bn |
+| 2029-30 | [£3.1bn](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | — | £2.8bn[^2] | — |
+| Long run | — | £2.5bn[^3] | — | — |
+| Full coverage[^4] | — | — | — | £3.6bn |
 
-[^1]: IPPR estimate includes both two-child limit and benefit cap removal
-[^2]: IFS estimate from October 2024 report "Child poverty: trends and policy options". Would cost £3.3bn if household benefit cap also removed
-[^3]: Full coverage expected around 2035 when all children potentially affected
+[^1]: JRF estimate includes both two-child limit and benefit cap removal. Source: JRF analysis using IPPR tax-benefit model (Parkes et al 2025). JRF's earlier estimate from May 2025 showed £2.0bn for two-child limit only in 2025/26
+[^2]: JRF estimate for two-child limit only. JRF's earlier estimate from May 2025 also showed £2.8bn for 2029/30
+[^3]: IFS estimate from October 2024 report "Child poverty: trends and policy options". Would cost £3.3bn if household benefit cap also removed
+[^4]: Full coverage expected around 2035 when all children potentially affected
 
 Sources:
 - PolicyEngine: This analysis
 - IFS: [The two-child limit: poverty, incentives and cost](https://ifs.org.uk/articles/two-child-limit-poverty-incentives-and-cost)
-- IPPR: [Reforming gambling taxation](https://www.ippr.org/articles/reforming-gambling-taxation)
+- JRF: [Getting the child poverty strategy we need](https://www.ippr.org/articles/getting-the-child-poverty-strategy-we-need) (IPPR/JRF collaboration), [Two policies to boost family living standards and reduce child poverty](https://www.jrf.org.uk/child-poverty/two-policies-to-boost-family-living-standards-and-reduce-child-poverty), and [Three policies to reduce child poverty this parliament](https://www.jrf.org.uk/child-poverty/three-policies-to-reduce-child-poverty-this-parliament)
 - Resolution Foundation: [Catastrophic caps](https://www.resolutionfoundation.org/publications/catastophic-caps/)
