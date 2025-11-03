@@ -3,6 +3,7 @@ runtime: python311
 handlers:
   - url: /.*
     script: app.app
+    secure: always
 
 env_variables:
   FLASK_APP: app.py
