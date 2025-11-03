@@ -62,8 +62,8 @@ Tables 3 and 4 summarize the changes in each program and net income for each exa
 
 **Table 3: Change in Net Income Based on Household Composition (2025)**
 
-| Martial Status | Number of Children | Annual Income | Inflation Rebate | ESCC Change | Income Tax Cut | Total Change in Net Income                                                                                                                       |
-| -------------- | ------------------ | ------------- | ---------------- | ----------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Martial Status | Number of Children | Annual Income | Inflation Rebate | ESCC Change | Income Tax Cut | Total Change in Net Income                                                                                                                              |
+| -------------- | ------------------ | ------------- | ---------------- | ----------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Single         | 1                  | $0            | $300             | $230        | $0             | [+$530](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=49692&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 | Single         | 1                  | $50,000       | $300             | $0          | $38            | [+$338](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51379&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 | Single         | 2                  | $160,000      | $0               | $0          | $147           | [+$147](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51399&region=ny&timePeriod=2025&baseline=2&reform=75827) |
@@ -72,8 +72,8 @@ Tables 3 and 4 summarize the changes in each program and net income for each exa
 
 **Table 4: Change in Net Income Based on Household Composition (2026)**
 
-| Martial Status | Number of Children | Annual Income | ESCC Change | Income Tax Cut | Total Change in Net Income                                                                                                                       |
-| -------------- | ------------------ | ------------- | ----------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Martial Status | Number of Children | Annual Income | ESCC Change | Income Tax Cut | Total Change in Net Income                                                                                                                              |
+| -------------- | ------------------ | ------------- | ----------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Single         | 1                  | $0            | $400        | $0             | [+$400](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51394&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 | Single         | 1                  | $50,000       | $170        | $76            | [+$246](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51451&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 | Single         | 2                  | $160,000      | $0          | $294           | [+$294](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51453&region=ny&timePeriod=2025&baseline=2&reform=75827) |

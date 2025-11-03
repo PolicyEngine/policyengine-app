@@ -313,8 +313,8 @@ Figure 3 shows that 4.6% of the population would see income gains from removing 
 
 By age group, removing the two-child limit would reduce poverty rates most for children across all years. Using the absolute poverty measure before housing costs, the child poverty rate would fall by 13.6% in 2025-26 and by 15.5% in 2029-30, while the overall poverty rate would decline by 6.5% in 2025-26 and by 7.3% in 2029-30.
 
-| Year | Children                                                                                                                        | All                                                                                                                            |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Year | Children                                                                                                                               | All                                                                                                                                   |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | 2025 | [-13.6%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2025&baseline=1) | [-6.5%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2025&baseline=1) |
 | 2026 | [-15.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) | [-7.4%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
 | 2027 | [-15.8%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) | [-7.4%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) |
@@ -325,8 +325,8 @@ By age group, removing the two-child limit would reduce poverty rates most for c
 
 Removing the two-child limit in 2026-27 would reduce income inequality. The Gini index would fall by 0.6%, while the top 10% income share would decrease by 0.1% and the top 1% income share would decline by 0.1%.
 
-| Metric        | Change                                                                                                                            |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Metric        | Change                                                                                                                                   |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | Gini index    | [-0.6%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
 | Top 10% share | [-0.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
 | Top 1% share  | [-0.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
@@ -351,16 +351,16 @@ We invite you to explore the [PolicyEngine webapp](https://legacy.policyengine.o
 
 The following table compares cost estimates for abolishing the two-child limit from different organisations.
 
-| Year              | PolicyEngine                                                                                                                      | IFS        | JRF        | Resolution Foundation |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | --------------------- |
-| 2024-25           | —                                                                                                                                 | —          | —          | £2.5bn                |
+| Year              | PolicyEngine                                                                                                                             | IFS        | JRF        | Resolution Foundation |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | --------------------- |
+| 2024-25           | —                                                                                                                                        | —          | —          | £2.5bn                |
 | 2025-26           | [£2.7bn](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2025&baseline=1) | —          | £2.7bn[^1] | —                     |
 | 2026-27           | [£2.8bn](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | —          | —          | —                     |
 | 2027-28           | [£2.9bn](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) | —          | —          | —                     |
 | 2028-29           | [£3.0bn](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) | —          | —          | —                     |
 | 2029-30           | [£3.1bn](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | —          | £2.8bn[^2] | —                     |
-| Long run          | —                                                                                                                                 | £2.5bn[^3] | —          | —                     |
-| Full coverage[^4] | —                                                                                                                                 | —          | —          | £3.6bn                |
+| Long run          | —                                                                                                                                        | £2.5bn[^3] | —          | —                     |
+| Full coverage[^4] | —                                                                                                                                        | —          | —          | £3.6bn                |
 
 [^1]: JRF estimate includes both two-child limit and benefit cap removal. Source: JRF analysis using IPPR tax-benefit model (Parkes et al 2025). JRF's earlier estimate from May 2025 showed £2.0bn for two-child limit only in 2025/26
 

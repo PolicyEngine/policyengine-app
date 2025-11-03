@@ -17,8 +17,8 @@ PolicyEngine's static analysis[^1] of Labour's plan to remove tax exemptions fro
 
 The chart presents PolicyEngine's estimates of the effects of Labour's proposed VAT policy on private schools over the next five years. It shows projections for both the raised tax revenue and the percentage of people experiencing lower net income from FY2025 to FY2029.
 
-| Year | Budgetary impact (£ billion)                                                                                                    | People affected (%) |
-| :--- | :------------------------------------------------------------------------------------------------------------------------------ | :------------------ |
+| Year | Budgetary impact (£ billion)                                                                                                           | People affected (%) |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
 | 2025 | [1.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2025&baseline=1) | 3.3                 |
 | 2026 | [1.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2026&baseline=1) | 3.3                 |
 | 2027 | [1.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2027&baseline=1) | 3.3                 |

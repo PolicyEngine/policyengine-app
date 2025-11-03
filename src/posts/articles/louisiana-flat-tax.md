@@ -30,8 +30,8 @@ To see how families in Louisiana would be affected by the discussed tax changes,
 
 **Table 1: Change in Net Income Based on Household Composition**
 
-| Household Composition                          | Change in Net Income                                                                                                                              |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Household Composition                          | Change in Net Income                                                                                                                                     |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Single, No Children, No Earnings               | [$0](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=la&timePeriod=2025&baseline=71680&household=49781)     |
 | Single, One Child, LA Minimum Wage             | [$137](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=la&timePeriod=2025&baseline=71680&household=49783)   |
 | Married, Two Children, Median Household Income | [$423](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=la&timePeriod=2025&baseline=71680&household=49786)   |

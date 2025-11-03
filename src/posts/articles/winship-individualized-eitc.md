@@ -14,13 +14,13 @@ PolicyEngine confirms these results, and also provides total net income after ta
 
 **Table 1: EITC and net income for a sample household under current law**
 
-| Household                                                                                                                         | EITC   | Net income |
-| --------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- |
+| Household                                                                                                                                | EITC   | Net income |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- |
 | [Single parent of two, $20,000 earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=32119)   | $6,604 | $35,073    |
 | [Single person, no kids, $30,000 earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=32120) | $0     | $25,987    |
-| Total if unmarried                                                                                                                | $6,604 | $61,060    |
+| Total if unmarried                                                                                                                       | $6,604 | $61,060    |
 | [Married parents of two, $50,000 earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=32121) | $1,998 | $51,600    |
-| Marriage penalty                                                                                                                  | $4,606 | $9,460     |
+| Marriage penalty                                                                                                                         | $4,606 | $9,460     |
 
 The EITC therefore contributes about half of the total marriage penalty faced by this couple, with other tax and benefit provisions contributing the other half. If they marry, they will lose $9,460, or 15% of their net income if unmarried.
 
@@ -32,13 +32,13 @@ Returning to the previous household (if married), they would see their EITC rise
 
 **Table 2: EITC and net income for a sample household under Winship’s individualized EITC**
 
-| Household                                                                                                                                                                           | EITC    | Net income |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------- |
+| Household                                                                                                                                                                                  | EITC    | Net income |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | ---------- |
 | [Single parent of two, $20,000 earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=32119&region=us&timePeriod=2023&baseline=2&reform=17331)   | $6,604  | $35,073    |
 | [Single person, no kids, $30,000 earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=32120&region=us&timePeriod=2023&baseline=2&reform=17331) | $0      | $25,987    |
-| Total if unmarried                                                                                                                                                                  | $6,604  | $61,060    |
+| Total if unmarried                                                                                                                                                                         | $6,604  | $61,060    |
 | [Married parents of two, $50,000 earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=32121&region=us&timePeriod=2023&baseline=2&reform=17331) | $12,814 | $62,416    |
-| Marriage penalty                                                                                                                                                                    | -$6,210 | -$1,356    |
+| Marriage penalty                                                                                                                                                                           | -$6,210 | -$1,356    |
 
 We can also examine the “shape” of the reform by [varying the head’s earnings](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=17331&region=us&timePeriod=2023&baseline=2&household=32055), holding the spouse’s earnings constant at $20,000.
 

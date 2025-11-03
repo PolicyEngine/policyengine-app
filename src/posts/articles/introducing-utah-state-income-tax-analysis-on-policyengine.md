@@ -98,12 +98,12 @@ The integration of the Utah State income tax code into PolicyEngine allows users
 
 Utah’s headline tax rate is currently 4.85%, but has seen reforms over recent years. Using PolicyEngine’s economic impact calculator, we can estimate the revenue impacts of small and large changes to the tax rate, shown below.
 
-| **Tax rate** | **Tax rate change** | **Revenue impact** | **Average gain per household** | **PolicyEngine link**                                                                                                                    |
-| ------------ | ------------------- | ------------------ | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tax rate** | **Tax rate change** | **Revenue impact** | **Average gain per household** | **PolicyEngine link**                                                                                                                           |
+| ------------ | ------------------- | ------------------ | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | 3.85%        | -1pp                | -$1.1bn            | $1,036                         | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10724&region=ut&timePeriod=2023&baseline=2) |
 | 4.35%        | -0.5pp              | -$573m             | $518                           | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10723&region=ut&timePeriod=2023&baseline=2) |
 | 4.75%        | -0.1pp              | -$115m             | $104                           | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10722&region=ut&timePeriod=2023&baseline=2) |
-| **4.85%**    | **No change**       | **No change**      | **No change**                  | **Current law**                                                                                                                          |
+| **4.85%**    | **No change**       | **No change**      | **No change**                  | **Current law**                                                                                                                                 |
 | 4.95%        | +0.1pp              | +$115m             | -$104                          | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10613&region=ut&timePeriod=2023&baseline=2) |
 | 5.35%        | +0.5pp              | +$572m             | $518                           | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10720&region=ut&timePeriod=2023&baseline=2) |
 | 5.85%        | +1pp                | +$1.1bn            | $1,035                         | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10721&region=ut&timePeriod=2023&baseline=2) |

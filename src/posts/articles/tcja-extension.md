@@ -78,8 +78,8 @@ Extending the TCJA will affect households differently depending on their size, i
 
 **Table 2: Change in Net Income Based on Household Composition**
 
-| Marital status | Children | Earnings   | Change in Net Income                                                                                                                                        |
-| -------------- | -------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marital status | Children | Earnings   | Change in Net Income                                                                                                                                               |
+| -------------- | -------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Single         | 0        | $15,000    | [$140](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48802)    |
 | Single         | 1        | $30,000    | [$1,020](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=47295)  |
 | Married        | 1        | $70,000    | [$1,170](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48807)  |

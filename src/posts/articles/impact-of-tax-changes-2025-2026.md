@@ -17,14 +17,14 @@ From a combination of temporary reforms expiring and new tax reforms taking effe
 
 We estimate the following revenue impacts for these reforms in 2025/26 (Table 1). For each tax, we include its _static_ revenue impact. This assumes that individuals do not adjust their behaviour in response, representing simply the impact of the change in policy on existing households.
 
-| Reform                                                                         | 2025 static revenue (£ million)                                                                                                                            | Average per household (£) |
-| :----------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------ |
+| Reform                                                                         | 2025 static revenue (£ million)                                                                                                                                   | Average per household (£) |
+| :----------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------ |
 | Stamp duty: lower first home nil-rate threshold from 425,000 to 300,000        | [150](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&baseline=80444&timePeriod=2025&region=uk)                             | 5                         |
 | Stamp duty: lower primary residence nil-rate threshold from 250,000 to 125,000 | [1,200](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&baseline=80446&timePeriod=2025&region=uk)                           | 43                        |
 | Capital Gains Tax: raise rates to 18% and 24%                                  | [4,200](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69732&region=uk&timePeriod=2025&baseline=1)                           | 150                       |
-| Council tax: raise by 5%                                                       | 3,300                                                                                                                                                      | 117                       |
+| Council tax: raise by 5%                                                       | 3,300                                                                                                                                                             | 117                       |
 | National Insurance: raise employer rate from 13.8% to 15% and lower threshold  | [22,900](https://legacy.policyengine.org/uk/policy?reform=69728&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1&uk_local_areas_beta=true) | 818                       |
-| Total                                                                          | 31,750                                                                                                                                                     | 1,133                     |
+| Total                                                                          | 31,750                                                                                                                                                            | 1,133                     |
 
 Table 1
 

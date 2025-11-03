@@ -32,8 +32,8 @@ Labour proposes a net spending increase of £4.8bn in 2028-29. The bulk of this 
 
 None of these involve changes to benefits modelled by PolicyEngine, so we assume their cost estimates and use the ONS’ estimates of the distributional impact of public service spending categories.
 
-| Provision                             | Labour (£bn) | PolicyEngine (£bn)                                                                                                             |
-| ------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Provision                             | Labour (£bn) | PolicyEngine (£bn)                                                                                                                    |
+| ------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
 | Increase education spending £1.3bn    | 1.3          | [1.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60023&region=uk&timePeriod=2028&baseline=1) |
 | Increase NHS funding £2.0bn           | 2.0          | [2.0](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60024&region=uk&timePeriod=2028&baseline=1) |
 | Increase other public spending £0.9bn | 0.9          | [0.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60025&region=uk&timePeriod=2028&baseline=1) |
@@ -48,12 +48,12 @@ Labour’s manifesto also proposes a £7.4 billion increase in tax revenues, fun
 - Application of standard income tax rates to carried interest
 - An increase of 1% to the residential property stamp duty for non-UK residents
 
-| Provision                                                                          | Labour (£bn) | PolicyEngine (£bn)                                                                                                                                        |
-| ---------------------------------------------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Provision                                                                          | Labour (£bn) | PolicyEngine (£bn)                                                                                                                                               |
+| ---------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Remove non-dom tax incentive and reduce tax avoidance                              | 5.2          | [5.2](https://legacy.policyengine.org/uk/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=60770&region=uk&timePeriod=2028&baseline=1) |
 | Apply VAT and business rates to private schools                                    | 1.5          | [1.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2028&baseline=1&reform=60760)                            |
 | Close carried interest tax provision                                               | 0.6          | [0.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60028&region=uk&timePeriod=2024&baseline=1)                            |
-| Increase stamp duty on purchases of residential property by non-UK residents by 1% | 0.04         | 0.0                                                                                                                                                       |
+| Increase stamp duty on purchases of residential property by non-UK residents by 1% | 0.04         | 0.0                                                                                                                                                              |
 | Total tax changes                                                                  | 7.3          | [7.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60773&region=uk&timePeriod=2028&baseline=1)                            |
 
 PolicyEngine models the impact of levying VAT on private schools, largely following the evidence base contributed by [the IFS](https://ifs.org.uk/publications/tax-private-school-fees-and-state-school-spending) and [UCL](https://www.tandfonline.com/doi/full/10.1080/09645292.2021.1874878).[^2] Using patterns of income and private school attendance, our model estimates distributional and inequality impacts of the reform.

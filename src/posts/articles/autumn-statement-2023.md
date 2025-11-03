@@ -66,8 +66,8 @@ Our microsimulation model projects that this NI cut will [cost £10.5 billion](h
 
 Our estimates exceed those from HM Treasury by about 12%, disproportionately due to Class 4 NICs. This largely results from our static model, compared to HM Treasury's behavioural responses, which assume that earnings will rise in response to lower tax rates. However, unlike HM Treasury, we also model the impact on benefits, which lowers our cost estimate: as benefits are calculated on post-tax income, tax cuts reduce benefits payments.
 
-| Reform                             | HM Treasury | PolicyEngine | Relative difference | PolicyEngine link                                                                                                           |
-| ---------------------------------- | ----------- | ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Reform                             | HM Treasury | PolicyEngine | Relative difference | PolicyEngine link                                                                                                                  |
+| ---------------------------------- | ----------- | ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Lower Class 1 NICs from 12% to 10% | 8.72        | 9.69         | 11.2%               | [#28973](https://legacy.policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=28973&region=uk&timePeriod=2024&baseline=1) |
 | Lower Class 4 NICs from 9% to 8%   | 0.35        | 0.44         | 26.9%               | [#37642](https://legacy.policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37642&region=uk&timePeriod=2024&baseline=1) |
 | Abolish Class 2 NICs               | 0.38        | 0.41         | 8.8%                | [#37665](https://legacy.policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37665&region=uk&timePeriod=2024&baseline=1) |

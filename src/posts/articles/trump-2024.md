@@ -30,8 +30,8 @@ Implementing all three policies would have varying effects on American household
 
 **Table 1: Change in Net Income Based on Household Composition**
 
-| Marital Status | Children | Earnings   | Social Security Benefits | State and Local Tax | Change in Net Income                                                                                                                                        |
-| -------------- | -------- | ---------- | ------------------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marital Status | Children | Earnings   | Social Security Benefits | State and Local Tax | Change in Net Income                                                                                                                                               |
+| -------------- | -------- | ---------- | ------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Single         | 0        | $0         | $24,000                  | $0                  | [$0](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69665&region=enhanced_us&timePeriod=2026&baseline=2&household=49220)      |
 | Single         | 1        | $30,000    | $0                       | $0                  | [$1,020](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69665&region=enhanced_us&timePeriod=2026&baseline=2&household=49231)  |
 | Married        | 0        | $70,000    | $24,000                  | $0                  | [$3,911](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69665&region=enhanced_us&timePeriod=2026&baseline=2&household=49225)  |

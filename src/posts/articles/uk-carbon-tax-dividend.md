@@ -10,8 +10,8 @@ In this policy experiment, the government applies carbon taxes at £100 and £20
 
 The following table presents the total revenue generated from carbon taxation under each scenario in 2026-27:
 
-| Carbon tax rate | Total revenue                                                                                                                             | Dividend amount (per person per week) |
-| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
+| Carbon tax rate | Total revenue                                                                                                                                    | Dividend amount (per person per week) |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
 | £100/tonne      | [£67.3 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=75542&region=uk&timePeriod=2026&baseline=1)  | £19                                   |
 | £200/tonne      | [£134.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92939&region=uk&timePeriod=2026&baseline=1) | £37                                   |
 
@@ -503,8 +503,8 @@ As illustrated in Figures 3 and 4, the distribution indicates that lower income 
 
 This section examines how carbon dividend policies affect poverty rates across different demographic groups. Poverty is measured as absolute before housing costs. The following table shows the relative change in poverty rates by demographic group for each scenario in 2026-27:
 
-| Demographic group  | £100/tonne                                                                                                                        | £200/tonne                                                                                                                        |
-| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| Demographic group  | £100/tonne                                                                                                                               | £200/tonne                                                                                                                               |
+| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
 | Children           | [\-0.5%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
 | Working-age adults | [\-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
 | Seniors            | [\-0.6%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.6%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
@@ -516,8 +516,8 @@ The carbon dividend policy shows poverty-reducing effects across all demographic
 
 This section analyses how carbon dividend policies affect income inequality using standard inequality measures. The following table presents the relative change in inequality measures for each scenario in 2026-27:
 
-| Inequality measure | £100/tonne                                                                                                                        | £200/tonne                                                                                                                        |
-| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| Inequality measure | £100/tonne                                                                                                                               | £200/tonne                                                                                                                               |
+| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
 | Gini index         | [\-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\+0.4%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
 | Top 10% share      | [\-1.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-1.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
 | Top 1% share       | [\-0.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-1.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |

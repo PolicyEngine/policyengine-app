@@ -38,8 +38,8 @@ We estimate that ending the two-child limit and the benefit cap would cost £3.4
 
 Combined with increases to education, healthcare and other public service budgets, we reach the same £26.8bn cost estimate as the party’s manifesto costings.
 
-| **Provision**                         | **Liberal Democrats (£bn)** | **PolicyEngine (£bn)**                                                                                                          |
-| ------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Provision**                         | **Liberal Democrats (£bn)** | **PolicyEngine (£bn)**                                                                                                                 |
+| ------------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | Carer's Allowance increase            | 1.4                         | [0.1](https://legacy.policyengine.org/uk/policy?reform=57787&focus=policyOutput.policyBreakdown&timePeriod=2028&region=uk&baseline=1)  |
 | Removing the two-child limit          | -                           | [3.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=54700&region=uk&timePeriod=2028&baseline=1)  |
 | Removing the benefit cap              | -                           | [0.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57793&region=uk&timePeriod=2028&baseline=1)  |
@@ -57,8 +57,8 @@ The Liberal Democrats propose reforms to Capital Gains Tax, including raising th
 
 We estimate that of the remaining £21.3bn in tax rises, £17.7bn would be largely incident on owners of capital and £3.6bn would fall on consumers. When combined with the Capital Gains Tax reforms, we reach a very slightly (£400m) lower revenue estimate of £26.5bn to the party’s £26.9bn.
 
-| Provision                            | Liberal Democrats | PolicyEngine                                                                                                                    |
-| ------------------------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Provision                            | Liberal Democrats | PolicyEngine                                                                                                                           |
+| ------------------------------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | Raise AEA to £5,000                  | -                 | [0.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57808&region=uk&timePeriod=2028&baseline=1)  |
 | Effectively increase rates by 5p     | -                 | [5.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57817&region=uk&timePeriod=2028&baseline=1)  |
 | Total Capital Gains Tax reforms      | 5.2               | [5.2](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57813&region=uk&timePeriod=2028&baseline=1)  |

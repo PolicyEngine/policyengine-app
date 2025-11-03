@@ -36,8 +36,8 @@ The Conservatives propose a net spending decrease of £44bn through 2029. This w
 
 The Conservatives also propose spending increases to national defence, the NHS, and on some programs we classify as education-related (National Service and apprenticeship subsidies). Because none of these changes impact benefits modelled by PolicyEngine, we assume the Conservatives' costings and use the ONS’ estimates of the distributional impact of public service spending categories.
 
-| **Provision**                          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
-| -------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Provision**                          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                                  |
+| -------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Increase education spending £2.4bn     | 2.4                     | [2.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58028&region=uk&timePeriod=2029&baseline=1)   |
 | Increase NHS funding £2.3bn            | 2.3                     | [2.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58059&region=uk&timePeriod=2029&baseline=1)   |
 | Decrease other public spending £48.6bn | -48.6                   | [-48.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58064&region=uk&timePeriod=2029&baseline=1) |
@@ -59,8 +59,8 @@ We estimate that the Conservatives’ tax policy changes would have a slightly l
 
 We also find roughly double the budgetary impact of abolishing the Stamp Duty Land Tax (SDLT) for first-time homebuyers, at a cost of £4.4bn, versus the Conservatives’ estimate of £2.3bn.
 
-| **Provision**                                       | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
-| --------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Provision**                                       | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                                  |
+| --------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Lowering the employee NIC base rate step-wise to 6% | -39.4                   | [-41.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2029&baseline=1) |
 | Abolishing self-employed NICs                       | -6.8                    | [-6.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2029&baseline=1)  |
 | Triple Lock Plus                                    | -8.8                    | [-7.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2029&baseline=1)  |
@@ -75,8 +75,8 @@ The Conservative manifesto, according to their costings, balances £41.9bn of ta
 
 In the chart below, negative numbers refer to increased government expenditures, while positive numbers refer to budgetary savings.
 
-| **Provision**          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
-| ---------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Provision**          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                                  |
+| ---------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Total spending changes | -43.9                   | [-43.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58038&region=uk&timePeriod=2029&baseline=1) |
 | Total tax changes      | 41.9                    | [49.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1)  |
 | Overall net change     | 2.0                     | [-5.8](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58041&region=uk&timePeriod=2029&baseline=1)  |

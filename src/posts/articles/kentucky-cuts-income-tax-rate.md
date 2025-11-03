@@ -20,8 +20,8 @@ To understand the extent of this reform, it is important to note that higher-inc
 
 **Table 1: Change in Net Income by Household Income for a Single Adult**
 
-| Household Earnings |                                                                Change in Net Income                                                                 |
-| :----------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Household Earnings |                                                                    Change in Net Income                                                                    |
+| :----------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |      $20,000       |  [\+$58](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51467)   |
 |      $100,000      |  [\+$483](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51470)  |
 |      $500,000      | [\+$1,664](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51468) |
