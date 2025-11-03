@@ -8,7 +8,7 @@ TAXSIM35, the current version, accepts 35 input variables covering demographics,
 
 ## Our collaboration with NBER
 
-We're working directly with Daniel Feenberg and James Poterba, President and CEO of NBER, to build the next generation of tax microsimulation tools. This MOU formalizes the validation work we've been doing against TAXSIM for over three years while building state tax models across the country. Dr. Feenberg also serves as an external mentor through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping us build a robust open-source ecosystem for policy analysis.
+We're working directly with Daniel Feenberg and James Poterba, President and CEO of NBER, to build the next generation of tax microsimulation tools. This MOU formalizes the validation work we've been doing against TAXSIM for over three years while building state tax models across the country. Dr. Feenberg also serves as an external mentor through our [NSF POSE Phase I grant](https://legacy.policyengine.org/us/research/nsf-pose-phase-1-grant), helping us build a robust open-source ecosystem for policy analysis.
 
 Our partnership ensures that:
 

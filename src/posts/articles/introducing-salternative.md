@@ -6,7 +6,7 @@ Today we’re excited to launch **SALTernative**, a free web app that lets anyon
 
 - **Individual households’ net income**, effective SALT caps, and property‑tax subsidy rates
 
-You can start exploring right now at [**policyengine.org/us/salternative**](https://policyengine.org/us/salternative).
+You can start exploring right now at [**policyengine.org/us/salternative**](https://legacy.policyengine.org/us/salternative).
 
 ## Why a SALT + AMT model, and why now?
 
@@ -46,7 +46,7 @@ We’ll walk through live demos, answer technical questions, and discuss how ana
 
 ## Get started
 
-1. Head to [**policyengine.org/us/salternative**](https://policyengine.org/us/salternative).
+1. Head to [**policyengine.org/us/salternative**](https://legacy.policyengine.org/us/salternative).
 
 1. Choose a baseline, adjust SALT and AMT settings, and watch the charts update.
 

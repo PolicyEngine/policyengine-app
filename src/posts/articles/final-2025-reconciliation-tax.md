@@ -48,7 +48,7 @@ In 2026, when most provisions are active, households would experience a change i
 
 ### Elderly couple in Texas
 
-An elderly couple with $80,000 in employment income from Texas would see their [net income rise by $2,835](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54569). While they would benefit from the TCJA extension compared to current law, this couple would also qualify for the additional senior deduction of $12,000 ($6,000 for each elderly member). This paired with the existing additional deduction for senior couples ($3,200) and the extension of the TCJA standard deduction ($32,600 in 2026) prevents this couple from paying any income tax on their first $47,800 of earnings compared to $30,400 under current law.
+An elderly couple with $80,000 in employment income from Texas would see their [net income rise by $2,835](https://legacy.policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54569). While they would benefit from the TCJA extension compared to current law, this couple would also qualify for the additional senior deduction of $12,000 ($6,000 for each elderly member). This paired with the existing additional deduction for senior couples ($3,200) and the extension of the TCJA standard deduction ($32,600 in 2026) prevents this couple from paying any income tax on their first $47,800 of earnings compared to $30,400 under current law.
 
 Figure 1 shows this household’s change in net income over household earnings. Once earnings exceed $30,400, the household begins to see an increase in their net income before plateauing at $47,800. When annual income surpasses $54,500, net income begins to rise again.
 
@@ -58,7 +58,7 @@ Figure 1 shows this household’s change in net income over household earnings. 
 
 ### Single undocumented parent in New York
 
-A single parent in New York with two children and $40,000 of earnings would be in line to benefit from the increased CTC compared to current law. However, due to the new SSN requirement for parents under the Senate bill, if they did not have a valid SSN, their net income would [fall by $2,335](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54580) as they would become ineligible for the CTC valued at $1,000 per child under current law. The additional loss of $335 stems from their combined personal exemptions and standard deduction under current law exceeding OBBB’s standard deduction by $3,550. As this makes them face the 10% income bracket, their tax liability increases by $355.
+A single parent in New York with two children and $40,000 of earnings would be in line to benefit from the increased CTC compared to current law. However, due to the new SSN requirement for parents under the Senate bill, if they did not have a valid SSN, their net income would [fall by $2,335](https://legacy.policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54580) as they would become ineligible for the CTC valued at $1,000 per child under current law. The additional loss of $335 stems from their combined personal exemptions and standard deduction under current law exceeding OBBB’s standard deduction by $3,550. As this makes them face the 10% income bracket, their tax liability increases by $355.
 
 Figure 2 shows that their net income falls at any earnings level between $3,000 and $100,000, and the maximum loss occurs at $45,500 earnings.
 
@@ -68,7 +68,7 @@ Figure 2 shows that their net income falls at any earnings level between $3,000 
 
 ### Single adult in Montana with tip income
 
-A single adult from Montana with $50,000 of salaries including $4,000 from tips would [gain $1,903](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54621) from the Senate tax provisions. As the filer’s income falls below the tip income exemption cap, they can fully deduct their $4,000 of tipped income from their federal tax return. In addition to also benefitting from the TCJA extensions, Montana ties its standard deduction to the federal amount by statute, resulting in a lower state tax liability of $731 (included in the total benefit).
+A single adult from Montana with $50,000 of salaries including $4,000 from tips would [gain $1,903](https://legacy.policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54621) from the Senate tax provisions. As the filer’s income falls below the tip income exemption cap, they can fully deduct their $4,000 of tipped income from their federal tax return. In addition to also benefitting from the TCJA extensions, Montana ties its standard deduction to the federal amount by statute, resulting in a lower state tax liability of $731 (included in the total benefit).
 
 Figure 3 shows that the filer’s benefit increases with earnings, for earnings above $8,000.
 
@@ -78,7 +78,7 @@ Figure 3 shows that the filer’s benefit increases with earnings, for earnings 
 
 ### High-income couple with two children in California
 
-For a joint filer with two children in California with $1 million of annual income and $60,000 of itemized deductions across several sources, household net income would [drop by $9,627](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) compared to current law. While this filer would benefit from the extensions of the reduced income tax rates, floor exclusion of charitable contributions, and the $40,000 SALT cap all reduce the tax savings the household would be eligible under current law.
+For a joint filer with two children in California with $1 million of annual income and $60,000 of itemized deductions across several sources, household net income would [drop by $9,627](https://legacy.policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) compared to current law. While this filer would benefit from the extensions of the reduced income tax rates, floor exclusion of charitable contributions, and the $40,000 SALT cap all reduce the tax savings the household would be eligible under current law.
 
 In Figure 4, the filer from California benefits from the OBBB seeing its highest increase in net income near $505,000 of earnings. However, at higher earnings levels, the bill limits their itemized deductions, resulting in increasing net losses at earnings levels above $885,000 (including those beyond the $2 million viewable area in Figure 4).
 
@@ -101,7 +101,7 @@ Table 1 below summarizes each filer’s characteristics and their change in net 
 
 ### Budgetary impact
 
-Using PolicyEngine’s static microsimulation model, we project that the Senate tax provisions of the One Big Beautiful Big Act would cost $3.8 trillion from 2026 to 2035. Additionally, because several proposed changes go into effect this tax year, it would [reduce federal revenues by $63.8 billion](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.budgetaryImpact.overall&region=us&timePeriod=2025&baseline=2&dataset=enhanced_cps&household=54592) in 2025.
+Using PolicyEngine’s static microsimulation model, we project that the Senate tax provisions of the One Big Beautiful Big Act would cost $3.8 trillion from 2026 to 2035. Additionally, because several proposed changes go into effect this tax year, it would [reduce federal revenues by $63.8 billion](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.budgetaryImpact.overall&region=us&timePeriod=2025&baseline=2&dataset=enhanced_cps&household=54592) in 2025.
 
 **Table 2: Annual Federal Revenue Impact of the Income Tax Provisions in the OBBB.**
 
@@ -123,31 +123,31 @@ Using PolicyEngine’s static microsimulation model, we project that the Senate 
 
 Our distributional analysis includes the OBBB’s effect on federal taxes, as well as state and local taxes resulting from statutory references to the federal code (e.g., Montana applying the federal standard deduction).
 
-The bill would increase the net income of [76% of U.S. residents](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.winnersAndLosers.incomeDecile&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) in 2026. The percentage of U.S. residents would vary by income decile, as the highest income decile would have the highest percentage of residents benefiting at 93.5%, while the lowest would have 33.1% of residents see an increase in their net income. Additionally, 7.7% of the U.S. population would be worse off under the tax provisions in 2026. The reduction of net income for residents can be attributed to the SSN requirements for parents to claim the CTC (mostly affecting lower to middle-income households) and limitations on itemized deductions (mostly affecting higher-income tax units).
+The bill would increase the net income of [76% of U.S. residents](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.winnersAndLosers.incomeDecile&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) in 2026. The percentage of U.S. residents would vary by income decile, as the highest income decile would have the highest percentage of residents benefiting at 93.5%, while the lowest would have 33.1% of residents see an increase in their net income. Additionally, 7.7% of the U.S. population would be worse off under the tax provisions in 2026. The reduction of net income for residents can be attributed to the SSN requirements for parents to claim the CTC (mostly affecting lower to middle-income households) and limitations on itemized deductions (mostly affecting higher-income tax units).
 
 **Figure 5: Winners and Losers of the Income Tax Provisions in the OBBB (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*mh1vTI7opHP-XQsL)
 
-In 2026, households in the bottom deciles would gain an average of [$342](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.distributionalImpact.incomeDecile.average&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592), while those in the top decile would gain an average of $13,231.
+In 2026, households in the bottom deciles would gain an average of [$342](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.distributionalImpact.incomeDecile.average&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592), while those in the top decile would gain an average of $13,231.
 
 **Figure 6: Average Household Impact of the Income Tax Provisions in the OBBB (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*19Jo603gE9K6iCTs)
 
-The bill would increase the net income of the top decile by [3.1%](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.distributionalImpact.incomeDecile.relative&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) on average, the largest gain across deciles.
+The bill would increase the net income of the top decile by [3.1%](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.distributionalImpact.incomeDecile.relative&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) on average, the largest gain across deciles.
 
 **Figure 7: Average Relative Household Impact of the Income Tax Provisions in the OBBB (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*wz-eg22GXsF1OdlO)
 
-The OBBB tax provisions would reduce [poverty](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.povertyImpact.regular.byAge&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) and [deep poverty](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.povertyImpact.deep.byAge&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps) by 5.5% and 6.1%, respectively. The age group with the largest reduction in poverty would be seniors at 10%, while child poverty would fall by 6.6%, mainly attributable to the increased CTC.
+The OBBB tax provisions would reduce [poverty](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.povertyImpact.regular.byAge&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) and [deep poverty](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.povertyImpact.deep.byAge&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps) by 5.5% and 6.1%, respectively. The age group with the largest reduction in poverty would be seniors at 10%, while child poverty would fall by 6.6%, mainly attributable to the increased CTC.
 
 **Figure 8: Poverty Impact of the Income Tax Provisions in the OBBB (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*cp2U8KbQ9fdfftJB)
 
-In terms of [income inequality](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.inequalityImpact&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps), the income tax provisions would increase the Gini index by 0.4% in 2026. Furthermore, the bill increases the top 1%’s net income by 1.9%, less than the overall 2.6%, reducing their share of net income would fall by 0.2%.
+In terms of [income inequality](https://legacy.policyengine.org/us/policy?reform=87626&focus=policyOutput.inequalityImpact&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps), the income tax provisions would increase the Gini index by 0.4% in 2026. Furthermore, the bill increases the top 1%’s net income by 1.9%, less than the overall 2.6%, reducing their share of net income would fall by 0.2%.
 
 **Figure 9: Inequality Impact of the Senate Tax Provisions in the OBBB (2026)**
 
@@ -159,7 +159,7 @@ The individual income tax reforms as part of HR 1 would cost $3.8 trillion over 
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 ## Appendix 1: Summary of Provisions
 

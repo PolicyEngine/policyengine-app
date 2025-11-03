@@ -1,4 +1,4 @@
-_[See the full impact on PolicyEngine here.](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69734&region=uk&timePeriod=2025&baseline=1)_
+_[See the full impact on PolicyEngine here.](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69734&region=uk&timePeriod=2025&baseline=1)_
 
 Chancellor Rachel Reeves today confirmed that duty will remain frozen at £0.5295 per litre for FY 2025, before rising with retail price inflation in future years, continuing a policy approach that has been maintained for several years.
 

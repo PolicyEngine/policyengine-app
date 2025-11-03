@@ -1,4 +1,4 @@
-Try our [**2024 election calculator**](https://policyengine.org/us/2024-election-calculator) to see how Harris and Trump’s proposed policies would affect your household’s finances. Enter your family details, income sources, and spending patterns to get personalized estimates.
+Try our [**2024 election calculator**](https://legacy.policyengine.org/us/2024-election-calculator) to see how Harris and Trump’s proposed policies would affect your household’s finances. Enter your family details, income sources, and spending patterns to get personalized estimates.
 
 Read on for a few examples of our new tool in action.
 
@@ -76,6 +76,6 @@ The examples demonstrate impacts ranging from changes of a few hundred dollars t
 
 ## Calculate your household’s results
 
-Try our [2024 election calculator](https://policyengine.org/us/2024-election-calculator) to see how these proposals would affect your household finances. Enter your details to get a personalized breakdown of policy impacts.
+Try our [2024 election calculator](https://legacy.policyengine.org/us/2024-election-calculator) to see how these proposals would affect your household finances. Enter your details to get a personalized breakdown of policy impacts.
 
 _Note: All calculations use projected 2025 tax parameters and currently available policy proposals. The calculator uses the PolicyEngine US microsimulation model and updates as new policy details emerge. Actual impacts could vary based on final policy design, implementation timeline, and behavioral responses (such as changes in import spending patterns in response to tariffs)._

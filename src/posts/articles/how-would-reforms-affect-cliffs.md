@@ -6,23 +6,23 @@ The _cliff_ (a.k.a. _benefit cliff_ or _welfare cliff_) is a phenomenon that occ
 
 PolicyEngine now shows how policy reforms can avoid these cliffs. Our free and open source web app uses a comprehensive microsimulation model to compute the effects of customizable tax and benefit reforms on society and individual households.
 
-With the [launch of the new PolicyEngine interface](https://policyengine.org/us/blog/the-new-policyengine), we have added two new measures that can be used to assess the prevalence and severity of cliffs under a given policy regime. These measures allow analysts to easily summarize the effects of custom reforms on cliffs across society.
+With the [launch of the new PolicyEngine interface](https://legacy.policyengine.org/us/blog/the-new-policyengine), we have added two new measures that can be used to assess the prevalence and severity of cliffs under a given policy regime. These measures allow analysts to easily summarize the effects of custom reforms on cliffs across society.
 
 This post examines the impact of current policy on the creation of cliffs at the household and population levels. The post also discusses how we measure the prevalence and severity of cliffs and presents a series of three policy experiments designed to reduce their occurrence. These experiments can provide valuable insights into the effectiveness of different reform measures and help the policy community develop more effective strategies for addressing cliffs.
 
 ## How current law creates cliffs
 
-Users can enter their household information at [policyengine.org/us/household](http://policyengine.org/us/household) to compute their net income after taxes and benefits under current law. For example, below (left) is the result for a [single parent of a blind child in New York with $20,000 wages](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=1411) (users can expand or collapse elements).
+Users can enter their household information at [policyengine.org/us/household](http://legacy.policyengine.org/us/household) to compute their net income after taxes and benefits under current law. For example, below (left) is the result for a [single parent of a blind child in New York with $20,000 wages](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=1411) (users can expand or collapse elements).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*ea-iCNObVVa3blyM)
 
-Users can also view a chart of their [net income](https://policyengine.org/us/household?focus=householdOutput.earnings&household=1411) (after taxes and benefits) with respect to their earnings (above, center). We shade the earnings region where they would be worse off due to cliffs: we informally call this the “earnings dead zone”.
+Users can also view a chart of their [net income](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&household=1411) (after taxes and benefits) with respect to their earnings (above, center). We shade the earnings region where they would be worse off due to cliffs: we informally call this the “earnings dead zone”.
 
-We also express cliffs as spikes in the [marginal tax rate chart](https://policyengine.org/us/household?focus=householdOutput.mtr&household=1411) (above, right).
+We also express cliffs as spikes in the [marginal tax rate chart](https://legacy.policyengine.org/us/household?focus=householdOutput.mtr&household=1411) (above, right).
 
 ## How reforms affect cliffs for individual households
 
-PolicyEngine US lets users adjust hundreds of policy parameters governing federal and state tax and benefit programs. For example, [this page](https://policyengine.org/us/policy?reform=12&focus=gov.ssa.ssi.income.exclusions.earned_share&region=us&timePeriod=2022&baseline=2) shows a policy experiment we consider in more detail below.
+PolicyEngine US lets users adjust hundreds of policy parameters governing federal and state tax and benefit programs. For example, [this page](https://legacy.policyengine.org/us/policy?reform=12&focus=gov.ssa.ssi.income.exclusions.earned_share&region=us&timePeriod=2022&baseline=2) shows a policy experiment we consider in more detail below.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*xRJCp7bnW-lab73G)
 
@@ -52,7 +52,7 @@ We use the _cliff_ nomenclature because both tax and benefit programs can create
 
 Currently, we estimate that 0.5% of households face a cliff in 2023, producing a total cliff gap of $5.0 billion. In 2022, 1.7% of households faced a cliff, producing a cliff gap of $18.5 billion. The repeal of SNAP emergency allotments, scheduled for March 2023, reduces the prevalence of cliffs in 2023, as we discuss more below.
 
-## Experiment 1: [Increase the SSI earned income exclusion](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&household=1411&region=us&timePeriod=2023&baseline=2&reform=3183)
+## Experiment 1: [Increase the SSI earned income exclusion](https://legacy.policyengine.org/us/policy?focus=policyOutput.cliffImpact&household=1411&region=us&timePeriod=2023&baseline=2&reform=3183)
 
 We can now answer the question we previously posed: given our SSI reform creates some cliffs and removes others, how does it affect total cliffs?
 
@@ -64,11 +64,11 @@ Increasing the earned income exclusion to 75% effectively reduces SSI’s MTR to
 
 See Appendix B for caveats around PolicyEngine’s SSI microsimulation model.
 
-## Experiment 2: [Repeal SNAP emergency allotments](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=3335&region=us&timePeriod=2023&baseline=2)
+## Experiment 2: [Repeal SNAP emergency allotments](https://legacy.policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=3335&region=us&timePeriod=2023&baseline=2)
 
 Throughout the pandemic, several states have expanded the Supplemental Nutritional Assistance Program (SNAP) to provide the maximum benefit to eligible households, or an increase of at least $95 per month. While SNAP normally has a cliff due to a minimum allotment ($23 per month in 2023), the emergency allotments significantly expanded the cliff by effectively increasing the minimum allotment to the maximum allotment.
 
-The Consolidated Appropriations Act of 2023 repealed the SNAP emergency allotments, effective March 2023. We have modeled that ([see our process here](https://policyengine.org/us/blog/2022-12-23-updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill)), making the annual emergency allotments only a sixth as generous as they were in 2022, in the 34 states and DC where they remain in place.
+The Consolidated Appropriations Act of 2023 repealed the SNAP emergency allotments, effective March 2023. We have modeled that ([see our process here](https://legacy.policyengine.org/us/blog/2022-12-23-updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill)), making the annual emergency allotments only a sixth as generous as they were in 2022, in the 34 states and DC where they remain in place.
 
 Repealing the SNAP emergency allotments for January and February 2023 would cut the cliff rate by 34%, from 0.5% to 0.3%, and reduce the cliff gap 14.9%, from $5.0 billion to $4.3 billion.
 
@@ -78,7 +78,7 @@ In 2022, when states provided SNAP emergency allotments throughout the year, the
 
 ![](https://cdn-images-1.medium.com/max/3200/0*BWzaOy8sULhqP-X3)
 
-## Experiment 3: [Start phasing out Washington’s Working Families Tax Credit at a lower income](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=3337&region=wa&timePeriod=2023&baseline=2)
+## Experiment 3: [Start phasing out Washington’s Working Families Tax Credit at a lower income](https://legacy.policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=3337&region=wa&timePeriod=2023&baseline=2)
 
 Washington’s provides a refundable Working Families Tax Credit, with the amount and structure depending on household size. It starts phasing out at an amount below the end of the federal Earned Income Tax Credit: $2,500 below for families with one child, and $5,000 below for those with multiple children. This creates [marginal tax rates ranging from 12% to 24%](https://policyengine.github.io/policyengine-us//gov/states/wa/tax/income/credits/working-families-tax-credit.html).
 
@@ -92,7 +92,7 @@ Government agencies and nonprofits have expanded their research into cliffs in r
 
 ![Impacts of selected reforms on cliffs and other outcomes](https://cdn-images-1.medium.com/max/2756/1*sphHryjtjLOBIRJcX30xvg.png)_Impacts of selected reforms on cliffs and other outcomes_
 
-However, our cliff measures are only as complete as our microsimulation model. Since we do not yet capture all tax and benefit programs (for example, childcare subsidies, housing subsidies, and state income taxes in most states), we under-report cliffs. Our [data enhancement plan](https://policyengine.org/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis) will also improve cliff modeling, especially at the state level where we rely on a small sample of households potentially subject to cliffs. As we improve our model, PolicyEngine will identify more cliffs — and more opportunities to address them.
+However, our cliff measures are only as complete as our microsimulation model. Since we do not yet capture all tax and benefit programs (for example, childcare subsidies, housing subsidies, and state income taxes in most states), we under-report cliffs. Our [data enhancement plan](https://legacy.policyengine.org/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis) will also improve cliff modeling, especially at the state level where we rely on a small sample of households potentially subject to cliffs. As we improve our model, PolicyEngine will identify more cliffs — and more opportunities to address them.
 
 Our policy experiments show that cliffs can be averted by making programs either more generous (increasing the SSI earned income exclusion) or less generous (repealing SNAP emergency allotments and phasing out Washington’s Working Families Tax Credit at lower incomes). In these instances, though, reforming programs with explicit cliffs had a much larger impact on cliff prevalence than reforming marginal tax rates.
 

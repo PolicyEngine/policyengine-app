@@ -4,7 +4,7 @@
 
 PolicyEngine estimates that the 1.7% benefits uprating for 2025/26:
 
-- increases government costs by [£2.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=69807&mode=lite)
+- increases government costs by [£2.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=69807&mode=lite)
 - lowers poverty by 1.8%
 - raises net income for 45.9% of people
 

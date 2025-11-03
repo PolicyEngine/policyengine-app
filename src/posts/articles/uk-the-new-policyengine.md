@@ -20,7 +20,7 @@ If you’ve used PolicyEngine before, we think you’ll find the new version eas
 
 For more information:
 
-1. [Read our companion blog post](https://policyengine.org/uk/blog/2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-uk) which walks through how to use the new app, using the [Child Benefit High Income Tax Charge](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=5&region=uk&timePeriod=2023&baseline=1) as a case study
+1. [Read our companion blog post](https://legacy.policyengine.org/uk/blog/2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-uk) which walks through how to use the new app, using the [Child Benefit High Income Tax Charge](https://legacy.policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=5&region=uk&timePeriod=2023&baseline=1) as a case study
 
 1. [Follow us on Twitter](http://twitter.com/thepolicyengine), where we’ll share tips and examples
 

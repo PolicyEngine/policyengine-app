@@ -57,4 +57,4 @@ Space is limited for this exclusive event. [Register now on Eventbrite](https://
 
 ## About PolicyEngine
 
-PolicyEngine is a non-profit organisation building free, open-source software to compute the impact of public policy. Our platform enables anyone to design tax and benefit reforms and see their effects on society and individual households. Learn more at [policyengine.org](https://policyengine.org).
+PolicyEngine is a non-profit organisation building free, open-source software to compute the impact of public policy. Our platform enables anyone to design tax and benefit reforms and see their effects on society and individual households. Learn more at [policyengine.org](https://legacy.policyengine.org).

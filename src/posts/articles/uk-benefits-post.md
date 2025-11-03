@@ -6,28 +6,28 @@ Table 1 summarises estimates for each benefit in the UK system, comparing Policy
 
 **Table 1: Summary of UK benefit expenditure estimates**
 
-| Programme                     | PolicyEngine estimate 2025 (£bn)                                                                                                | OBR estimate 2025-26 (£bn)                                                                                                                                             | PolicyEngine affected population estimate 2025 (%) |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Universal Credit              | 79.4                                                                                                                            | [77.4](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 21.8                                               |
-| Housing Benefit               | [7.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663)  | [11.6](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.9                                                |
-| Tax Credits                   | [<1.0](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) | [<1.0](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 0.1                                                |
-| Pension Credit                | [7.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685)  | [6.0](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/)                                                                | 3.6                                                |
-| Personal Independence Payment | [30.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) | [28.7](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/)                                                              | 10.3                                               |
-| Disability Living Allowance   | [9.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689)  | [7.5](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/)                                                               | 4.5                                                |
-| Attendance Allowance          | [10.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) | [8.0](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/)                                                               | 3.9                                                |
-| Child Benefit                 | [12.3](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) | [12.5](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) | 31.3                                               |
-| Winter Fuel Payment           | [<1.0](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) | [<1.0](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.7                                                |
+| Programme                     | PolicyEngine estimate 2025 (£bn)                                                                                                       | OBR estimate 2025-26 (£bn)                                                                                                                                             | PolicyEngine affected population estimate 2025 (%) |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Universal Credit              | 79.4                                                                                                                                   | [77.4](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 21.8                                               |
+| Housing Benefit               | [7.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663)  | [11.6](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.9                                                |
+| Tax Credits                   | [<1.0](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) | [<1.0](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 0.1                                                |
+| Pension Credit                | [7.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685)  | [6.0](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/)                                                                | 3.6                                                |
+| Personal Independence Payment | [30.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) | [28.7](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/)                                                              | 10.3                                               |
+| Disability Living Allowance   | [9.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689)  | [7.5](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/)                                                               | 4.5                                                |
+| Attendance Allowance          | [10.2](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) | [8.0](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/)                                                               | 3.9                                                |
+| Child Benefit                 | [12.3](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) | [12.5](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) | 31.3                                               |
+| Winter Fuel Payment           | [<1.0](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) | [<1.0](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.7                                                |
 
 As government estimates for childcare programmes are available for the 2024 fiscal year, we present them separately in the table below. Table 2 compares UK childcare programme costs, showing PolicyEngine's expenditure estimates for 2025 alongside both previous year estimates and official government projections.
 
 **Table 2: Summary of UK childcare programmes expenditure estimates**
 
-| Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                        | PolicyEngine estimate 2024 (£bn)                                                                                                                        | Government report 2024 (£bn)                                                                                  | PolicyEngine affected population estimate 2025 (%) |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Tax-free childcare  | [0.7](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972)                          | [0.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892)                          | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | 2.8                                                |
-| Extended childcare  | [4.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613&uk_local_areas_beta=true) | [2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 4.3                                                |
-| Universal childcare | [1.8](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975)                          | [1.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887)                          | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 2.6                                                |
-| Targeted childcare  | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974)                          | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888)                          | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 0.5                                                |
+| Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                               | PolicyEngine estimate 2024 (£bn)                                                                                                                               | Government report 2024 (£bn)                                                                                  | PolicyEngine affected population estimate 2025 (%) |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Tax-free childcare  | [0.7](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972)                          | [0.6](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892)                          | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | 2.8                                                |
+| Extended childcare  | [4.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613&uk_local_areas_beta=true) | [2.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 4.3                                                |
+| Universal childcare | [1.8](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975)                          | [1.6](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887)                          | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 2.6                                                |
+| Targeted childcare  | [0.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974)                          | [0.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888)                          | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 0.5                                                |
 
 This post has two main sections. The first covers means-tested benefits—such as Universal Credit, legacy programmes, and pension-age benefits—which vary with household income and savings. The second examines non-means-tested benefits, including disability, child, and retirement programmes, which are based on individual circumstances rather than income. For each benefit, the post details eligibility criteria, calculation methods, and how payments differ across the income distribution.
 
@@ -151,7 +151,7 @@ PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025-26,
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Universal Credit on household finances, we plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=84661&region=uk&timePeriod=2025&baseline=1&household=50678) with two 10-year-old children. Abolishing this benefit reduces the household's net income in the low-income range. Figure 2 shows this effect on household net income.
+To show the impact of Universal Credit on household finances, we plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=84661&region=uk&timePeriod=2025&baseline=1&household=50678) with two 10-year-old children. Abolishing this benefit reduces the household's net income in the low-income range. Figure 2 shows this effect on household net income.
 
 **Figure 2. Household net income with and without Universal Credit**
 
@@ -167,7 +167,7 @@ DWP [excludes](https://github.com/PolicyEngine/policyengine-uk/blob/master/polic
 
 #### Economic analysis
 
-PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025-26, 34.5% less than the UK government's estimate of [£11.6 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-26. Figure 3 shows the distributional impact of this programme.
+PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025-26, 34.5% less than the UK government's estimate of [£11.6 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-26. Figure 3 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -295,7 +295,7 @@ HMRC reduces Tax Credits by 41% of income above the relevant threshold: £7,455 
 
 #### Economic analysis
 
-PolicyEngine projects that Tax Credits will cost less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) in 2025-26, in line with the UK government's estimate of less than £1 billion for 2025-26.
+PolicyEngine projects that Tax Credits will cost less than [£1 billion](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) in 2025-26, in line with the UK government's estimate of less than £1 billion for 2025-26.
 
 ### Pension Credit
 
@@ -321,7 +321,7 @@ Pension Credit includes two main components, which we describe in detail below:
 
 #### Economic analysis
 
-PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025-26, 23.3% more than the UK government's estimate of [£6.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/) for 2025-26. Figure 5 shows the distributional impact of this programme.
+PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025-26, 23.3% more than the UK government's estimate of [£6.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/) for 2025-26. Figure 5 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -421,7 +421,7 @@ PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://poli
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=80685&household=53633) with a 70-year-old adult. Removing Pension Credit reduces the household’s net income in the low-income range. Figure 6 shows this effect on household net income.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=80685&household=53633) with a 70-year-old adult. Removing Pension Credit reduces the household’s net income in the low-income range. Figure 6 shows this effect on household net income.
 
 **Figure 6. Household net income with and without Pension Credit**
 
@@ -446,7 +446,7 @@ For 2025, the [daily living](https://github.com/PolicyEngine/policyengine-uk/blo
 
 #### Economic analysis
 
-PolicyEngine projects that PIP will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025-26, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 7 shows the distributional impact of this programme.
+PolicyEngine projects that PIP will cost [£30.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025-26, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 7 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -546,7 +546,7 @@ PolicyEngine projects that PIP will cost [£30.6 billion](https://policyengine.o
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When the individual receives the mobility component of PIP, they also receive the disability component of Universal Credit, which raises take-home income compared to the scenario without PIP. At lower income levels, this additional benefit increases household income. As earnings rise and the household loses eligibility for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 8 shows take-home income under both scenarios.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When the individual receives the mobility component of PIP, they also receive the disability component of Universal Credit, which raises take-home income compared to the scenario without PIP. At lower income levels, this additional benefit increases household income. As earnings rise and the household loses eligibility for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 8 shows take-home income under both scenarios.
 
 **Figure 8. Household net income with and without PIP**
 
@@ -567,7 +567,7 @@ For 2025, the [self-care](https://github.com/PolicyEngine/policyengine-uk/blob/m
 
 #### Economic analysis
 
-PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025-26, 24.0% more than the UK government's estimate of [£7.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 9 shows the distributional impact of this programme.
+PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025-26, 24.0% more than the UK government's estimate of [£7.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 9 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -667,7 +667,7 @@ PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion]
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When the individual receives the mobility component of Disability Living Allowance (DLA), they also qualify for the disability component of Universal Credit, which increases take-home income compared to the scenario without DLA. At lower income levels, this additional benefit raises household income. As earnings increase and the household loses eligibility for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 10 shows take-home income under both scenarios.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When the individual receives the mobility component of Disability Living Allowance (DLA), they also qualify for the disability component of Universal Credit, which increases take-home income compared to the scenario without DLA. At lower income levels, this additional benefit raises household income. As earnings increase and the household loses eligibility for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 10 shows take-home income under both scenarios.
 
 **Figure 10. Household net income with and without DLA**
 
@@ -687,7 +687,7 @@ For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per
 
 #### Economic analysis
 
-PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025-26, 27.5% more than the UK government's estimate of [£8.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 11 shows the distributional impact of this programme.
+PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025-26, 27.5% more than the UK government's estimate of [£8.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 11 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -787,7 +787,7 @@ PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80692&household=53560) receiving £5,000 per year in Attendance Allowance. Removing this benefit reduces the household’s net income. Figure 12 shows this effect on household finances.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80692&household=53560) receiving £5,000 per year in Attendance Allowance. Removing this benefit reduces the household’s net income. Figure 12 shows this effect on household finances.
 
 **Figure 12. Household net income with and without Attendance Allowance**
 
@@ -809,7 +809,7 @@ The [High Income Child Benefit Charge (HITC)](https://github.com/PolicyEngine/po
 
 #### Economic analysis
 
-PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025-26, 1.6% less than the UK government's estimate of [£12.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) for 2025-26. Figure 13 shows the distributional impact of this programme.
+PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025-26, 1.6% less than the UK government's estimate of [£12.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) for 2025-26. Figure 13 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -909,7 +909,7 @@ PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://poli
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=80696&household=53314) with £10,000 in annual childcare expenses. Removing Child Benefit reduces the household’s net income. Figure 14 shows this effect on household net income.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=80696&household=53314) with £10,000 in annual childcare expenses. Removing Child Benefit reduces the household’s net income. Figure 14 shows this effect on household net income.
 
 **Figure 14. Household net income with and without Child Benefit**
 
@@ -947,7 +947,7 @@ In Scotland, the Pension Age Winter Heating Payment (PAWHP) has [replaced](https
 
 #### Economic analysis
 
-PolicyEngine projects that Winter Fuel Payment will cost less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) in 2025-26, in line with the UK government's estimate of less than £1 billion for 2025-26.
+PolicyEngine projects that Winter Fuel Payment will cost less than [£1 billion](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) in 2025-26, in line with the UK government's estimate of less than £1 billion for 2025-26.
 
 ### Tax-free childcare
 
@@ -962,7 +962,7 @@ In 2025, the government contributes 20% of childcare costs, effectively adding �
 
 #### Economic analysis
 
-PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892) in 2024-25, in line with the UK government's estimate of [£0.6 billion](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024) for 2024-25. Figure 15 shows the distributional effect of this benefit.
+PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892) in 2024-25, in line with the UK government's estimate of [£0.6 billion](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024) for 2024-25. Figure 15 shows the distributional effect of this benefit.
 
 ```plotly
 {
@@ -1062,7 +1062,7 @@ PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for Tax-Free Childcare (TFC) when the earner makes at least [£9,516](https://www.gov.uk/tax-free-childcare) per year at age 21 or older. The benefit ends at £100,000, creating a drop in take-home income. This threshold creates a gap between households just above and just below the eligibility cutoff. Figure 16 shows this effect on household net income.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for Tax-Free Childcare (TFC) when the earner makes at least [£9,516](https://www.gov.uk/tax-free-childcare) per year at age 21 or older. The benefit ends at £100,000, creating a drop in take-home income. This threshold creates a gap between households just above and just below the eligibility cutoff. Figure 16 shows this effect on household net income.
 
 **Figure 16. Household net income with and without TFC**
 
@@ -1084,7 +1084,7 @@ In 2025, the entitlement provides 570 hours per year—equivalent to 15 hours pe
 
 #### Economic analysis
 
-PolicyEngine projects that universal childcare entitlement will cost [£1.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887) in 2024-25, 5.9% less than the UK government's estimate of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024-25. Figure 17 shows the distributional impact of this benefit.
+PolicyEngine projects that universal childcare entitlement will cost [£1.6 billion](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887) in 2024-25, 5.9% less than the UK government's estimate of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024-25. Figure 17 shows the distributional impact of this benefit.
 
 ```plotly
 {
@@ -1184,7 +1184,7 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. Households cannot receive Tax-Free Childcare (TFC) and universal childcare at the same time. Figure 18 shows household net income based on the head's employment income.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. Households cannot receive Tax-Free Childcare (TFC) and universal childcare at the same time. Figure 18 shows household net income based on the head's employment income.
 
 **Figure 18. Household net income with and without universal childcare entitlement**
 
@@ -1207,7 +1207,7 @@ The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per
 
 #### Economic analysis
 
-PolicyEngine projects that extended childcare entitlement will cost [£2.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) in 2024-25, 4.0% more than the UK government's estimate of [£2.5 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024-25. Figure 19 shows the distributional effect of this benefit.
+PolicyEngine projects that extended childcare entitlement will cost [£2.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) in 2024-25, 4.0% more than the UK government's estimate of [£2.5 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024-25. Figure 19 shows the distributional effect of this benefit.
 
 ```plotly
 {
@@ -1307,7 +1307,7 @@ PolicyEngine projects that extended childcare entitlement will cost [£2.6 billi
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80613&household=53312) with one child aged 3. Households become eligible for extended childcare entitlement when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for adults aged 21 or over. The benefit ends at £100,000, causing a drop in take-home pay. Households earning above this threshold lose eligibility entirely. Figure 20 shows this effect on household net income.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80613&household=53312) with one child aged 3. Households become eligible for extended childcare entitlement when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for adults aged 21 or over. The benefit ends at £100,000, causing a drop in take-home pay. Households earning above this threshold lose eligibility entirely. Figure 20 shows this effect on household net income.
 
 **Figure 20. Household net income with and without extended childcare entitlement**
 
@@ -1328,7 +1328,7 @@ In 2025, the programme provides 570 hours per year (15 hours per week over 38 we
 
 #### Economic analysis
 
-PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888) in 2024-25, in line with the UK government's estimate of [£0.6 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024-25. Figure 21 shows the distributional effect of this benefit.
+PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888) in 2024-25, in line with the UK government's estimate of [£0.6 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024-25. Figure 21 shows the distributional effect of this benefit.
 
 ```plotly
 {
@@ -1428,7 +1428,7 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
 
 #### Gross salary vs take-home pay at the household level
 
-We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 22 shows household net income based on the head’s employment income.
+We plot net income for a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 22 shows household net income based on the head’s employment income.
 
 **Figure 22. Household net income with and without targeted childcare entitlement**
 

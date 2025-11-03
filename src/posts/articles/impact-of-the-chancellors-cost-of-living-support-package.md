@@ -14,7 +14,7 @@ Alongside a six-month extension of the Household Support Fund, HM Treasury estim
 
 _Skip this section to see the results._
 
-To accommodate this package, we’ve added a new section to the Benefit menu in the [Policy page](https://policyengine.org/uk/policy), for the _Cost-of-living support payment_. This includes payments to each of the three new household categories: those receiving means tested benefits, those with pensioners (the qualification for receiving Winter Fuel Payment), and those receiving non-means-tested disability benefits. These are set to £0 until they become legislation.
+To accommodate this package, we’ve added a new section to the Benefit menu in the [Policy page](https://legacy.policyengine.org/uk/policy), for the _Cost-of-living support payment_. This includes payments to each of the three new household categories: those receiving means tested benefits, those with pensioners (the qualification for receiving Winter Fuel Payment), and those receiving non-means-tested disability benefits. These are set to £0 until they become legislation.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*fKtwMJpHA8ua9nti)
 
@@ -30,7 +30,7 @@ This, however, will compare the full £400 against £0. To focus on the addition
 
 ![](https://cdn-images-1.medium.com/max/3200/0*ZC3T6NytGLf7n9SM)
 
-If you made it this far, congratulations, you’ve modelled the newly announced Cost of Living Support package! Your URL should look like this: [https://policyengine.org/uk/policy?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200](https://policyengine.org/uk/policy?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200).
+If you made it this far, congratulations, you’ve modelled the newly announced Cost of Living Support package! Your URL should look like this: [https://legacy.policyengine.org/uk/policy?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200](https://legacy.policyengine.org/uk/policy?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200).
 
 ## Budgetary impact
 
@@ -44,7 +44,7 @@ HM Treasury released an [“Illustrative analysis of the impact of the Cost of L
 
 ![](https://cdn-images-1.medium.com/max/3200/0*kNAJvbiWYIkVklP6)
 
-To replicate these results, select England from the Geography menu in the Policy page. Doing so yields [this impact page](https://policyengine.org/uk/population-impact?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200&baseline_country_specific=ENGLAND).
+To replicate these results, select England from the Geography menu in the Policy page. Doing so yields [this impact page](https://legacy.policyengine.org/uk/population-impact?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200&baseline_country_specific=ENGLAND).
 
 ![](https://cdn-images-1.medium.com/max/3052/0*SIcutajl_eFEU4Mn)
 
@@ -90,4 +90,4 @@ The placement and size of this “earnings dead zone” (the shaded rectangle) d
 
 PolicyEngine UK now supports payments to households receiving means-tested benefits, non-means-tested disability benefits, and Winter Fuel Payment. You can set these values to mirror the Chancellor’s announcement, or define your own household payment scheme. Our estimates generally fall within 10% of HM Treasury’s, and we’ve also produced the first poverty and inequality analyses of the package, as well as personalised estimates that reveal welfare cliffs.
 
-To explore the package in more detail, [see our full analysis in PolicyEngine UK](https://policyengine.org/uk/population-impact?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200).
+To explore the package in more detail, [see our full analysis in PolicyEngine UK](https://legacy.policyengine.org/uk/population-impact?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200).

@@ -1,6 +1,6 @@
 _Credit: HM Treasury_
 
-[See the full impacts on PolicyEngine here in 2028](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=68997&region=uk&timePeriod=2028&baseline=1) and [2029](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=68997&region=uk&timePeriod=2029&baseline=1).
+[See the full impacts on PolicyEngine here in 2028](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=68997&region=uk&timePeriod=2028&baseline=1) and [2029](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=68997&region=uk&timePeriod=2029&baseline=1).
 
 The Resolution Foundation on Monday 17th March [proposed](https://www.resolutionfoundation.org/press-releases/chancellor-needs-take-action-to-balance-the-books/) extending the freeze on the income tax personal allowance and higher rate threshold for an additional two years. This policy would raise over £12 billion in tax revenue and would affect taxpayers across all income groups.
 

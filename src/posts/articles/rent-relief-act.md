@@ -1,4 +1,4 @@
-Kamala Harris on Friday released her [economic plan](https://mailchi.mp/press.kamalaharris.com/vice-president-harris-lays-out-agenda-to-lower-costs-for-american-families), including an expanded Child Tax Credit we [analyzed](https://policyengine.org/us/research/harris-ctc) on Saturday. Absent from the housing portion of her plan was legislation she introduced in 2018 and 2019 as a Senator: the Rent Relief Act (RRA), a refundable tax credit based on income, rent paid, and local housing costs. In this post, we use the PolicyEngine model to explore its effects on different household types, and how it situates with other tax and benefit programs. We focus on a typical example, as well as two ends of the credit’s generosity spectrum, based on local housing costs, at which the bill caps countable rent.
+Kamala Harris on Friday released her [economic plan](https://mailchi.mp/press.kamalaharris.com/vice-president-harris-lays-out-agenda-to-lower-costs-for-american-families), including an expanded Child Tax Credit we [analyzed](https://legacy.policyengine.org/us/research/harris-ctc) on Saturday. Absent from the housing portion of her plan was legislation she introduced in 2018 and 2019 as a Senator: the Rent Relief Act (RRA), a refundable tax credit based on income, rent paid, and local housing costs. In this post, we use the PolicyEngine model to explore its effects on different household types, and how it situates with other tax and benefit programs. We focus on a typical example, as well as two ends of the credit’s generosity spectrum, based on local housing costs, at which the bill caps countable rent.
 
 # Legislative History
 
@@ -42,7 +42,7 @@ We will examine three examples to illustrate the Rent Relief Act’s effects on 
 
 ## A Typical Example: Sherman-Denison, Texas
 
-Consider a [single parent](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46796&region=us&timePeriod=2024&baseline=2&reform=63509) with two children living in ZIP code 75459 in Sherman-Denison, Texas, an area with SAFMRs close to the median that does not use SAFMRs for the HCV program. Suppose this household pays $1,500 per month in rent for their three-bedroom home, less than the $1,590 per month SAFMR. Suppose further that they earn $40,000 per year. The credit would cover 75% of the difference between their rent ($18,000) exceeding 30% of their income ($12,000), or 75% of $6,000 which is $4,500.
+Consider a [single parent](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&household=46796&region=us&timePeriod=2024&baseline=2&reform=63509) with two children living in ZIP code 75459 in Sherman-Denison, Texas, an area with SAFMRs close to the median that does not use SAFMRs for the HCV program. Suppose this household pays $1,500 per month in rent for their three-bedroom home, less than the $1,590 per month SAFMR. Suppose further that they earn $40,000 per year. The credit would cover 75% of the difference between their rent ($18,000) exceeding 30% of their income ($12,000), or 75% of $6,000 which is $4,500.
 
 We can see this visually by displaying the credit with earnings, showing the steps at $25,000 and $50,000, and their ineligibility at $60,000 income (30% of which is $1,500 per month).
 
@@ -58,7 +58,7 @@ The steps at $25,000 and $50,000 income create cliffs. Combined with other tax a
 
 ## The Low End: Missouri studios
 
-HUD has designated the country’s lowest SAFMR as studios in a set of ZIPs in central Missouri, at $540 per month. Consider an [individual](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) living in a studio apartment in this area paying $600 per month:
+HUD has designated the country’s lowest SAFMR as studios in a set of ZIPs in central Missouri, at $540 per month. Consider an [individual](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) living in a studio apartment in this area paying $600 per month:
 
 - If their income is $0, they would receive the full $540 per month ($6,480 annually) as a credit.
 
@@ -70,7 +70,7 @@ HUD has designated the country’s lowest SAFMR as studios in a set of ZIPs in c
 
 ![](https://cdn-images-1.medium.com/max/3128/0*aWj1gSnt06wvXQAS)
 
-As their baseline marginal tax rate ranges from 0% to 62% in this range, the RRA [increases it](https://policyengine.org/us/household?focus=householdOutput.mtr&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) to between 30% and 92%.
+As their baseline marginal tax rate ranges from 0% to 62% in this range, the RRA [increases it](https://legacy.policyengine.org/us/household?focus=householdOutput.mtr&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) to between 30% and 92%.
 
 **Figure 4: Rent Relief Act Marginal Tax Rate Impact on a Single Person in a Missouri Studio**
 
@@ -80,7 +80,7 @@ As their baseline marginal tax rate ranges from 0% to 62% in this range, the RRA
 
 The country’s highest SAFMR is 4bd in several areas in San Diego: $6,960. This is also an area where SAFMR is used for HCV, raising RRA income thresholds by $25,000.
 
-Consider a [married couple](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46575&region=us&timePeriod=2024&baseline=2&reform=63509) with three children paying at least $6,960 per month in rent in a 4bd home in one of these areas. If they have no income, they will receive the full $6,960 per month, or $83,520 per year. That will phase out at a 30% rate, until they earn $50,000, at which point the credit covers 75%, rather than 100%, of the gap between rent and 30% of their income. It then steps down again at $75,000, $100,000, and finally $125,000 income at which point they become ineligible.
+Consider a [married couple](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&household=46575&region=us&timePeriod=2024&baseline=2&reform=63509) with three children paying at least $6,960 per month in rent in a 4bd home in one of these areas. If they have no income, they will receive the full $6,960 per month, or $83,520 per year. That will phase out at a 30% rate, until they earn $50,000, at which point the credit covers 75%, rather than 100%, of the gap between rent and 30% of their income. It then steps down again at $75,000, $100,000, and finally $125,000 income at which point they become ineligible.
 
 **Figure 5: Rent Relief Act for a San Diego 4-bedroom**
 

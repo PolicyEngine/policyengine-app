@@ -17,4 +17,4 @@ For the project, PolicyEngine also created an interactive, simplified tool for p
 
 You can read the full report by [King’s College London](https://citizensecon.org.uk/project-report) here.
 
-<iframe src="https://policyengine.org/uk/cec" width="100%" height="800px"></iframe>
+<iframe src="https://legacy.policyengine.org/uk/cec" width="100%" height="800px"></iframe>

@@ -20,7 +20,7 @@ PolicyEngine provides style guidance (replaceable with your own), which includes
 
 _Screenshot of the analysis prompt generator._
 
-The screenshot demonstrates an example policy reform prompt ([restoring the American Rescue Plan Act’s Earned Income Tax Credit expansion](http://policyengine.org/us/policy?focus=policyOutput.prompt&reform=6524&region=us&timePeriod=2023&baseline=2)). ChatGPT’s unmodified analysis is provided at the end of the post.
+The screenshot demonstrates an example policy reform prompt ([restoring the American Rescue Plan Act’s Earned Income Tax Credit expansion](http://legacy.policyengine.org/us/policy?focus=policyOutput.prompt&reform=6524&region=us&timePeriod=2023&baseline=2)). ChatGPT’s unmodified analysis is provided at the end of the post.
 
 Utilizing GPT-4’s capabilities, we hope this integration streamlines policy analysis for researchers, allowing faster iteration. Both GPT-4 (available through [ChatGPT Plus](https://openai.com/blog/chatgpt-plus)) and GPT-3.5 (available on the [free ChatGPT tier](http://chat.openai.com/)) provide clear summaries. We’ve found that GPT-4 offers more clear and accurate results compared to GPT-3.5, although both deliver good outcomes. An example of GPT-3.5’s summary is available below for comparison.
 

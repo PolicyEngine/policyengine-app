@@ -82,7 +82,7 @@ Parents of children under 12 months can claim the at-home parent credit if:
 
 - The adjusted gross income of the tax unit is less than $50,000
 
-The value of the credit is $100 per qualifying child. The income cutoffs create a small [cliff effect](https://policyengine.org/us/blog/how-would-reforms-affect-cliffs)- any rise in income over either income limit imposes an instant $100 tax increase, regardless of the size of the rise in income.
+The value of the credit is $100 per qualifying child. The income cutoffs create a small [cliff effect](https://legacy.policyengine.org/us/blog/how-would-reforms-affect-cliffs)- any rise in income over either income limit imposes an instant $100 tax increase, regardless of the size of the rise in income.
 
 ## Marginal tax rates
 
@@ -98,17 +98,17 @@ The integration of the Utah State income tax code into PolicyEngine allows users
 
 Utah’s headline tax rate is currently 4.85%, but has seen reforms over recent years. Using PolicyEngine’s economic impact calculator, we can estimate the revenue impacts of small and large changes to the tax rate, shown below.
 
-| **Tax rate** | **Tax rate change** | **Revenue impact** | **Average gain per household** | **PolicyEngine link**                                                                                                                    |
-| ------------ | ------------------- | ------------------ | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| 3.85%        | -1pp                | -$1.1bn            | $1,036                         | [See on PolicyEngine](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10724&region=ut&timePeriod=2023&baseline=2) |
-| 4.35%        | -0.5pp              | -$573m             | $518                           | [See on PolicyEngine](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10723&region=ut&timePeriod=2023&baseline=2) |
-| 4.75%        | -0.1pp              | -$115m             | $104                           | [See on PolicyEngine](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10722&region=ut&timePeriod=2023&baseline=2) |
-| **4.85%**    | **No change**       | **No change**      | **No change**                  | **Current law**                                                                                                                          |
-| 4.95%        | +0.1pp              | +$115m             | -$104                          | [See on PolicyEngine](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10613&region=ut&timePeriod=2023&baseline=2) |
-| 5.35%        | +0.5pp              | +$572m             | $518                           | [See on PolicyEngine](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10720&region=ut&timePeriod=2023&baseline=2) |
-| 5.85%        | +1pp                | +$1.1bn            | $1,035                         | [See on PolicyEngine](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10721&region=ut&timePeriod=2023&baseline=2) |
+| **Tax rate** | **Tax rate change** | **Revenue impact** | **Average gain per household** | **PolicyEngine link**                                                                                                                           |
+| ------------ | ------------------- | ------------------ | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.85%        | -1pp                | -$1.1bn            | $1,036                         | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10724&region=ut&timePeriod=2023&baseline=2) |
+| 4.35%        | -0.5pp              | -$573m             | $518                           | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10723&region=ut&timePeriod=2023&baseline=2) |
+| 4.75%        | -0.1pp              | -$115m             | $104                           | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10722&region=ut&timePeriod=2023&baseline=2) |
+| **4.85%**    | **No change**       | **No change**      | **No change**                  | **Current law**                                                                                                                                 |
+| 4.95%        | +0.1pp              | +$115m             | -$104                          | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10613&region=ut&timePeriod=2023&baseline=2) |
+| 5.35%        | +0.5pp              | +$572m             | $518                           | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10720&region=ut&timePeriod=2023&baseline=2) |
+| 5.85%        | +1pp                | +$1.1bn            | $1,035                         | [See on PolicyEngine](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=10721&region=ut&timePeriod=2023&baseline=2) |
 
-Because PolicyEngine uses a household survey, its revenue impacts are around a third lower than official estimates which use administrative tax datasets (which are less likely to miss out high-income filers). Our [planned data enhancement process](https://policyengine.org/us/blog/enhancing-the-current-population-survey-for-policy-analysis) will improve accuracy up to the level of administrative datasets later this year.
+Because PolicyEngine uses a household survey, its revenue impacts are around a third lower than official estimates which use administrative tax datasets (which are less likely to miss out high-income filers). Our [planned data enhancement process](https://legacy.policyengine.org/us/blog/enhancing-the-current-population-survey-for-policy-analysis) will improve accuracy up to the level of administrative datasets later this year.
 
 ## Try it out
 

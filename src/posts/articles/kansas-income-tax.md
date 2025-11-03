@@ -1,4 +1,4 @@
-We are excited to announce the addition of the Kansas income tax code to [PolicyEngine US](http://policyengine.org/us)! This update allows users to analyze and understand the tax policies in Kansas, including tax rates, deductions, exemptions, and credits available to Kansas residents.
+We are excited to announce the addition of the Kansas income tax code to [PolicyEngine US](http://legacy.policyengine.org/us)! This update allows users to analyze and understand the tax policies in Kansas, including tax rates, deductions, exemptions, and credits available to Kansas residents.
 
 ## How Kansas income taxes work
 

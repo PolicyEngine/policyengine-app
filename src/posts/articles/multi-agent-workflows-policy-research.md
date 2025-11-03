@@ -1,4 +1,4 @@
-When we finished our [UK carbon dividend analysis](https://policyengine.org/uk/research/uk-carbon-tax-dividend) this autumn, we wondered whether [Claude Code's](https://claude.com/claude-code) multi-agent system could have automated parts of the research workflow. We tested it on a similar policy analysis to find out.
+When we finished our [UK carbon dividend analysis](https://legacy.policyengine.org/uk/research/uk-carbon-tax-dividend) this autumn, we wondered whether [Claude Code's](https://claude.com/claude-code) multi-agent system could have automated parts of the research workflow. We tested it on a similar policy analysis to find out.
 
 ## Building a multi-agent research workflow
 

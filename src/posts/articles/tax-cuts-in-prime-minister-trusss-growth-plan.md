@@ -16,7 +16,7 @@ Earlier today, UK Chancellor Kwasi Kwarteng announced the [Growth Plan 2022](htt
 
 [As we wrote yesterday](https://blog.policyengine.org/stamp-duties-in-policyengine-uk-6087dc05c135), PolicyEngine fuses property values across government surveys to provide the UK’s only publicly available model of stamp duties. Our unified, enhanced dataset and model allows us to score the Growth Plan’s Stamp Duty reforms alongside the Income Tax and National Insurance reforms, which we did [within minutes of its announcement](https://twitter.com/nikhil_woodruff/status/1573235941053026305) on Twitter.
 
-**You can [see the population impact of the package here](https://policyengine.org/uk/population-impact?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40) and [compute the impact on your own household here](https://policyengine.org/uk/household?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40).** We’ve provided top-level results below.
+**You can [see the population impact of the package here](https://legacy.policyengine.org/uk/population-impact?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40) and [compute the impact on your own household here](https://legacy.policyengine.org/uk/household?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40).** We’ve provided top-level results below.
 
 ## Impact on the UK population
 
@@ -34,7 +34,7 @@ The policy has a larger net income benefit to those in higher income, both in re
 
 ![](https://cdn-images-1.medium.com/max/3200/0*K6sPZQEFXrGUDLLn)
 
-[\*\*Explore more population-level charts in PolicyEngine here.](https://policyengine.org/uk/population-impact?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40)\*\*
+[\*\*Explore more population-level charts in PolicyEngine here.](https://legacy.policyengine.org/uk/population-impact?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40)\*\*
 
 ## Impact on hypothetical households
 
@@ -60,10 +60,10 @@ Their marginal tax rate falls less in the Universal Credit taper zone, by about 
 
 ![](https://cdn-images-1.medium.com/max/2576/0*rBTcqEAVkIAKhnRz)
 
-[\*\*Compute how the reform would affect your own household here.](https://policyengine.org/uk/household?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40)\*\*
+[\*\*Compute how the reform would affect your own household here.](https://legacy.policyengine.org/uk/household?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40)\*\*
 
 ## Be your own Chancellor
 
-As always, you can also [experiment with a custom reform alongside Growth Plan 2022](https://policyengine.org/uk/policy?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40). If you’d prefer an alternative reform, how would you design it? Compute the impact in PolicyEngine and [let us know](http://twitter.com/thepolicyengine)!
+As always, you can also [experiment with a custom reform alongside Growth Plan 2022](https://legacy.policyengine.org/uk/policy?dividend_basic_rate=7_5&dividend_higher_rate=32_5&NI_add_rate=2&NI_class_4_add_rate=2&NI_main_rate=12&NI_class_4_main_rate=9&dividend_additional_rate=38_1&basic_rate=19&sdlt_on_non_first_home_2_rate=0&sdlt_first_time_buyer_value_limit=625000&sdlt_on_first_time_buyer_homes_2_threshold=425000&add_rate=40). If you’d prefer an alternative reform, how would you design it? Compute the impact in PolicyEngine and [let us know](http://twitter.com/thepolicyengine)!
 
 ![Labour Income Tax reforms under the Growth Plan 2022](https://cdn-images-1.medium.com/max/3200/0*4yqZPnpAmiRqYiUe)_Labour Income Tax reforms under the Growth Plan 2022_

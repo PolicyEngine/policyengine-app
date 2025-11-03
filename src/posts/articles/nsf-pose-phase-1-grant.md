@@ -46,7 +46,7 @@ You can view our complete NSF POSE Phase I application materials, including our 
 
 ## Get involved
 
-We invite researchers, developers, and policy analysts to join our open-source community. Visit our [GitHub repositories](https://github.com/PolicyEngine) to contribute, or explore our platform at [policyengine.org](https://policyengine.org) to see how we're democratizing policy analysis.
+We invite researchers, developers, and policy analysts to join our open-source community. Visit our [GitHub repositories](https://github.com/PolicyEngine) to contribute, or explore our platform at [policyengine.org](https://legacy.policyengine.org) to see how we're democratizing policy analysis.
 
 The NSF POSE Phase I grant will help PolicyEngine strengthen its open-source ecosystem and expand access to sophisticated policy analysis tools for researchers, policymakers, and citizens alike.
 

@@ -14,12 +14,12 @@ Table 1 compares PolicyEngine’s estimates of the budgetary impact of the main 
 
 **Table 1. Budgetary estimates for childcare programmes (PolicyEngine vs government)**
 
-| Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                        | PolicyEngine estimate 2024 (£bn)                                                                                                                        | Government report 2024 (£bn)                                                                                  | Relative error in estimate 2024 (%) |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| Tax-Free Childcare  | [0.7](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972)                          | [0.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892)                          | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | -0.7                                |
-| Extended childcare  | [4.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613&uk_local_areas_beta=true) | [2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 3.8                                 |
-| Universal childcare | [1.8](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975)                          | [1.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887)                          | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -5.9                                |
-| Targeted childcare  | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974)                          | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888)                          | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -10.0                               |
+| Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                               | PolicyEngine estimate 2024 (£bn)                                                                                                                               | Government report 2024 (£bn)                                                                                  | Relative error in estimate 2024 (%) |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| Tax-Free Childcare  | [0.7](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972)                          | [0.6](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892)                          | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | -0.7                                |
+| Extended childcare  | [4.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613&uk_local_areas_beta=true) | [2.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 3.8                                 |
+| Universal childcare | [1.8](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975)                          | [1.6](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887)                          | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -5.9                                |
+| Targeted childcare  | [0.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974)                          | [0.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888)                          | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -10.0                               |
 
 Table 2 compares PolicyEngine’s estimates of programme caseloads for the main childcare programmes with those reported by the government.
 
@@ -70,7 +70,7 @@ Finally, for eligible households, we [calculate](https://github.com/PolicyEngine
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of TFC on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for TFC when the earner is aged 21 or over and earning at least [£9,516](https://www.gov.uk/tax-free-childcare) annually. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving TFC at higher income levels, as shown in Figure 1.
+To show the impact of TFC on household finances, we start with an example of a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for TFC when the earner is aged 21 or over and earning at least [£9,516](https://www.gov.uk/tax-free-childcare) annually. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving TFC at higher income levels, as shown in Figure 1.
 
 **Figure 1. Household net income with and without Tax-Free Childcare**
 
@@ -82,7 +82,7 @@ This decline at £100,000 creates an earnings dead zone, which is the width of t
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £0.7 billion on Tax-Free Childcare in 2025. Figure 2 shows the distributional impact of this programme:
+PolicyEngine [projects](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £0.7 billion on Tax-Free Childcare in 2025. Figure 2 shows the distributional impact of this programme:
 
 ```plotly
 {
@@ -321,7 +321,7 @@ We [determine](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of extended childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=84515&household=53312) with one child aged 3. These households become eligible for extended childcare when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving extended childcare at higher income levels, as shown in Figure 5.
+To show the impact of extended childcare entitlement on household finances, we start with an example of a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=84515&household=53312) with one child aged 3. These households become eligible for extended childcare when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving extended childcare at higher income levels, as shown in Figure 5.
 
 **Figure 5. Household net income with and without extended childcare**
 
@@ -331,7 +331,7 @@ To show the impact of extended childcare entitlement on household finances, we s
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) that the UK government will spend £4.4 billion on extended childcare entitlement in 2025. Figure 6 shows the distributional impact of this programme:
+PolicyEngine [projects](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) that the UK government will spend £4.4 billion on extended childcare entitlement in 2025. Figure 6 shows the distributional impact of this programme:
 
 ```plotly
 {
@@ -545,7 +545,7 @@ We determine the weekly hours based on the child's age and apply the funding rat
 
 #### Gross salary vs take-home pay at the household level
 
-To show how the universal childcare entitlement affects household finances, we examine a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. The household cannot [claim](https://www.childcarechoices.gov.uk/combining-schemes) both universal childcare and Tax-Free Childcare at the same time. Figure 9 shows how net income changes with the head of household’s earnings under each option.
+To show how the universal childcare entitlement affects household finances, we examine a [single-earner household](https://legacy.policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. The household cannot [claim](https://www.childcarechoices.gov.uk/combining-schemes) both universal childcare and Tax-Free Childcare at the same time. Figure 9 shows how net income changes with the head of household’s earnings under each option.
 
 **Figure 9. Household net income with and without universal childcare**
 
@@ -555,7 +555,7 @@ To show how the universal childcare entitlement affects household finances, we e
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975) that the UK government will spend £1.8 billion on universal childcare entitlement in 2025. Figure 10 shows the distributional impact of this programme:
+PolicyEngine [projects](https://legacy.policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975) that the UK government will spend £1.8 billion on universal childcare entitlement in 2025. Figure 10 shows the distributional impact of this programme:
 
 ```plotly
 {
@@ -779,7 +779,7 @@ The UK government [provides](https://github.com/PolicyEngine/policyengine-uk/blo
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of targeted childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 13 shows household net income based on head employment income.
+To show the impact of targeted childcare entitlement on household finances, we start with an example of a [single-earner household](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 13 shows household net income based on head employment income.
 
 **Figure 13. Household net income with and without targeted childcare**
 
@@ -789,7 +789,7 @@ To show the impact of targeted childcare entitlement on household finances, we s
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974) that the UK government will spend £0.5 billion on targeted childcare entitlement in 2025. Figure 14 shows the distributional impact of this programme:
+PolicyEngine [projects](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974) that the UK government will spend £0.5 billion on targeted childcare entitlement in 2025. Figure 14 shows the distributional impact of this programme:
 
 ```plotly
 {

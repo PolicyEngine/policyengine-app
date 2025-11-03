@@ -56,7 +56,7 @@ The Economic Recovery Plan would have mixed effects on work incentives. The Pers
 
 For example, a married couple with two children would see their marginal tax rate fall by 9% while they remain within Universal Credit eligibility (the marginal rate does not fall by the full 20% basic rate due to the Universal Credit taper). As a result of the reforms, they would exit UC eligibility earlier, lowering marginal tax rates by up to 37 percentage points.
 
-However, once reaching the higher rate threshold, they face a work disincentive that is now more punitive under the Economic Recovery Plan: the Marriage Allowance income limit. Under the Marriage Allowance, couples can transfer up to 10% of the Personal Allowance to the higher earner of the two, if that higher earner is a basic rate taxpayer. This causes a sudden increase in tax liability (usually described as a [‘cliff’](https://policyengine.org/us/blog/2023-02-02-how-would-reforms-affect-cliffs)) when the earner reaches the end of the basic rate region, and this cliff is made larger by the increased size of the Personal Allowance.
+However, once reaching the higher rate threshold, they face a work disincentive that is now more punitive under the Economic Recovery Plan: the Marriage Allowance income limit. Under the Marriage Allowance, couples can transfer up to 10% of the Personal Allowance to the higher earner of the two, if that higher earner is a basic rate taxpayer. This causes a sudden increase in tax liability (usually described as a [‘cliff’](https://legacy.policyengine.org/us/blog/2023-02-02-how-would-reforms-affect-cliffs)) when the earner reaches the end of the basic rate region, and this cliff is made larger by the increased size of the Personal Allowance.
 
 Further up the income spectrum, another work disincentive under current law is the phase-out of the Personal Allowance, at a rate of 50p per £1 earned over £100,000. This causes a 62% marginal tax rate under current law between £100,000 and £125,000; under the Economic Recovery Plan, this high-marginal tax rate region would be extended to £140,000.
 
@@ -72,4 +72,4 @@ _Change to net income by employment income, for a single-earner married couple w
 
 ## See the effect on your household
 
-As always, you can [see the impact of Reform UK’s proposals on your own household](https://policyengine.org/uk/household?focus=intro&reform=3701&region=uk&timePeriod=2023&baseline=1) (or try out a variation of them) on PolicyEngine. [Let us know](https://twitter.com/PolicyEngineUK) what policy impacts you compute!
+As always, you can [see the impact of Reform UK’s proposals on your own household](https://legacy.policyengine.org/uk/household?focus=intro&reform=3701&region=uk&timePeriod=2023&baseline=1) (or try out a variation of them) on PolicyEngine. [Let us know](https://twitter.com/PolicyEngineUK) what policy impacts you compute!

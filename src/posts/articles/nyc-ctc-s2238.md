@@ -1,6 +1,6 @@
 As New York’s legislative session progresses, lawmakers are proposing various changes to the state’s income tax code. [Senate Bill S2238](https://www.nysenate.gov/legislation/bills/2025/S2238), sponsored by State Senator Andrew Gounardes, would establish a New York City Child Tax Credit (NYC CTC) while restructuring the existing School Tax Credit (STC) to raise revenue to offset the cost of the NYC CTC. Using PolicyEngine’s household calculator and microsimulation capabilities, this analysis examines the specific effects of Senate Bill S2238 on individual families as well as its impact on the budget, income distribution, and poverty.
 
-[PolicyEngine projects](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) that in 2025, Senate Bill S2238 would:
+[PolicyEngine projects](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) that in 2025, Senate Bill S2238 would:
 
 - Generate $93.3 million in state revenue
 
@@ -36,16 +36,16 @@ At the same time, the legislation would introduce a $300 fully refundable Child 
 
 The impact of Senate Bill S2238 varies based on household composition and income level. To understand this, let’s examine different family examples and how the proposal changes their net income.
 
-_See how a New York City Child Tax Credit would affect your household with our [personalized calculator](https://policyengine.org/us/household?focus=intro&reform=74381&region=nyc&timePeriod=2025&baseline=2)._
+_See how a New York City Child Tax Credit would affect your household with our [personalized calculator](https://legacy.policyengine.org/us/household?focus=intro&reform=74381&region=nyc&timePeriod=2025&baseline=2)._
 
 **Table 1: Impact of Senate Bill S2238 on Various Household Compositions**
 
-| Household Composition             | Baseline School Tax Credit | New School Tax Credit | NYC CTC | Change in Net Income                                                                                                                               |
-| :-------------------------------- | -------------------------- | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Single, No Children, \$50,000** | \$152                      | \$152                 | \$0     | [\$0](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900)    |
-| **Single, No Children, \$85,000** | \$232                      | \$0                   | \$0     | [-\$232](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50993) |
-| **Single, One Child, \$50,000**   | \$152                      | \$152                 | \$300   | [+\$300](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) |
-| **Single, One Child, \$85,000**   | \$221                      | \$0                   | \$0     | [-\$221](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50997) |
+| Household Composition             | Baseline School Tax Credit | New School Tax Credit | NYC CTC | Change in Net Income                                                                                                                                      |
+| :-------------------------------- | -------------------------- | --------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Single, No Children, \$50,000** | \$152                      | \$152                 | \$0     | [\$0](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900)    |
+| **Single, No Children, \$85,000** | \$232                      | \$0                   | \$0     | [-\$232](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50993) |
+| **Single, One Child, \$50,000**   | \$152                      | \$152                 | \$300   | [+\$300](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) |
+| **Single, One Child, \$85,000**   | \$221                      | \$0                   | \$0     | [-\$221](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50997) |
 
 A single adult with $50,000 in earnings and zero children would continue to receive their current School Tax Credit at $152[^1] as their income is below the phaseout threshold of $75,000. Additionally, because they have no children, they are ineligible for the NYC CTC, leaving their net income unchanged. However, if their earnings increase to $85,000, their STC would phase out completely, reducing their net income by $232 (what they would otherwise receive from the STC if Senate Bill S2238 were not implemented).
 
@@ -63,13 +63,13 @@ In summation, households with no children are unaffected if their earnings are l
 
 **Table 2: Breakeven Points by Household Composition**
 
-| Number of Children |                                                                       Single                                                                        |                                                                       Married                                                                        |
-| :----------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
-|       **0**        | [\$75,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50956) | [\$150,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51087) |
-|       **1**        | [\$78,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51088) | [\$153,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51089) |
-|       **2**        | [\$82,700](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51090) | [\$156,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51091) |
-|       **3**        | [\$88,500](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51094) | [\$159,300](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51095) |
-|       **4**        | [\$94,300](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51096) | [\$165,100](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51097) |
+| Number of Children |                                                                           Single                                                                           |                                                                           Married                                                                           |
+| :----------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|       **0**        | [\$75,000](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50956) | [\$150,000](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51087) |
+|       **1**        | [\$78,000](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51088) | [\$153,000](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51089) |
+|       **2**        | [\$82,700](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51090) | [\$156,000](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51091) |
+|       **3**        | [\$88,500](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51094) | [\$159,300](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51095) |
+|       **4**        | [\$94,300](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51096) | [\$165,100](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51097) |
 
 _Rounded to the nearest $100._
 
@@ -77,29 +77,29 @@ Using PolicyEngine’s microsimulation capabilities through 3 years of pooled da
 
 ## Citywide Impacts
 
-Phasing out the School Tax Credit would raise [$427.1 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=74345&region=nyc&timePeriod=2025&baseline=2) in 2025, while implementing the CTC component of Senate Bill S2238 would cost [$333.8 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=75446&region=nyc&timePeriod=2025&baseline=2), generating a [surplus of $93.3 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) in state funds.
+Phasing out the School Tax Credit would raise [$427.1 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=74345&region=nyc&timePeriod=2025&baseline=2) in 2025, while implementing the CTC component of Senate Bill S2238 would cost [$333.8 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=75446&region=nyc&timePeriod=2025&baseline=2), generating a [surplus of $93.3 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) in state funds.
 
-As displayed in Figure 5, the proposed legislation provides net benefits to the [bottom six income deciles](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) on average, while the seventh decile is essentially unchanged. Conversely, households in the top income decile would see an average reduction of $551.
+As displayed in Figure 5, the proposed legislation provides net benefits to the [bottom six income deciles](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) on average, while the seventh decile is essentially unchanged. Conversely, households in the top income decile would see an average reduction of $551.
 
-Furthermore, while the average dollar amount gained in each decile in the bottom half of the distribution would vary, households in these deciles would see their net income increase [between 0.2% and 0.3%](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900) on average.
+Furthermore, while the average dollar amount gained in each decile in the bottom half of the distribution would vary, households in these deciles would see their net income increase [between 0.2% and 0.3%](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900) on average.
 
 **Figure 5: Average Benefit of Senate Bill S2238 by Income Decile[^3]**
 
 ![](https://cdn-images-1.medium.com/max/2000/1*H404oqvkm7Am75Cjq_ugAQ.png)
 
-Fourteen percent of residents in the [first income decile](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) would gain more than 5% of their net income with the proposed legislation. This is a larger portion of residents receiving over a 5% net gain in any other decile (see the dark blue portion of the bars in Figure 6). Seventy-two percent of NYC residents in the top decile would see a loss that is less than 5% of their net income.
+Fourteen percent of residents in the [first income decile](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) would gain more than 5% of their net income with the proposed legislation. This is a larger portion of residents receiving over a 5% net gain in any other decile (see the dark blue portion of the bars in Figure 6). Seventy-two percent of NYC residents in the top decile would see a loss that is less than 5% of their net income.
 
 **Figure 6: Winners and Losers of Senate Bill S2238**
 
 ![](https://cdn-images-1.medium.com/max/2000/1*USRzlHzR5BOrM0310ZIgyg.png)
 
-Senate Bill S2238 would lower the city’s Supplemental Poverty Measure [by 0.8%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) and child poverty by 2.0%. PolicyEngine projects the legislation would have no impact on deep poverty.
+Senate Bill S2238 would lower the city’s Supplemental Poverty Measure [by 0.8%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) and child poverty by 2.0%. PolicyEngine projects the legislation would have no impact on deep poverty.
 
 **Figure 7: Poverty Impact of Senate Bill S2238**
 
 ![](https://cdn-images-1.medium.com/max/2000/1*KHmC00tZhNNzIwEqWckwmw.png)
 
-Finally, the city’s Gini index of income inequality would [drop by 0.3%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51083).[^4]
+Finally, the city’s Gini index of income inequality would [drop by 0.3%](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51083).[^4]
 
 ## Conclusion
 
@@ -107,7 +107,7 @@ Senate Bill S2238 would limit the School Tax Credit by phasing out benefits at 5
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 [^1]: The childless adult would receive the STC’s fixed amount of $63, plus the rate reduction portion. With $50,000 in annual earnings, their taxable income is $42,000 as they receive New York’s $8,000 standard deduction. 0.171% of the first $12,000 is $20.52. 0.228% of the remaining $30,000 is $68.40. Combined the rate reduction amount is around $89. $63 plus $89 is $152, the adult’s total STC.
 

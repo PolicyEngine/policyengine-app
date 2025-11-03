@@ -18,7 +18,7 @@ DWP qualifies people for PIP based on a [points system](https://www.legislation.
 | Daily living part | £72.65                | £108.55                |
 | Mobility part     | £28.70                | £75.75                 |
 
-We uprate these elements with inflation, projecting that by 2029, the daily living part will be [£80.31 (lower)](https://policyengine.org/uk/policy?reform=1&focus=gov.dwp.pip.daily_living.standard) and [£119.99 (higher)](https://policyengine.org/uk/policy?reform=1&focus=gov.dwp.pip.daily_living.enhanced) per week.
+We uprate these elements with inflation, projecting that by 2029, the daily living part will be [£80.31 (lower)](https://legacy.policyengine.org/uk/policy?reform=1&focus=gov.dwp.pip.daily_living.standard) and [£119.99 (higher)](https://legacy.policyengine.org/uk/policy?reform=1&focus=gov.dwp.pip.daily_living.enhanced) per week.
 
 ## The reform
 

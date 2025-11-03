@@ -6,4 +6,4 @@ Through this support, PolicyEngine will continue expanding our technological cap
 
 _About PolicyEngine:_
 
-PolicyEngine's free, open-source platform empowers users to analyze how public policies affect their households and communities through advanced microsimulation modeling and interactive data visualizations. Learn more at [policyengine.org](https://policyengine.org).
+PolicyEngine's free, open-source platform empowers users to analyze how public policies affect their households and communities through advanced microsimulation modeling and interactive data visualizations. Learn more at [policyengine.org](https://legacy.policyengine.org).

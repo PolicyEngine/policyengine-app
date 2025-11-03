@@ -8,13 +8,13 @@ We estimate that, under current law, 9.6% of the population has resources below 
 
 Let’s consider an example to illustrate the power of our updated tool. Suppose we want to estimate the poverty impact of the Special Supplemental Nutrition Program for Women, Infants, and Children (WIC), which provides nutrition assistance to low-income pregnant women, new mothers, and young children. With PolicyEngine, anyone can compare today’s poverty rate to a scenario without WIC — overall, by age group, and now by sex.
 
-We estimate that WIC reduces poverty by 0.8% and deep poverty by 2.2%. Our pre-existing charts show that WIC disproportionately benefits children, [reducing child poverty by 2.6%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454) and [deep child poverty by 8.1%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454).
+We estimate that WIC reduces poverty by 0.8% and deep poverty by 2.2%. Our pre-existing charts show that WIC disproportionately benefits children, [reducing child poverty by 2.6%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454) and [deep child poverty by 8.1%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454).
 
-Our new charts show that [WIC lowers poverty by 0.7% for men and 0.9% for women](https://policyengine.org/us/policy?focus=policyOutput.genderPovertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454).
+Our new charts show that [WIC lowers poverty by 0.7% for men and 0.9% for women](https://legacy.policyengine.org/us/policy?focus=policyOutput.genderPovertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*BQvi2FCn2a6SXUho)
 
-We also find that [WIC lowers deep poverty by 1.9% for men and 2.4% for women](https://policyengine.org/us/policy?focus=policyOutput.genderDeepPovertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454).
+We also find that [WIC lowers deep poverty by 1.9% for men and 2.4% for women](https://legacy.policyengine.org/us/policy?focus=policyOutput.genderDeepPovertyImpact&reform=2&region=us&timePeriod=2023&baseline=6454).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*o2Wxc1THrDYKjkxs)
 

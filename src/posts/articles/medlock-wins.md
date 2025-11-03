@@ -4,7 +4,7 @@ Today Medlock announced the settlement of the bet, revealing that Srinivasan had
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s nice that my original plan to give myself my desired 70% tax rate worked out to nice round numbers, thanks again to <a href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw">@ThePolicyEngine</a> for helping me figure out how much to donate<a href="https://t.co/p9FPW45xKD">https://t.co/p9FPW45xKD</a></p>&mdash; James Medlock (@jdcmedlock) <a href="https://twitter.com/jdcmedlock/status/1653453502365196288?ref_src=twsrc%5Etfw">May 2, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-In [our March 23 blog post](https://policyengine.org/us/blog/medlock-donation-calculator), we presented a [mini-app](https://policyengine-james-medlock-donation-solver.streamlit.app/) built with the [policyengine-us Python package](http://github.com/policyengine/policyengine-us) to calculate how much Medlock should donate to GiveDirectly in order to fulfill his pledge of achieving a 70% effective tax rate between taxes and donations. Our calculations ranged from $333,000 to $565,000, depending on Medlock’s other income.
+In [our March 23 blog post](https://legacy.policyengine.org/us/blog/medlock-donation-calculator), we presented a [mini-app](https://policyengine-james-medlock-donation-solver.streamlit.app/) built with the [policyengine-us Python package](http://github.com/policyengine/policyengine-us) to calculate how much Medlock should donate to GiveDirectly in order to fulfill his pledge of achieving a 70% effective tax rate between taxes and donations. Our calculations ranged from $333,000 to $565,000, depending on Medlock’s other income.
 
 ![Medlock’s optimal donation size, assuming he and his wife each earn $100,000.](https://miro.medium.com/v2/0*BG6ygtFTdgcXdm_a)
 
@@ -20,4 +20,4 @@ GiveDirectly, too, has confirmed and shared the outcome (note our Twitter accoun
 
 We are thrilled that our `policyengine-us` Python package and Streamlit-built dashboarding app could contribute to this charitable outcome by providing Medlock with the necessary calculations to determine his donation amount. This example demonstrates the power and flexibility of our Python packages, and we look forward to continuing to build tools that can answer unique questions and support decision-making in various scenarios.
 
-To learn more about how our free tax calculator guided the decision on Medlock’s donation amount, please refer to our previous blog post: [How much should James Medlock donate to GiveDirectly?](https://policyengine.org/us/blog/medlock-donation-calculator)
+To learn more about how our free tax calculator guided the decision on Medlock’s donation amount, please refer to our previous blog post: [How much should James Medlock donate to GiveDirectly?](https://legacy.policyengine.org/us/blog/medlock-donation-calculator)

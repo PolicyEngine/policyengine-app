@@ -1,4 +1,4 @@
-The [PolicyEngine US app](http://policyengine.org/us) uses a microsimulation model to compute the impact of custom tax and benefit reforms on the Current Population Survey (CPS). While the CPS is widely used for policy analysis, it contains inaccuracies that can impact the accuracy of policy simulations.
+The [PolicyEngine US app](http://legacy.policyengine.org/us) uses a microsimulation model to compute the impact of custom tax and benefit reforms on the Current Population Survey (CPS). While the CPS is widely used for policy analysis, it contains inaccuracies that can impact the accuracy of policy simulations.
 
 In 2023, we will enhance the CPS by integrating it with IRS tax records and reweighting it to minimize deviations from administrative aggregates. This enhanced dataset will be used in the PolicyEngine microsimulation app and will also be made available as an open resource for other policy research.
 

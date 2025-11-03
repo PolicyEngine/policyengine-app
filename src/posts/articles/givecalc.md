@@ -1,4 +1,4 @@
-This Giving Tuesday, we’re launching [**GiveCalc**](https://policyengine.org/us/givecalc), a free tool that calculates how charitable giving affects your US taxes and net income[^eagx] When you make a tax-deductible donation, you reduce your tax liability — but quantifying that reduction requires modeling complex interactions across federal and state tax systems.
+This Giving Tuesday, we’re launching [**GiveCalc**](https://legacy.policyengine.org/us/givecalc), a free tool that calculates how charitable giving affects your US taxes and net income[^eagx] When you make a tax-deductible donation, you reduce your tax liability — but quantifying that reduction requires modeling complex interactions across federal and state tax systems.
 
 [^eagx]: The concept originated at a hackathon at EAGxBerkeley in December 2022. Rather than rush to release, we prioritized accuracy and comprehensiveness, developing and validating our model of income taxes at the federal level and across all 50 states, DC, and NYC. We are grateful to the collaborators from that session, who regrettably remain unnamed as we lost track of them.
 
@@ -66,12 +66,12 @@ We’ve [open sourced GiveCalc on GitHub](https://github.com/PolicyEngine/giveca
 
 ## Try it yourself
 
-Visit [policyengine.org/us/givecalc](https://policyengine.org/us/givecalc) to calculate your own giving impacts. You can also:
+Visit [policyengine.org/us/givecalc](https://legacy.policyengine.org/us/givecalc) to calculate your own giving impacts. You can also:
 
 - [View the source code](https://github.com/PolicyEngine/givecalc)
 
 - [Report issues or contribute](https://github.com/PolicyEngine/givecalc/issues)
 
-- [Support PolicyEngine](https://policyengine.org/us/donate) with a tax-deductible donation — and use GiveCalc to estimate its impact
+- [Support PolicyEngine](https://legacy.policyengine.org/us/donate) with a tax-deductible donation — and use GiveCalc to estimate its impact
 
 Share your feedback and feature requests in the comments below or [open an issue](https://github.com/PolicyEngine/givecalc/issues) on GitHub.

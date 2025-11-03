@@ -1,5 +1,5 @@
 _[See the full, customisable impacts on PolicyEngine
-here.](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1)_
+here.](https://legacy.policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1)_
 
 ## Summary
 
@@ -8,7 +8,7 @@ parents from receiving financial support for more than two children
 (with children born before 2017 exempt). Using the PolicyEngine
 microsimulation model, we estimate that [repealing it would cost £1.8
 billion in
-2023](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1),
+2023](https://legacy.policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1),
 rising to £2.8 billion in 2025 as non-exempt age cohorts replace exempt
 children. The repeal would also lower absolute child poverty before
 housing costs by 310,000 this year.
@@ -29,7 +29,7 @@ found
 here](https://gist.github.com/nikhilwoodruff/447d86032ff481bdeb1e35aeeb3ea18c).
 
 [**_See how repealing the two-child limit would affect your household
-here._**](https://policyengine.org/uk/household?focus=intro&reform=7226&region=uk&timePeriod=2023&baseline=1)
+here._**](https://legacy.policyengine.org/uk/household?focus=intro&reform=7226&region=uk&timePeriod=2023&baseline=1)
 
 # How the policy affects households
 
@@ -132,11 +132,11 @@ automatically generated](/images/posts/repealing_the_two_child_limit/decile_char
 
 _Figure 2: [the distributional impacts of funding the two-child limit
 repeal with a 1p higher rate
-increase.](https://policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=18067&region=uk&timePeriod=2023&baseline=1)_
+increase.](https://legacy.policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=18067&region=uk&timePeriod=2023&baseline=1)_
 
 PolicyEngine's microsimulation modelling is completely open-source. [See
 the full analysis for the repeal on PolicyEngine
-here.](https://policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=7226&region=uk&timePeriod=2023&baseline=1)
+here.](https://legacy.policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=7226&region=uk&timePeriod=2023&baseline=1)
 If you have feedback or questions on the results in this report, please
 do [get in touch](mailto:hello@policyengine.org).
 
@@ -232,7 +232,7 @@ to 1.7 million.
     Group](https://cpag.org.uk/sites/default/files/files/policypost/CPAG_Budget_Submission_March_2023.pdf),
     drawn from the UKMOD microsimulation model. PolicyEngine [applies
     machine learning-based algorithms to survey
-    microdata](https://policyengine.org/uk/blog/how-machine-learning-tools-make-policyengine-more-accurate)
+    microdata](https://legacy.policyengine.org/uk/blog/how-machine-learning-tools-make-policyengine-more-accurate)
     to counter measurement and sampling bias present in the input data,
     which could explain some of the disparity.
 

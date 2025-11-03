@@ -12,7 +12,7 @@ Key results (static):
 
 - Lowers the Gini index of income inequality by 0.4%
 
-_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps)._
+_Use PolicyEngine to [view the full results](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) or calculate the [effect on your household](https://legacy.policyengine.org/us/household?focus=intro&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps)._
 
 ## Summary of SALT Provisions
 
@@ -26,7 +26,7 @@ The SALT deduction is set to become uncapped starting in 2026 after being limite
 
 ## Household Impacts
 
-As we are only comparing how the SALT deduction would affect households as a part of the full bill, only households that itemize their deductions and have state and local tax expenses would be affected. For example, a single adult in New York making $500,000 and $45,000 in property taxes would see a [reduction in their net income of $21,053](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps&household=53326) in 2026.[^2] Figure 2 displays how the single adult’s net income would change as their household earnings vary. While rising at certain points, net income generally falls as household income increases.
+As we are only comparing how the SALT deduction would affect households as a part of the full bill, only households that itemize their deductions and have state and local tax expenses would be affected. For example, a single adult in New York making $500,000 and $45,000 in property taxes would see a [reduction in their net income of $21,053](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps&household=53326) in 2026.[^2] Figure 2 displays how the single adult’s net income would change as their household earnings vary. While rising at certain points, net income generally falls as household income increases.
 
 [^2]: This assumes a home price of $2,800,000 with an average property tax rate of 1.6%.
 
@@ -68,13 +68,13 @@ Using PolicyEngine’s static microsimulation model, we project that the $30,000
 |     2035      |                       119.3                        |
 | **2026-2035** |                     **937.2**                      |
 
-The SALT cap would [reduce the net income of 5.2% of American residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) in 2026. The top income decile would see the greatest number of residents who are made worse off by the SALT cap.
+The SALT cap would [reduce the net income of 5.2% of American residents](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) in 2026. The top income decile would see the greatest number of residents who are made worse off by the SALT cap.
 
 **Figure 5: Distribution of the SALT Cap Under the W&M Bill (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*bitAetgKi4pRc7eH)
 
-Households in the top decile would pay an average of [$4,405 more](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) in taxes, a larger amount than other deciles.
+Households in the top decile would pay an average of [$4,405 more](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) in taxes, a larger amount than other deciles.
 
 **Figure 6: Average Impact of the SALT Cap Under the W&M Bill (2026)**
 
@@ -82,19 +82,19 @@ Households in the top decile would pay an average of [$4,405 more](https://polic
 
 When it comes to poverty and inequality, the SALT cap would, in 2026:
 
-- [Increase poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) (as defined by the Supplemental Poverty Measure) by 0.02%,
+- [Increase poverty](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) (as defined by the Supplemental Poverty Measure) by 0.02%,
 
-- Increase deep poverty and deep child poverty [by 0.06% and 0.11%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps), respectively,
+- Increase deep poverty and deep child poverty [by 0.06% and 0.11%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps), respectively,
 
-- Reduce the Gini index of inequality [by 0.4%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84006&region=us&timePeriod=2026&baseline=84008&dataset=enhanced_cps), and the top 1%’s share of net income by 1.0%
+- Reduce the Gini index of inequality [by 0.4%](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84006&region=us&timePeriod=2026&baseline=84008&dataset=enhanced_cps), and the top 1%’s share of net income by 1.0%
 
 ## Conclusion
 
-Conditional on other provisions in the Ways and Means Committee’s bill, we find that its SALT cap raises federal revenues by $937 billion over ten years, assuming no behavioral responses. Our projection exceeds JCT’s by 2.2%, though we score from 2026–2035 rather than 2025–2034. The limitation would reduce the after-tax incomes of 5% of the population in 2026, with households in the top income decile experiencing the greatest losses on an [absolute basis](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps). The $30,000 cap is projected to increase poverty by 0.02%, while lowering the Gini index by 0.4%.
+Conditional on other provisions in the Ways and Means Committee’s bill, we find that its SALT cap raises federal revenues by $937 billion over ten years, assuming no behavioral responses. Our projection exceeds JCT’s by 2.2%, though we score from 2026–2035 rather than 2025–2034. The limitation would reduce the after-tax incomes of 5% of the population in 2026, with households in the top income decile experiencing the greatest losses on an [absolute basis](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps). The $30,000 cap is projected to increase poverty by 0.02%, while lowering the Gini index by 0.4%.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 ## Appendix A: Baseline Details
 
