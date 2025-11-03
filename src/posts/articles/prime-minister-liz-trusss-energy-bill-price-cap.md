@@ -1,6 +1,6 @@
 New UK Prime Minister Liz Truss last week announced that the [energy bill price cap will remain at £2,500](https://helpforhouseholds.campaign.gov.uk/help-with-your-bills/) for the typical household until 2024, rather than rising as planned. The government will compensate energy companies for the difference.
 
-[PolicyEngine now models this reform](https://policyengine.org/uk/population-impact/treasury/energy-price-guarantee) as a household transfer, as well as any customisable price cap change by quarter. We estimate that Truss’s plan will cost £50 billion over the next year and cut poverty 20%. Higher income households benefit less on a percentage basis and more on an absolute pound basis, and the policy disproportionately reduces senior poverty.
+[PolicyEngine now models this reform](https://legacy.policyengine.org/uk/population-impact/treasury/energy-price-guarantee) as a household transfer, as well as any customisable price cap change by quarter. We estimate that Truss’s plan will cost £50 billion over the next year and cut poverty 20%. Higher income households benefit less on a percentage basis and more on an absolute pound basis, and the policy disproportionately reduces senior poverty.
 
 This blog post explains our methodology and dives deeper into the results. For an analysis of the policy itself, see [our article published by UK in a Changing Europe](https://ukandeu.ac.uk/energy-subsidy/).
 
@@ -16,7 +16,7 @@ Like all PolicyEngine results, the price cap assumes no behavioural responses; t
 
 ## Impacts of Liz Truss’s energy bill price cap
 
-PolicyEngine now allows users to change the energy bill price caps in each of the coming four quarters. We’ve now set each of these to £2,500, per the policy reform. [Setting the baseline values back to their projections estimates Liz Truss’s cap](https://policyengine.org/uk/policy/treasury/energy-price-guarantee).
+PolicyEngine now allows users to change the energy bill price caps in each of the coming four quarters. We’ve now set each of these to £2,500, per the policy reform. [Setting the baseline values back to their projections estimates Liz Truss’s cap](https://legacy.policyengine.org/uk/policy/treasury/energy-price-guarantee).
 
 The distributional impact is progressive in relative terms: lower deciles see a higher percent increase to net income than higher deciles, from 14% to 2%. At the same time, the nominal increases are larger for higher-income households (from £1,400 to £2,400). This is largely due to the fact that energy consumption makes up a larger percentage of low-income budgets than it does for high-income households.
 
@@ -30,4 +30,4 @@ Multiple measures of inequality also fall. The Gini index of income inequality f
 
 The reforms are based on energy usage, not income, so they avoid changing marginal tax rates.
 
-To compare against other levels at which to fix the price cap, [see the reform on PolicyEngine](https://policyengine.org/uk/policy/treasury/energy-price-guarantee).
+To compare against other levels at which to fix the price cap, [see the reform on PolicyEngine](https://legacy.policyengine.org/uk/policy/treasury/energy-price-guarantee).

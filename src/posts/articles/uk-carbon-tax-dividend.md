@@ -12,8 +12,8 @@ The following table presents the total revenue generated from carbon taxation un
 
 | Carbon tax rate | Total revenue                                                                                                                             | Dividend amount (per person per week) |
 | :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
-| £100/tonne      | [£67.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=75542&region=uk&timePeriod=2026&baseline=1)  | £19                                   |
-| £200/tonne      | [£134.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92939&region=uk&timePeriod=2026&baseline=1) | £37                                   |
+| £100/tonne      | [£67.3 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=75542&region=uk&timePeriod=2026&baseline=1)  | £19                                   |
+| £200/tonne      | [£134.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92939&region=uk&timePeriod=2026&baseline=1) | £37                                   |
 
 The Department for Environment, Food & Rural Affairs [reports](https://www.gov.uk/government/statistics/uks-carbon-footprint/carbon-footprint-for-the-uk-and-england-to-2022) greenhouse gas emissions associated with consumption in 2022 at 740 MtCO2e. At the rate of £100/tonne, the revenue estimation in 2022 would be £74 billion.
 
@@ -505,10 +505,10 @@ This section examines how carbon dividend policies affect poverty rates across d
 
 | Demographic group  | £100/tonne                                                                                                                        | £200/tonne                                                                                                                        |
 | :----------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| Children           | [\-0.5%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.7%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
-| Working-age adults | [\-0.2%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.3%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
-| Seniors            | [\-0.6%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.6%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
-| All populations    | [\-0.3%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.5%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| Children           | [\-0.5%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| Working-age adults | [\-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| Seniors            | [\-0.6%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.6%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| All populations    | [\-0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-0.5%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
 
 The carbon dividend policy shows poverty-reducing effects across all demographic groups, with the largest improvements for children at £200/tonne (-0.7%). The £200/tonne rate produces more poverty reduction.
 
@@ -518,9 +518,9 @@ This section analyses how carbon dividend policies affect income inequality usin
 
 | Inequality measure | £100/tonne                                                                                                                        | £200/tonne                                                                                                                        |
 | :----------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| Gini index         | [\-0.2%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\+0.4%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
-| Top 10% share      | [\-1.2%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-1.2%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
-| Top 1% share       | [\-0.7%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-1.1%](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| Gini index         | [\-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\+0.4%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| Top 10% share      | [\-1.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-1.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
+| Top 1% share       | [\-0.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92873&region=uk&timePeriod=2026&baseline=1) | [\-1.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=92996&region=uk&timePeriod=2026&baseline=1) |
 
 The analysis shows that the Gini coefficient decreases by 0.2% at £100/tonne but increases by 0.4% at £200/tonne. The income share of the top 10% and top 1% declines under both scenarios.
 
@@ -530,7 +530,7 @@ This section presents a geographical analysis of how carbon dividend policies af
 
 ### £100/tonne carbon dividend:
 
-The £100/tonne carbon dividend [shows](https://policyengine.org/uk/policy?focus=policyOutput.constituencies.relative&reform=92873&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=true) geographically concentrated benefits, with urban constituencies experiencing the largest gains.
+The £100/tonne carbon dividend [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.constituencies.relative&reform=92873&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=true) geographically concentrated benefits, with urban constituencies experiencing the largest gains.
 
 **Figure 5**: £100/tonne carbon dividend constituency map
 
@@ -665,7 +665,7 @@ The regional breakdown shows that England benefits most from the £100/tonne car
 
 ### £200/tonne carbon dividend:
 
-The higher carbon tax rate [amplifies](https://policyengine.org/uk/policy?focus=policyOutput.constituencies.relative&reform=92996&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=true) the geographical patterns, with more constituencies experiencing gains.
+The higher carbon tax rate [amplifies](https://legacy.policyengine.org/uk/policy?focus=policyOutput.constituencies.relative&reform=92996&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=true) the geographical patterns, with more constituencies experiencing gains.
 
 **Figure 7**: £200/tonne carbon dividend constituency map
 
@@ -807,4 +807,4 @@ Our analysis shows that carbon dividend policies would benefit approximately 71%
 
 Lower-income households in deciles 1-6 would see net income gains under both scenarios, while higher-income households in deciles 8-10 would experience net losses. The geographic distribution reveals 265 constituencies gaining at £100/tonne and 294 at £200/tonne in 2026-27.
 
-We invite you to explore the [PolicyEngine webapp](https://policyengine.org/) to model your own customised carbon tax and dividend reforms.
+We invite you to explore the [PolicyEngine webapp](https://legacy.policyengine.org/) to model your own customised carbon tax and dividend reforms.

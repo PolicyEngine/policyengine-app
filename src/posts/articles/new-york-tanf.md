@@ -10,7 +10,7 @@ Eligibility for the New York TANF program is also determined by demographic fact
 
 ## Example household
 
-Consider a [single parent of one](https://policyengine.org/us/household?focus=householdOutput.earnings&household=29579) in the chart below. They could receive up to $252 per month ($3,024 per year) if they earn less than the $150 earnings disregard. The benefit then phases out at 50 cents per dollar of earnings, until it reaches zero when they earn $654 ($7,848 per year).
+Consider a [single parent of one](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&household=29579) in the chart below. They could receive up to $252 per month ($3,024 per year) if they earn less than the $150 earnings disregard. The benefit then phases out at 50 cents per dollar of earnings, until it reaches zero when they earn $654 ($7,848 per year).
 
 _This chart doesn’t exactly capture all vertices, as it is in $500 earnings increments._
 

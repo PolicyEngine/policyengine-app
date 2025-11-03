@@ -1,6 +1,6 @@
 _A UK mansion. Credit: DALLE-2._
 
-Since our earliest days, we’ve broken the impact of policy reforms by income decile. For example, our [very first report](https://policyengine.org/uk/blog/2021-10-30-analysing-autumn-budget-universal-credit-reforms-with-policyengine) found that the 2021 Autumn Budget Universal Credit reforms would raise the net income of households in the third income decile by 1.6%, more than any other decile.
+Since our earliest days, we’ve broken the impact of policy reforms by income decile. For example, our [very first report](https://legacy.policyengine.org/uk/blog/2021-10-30-analysing-autumn-budget-universal-credit-reforms-with-policyengine) found that the 2021 Autumn Budget Universal Credit reforms would raise the net income of households in the third income decile by 1.6%, more than any other decile.
 
 ![](https://cdn-images-1.medium.com/max/2432/0*YvFdT6fnE10-nRUR)
 
@@ -42,7 +42,7 @@ PolicyEngine simulates policy reforms over a dataset of tens of thousands of hou
 
 Let’s explore a policy that affects income deciles differently than it affects wealth deciles: a land value tax. This policy taxes owners of land (including their residence) based on the value of the land, rather than the land and structure combined.
 
-To see the impacts by decile for [this policy](https://policyengine.org/uk/policy?focus=policyOutput.decileAverageImpact&reform=2320&region=uk&timePeriod=2023&baseline=1), choose from the newly-added chart options in the bottom left. There are three different wealth breakdown charts:
+To see the impacts by decile for [this policy](https://legacy.policyengine.org/uk/policy?focus=policyOutput.decileAverageImpact&reform=2320&region=uk&timePeriod=2023&baseline=1), choose from the newly-added chart options in the bottom left. There are three different wealth breakdown charts:
 
 - _Absolute impact by wealth decile_: showing the absolute (£) average impacts by decile
 
@@ -78,4 +78,4 @@ For this policy, the chart shows a clearly increasing impact across the deciles,
 
 ![](https://cdn-images-1.medium.com/max/2860/0*15I3IwS6oH2lB4l9)
 
-Understanding the impact of policy reforms on wealth as well as income deciles provides a more comprehensive picture of distributional effects. By incorporating this new feature, PolicyEngine UK enables users to see how different policy ideas affect people given their wealth. We encourage users to [try out the new feature](https://policyengine.org/uk) and provide feedback or feature requests through [social media](http://twitter.com/thepolicyengine) or [email](mailto:contact@policyengine.org).
+Understanding the impact of policy reforms on wealth as well as income deciles provides a more comprehensive picture of distributional effects. By incorporating this new feature, PolicyEngine UK enables users to see how different policy ideas affect people given their wealth. We encourage users to [try out the new feature](https://legacy.policyengine.org/uk) and provide feedback or feature requests through [social media](http://twitter.com/thepolicyengine) or [email](mailto:contact@policyengine.org).

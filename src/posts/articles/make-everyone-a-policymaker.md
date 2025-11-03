@@ -8,7 +8,7 @@ We envision a more inclusive, evidence-based future for tax and benefit policy. 
 
 Further, we envision that inclusive, evidence-based future for _policymaking._ A future where policymakers, academics, think tanks, candidates, and the public can share a common conversation around policy reforms. Where a country’s top elected official evaluates their policy idea with the same tools as the high school student learning about tax and benefit systems for the first time. Where everyone can see the impact of policy proposals on both their country and themselves. We envision a more participatory, democratic future where anyone can explore anyone else’s policy ideas with the rigor currently reserved for exclusive policy analysis shops.
 
-**Today, we’re taking a step towards that future by launching PolicyEngine.** PolicyEngine is the world’s first product that allows anyone to reform the tax and benefit system and see how it would affect society and their own household. We’re currently live in the UK at [**policyengine.org**](http://policyengine.org) and we’re working on bringing it to other countries, especially the US. Here’s a video of how it works:
+**Today, we’re taking a step towards that future by launching PolicyEngine.** PolicyEngine is the world’s first product that allows anyone to reform the tax and benefit system and see how it would affect society and their own household. We’re currently live in the UK at [**policyengine.org**](http://legacy.policyengine.org) and we’re working on bringing it to other countries, especially the US. Here’s a video of how it works:
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/nTIzJ-mzkno" frameborder="0" allowfullscreen></iframe></center>
 
@@ -49,6 +49,6 @@ If you’d like to financially support our work, you can [make a donation throug
 Thank you for joining us on our journey toward better public policy.
 
 Max Ghenis and Nikhil Woodruff
-[PolicyEngine](http://policyengine.org) co-founders
+[PolicyEngine](http://legacy.policyengine.org) co-founders
 
 ![](https://cdn-images-1.medium.com/max/2000/1*sKPTtD2QzO5FZQNdyRP-YQ.png)

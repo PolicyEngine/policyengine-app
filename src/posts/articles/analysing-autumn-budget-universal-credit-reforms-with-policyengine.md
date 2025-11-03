@@ -4,7 +4,7 @@ On Wednesday, the UK’s Chancellor of the Exchequer Rishi Sunak [published the 
 
 PolicyEngine estimates that this reform would cost £2.8bn per year, reduce poverty by 3.1%, and benefit 12% of the population. It will also reduce marginal tax rates by between 5.4pp and 63pp for people with income between the baseline work allowance and UC entitlement, while raising marginal tax rates by 37.4pp for people with income previously too high to receive UC.
 
-Read on for more details, or [jump to the reform in PolicyEngine](https://policyengine.org/uk/population-impact?UC_reduction_rate=55&UC_work_allowance_with_housing=335&UC_work_allowance_without_housing=557&policy_date=20211101) to see how the reform affects the UK population and your own household.
+Read on for more details, or [jump to the reform in PolicyEngine](https://legacy.policyengine.org/uk/population-impact?UC_reduction_rate=55&UC_work_allowance_with_housing=335&UC_work_allowance_without_housing=557&policy_date=20211101) to see how the reform affects the UK population and your own household.
 
 ## How Universal Credit works
 
@@ -28,7 +28,7 @@ The reforms announced in the budget reduce the taper rate by 8pp, from 63% to 55
 
 ### UK impact
 
-PolicyEngine estimates the total cost of introducing the reform to be £2.7bn per year. The reform benefits 12% of the population, and it reduces poverty by 3.1% (working-age poverty decreases by 3.0% and child poverty by 6.0%). For context, PolicyEngine estimates that [restoring Universal Credit’s pandemic-related Standard Allowance](https://policyengine.org/uk/population-impact?UC_couple_old=596.58&UC_couple_young=490.6&UC_single_old=411.51&UC_single_young=344) would cost £4.2bn, reduce poverty by 4.3%, and benefit 18% of the UK.
+PolicyEngine estimates the total cost of introducing the reform to be £2.7bn per year. The reform benefits 12% of the population, and it reduces poverty by 3.1% (working-age poverty decreases by 3.0% and child poverty by 6.0%). For context, PolicyEngine estimates that [restoring Universal Credit’s pandemic-related Standard Allowance](https://legacy.policyengine.org/uk/population-impact?UC_couple_old=596.58&UC_couple_young=490.6&UC_single_old=411.51&UC_single_young=344) would cost £4.2bn, reduce poverty by 4.3%, and benefit 18% of the UK.
 
 Broadly, the reform is progressive; however, individuals in the first decile gain less than those in the second, third and fourth deciles, due to their lower likelihood to earn above the Work Allowance.
 
@@ -60,7 +60,7 @@ The reform lowers marginal tax rates more than it raises them, but its effect is
 
 We’re pleased to share this first interactive analysis of the Autumn Budget UC reform, and the first to provide personalised household impacts. Our findings broadly resemble those from the [IFS](https://ifs.org.uk/uploads/Autumn-Budget-2021-Living-Standards-by-Xiaowei-Xu.pdf) and the [Resolution Foundation](https://www.resolutionfoundation.org/publications/the-boris-budget/), who also estimate the cost at around £3bn and identify similar distributional impacts.
 
-For more timely analysis of tax and benefit reforms, follow us here and on social media, and to create your own policy, try PolicyEngine at [policyengine.org.](https://policyengine.org/)
+For more timely analysis of tax and benefit reforms, follow us here and on social media, and to create your own policy, try PolicyEngine at [policyengine.org.](https://legacy.policyengine.org/)
 
 _2021–11–04 update: This now reflects PolicyEngine 1.1.0, which incorporates Universal Credit’s minimum income floor for self-employed people._
 

@@ -35,11 +35,11 @@ We apply this logic to all of the roughly 100,000 households in our representati
 
 | Year        | Revenue impact (employer NICs) | Revenue impact (other) | Revenue impact                                                                                                                  | Wages |
 | :---------- | :----------------------------- | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------ | :---- |
-| 2025        | 17.2                           | 0                      | [17.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2025&baseline=1) | 0     |
-| 2026        | 17.7                           | 0                      | [17.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2026&baseline=1) | 0     |
-| 2027        | 18.1                           | 0                      | [18.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2027&baseline=1) | 0     |
-| 2028        | 18.4                           | 0                      | [18.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2028&baseline=1) | 0     |
-| 2029        | 18.9                           | 0                      | [18.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2029&baseline=1) | 0     |
+| 2025        | 17.2                           | 0                      | [17.2](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2025&baseline=1) | 0     |
+| 2026        | 17.7                           | 0                      | [17.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2026&baseline=1) | 0     |
+| 2027        | 18.1                           | 0                      | [18.1](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2027&baseline=1) | 0     |
+| 2028        | 18.4                           | 0                      | [18.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2028&baseline=1) | 0     |
+| 2029        | 18.9                           | 0                      | [18.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69356&region=uk&timePeriod=2029&baseline=1) | 0     |
 | **2025-29** | **90.3**                       | **0**                  | **90.3**                                                                                                                        | **0** |
 
 If employers pass on NICs in the form of reduced wages, we estimate that employer NIC revenues rise by around £15 billion per year, but are offset by on average £5 billion per year in personal tax liabilities and benefit entitlements as a result of the (average) £15 billion in wage reductions.
@@ -48,11 +48,11 @@ Overall, this raises £9.6 billion in 2025, totalling £50 billion over five yea
 
 | Year        | Revenue impact (Employer NICs) | Revenue impact (other) | Revenue impact                                                                                                                  | Wages      |
 | :---------- | :----------------------------- | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------ | :--------- |
-| 2025        | 15.1                           | \-5.5                  | [9.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2025&baseline=1)  | \-15.2     |
-| 2026        | 15.6                           | \-5.8                  | [9.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2026&baseline=1)  | \-15.7     |
-| 2027        | 15.9                           | \-6.0                  | [9.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2027&baseline=1)  | \-16.0     |
-| 2028        | 16.2                           | \-6.1                  | [10.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2028&baseline=1) | \-16.3     |
-| 2029        | 16.6                           | \-6.3                  | [10.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2029&baseline=1) | \-16.7     |
+| 2025        | 15.1                           | \-5.5                  | [9.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2025&baseline=1)  | \-15.2     |
+| 2026        | 15.6                           | \-5.8                  | [9.8](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2026&baseline=1)  | \-15.7     |
+| 2027        | 15.9                           | \-6.0                  | [9.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2027&baseline=1)  | \-16.0     |
+| 2028        | 16.2                           | \-6.1                  | [10.1](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2028&baseline=1) | \-16.3     |
+| 2029        | 16.6                           | \-6.3                  | [10.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69355&region=uk&timePeriod=2029&baseline=1) | \-16.7     |
 | **2025-29** | **79.4**                       | **\-29.7**             | **49.7**                                                                                                                        | **\-79.9** |
 
 ## Employee pass-through sensitivity

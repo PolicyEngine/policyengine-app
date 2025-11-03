@@ -1,6 +1,6 @@
 Vice President Harris proposes expanding the Earned Income Tax Credit (EITC) for filers without qualifying dependents. This analysis examines the proposal’s key aspects, potential impacts, and provides economic projections from PolicyEngine’s microsimulation model.
 
-[**See the full impact in PolicyEngine**](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2&household=47732)
+[**See the full impact in PolicyEngine**](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2&household=47732)
 
 ## The proposal
 
@@ -35,11 +35,11 @@ Single filers with earnings between $8,000 and $37,000 would see their net incom
 
 ![](https://cdn-images-1.medium.com/max/3044/0*rozC7JqH_bOzaUD_)
 
-For more examples of the policy’s household impacts, see our [2023 article](https://policyengine.org/us/research/restoring-arpa-eitc) on the ARPA EITC expansion. That article’s estimates preceded our [Enhanced Current Population Survey](https://policyengine.org/us/research/enhanced-cps-beta) launch.
+For more examples of the policy’s household impacts, see our [2023 article](https://legacy.policyengine.org/us/research/restoring-arpa-eitc) on the ARPA EITC expansion. That article’s estimates preceded our [Enhanced Current Population Survey](https://legacy.policyengine.org/us/research/enhanced-cps-beta) launch.
 
 ## Nationwide impacts
 
-Based on [static microsimulation modeling](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) with PolicyEngine US (version 1.103.0), we project the following economic impacts for 2025.
+Based on [static microsimulation modeling](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) with PolicyEngine US (version 1.103.0), we project the following economic impacts for 2025.
 
 ### Cost
 
@@ -67,7 +67,7 @@ Over the [ten-year budget window](https://colab.research.google.com/drive/1uf-gm
 
 #### Dynamic
 
-Incorporating elasticities of labor supply used by the Congressional Budget Office increases the reform's cost. [In 2025](https://policyengine.org/us/policy?focus=policyOutput.laborSupplyImpact.hours&reform=67706&region=enhanced_us&timePeriod=2025&baseline=2):
+Incorporating elasticities of labor supply used by the Congressional Budget Office increases the reform's cost. [In 2025](https://legacy.policyengine.org/us/policy?focus=policyOutput.laborSupplyImpact.hours&reform=67706&region=enhanced_us&timePeriod=2025&baseline=2):
 
 - Hours worked falls by 0.27%, or 411,000 full-time equivalent jobs
 
@@ -113,7 +113,7 @@ The PolicyEngine microsimulation model supports distributional analysis by decil
 
 ### By decile
 
-The average household [sees](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=67064&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) an increase in net income of $109, between federal, state, and local EITCs, while households in the bottom two deciles gain the most on a relative basis.
+The average household [sees](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=67064&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) an increase in net income of $109, between federal, state, and local EITCs, while households in the bottom two deciles gain the most on a relative basis.
 
 ![](https://cdn-images-1.medium.com/max/3152/0*r6VvrLKiMIAkn9jx)
 
@@ -123,11 +123,11 @@ The average household [sees](https://policyengine.org/us/policy?focus=policyOutp
 
 ### Poverty
 
-We [estimate](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) that the expanded EITC would reduce the poverty rate by 1.3% (0.4 percentage points), or about 1 million people. Child poverty falls less than 0.1% because some children live in households with workers who file separately to them.
+We [estimate](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) that the expanded EITC would reduce the poverty rate by 1.3% (0.4 percentage points), or about 1 million people. Child poverty falls less than 0.1% because some children live in households with workers who file separately to them.
 
 ### Inequality
 
-The Gini index of income inequality also [falls](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) by 0.2%, and the top-10 and top-1 percent shares of income fall by around 0.1%.
+The Gini index of income inequality also [falls](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) by 0.2%, and the top-10 and top-1 percent shares of income fall by around 0.1%.
 
 ![](https://cdn-images-1.medium.com/max/3196/0*AeI48oVouiLsbEg-)
 

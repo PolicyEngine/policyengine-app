@@ -44,15 +44,15 @@ As an example, suppose Medlock earns $100,000 from self-employment, and his wife
 
 ![](https://cdn-images-1.medium.com/max/3012/0*GnNvsUqhT-LxtSpt)
 
-[The main PolicyEngine app shows](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16581) that, between payroll tax, self-employment tax, federal income tax, and California income tax, they would pay $58,949 in taxes, leaving a net income of $141,051 (they would not be eligible for any benefits).[^1]
+[The main PolicyEngine app shows](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=16581) that, between payroll tax, self-employment tax, federal income tax, and California income tax, they would pay $58,949 in taxes, leaving a net income of $141,051 (they would not be eligible for any benefits).[^1]
 
 [^1]: California has not yet released its 2023 tax bracket thresholds, so we use values from 2022.
 
-Now with $1 million in gambling winnings, their [tax bill will rise $436,115](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16582) from $58,949 to $495,064; federal income taxes rise from $26,967 to $361,051, California income taxes rise from $10,202 to $112,233, and payroll and self-employment taxes stay the same. Their net income rises by the remaining $563,886 to $704,937 if he doesn’t donate anything.
+Now with $1 million in gambling winnings, their [tax bill will rise $436,115](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=16582) from $58,949 to $495,064; federal income taxes rise from $26,967 to $361,051, California income taxes rise from $10,202 to $112,233, and payroll and self-employment taxes stay the same. Their net income rises by the remaining $563,886 to $704,937 if he doesn’t donate anything.
 
-To take home $300,000, they might consider donating $700,000. But if they did so, their [taxes would rise $119,088](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16583), leaving them with only $300,000 — $119,088 = $180,912 net. How much less than $700,000 of a donation will offset the tax change?
+To take home $300,000, they might consider donating $700,000. But if they did so, their [taxes would rise $119,088](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=16583), leaving them with only $300,000 — $119,088 = $180,912 net. How much less than $700,000 of a donation will offset the tax change?
 
-Our app shows that, for Medlock’s net income to rise by $300,000, he should donate **$484,848**. [In this scenario](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16586), his taxes would rise $215,235. (This actually leaves him $299,917; we run an optimization process that gets within $100 or so to save time.)
+Our app shows that, for Medlock’s net income to rise by $300,000, he should donate **$484,848**. [In this scenario](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=16586), his taxes would rise $215,235. (This actually leaves him $299,917; we run an optimization process that gets within $100 or so to save time.)
 
 We also show various donation scenarios as a table:
 

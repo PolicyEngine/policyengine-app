@@ -10,7 +10,7 @@ Key results:
 
 - Increase hours worked and earnings by 0.71% and 0.78%, respectively when applying CBO elasticities.
 
-[_Try our personalized calculator:_](https://policyengine.org/us/household?focus=intro&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2) See how extending the TCJA would affect your household.
+[_Try our personalized calculator:_](https://legacy.policyengine.org/us/household?focus=intro&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2) See how extending the TCJA would affect your household.
 
 ## What did the TCJA change?
 
@@ -68,7 +68,7 @@ Beyond these individual provisions, the TCJA permanently reduced the top corpora
 
 _Starred parameters indexed to inflation._
 
-[Our simulations](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) include every listed provision except the mortgage interest deduction and estate tax exemption.[^2]
+[Our simulations](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) include every listed provision except the mortgage interest deduction and estate tax exemption.[^2]
 
 [^2]: PolicyEngine's US model is currently unable to evaluate the impact of the mortgage interest deduction or estate tax. Based on external analysis, the revenue gained from limiting the mortgage interest deduction partially offsets the revenue lost from doubling the estate tax exemption, suggesting our budgetary projections remain fairly accurate. Nevertheless, including these provisions in a TCJA extension would affect the distributional analysis for households subject to either or both policies.
 
@@ -80,11 +80,11 @@ Extending the TCJA will affect households differently depending on their size, i
 
 | Marital status | Children | Earnings   | Change in Net Income                                                                                                                                        |
 | -------------- | -------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Single         | 0        | $15,000    | [$140](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48802)    |
-| Single         | 1        | $30,000    | [$1,020](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=47295)  |
-| Married        | 1        | $70,000    | [$1,170](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48807)  |
-| Married        | 2        | $150,000   | [$5,055](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809)  |
-| Married        | 3        | $1,000,000 | [$33,053](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) |
+| Single         | 0        | $15,000    | [$140](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48802)    |
+| Single         | 1        | $30,000    | [$1,020](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=47295)  |
+| Married        | 1        | $70,000    | [$1,170](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48807)  |
+| Married        | 2        | $150,000   | [$5,055](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809)  |
+| Married        | 3        | $1,000,000 | [$33,053](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) |
 
 While taxes do not always decrease monotonically with income (see Appendix A), each household with a higher income net benefits more than another family with a lower income in these examples. This can be mainly attributed to the TCJA's lower income tax rates. Families with children see additional benefits from the expanded CTC, provided their income falls below the phase-out threshold. High-earning families experience the largest gains, as demonstrated in the final example, where their change in net income substantially exceeds other households shown in the table. Figure 1 displays the change in net income based on household income for the family composition in the fourth example.
 
@@ -94,7 +94,7 @@ While taxes do not always decrease monotonically with income (see Appendix A), e
 
 ## Federal Budgetary Impact
 
-Extending the TCJA would reduce federal revenues by [$4.2 trillion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) over ten years using static modeling. [When considering behavioral effects](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=69005&region=enhanced_us&timePeriod=2026&baseline=2) (applying CBO elasticities), earnings rise 0.78%, in turn lowering the cost by 7.7% to $3.9 trillion; these effects primarily occur through the substitution effect (people working more as their marginal tax rate falls), partly offset by the income effect (people working less as they have a higher net income). The Congressional Budget Office (CBO) [currently projects](https://www.cbo.gov/publication/59710) federal deficits to total $20 trillion from 2025-2034; extending the TCJA's individual provisions, without any offsets, would thus raise deficits by roughly 20% over a decade.
+Extending the TCJA would reduce federal revenues by [$4.2 trillion](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) over ten years using static modeling. [When considering behavioral effects](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=69005&region=enhanced_us&timePeriod=2026&baseline=2) (applying CBO elasticities), earnings rise 0.78%, in turn lowering the cost by 7.7% to $3.9 trillion; these effects primarily occur through the substitution effect (people working more as their marginal tax rate falls), partly offset by the income effect (people working less as they have a higher net income). The Congressional Budget Office (CBO) [currently projects](https://www.cbo.gov/publication/59710) federal deficits to total $20 trillion from 2025-2034; extending the TCJA's individual provisions, without any offsets, would thus raise deficits by roughly 20% over a decade.
 
 **Table 3: TCJA Federal Budgetary Impact (in billions $)**
 
@@ -136,15 +136,15 @@ The CBO, using estimates from the Joint Committee on Taxation, projects costs 0.
 
 ## Income Distribution 2026
 
-Extending the TCJA would [benefit 80% of the U.S. population](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809) while reducing the net income for 2% of Americans. More households in the top half of the income distribution would benefit than in the bottom half.
+Extending the TCJA would [benefit 80% of the U.S. population](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809) while reducing the net income for 2% of Americans. More households in the top half of the income distribution would benefit than in the bottom half.
 
 ![](https://cdn-images-1.medium.com/max/2000/0*wUuFzDjWkuLS3FRf)
 
-In 2026, the [average household benefit](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2) when extending the TCJA is $2,338. However, the top two income deciles would receive a larger benefit as their net income would rise by $5,063 and $9,194, respectively. Conversely, on average, the bottom two deciles would see their taxes reduced by $311 or less.
+In 2026, the [average household benefit](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2) when extending the TCJA is $2,338. However, the top two income deciles would receive a larger benefit as their net income would rise by $5,063 and $9,194, respectively. Conversely, on average, the bottom two deciles would see their taxes reduced by $311 or less.
 
 ![](https://cdn-images-1.medium.com/max/2000/0*vb67YpfvKS_YoCf7)
 
-Extending the TCJA would also [reduce the Supplemental Poverty Measure](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809) by 4.1% and the Supplemental Child Poverty Measure by 7.0%.
+Extending the TCJA would also [reduce the Supplemental Poverty Measure](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809) by 4.1% and the Supplemental Child Poverty Measure by 7.0%.
 
 ![](https://cdn-images-1.medium.com/max/2000/0*ThsBUfxd5XSPzEqa)
 
@@ -154,7 +154,7 @@ Extending the individual provisions of the TCJA would reduce federal revenues by
 
 As policymakers evaluate options for addressing these expiring provisions, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 ## Appendix A: Explanation for non-monotonic impacts for a joint filer with two children
 
@@ -170,7 +170,7 @@ Both ranges occur for similar reasons, namely the interaction between standard d
 
 To illustrate this nonmonotonicity, we calculate the effect at both ends of the range.
 
-[At $34,600:](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49119)
+[At $34,600:](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49119)
 
 Under a TCJA extension, the household has $4,000 in taxable income ($34,600 of earnings - $30,600 of their standard deduction). This translates to a $400 tax liability as their taxable income falls into the 10% tax bracket. The household's tax liability is fully offset by CTC as they receive their household maximum of $4,000. $400 is used to offset their tax liability while the remaining $3,600 is refunded to the household.
 
@@ -178,7 +178,7 @@ Under current law, the household has no taxable income (household earnings of $3
 
 Therefore the net benefit of extending the TCJA for this household would be $1,600 ($3,600-$2,000).
 
-[At $37,800:](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49120)
+[At $37,800:](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49120)
 
 Under a TCJA extension, the household would have $7,200 in taxable income ($37,800 of earnings - $30,600 of their standard deduction). This results in a $720 tax liability as their taxable income is solely in the 10% tax bracket. The tax liability is fully offset by CTC as they receive the maximum of $4,000. $720 is used to offset their tax liability while the remaining $3,280 is refunded to the household.
 
@@ -192,7 +192,7 @@ The declining benefit ($1,600 -> $1,280) occurs because the TCJA's standard dedu
 
 At this income range, we see another decline in TCJA benefits due to the interaction between tax brackets and the CTC.
 
-[At $54,850:](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49121)
+[At $54,850:](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49121)
 
 Under a TCJA extension, the household has $24,250 in taxable income ($54,850 of earnings - $30,600 standard deduction). This results in a $2,425 tax liability as their taxable income falls entirely in the 10% tax bracket. The household's tax liability is fully offset by CTC as they receive their household maximum of $4,000. $2,425 is used to offset their tax liability while the remaining $1,575 is refunded to the household.
 
@@ -200,7 +200,7 @@ Under current law, the household has $17,050 in taxable income ($54,850 of earni
 
 Therefore the net benefit of extending the TCJA for this household would be $1,280 ($1,575-$295).
 
-[At $62,050:](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49127)
+[At $62,050:](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=49127)
 
 Under a TCJA extension, the household has $31,450 in taxable income ($62,050 of earnings - $30,600 standard deduction). This results in a $3,289 tax liability, with the first $24,250 taxed at 10% ($2,425) and the next $7,200 taxed at 12% ($864). The household's tax liability is fully offset by CTC as they receive their household maximum of $4,000. $3,289 is used to offset their tax liability while the remaining $711 is refunded to the household.
 

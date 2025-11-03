@@ -94,7 +94,7 @@ Our relative errors are highest for the smallest benefit programs (those with le
 
 ## Where we go from here
 
-We’ve published [our weights on GitHub](https://github.com/PolicyEngine/openfisca-uk/tree/master/data/weights) for other analysts and microsimulation modellers to use, [documented our approach with interactive visualisations](https://policyengine.github.io/openfisca-uk//model/reweighting.html), and effective today, updated [PolicyEngine UK](https://policyengine.org/uk) to use the new weights. In the future, we’ll refine and extend our weights with more targets, mid-year adjustments, and multi-year extrapolations.
+We’ve published [our weights on GitHub](https://github.com/PolicyEngine/openfisca-uk/tree/master/data/weights) for other analysts and microsimulation modellers to use, [documented our approach with interactive visualisations](https://policyengine.github.io/openfisca-uk//model/reweighting.html), and effective today, updated [PolicyEngine UK](https://legacy.policyengine.org/uk) to use the new weights. In the future, we’ll refine and extend our weights with more targets, mid-year adjustments, and multi-year extrapolations.
 
 We will also continue to develop other ways of enhancing PolicyEngine with state-of-the-art data science. For example, we are continuing to invest in our [machine learning-based synthimpute technology](http://blog.pslmodels.org/demo-day-22-synthimpute) to fuse variables from other surveys, such as wealth from the Wealth and Assets Survey and consumption from the Living Costs and Food Survey, to model a broader range of policy reforms.
 

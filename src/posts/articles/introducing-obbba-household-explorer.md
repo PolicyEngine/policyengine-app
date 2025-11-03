@@ -4,7 +4,7 @@ Following the Senate's July 1st passage of the One Big Beautiful Bill Act (OBBBA
 
 ## What the tool does
 
-The OBBBA Household Explorer allows users to explore the bill’s impacts on over 40,000 representative households from PolicyEngine’s [Enhanced Current Population Survey](https://policyengine.org/us/research/enhanced-cps-beta) (CPS) dataset. This dataset integrates and calibrates multiple data sources using machine learning techniques — the same foundation that powers PolicyEngine’s simulations of policy effects on poverty, inequality, and government budgets, when paired with our comprehensive model of federal, state, and local income tax and benefit programs.
+The OBBBA Household Explorer allows users to explore the bill’s impacts on over 40,000 representative households from PolicyEngine’s [Enhanced Current Population Survey](https://legacy.policyengine.org/us/research/enhanced-cps-beta) (CPS) dataset. This dataset integrates and calibrates multiple data sources using machine learning techniques — the same foundation that powers PolicyEngine’s simulations of policy effects on poverty, inequality, and government budgets, when paired with our comprehensive model of federal, state, and local income tax and benefit programs.
 
 The OBBBA extends provisions of the 2017 Tax Cuts and Jobs Act set to expire at the end of 2025, while introducing new elements including:
 

@@ -26,15 +26,15 @@ PolicyEngine now models these rules from 2021 to 2023 (as available).
 
 ## Example household
 
-To illustrate the New Mexico income tax, consider a single parent with two children, paying $1,000 per month in rent and $500 per month in childcare. If they earn $30,000, they will pay no state income tax and [receive $2,127 from four refundable tax credits](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=33113).
+To illustrate the New Mexico income tax, consider a single parent with two children, paying $1,000 per month in rent and $500 per month in childcare. If they earn $30,000, they will pay no state income tax and [receive $2,127 from four refundable tax credits](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=33113).
 
 ![](https://cdn-images-1.medium.com/max/2948/0*GfIZU3Qdmhw82mfM)
 
-This filer would have negative [net state tax liability](https://policyengine.org/us/household?focus=householdOutput.earnings&household=33113) if they earn $50,000 or less.
+This filer would have negative [net state tax liability](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&household=33113) if they earn $50,000 or less.
 
 ![](https://cdn-images-1.medium.com/max/3104/0*l58k4e3xc5HUKbBZ)
 
-To show the effect of the state’s income taxes on marginal tax rates, we can abolish New Mexico income taxes (separately as before refundable credits and refundable credits) and swap the baseline and reform. From there, view the [marginal tax rate chart](https://policyengine.org/us/household?focus=householdOutput.mtr&household=33113&region=us&timePeriod=2023&baseline=22176&reform=2) and select _Difference_.
+To show the effect of the state’s income taxes on marginal tax rates, we can abolish New Mexico income taxes (separately as before refundable credits and refundable credits) and swap the baseline and reform. From there, view the [marginal tax rate chart](https://legacy.policyengine.org/us/household?focus=householdOutput.mtr&household=33113&region=us&timePeriod=2023&baseline=22176&reform=2) and select _Difference_.
 
 ![](https://cdn-images-1.medium.com/max/3076/0*wC8StujJOgS34Kj4)
 
@@ -44,17 +44,17 @@ As the filer earns up to $15,000 or so, their state tax credits and rebates phas
 
 Simulating over the 2021 Current Population Survey, and reversing the abolition of New Mexico taxes, we can estimate the impact of New Mexico’s state income taxes. PolicyEngine estimates that the full system:
 
-- [Raises $1.3 billion per year](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=nm&timePeriod=2023&baseline=22000)
+- [Raises $1.3 billion per year](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=nm&timePeriod=2023&baseline=22000)
 
-- [Benefits 41% of New Mexicans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2), including 96% of those in the bottom income decile and 0% in the top income decile
+- [Benefits 41% of New Mexicans](https://legacy.policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2), including 96% of those in the bottom income decile and 0% in the top income decile
 
-- Lowers the Gini index of [income inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2) by 3.6%
+- Lowers the Gini index of [income inequality](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2) by 3.6%
 
-- Has no discernible impact on [poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=nm&timePeriod=2023&baseline=22000) or [cliffs](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=2&region=nm&timePeriod=2023&baseline=22000)
+- Has no discernible impact on [poverty](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=nm&timePeriod=2023&baseline=22000) or [cliffs](https://legacy.policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=2&region=nm&timePeriod=2023&baseline=22000)
 
 ![](https://cdn-images-1.medium.com/max/3064/1*mT4JTaCi2c6PT1eIG69epg.png)
 
-These estimates may not align with official government figures, given inaccuracies and gaps in the Current Population Survey. For instance, the CPS does not capture incomes above $1 million, which could deflate tax revenues, though it also does not capture rent or property tax, which could work in the opposite direction via New Mexico’s property tax rebate. We are currently working to [fill these gaps with modern data analytics](https://policyengine.org/us/blog/enhancing-the-current-population-survey-for-policy-analysis).
+These estimates may not align with official government figures, given inaccuracies and gaps in the Current Population Survey. For instance, the CPS does not capture incomes above $1 million, which could deflate tax revenues, though it also does not capture rent or property tax, which could work in the opposite direction via New Mexico’s property tax rebate. We are currently working to [fill these gaps with modern data analytics](https://legacy.policyengine.org/us/blog/enhancing-the-current-population-survey-for-policy-analysis).
 
 ## Try it out
 

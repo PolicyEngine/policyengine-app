@@ -4,19 +4,19 @@ In this report, we depict the impact on a sample household, as well as on US-wid
 
 Overall, we find that the reform would, in 2023:
 
-- [Cost $1.26 trillion](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Cost $1.26 trillion](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-- [Benefit three in five Americans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Benefit three in five Americans](https://legacy.policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-- [Cut poverty 94%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Cut poverty 94%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-- [Lower the Gini index of income inequality 19%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Lower the Gini index of income inequality 19%](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-- [Increase the prevalence and severity of cliffs by 466% and 100%, respectively](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Increase the prevalence and severity of cliffs by 466% and 100%, respectively](https://legacy.policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
 This report describes and compares the New School’s proposal and analysis; calculates the impact for a sample household; and goes into these US-wide results in greater depth.
 
-[See how Guaranteed Income for the 21st Century would affect your household.](https://policyengine.org/us/household?focus=intro&reform=1006&region=us&timePeriod=2023&baseline=2)
+[See how Guaranteed Income for the 21st Century would affect your household.](https://legacy.policyengine.org/us/household?focus=intro&reform=1006&region=us&timePeriod=2023&baseline=2)
 
 ## The Guaranteed Income for the 21st Century proposal
 
@@ -26,7 +26,7 @@ _Guaranteed Income for the 21st Century_, or _21GI_ as the New School abbreviate
 
 ## Sample household
 
-Consider a [single parent of one child in New York City](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=1006&region=us&timePeriod=2023&baseline=2&household=31338). As they earn more, the net benefit of the 21GI falls, due to the shape of the EITC (in this case, federal, state, and local EITCs, since NYS and NYC based their EITCs on the federal), and the phase-out of the new payment itself.
+Consider a [single parent of one child in New York City](https://legacy.policyengine.org/us/household?focus=householdOutput.earnings&reform=1006&region=us&timePeriod=2023&baseline=2&household=31338). As they earn more, the net benefit of the 21GI falls, due to the shape of the EITC (in this case, federal, state, and local EITCs, since NYS and NYC based their EITCs on the federal), and the phase-out of the new payment itself.
 
 ![](https://cdn-images-1.medium.com/max/3940/1*XTHawfysW_0cTtQTtO3V_w.jpeg)
 
@@ -48,7 +48,7 @@ Our static microsimulation model, which applies 2023 tax and benefit rules to th
 
 ### Budgetary impact
 
-We project that 21GI would cost [$1.26 trillion](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=1006&region=us&timePeriod=2023&baseline=2), including the main benefit and the EITC elimination.
+We project that 21GI would cost [$1.26 trillion](https://legacy.policyengine.org/us/policy?focus=policyOutput.netIncome&reform=1006&region=us&timePeriod=2023&baseline=2), including the main benefit and the EITC elimination.
 
 This estimate exceeds the New School’s estimate of $876 billion by 43%. This discrepancy could result from multiple factors, including importantly the source dataset and tax filing unit assumption.
 
@@ -60,19 +60,19 @@ As an example, suppose a 22-year-old, who earns $30,000, lives with their parent
 
 ### Impact by income decile
 
-The reform would [add 11.7% to net incomes](https://policyengine.org/us/policy?focus=policyOutput.decileRelativeImpact&reform=1006&region=us&timePeriod=2023&baseline=2) overall, and this percentage decreases with income, from 110% at the bottom decile to 0.7% at the top.
+The reform would [add 11.7% to net incomes](https://legacy.policyengine.org/us/policy?focus=policyOutput.decileRelativeImpact&reform=1006&region=us&timePeriod=2023&baseline=2) overall, and this percentage decreases with income, from 110% at the bottom decile to 0.7% at the top.
 
 ![](https://cdn-images-1.medium.com/max/3132/1*oD2ReebhMv_OYA5zBWfiyA.jpeg)
 
 ### Distributional impacts
 
-21GI would [benefit 60% of the population](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=1006&region=us&timePeriod=2023&baseline=2), of whom 97% would gain at least 5% of net income. Over 99% of the bottom fifth would gain, as would 23% of those in the top decile (due to households that comprise multiple filing units).
+21GI would [benefit 60% of the population](https://legacy.policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=1006&region=us&timePeriod=2023&baseline=2), of whom 97% would gain at least 5% of net income. Over 99% of the bottom fifth would gain, as would 23% of those in the top decile (due to households that comprise multiple filing units).
 
 ![](https://cdn-images-1.medium.com/max/3120/1*maqbky4pbH-RJX46kvBBnA.jpeg)
 
 ### Poverty
 
-Under 21GI, poverty would fall by [94% overall](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2), and by at least 90% for most subgroups. [Deep poverty would also fall 99%](https://policyengine.org/us/policy?focus=policyOutput.deepPovertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2).
+Under 21GI, poverty would fall by [94% overall](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2), and by at least 90% for most subgroups. [Deep poverty would also fall 99%](https://legacy.policyengine.org/us/policy?focus=policyOutput.deepPovertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2).
 
 ![](https://cdn-images-1.medium.com/max/3200/1*whSNdoMuLeXE-bRmDGtilw.jpeg)
 
@@ -86,6 +86,6 @@ Under 21GI, poverty would fall by [94% overall](https://policyengine.org/us/poli
 
 Currently, PolicyEngine estimates that 0.6% of households face a cliff, by which an additional $2,000 of earnings per adult would make the household financially worse off. We expect that this underestimates the prevalence of cliffs, since we have not yet modeled all tax and benefit programs that would increase marginal tax rates or introduce explicit cliffs.
 
-As a result of 21GI’s additional marginal tax rates, that rate of [cliffs would rise 466% to 3.3%](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=1006&region=us&timePeriod=2023&baseline=2) (one in 30 households). The total lost income from those facing cliffs would also double from $6 billion to $12 billion.
+As a result of 21GI’s additional marginal tax rates, that rate of [cliffs would rise 466% to 3.3%](https://legacy.policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=1006&region=us&timePeriod=2023&baseline=2) (one in 30 households). The total lost income from those facing cliffs would also double from $6 billion to $12 billion.
 
 ![](https://cdn-images-1.medium.com/max/2580/1*SwzbJH9pK-foIfuICcq0Gw.jpeg)

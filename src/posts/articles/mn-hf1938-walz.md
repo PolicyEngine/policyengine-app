@@ -12,9 +12,9 @@ PolicyEngine’s static microsimulation results for 2023 project that HF1938’s
 
 This report describes provisions of HF1938, illustrates the impacts with hypothetical households, and summarizes projected Minnesota-wide impacts.
 
-[_See the Minnesota impacts_](https://policyengine.org/us/policy?reform=2&focus=policyOutput.policyBreakdown&region=mn&timePeriod=2023&baseline=63889&household=46737)
+[_See the Minnesota impacts_](https://legacy.policyengine.org/us/policy?reform=2&focus=policyOutput.policyBreakdown&region=mn&timePeriod=2023&baseline=63889&household=46737)
 
-[_See how HF1938 would affect your own household_](https://policyengine.org/us/household?reform=2&focus=intro&region=mn&timePeriod=2023&baseline=63889)
+[_See how HF1938 would affect your own household_](https://legacy.policyengine.org/us/household?reform=2&focus=intro&region=mn&timePeriod=2023&baseline=63889)
 
 # Provisions of HF1938
 
@@ -57,7 +57,7 @@ The new law introduces a combined Child and Working Family Tax Credit, replacing
 
 ## Child and Working Family Credit
 
-The new Child and Working Family Tax Credit provides up to $3,385 to eligible Minnesota households. For instance, a single parent with two children (ages 10 and 5) earning $30,000 now receives an additional [$1,656](https://policyengine.org/us/household?reform=2&focus=householdOutput.netIncome&region=mn&timePeriod=2023&baseline=63889&household=46721) in refundable credits under the new structure.
+The new Child and Working Family Tax Credit provides up to $3,385 to eligible Minnesota households. For instance, a single parent with two children (ages 10 and 5) earning $30,000 now receives an additional [$1,656](https://legacy.policyengine.org/us/household?reform=2&focus=householdOutput.netIncome&region=mn&timePeriod=2023&baseline=63889&household=46721) in refundable credits under the new structure.
 
 The following graph shows how the reform affects a married couple with two children as well as for a single parent:[^1]
 
@@ -67,13 +67,13 @@ The following graph shows how the reform affects a married couple with two child
 
 ![](https://cdn-images-1.medium.com/max/2660/0*NTzfwwf6k2PVGxpq)
 
-Looking at the [net impact](https://policyengine.org/us/household?reform=2&focus=householdOutput.earnings&region=mn&timePeriod=2024&baseline=63834&household=46680), this household could receive up to an additional $3,500 due to the removal of the general earnings requirements for the Child Tax Credit component. The impact gradually reduces as the previous Working Family Credit phases in and spikes once more due to the delayed reduction start.
+Looking at the [net impact](https://legacy.policyengine.org/us/household?reform=2&focus=householdOutput.earnings&region=mn&timePeriod=2024&baseline=63834&household=46680), this household could receive up to an additional $3,500 due to the removal of the general earnings requirements for the Child Tax Credit component. The impact gradually reduces as the previous Working Family Credit phases in and spikes once more due to the delayed reduction start.
 
 **Figure 2: Net income impact of the Minnesota Bill HF1938 on a single parent of two (10 and 5) with earnings up to $100k (2023)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*GJSskNDoNTqey6n8)
 
-The credit change also impacts [marginal tax rates](https://policyengine.org/us/household?reform=2&focus=householdOutput.mtr&region=mn&timePeriod=2024&baseline=63834&household=46680) for the given family. The marginal tax rates increase by as much as 12 percentage points for earnings between $50,000 and $62,000.
+The credit change also impacts [marginal tax rates](https://legacy.policyengine.org/us/household?reform=2&focus=householdOutput.mtr&region=mn&timePeriod=2024&baseline=63834&household=46680) for the given family. The marginal tax rates increase by as much as 12 percentage points for earnings between $50,000 and $62,000.
 
 **Figure 3: Marginal Tax Rate changes under the Minnesota Bill HF1938 on a single parent of two (10 and 5) (2023)**
 
@@ -81,7 +81,7 @@ The credit change also impacts [marginal tax rates](https://policyengine.org/us/
 
 ## Reduced Standard Deduction
 
-Zooming out, we can see that the reform reduces [this household’s](https://policyengine.org/us/household?reform=2&focus=householdOutput.earnings&region=mn&timePeriod=2024&baseline=63834&household=46745) standard deduction for earnings between $310,000 and $775,000.
+Zooming out, we can see that the reform reduces [this household’s](https://legacy.policyengine.org/us/household?reform=2&focus=householdOutput.earnings&region=mn&timePeriod=2024&baseline=63834&household=46745) standard deduction for earnings between $310,000 and $775,000.
 
 **Figure 4: How Minnesota Bill HF1938 (2023) affects a joint filer’s standard deduction**
 
@@ -95,7 +95,7 @@ Accordingly, the reform increases this household’s taxes by as much as $966, f
 
 ## Social Security and public pension subtractions
 
-To illustrate the changes to the subtractions for Social Security benefits public pensions, consider an individual receiving $25,000 in public pensions (for example, from teaching in public schools) and $20,000 in Social Security benefits. These are both roughly average values. This individual would pay up to $1,500 less in [income tax](https://policyengine.org/us/household?reform=2&focus=householdOutput.netIncome&region=mn&timePeriod=2023&baseline=63889&household=46737) due to the newly introduced public retirement income subtraction and the adjusted social security income subtraction.
+To illustrate the changes to the subtractions for Social Security benefits public pensions, consider an individual receiving $25,000 in public pensions (for example, from teaching in public schools) and $20,000 in Social Security benefits. These are both roughly average values. This individual would pay up to $1,500 less in [income tax](https://legacy.policyengine.org/us/household?reform=2&focus=householdOutput.netIncome&region=mn&timePeriod=2023&baseline=63889&household=46737) due to the newly introduced public retirement income subtraction and the adjusted social security income subtraction.
 
 **Figure 6: Impact of the new subtraction structure under the Minnesota Bill HF1938 on a senior with $25k of public retirement income and $20k of social security retirement income (2023)**
 
@@ -105,13 +105,13 @@ To illustrate the changes to the subtractions for Social Security benefits publi
 
 PolicyEngine’s US microsimulation model (version 1.57.1), run over the indexed 2022 Current Population Survey March Supplement for 2023, reveals several key impacts of HF1938’s individual income tax provisions:
 
-- Costs [$444 million](https://policyengine.org/us/policy?reform=2&focus=policyOutput.policyBreakdown&region=mn&timePeriod=2023&baseline=63889)
+- Costs [$444 million](https://legacy.policyengine.org/us/policy?reform=2&focus=policyOutput.policyBreakdown&region=mn&timePeriod=2023&baseline=63889)
 
-- Lowers Minnesota’s Supplemental Poverty Measure by 1.9%, including [9.4%](https://policyengine.org/us/policy?reform=2&focus=policyOutput.povertyImpact.regular.byAge&region=mn&timePeriod=2023&baseline=63889) for children and [45.6%](https://policyengine.org/us/policy?reform=2&focus=policyOutput.povertyImpact.deep.byAge&region=mn&timePeriod=2023&baseline=63889) for deep child poverty
+- Lowers Minnesota’s Supplemental Poverty Measure by 1.9%, including [9.4%](https://legacy.policyengine.org/us/policy?reform=2&focus=policyOutput.povertyImpact.regular.byAge&region=mn&timePeriod=2023&baseline=63889) for children and [45.6%](https://legacy.policyengine.org/us/policy?reform=2&focus=policyOutput.povertyImpact.deep.byAge&region=mn&timePeriod=2023&baseline=63889) for deep child poverty
 
-- Reduces income inequality in Minnesota: the Gini index falls [0.8%](https://policyengine.org/us/policy?reform=2&focus=policyOutput.inequalityImpact&region=mn&timePeriod=2023&baseline=63889&household=46737), while the net income share held by the top 1% and 10% each fall 0.2%
+- Reduces income inequality in Minnesota: the Gini index falls [0.8%](https://legacy.policyengine.org/us/policy?reform=2&focus=policyOutput.inequalityImpact&region=mn&timePeriod=2023&baseline=63889&household=46737), while the net income share held by the top 1% and 10% each fall 0.2%
 
-[22%](https://policyengine.org/us/policy?reform=2&focus=policyOutput.winnersAndLosers.incomeDecile&region=mn&timePeriod=2023&baseline=63889) of residents will experience an increase in their after-tax income due to these changes, including 35% of those in the bottom income decile. Conversely, 4% of residents will see a reduction in their after-tax income, including 38% of those in the top income decile.
+[22%](https://legacy.policyengine.org/us/policy?reform=2&focus=policyOutput.winnersAndLosers.incomeDecile&region=mn&timePeriod=2023&baseline=63889) of residents will experience an increase in their after-tax income due to these changes, including 35% of those in the bottom income decile. Conversely, 4% of residents will see a reduction in their after-tax income, including 38% of those in the top income decile.
 
 **Figure 7: Winners and Losers from the Minnesota Bill HF1938 by Decile (2023)**
 

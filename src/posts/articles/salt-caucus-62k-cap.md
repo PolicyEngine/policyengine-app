@@ -1,4 +1,4 @@
-[In our previous report](https://policyengine.org/us/research/ways-and-means-salt-cap), we simulated the SALT cap set in “The One, Big, Beautiful Bill,” which phases down a $30,000 cap to $10,000 for filers with income above $400,000. While the Ways and Means Committee approved the bill yesterday, [The Hill reports](https://thehill.com/business/5295825-salt-deduction-cap-increase-debate/) that SALT Caucus members have pushed to raise the cap to $62,000 ($124,000 for married filers), adjusted for inflation, unlike the bill.
+[In our previous report](https://legacy.policyengine.org/us/research/ways-and-means-salt-cap), we simulated the SALT cap set in “The One, Big, Beautiful Bill,” which phases down a $30,000 cap to $10,000 for filers with income above $400,000. While the Ways and Means Committee approved the bill yesterday, [The Hill reports](https://thehill.com/business/5295825-salt-deduction-cap-increase-debate/) that SALT Caucus members have pushed to raise the cap to $62,000 ($124,000 for married filers), adjusted for inflation, unlike the bill.
 
 Utilizing our baseline of the tax reforms in the Ways and Means bill (see Appendix A), we analyze how the SALT Caucus’s proposal would affect American households and the U.S. economy.
 
@@ -12,7 +12,7 @@ Key results (static):
 
 - Increases the Gini index of income inequality by 0.2%
 
-_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps)._
+_Use PolicyEngine to [view the full results](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) or calculate the [effect on your household](https://legacy.policyengine.org/us/household?focus=intro&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps)._
 
 ## Comparison of SALT Caps
 
@@ -30,7 +30,7 @@ Under the SALT Caucus’s preferred limit, single filers could claim up to $62,0
 
 ## Household Impacts
 
-As we are only comparing between the BBB SALT cap and the one preferred by the SALT Caucus, only households that itemize their deductions and have state and local tax expenses greater than the Ways and Means limit would be affected. Let’s examine a similar household to the one we covered in the previous analysis: a single adult in New York making $500,000, but with $70,000 in property taxes (instead of $45,000). Under the BBB SALT cap, they would see a [reduction in their net income of $28,391](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps&household=53440) in 2026, compared to if the SALT deduction became uncapped as it is scheduled to under current law. However, under the SALT Caucus proposal, their net income would [fall by $12,012](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=84172&region=us&timePeriod=2025&baseline=84050&dataset=enhanced_cps&household=53440), representing a [$16,379 gain](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps&household=53440) when compared to the $30,000 SALT cap approved by the Ways and Means Committee. Figure 2 displays how the single adult’s net income would change as their household earnings vary if the approved SALT cap were replaced with the SALT Caucus proposal.
+As we are only comparing between the BBB SALT cap and the one preferred by the SALT Caucus, only households that itemize their deductions and have state and local tax expenses greater than the Ways and Means limit would be affected. Let’s examine a similar household to the one we covered in the previous analysis: a single adult in New York making $500,000, but with $70,000 in property taxes (instead of $45,000). Under the BBB SALT cap, they would see a [reduction in their net income of $28,391](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps&household=53440) in 2026, compared to if the SALT deduction became uncapped as it is scheduled to under current law. However, under the SALT Caucus proposal, their net income would [fall by $12,012](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=84172&region=us&timePeriod=2025&baseline=84050&dataset=enhanced_cps&household=53440), representing a [$16,379 gain](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps&household=53440) when compared to the $30,000 SALT cap approved by the Ways and Means Committee. Figure 2 displays how the single adult’s net income would change as their household earnings vary if the approved SALT cap were replaced with the SALT Caucus proposal.
 
 **Figure 2: Effect of Replacing the SALT Cap on Net Income Based on Household Earnings for a Single Filer with $62,948+ in SALT (2026)**
 
@@ -50,7 +50,7 @@ Due to the removal of the SALT cap phase-out, the total marginal tax rate falls 
 
 ## Microsimulation Results
 
-Using PolicyEngine’s static microsimulation model, we project that replacing the $30,000 SALT cap with the SALT Caucus proposal would [increase the cost of the tax package by $496.8 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the SALT Caucus proposal goes into effect in 2025, it would [lower federal revenues by $43.3 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2025&baseline=84050&dataset=enhanced_cps) that year since it raises the current $10,000 cap.
+Using PolicyEngine’s static microsimulation model, we project that replacing the $30,000 SALT cap with the SALT Caucus proposal would [increase the cost of the tax package by $496.8 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the SALT Caucus proposal goes into effect in 2025, it would [lower federal revenues by $43.3 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2025&baseline=84050&dataset=enhanced_cps) that year since it raises the current $10,000 cap.
 
 [^3]: We project that state tax revenues would decrease by $2.9 billion over the budget window (2026-2035).
 
@@ -70,13 +70,13 @@ Using PolicyEngine’s static microsimulation model, we project that replacing t
 | 2035          | -65.2                                            |
 | **2026-2035** | **-496.8**                                       |
 
-The SALT cap would [increase the net income of 3.7% of US residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) in 2026, including 26% of residents in the top decile and 1.2% of those in the bottom nine deciles.
+The SALT cap would [increase the net income of 3.7% of US residents](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) in 2026, including 26% of residents in the top decile and 1.2% of those in the bottom nine deciles.
 
 **Figure 6: Winners of the Replacing the SALT Cap Under the W&M Bill (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*myyx97sW6kZ2KS2l)
 
-Households in the top decile see their tax liability fall by [$2,621 on average](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps). The bottom four deciles would see an average gain of $3 or less.
+Households in the top decile see their tax liability fall by [$2,621 on average](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps). The bottom four deciles would see an average gain of $3 or less.
 
 **Figure 6: Average Impact of the SALT Cap Under the W&M Bill (2026)**
 
@@ -84,19 +84,19 @@ Households in the top decile see their tax liability fall by [$2,621 on average]
 
 When it comes to poverty and inequality, the SALT Caucus proposal would, in 2026:
 
-- [Lower poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) (as defined by the Supplemental Poverty Measure) by 0.00006%,
+- [Lower poverty](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) (as defined by the Supplemental Poverty Measure) by 0.00006%,
 
-- Reduce deep poverty [by 0.0002%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps),
+- Reduce deep poverty [by 0.0002%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps),
 
-- [Raise the Gini index of inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) by 0.2%, and the top 1%’s share of net income by 3.0%
+- [Raise the Gini index of inequality](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) by 0.2%, and the top 1%’s share of net income by 3.0%
 
 ## Conclusion
 
-Conditional on other provisions in the BBB, we find that implementing the SALT Caucus’s preferred limits of $62,000 and $124,000, compared to the $30,000 cap approved by the committee, would increase the cost of the bill by $497 billion over ten years, assuming no behavioral responses. The new limitation would increase the after-tax incomes of 3.7% of the population in 2026, with households in the top income decile experiencing the largest gains on an [absolute](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) and [relative](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) basis. The SALT Caucus cap is projected to reduce poverty by less than 0.001%, while raising the Gini index by 0.2%.
+Conditional on other provisions in the BBB, we find that implementing the SALT Caucus’s preferred limits of $62,000 and $124,000, compared to the $30,000 cap approved by the committee, would increase the cost of the bill by $497 billion over ten years, assuming no behavioral responses. The new limitation would increase the after-tax incomes of 3.7% of the population in 2026, with households in the top income decile experiencing the largest gains on an [absolute](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) and [relative](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) basis. The SALT Caucus cap is projected to reduce poverty by less than 0.001%, while raising the Gini index by 0.2%.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 ## Appendix A: Baseline Details
 

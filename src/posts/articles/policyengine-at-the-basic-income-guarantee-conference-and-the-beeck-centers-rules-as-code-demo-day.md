@@ -17,7 +17,7 @@ June 28: [Beeck Center Rules as Code Demo Day](https://www.eventbrite.com/e/rule
 We’ll present PolicyEngine-based research in the following BIG Conference sessions:
 
 Exploring and evaluating basic income policies with the PolicyEngine app for US tax and benefit analysis
-Max Ghenis and Nikhil Woodruff will run a workshop for participants to design customizable UBI policies and compute their impact, using the [PolicyEngine US app](http://policyengine.org/us).
+Max Ghenis and Nikhil Woodruff will run a workshop for participants to design customizable UBI policies and compute their impact, using the [PolicyEngine US app](http://legacy.policyengine.org/us).
 \*June 23, 11:00AM PT, in Portland, Oregon
 
 The distributional impacts of universal basic income policies

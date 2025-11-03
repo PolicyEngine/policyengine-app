@@ -2,15 +2,15 @@ On 21 July, UK Prime Minister candidate Liz Truss promised to “review the taxa
 
 In this blog post, I’ll explain the marriage allowance and show how to use PolicyEngine to score two potential reforms to the policy:
 
-1. [Raising the marriage allowance from 10% to 100%.](https://policyengine.org/uk/population-impact?marriage_allowance_cap=100) PolicyEngine estimates that this reform would cost £3.05 billion in 2022, lowering poverty by 0.5%, benefiting 15% of the population, and widening the marriage allowance’s earnings dead zone by roughly a factor of 10.
+1. [Raising the marriage allowance from 10% to 100%.](https://legacy.policyengine.org/uk/population-impact?marriage_allowance_cap=100) PolicyEngine estimates that this reform would cost £3.05 billion in 2022, lowering poverty by 0.5%, benefiting 15% of the population, and widening the marriage allowance’s earnings dead zone by roughly a factor of 10.
 
-1. [Raising the marriage allowance from 10% to 100% and removing the limitation to Basic Rate taxpayers.](https://policyengine.org/uk/population-impact?marriage_allowance_cap=100&abolish_marriage_allowance_income_condition=1) PolicyEngine estimates that this reform would cost £5.91 billion in 2022, lowering poverty by 0.5%, benefiting 20% of the population, and removing the marriage allowance’s earnings dead zone.
+1. [Raising the marriage allowance from 10% to 100% and removing the limitation to Basic Rate taxpayers.](https://legacy.policyengine.org/uk/population-impact?marriage_allowance_cap=100&abolish_marriage_allowance_income_condition=1) PolicyEngine estimates that this reform would cost £5.91 billion in 2022, lowering poverty by 0.5%, benefiting 20% of the population, and removing the marriage allowance’s earnings dead zone.
 
 ## What is the marriage allowance?
 
 The [marriage allowance](https://www.gov.uk/marriage-allowance) allows a person to transfer £1,260 of their personal allowance (10% of the maximum) to their spouse, if their income is below the personal allowance and their spouse pays income tax at the basic rate (income between £12,571 and £50,270).
 
-To compute the impact of the current marriage allowance in PolicyEngine, [compare the current law to a baseline without the marriage allowance.](https://policyengine.org/uk/population-impact?marriage_allowance_cap=10&baseline_marriage_allowance_cap=0)
+To compute the impact of the current marriage allowance in PolicyEngine, [compare the current law to a baseline without the marriage allowance.](https://legacy.policyengine.org/uk/population-impact?marriage_allowance_cap=10&baseline_marriage_allowance_cap=0)
 
 For example, consider a married couple with one child. One person earns £30,000, and the other earns £0. Without the marriage allowance, they would pay £5,954 in taxes; the marriage allowance lowers that by £252 to £5,702. However, since DWP bases benefits on after-tax income, they also lose £139 of benefits. In total, the marriage allowance increases their net income by £113, or about 0.4%.
 
@@ -24,7 +24,7 @@ Overall, PolicyEngine estimates that the marriage allowance currently costs £84
 
 ## How does increasing the marriage allowance from 10% to 100% affect a household?
 
-Let’s return to our sample household: a married couple with one child, one of whom earns £30,000 and the other earns £0. If we [compare their situation](https://policyengine.org/uk/household?marriage_allowance_cap=100) under current law to that in which the marriage allowance rises from 10% to 100%, we see that the reform would increase their net income by £2,143, or 8.4%. This again comes from lower taxes, which are partly offset by lower benefits.
+Let’s return to our sample household: a married couple with one child, one of whom earns £30,000 and the other earns £0. If we [compare their situation](https://legacy.policyengine.org/uk/household?marriage_allowance_cap=100) under current law to that in which the marriage allowance rises from 10% to 100%, we see that the reform would increase their net income by £2,143, or 8.4%. This again comes from lower taxes, which are partly offset by lower benefits.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*dS7FHuDa6qzqDSHD)
 
@@ -36,7 +36,7 @@ The reform lowers marginal tax rates by 9.0p for earnings between £13,830 and �
 
 ![](https://cdn-images-1.medium.com/max/3200/0*IlxZTi9EJ5bsJng7)
 
-[You can enter your household information here to see how it would affect you.](https://policyengine.org/uk/household?marriage_allowance_cap=100)
+[You can enter your household information here to see how it would affect you.](https://legacy.policyengine.org/uk/household?marriage_allowance_cap=100)
 
 ## How does increasing the marriage allowance from 10% to 100% affect the population?
 
@@ -60,7 +60,7 @@ We can aggregate these impacts to find that the reform reduces inequality accord
 
 ![](https://cdn-images-1.medium.com/max/3200/0*swg8UEVRUQgcjA64)
 
-[Explore the full population impacts of the reform in PolicyEngine here](https://policyengine.org/uk/population-impact?marriage_allowance_cap=100), and [find how it would affect your own household here.](https://policyengine.org/uk/household?marriage_allowance_cap=100)
+[Explore the full population impacts of the reform in PolicyEngine here](https://legacy.policyengine.org/uk/population-impact?marriage_allowance_cap=100), and [find how it would affect your own household here.](https://legacy.policyengine.org/uk/household?marriage_allowance_cap=100)
 
 ## How does removing the Basic Rate restriction affect households?
 
@@ -78,4 +78,4 @@ Compared to only raising the percentage, removing the Basic Rate restriction rou
 
 ![](https://cdn-images-1.medium.com/max/3200/0*I28U_nsGjYjwsAm3)
 
-[Explore the full population impacts of the reform in PolicyEngine here](https://policyengine.org/uk/population-impact?marriage_allowance_cap=100&abolish_marriage_allowance_income_condition=1), and [find how it would affect your own household here.](https://policyengine.org/uk/household?marriage_allowance_cap=100&abolish_marriage_allowance_income_condition=1)
+[Explore the full population impacts of the reform in PolicyEngine here](https://legacy.policyengine.org/uk/population-impact?marriage_allowance_cap=100&abolish_marriage_allowance_income_condition=1), and [find how it would affect your own household here.](https://legacy.policyengine.org/uk/household?marriage_allowance_cap=100&abolish_marriage_allowance_income_condition=1)

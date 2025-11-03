@@ -64,21 +64,21 @@ Tables 3 and 4 summarize the changes in each program and net income for each exa
 
 | Martial Status | Number of Children | Annual Income | Inflation Rebate | ESCC Change | Income Tax Cut | Total Change in Net Income                                                                                                                       |
 | -------------- | ------------------ | ------------- | ---------------- | ----------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Single         | 1                  | $0            | $300             | $230        | $0             | [+$530](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=49692&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Single         | 1                  | $50,000       | $300             | $0          | $38            | [+$338](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51379&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Single         | 2                  | $160,000      | $0               | $0          | $147           | [+$147](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51399&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Married        | 3                  | $250,000      | $500             | $0          | $231           | [+$731](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51446&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Married        | 3                  | $310,000      | $0               | $0          | $291           | [+$291](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51448&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single         | 1                  | $0            | $300             | $230        | $0             | [+$530](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=49692&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single         | 1                  | $50,000       | $300             | $0          | $38            | [+$338](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51379&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single         | 2                  | $160,000      | $0               | $0          | $147           | [+$147](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51399&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married        | 3                  | $250,000      | $500             | $0          | $231           | [+$731](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51446&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married        | 3                  | $310,000      | $0               | $0          | $291           | [+$291](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51448&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 
 **Table 4: Change in Net Income Based on Household Composition (2026)**
 
 | Martial Status | Number of Children | Annual Income | ESCC Change | Income Tax Cut | Total Change in Net Income                                                                                                                       |
 | -------------- | ------------------ | ------------- | ----------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Single         | 1                  | $0            | $400        | $0             | [+$400](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51394&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Single         | 1                  | $50,000       | $170        | $76            | [+$246](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51451&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Single         | 2                  | $160,000      | $0          | $294           | [+$294](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51453&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Married        | 3                  | $250,000      | $0          | $462           | [+$462](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51456&region=ny&timePeriod=2025&baseline=2&reform=75827) |
-| Married        | 3                  | $310,000      | $0          | $461           | [+$461](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51457&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single         | 1                  | $0            | $400        | $0             | [+$400](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51394&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single         | 1                  | $50,000       | $170        | $76            | [+$246](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51451&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single         | 2                  | $160,000      | $0          | $294           | [+$294](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51453&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married        | 3                  | $250,000      | $0          | $462           | [+$462](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51456&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married        | 3                  | $310,000      | $0          | $461           | [+$461](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&household=51457&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 
 Figures 2 through 5 display the changes in net income and marginal tax rates for a single parent of two children, ages 3 and 6, (household example 3) based on their annual income (ranging from $0 to $500,000) in 2025 and 2026.
 
@@ -102,19 +102,19 @@ Figures 2 through 5 display the changes in net income and marginal tax rates for
 
 For tax year 2025, PolicyEngine projects that these reforms would:
 
-- [Cost $4.8 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), with the following breakdown:
+- [Cost $4.8 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), with the following breakdown:
 
-  - Inflation Rebates: [$3.7 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76266&region=ny&timePeriod=2025&baseline=2)[^2]
+  - Inflation Rebates: [$3.7 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76266&region=ny&timePeriod=2025&baseline=2)[^2]
 
-  - ESCC expansion: [$481 million](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2025&baseline=2)
+  - ESCC expansion: [$481 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2025&baseline=2)
 
-  - Income tax cuts: [$623 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76590)
+  - Income tax cuts: [$623 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76590)
 
 - Lower the state’s Supplemental Poverty Measure by 5.2%
 
 - Reduce the Gini index of income inequality by 0.67%
 
-- [Increase net income for 99.4%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) of New York residents (all but 6% of those in the top decile), including an increase of 5% of net income for 51% of those in the bottom decile
+- [Increase net income for 99.4%](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) of New York residents (all but 6% of those in the top decile), including an increase of 5% of net income for 51% of those in the bottom decile
 
 These use PolicyEngine’s microsimulation capabilities through 3 years of pooled data (2021–2023) from the Current Population Survey (CPS), aged to the current year.
 
@@ -122,29 +122,29 @@ These use PolicyEngine’s microsimulation capabilities through 3 years of poole
 
 ![](https://cdn-images-1.medium.com/max/2000/0*3OEHXel8uNfoA62E)
 
-The reform provides an average of [$611 per household in 2025](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), varying based on income decile.[^3] Households in the ninth income bracket would receive $781, the highest average benefit of any decile. Though the first decile’s average benefit is the lowest at $404, it represents a [2.5% gain in net income](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) for households, the largest percentage of any decile.
+The reform provides an average of [$611 per household in 2025](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), varying based on income decile.[^3] Households in the ninth income bracket would receive $781, the highest average benefit of any decile. Though the first decile’s average benefit is the lowest at $404, it represents a [2.5% gain in net income](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) for households, the largest percentage of any decile.
 
 **Figure 7: Average Benefit Based on Household Income Decile (2025)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*fvsjuJ247XGUaeju)
 
-In 2025, these proposals would [reduce poverty by 5.2%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) when applying the Supplemental Poverty Measure. The poverty reduction would disproportionally affect children as the child poverty rate would also decrease by 6.4%. Deep poverty and deep child poverty would [drop by 5.0% and 7.3%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), respectively.
+In 2025, these proposals would [reduce poverty by 5.2%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) when applying the Supplemental Poverty Measure. The poverty reduction would disproportionally affect children as the child poverty rate would also decrease by 6.4%. Deep poverty and deep child poverty would [drop by 5.0% and 7.3%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), respectively.
 
 **Figure 8: Poverty Impact (2025)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*MYtaUAsZ0X6QzbO2)
 
-Finally, the tax reforms would [decrease income inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), lowering the state’s Gini index by 0.67% while also reducing the share of income held by the top 10% and 1% of households.
+Finally, the tax reforms would [decrease income inequality](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), lowering the state’s Gini index by 0.67% while also reducing the share of income held by the top 10% and 1% of households.
 
 ## Statewide Impacts 2026
 
 For tax year 2026, PolicyEngine projects that these reforms would:
 
-- Cost [$2.1 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), with the following breakdown:
+- Cost [$2.1 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), with the following breakdown:
 
-  - ESCC expansion: [$821 million](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2026&baseline=2)
+  - ESCC expansion: [$821 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2026&baseline=2)
 
-  - Income tax cuts: [$1.3 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76590)[^4]
+  - Income tax cuts: [$1.3 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76590)[^4]
 
 - Increase net income for 83.5% of New York residents
 
@@ -152,25 +152,25 @@ For tax year 2026, PolicyEngine projects that these reforms would:
 
 - Reduce the Gini index of income inequality by 0.24%
 
-While both the ESCC expansion and income tax cuts provide more tax benefits to the New York population than they did in 2025, the expiration of the inflation rebates results in a lower impact in every major measurement for 2026. The reform [benefits 83.5%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580) of residents in 2025, down from 99.4% in 2025. While 92% or more residents in the top half of the income distribution are net beneficiaries in 2026, 31% in the bottom income decile would see their net incomes increase; the remaining 69% would be unaffected.
+While both the ESCC expansion and income tax cuts provide more tax benefits to the New York population than they did in 2025, the expiration of the inflation rebates results in a lower impact in every major measurement for 2026. The reform [benefits 83.5%](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580) of residents in 2025, down from 99.4% in 2025. While 92% or more residents in the top half of the income distribution are net beneficiaries in 2026, 31% in the bottom income decile would see their net incomes increase; the remaining 69% would be unaffected.
 
 **Figure 9: Winners of Hochul’s Tax Proposals (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*rEnFxmyVpTrT0N9l)
 
-The reform provides [$252 on average](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580) per household. While the range of average benefit by decile in 2025 was $404 to $781 (first to ninth decile), the 2026 range is $65 to $557 (first and tenth decile). As the inflation rebates expire and income tax cuts double, higher-income households would gain a larger share of the overall tax benefits as they have higher tax liabilities than lower-income families.
+The reform provides [$252 on average](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580) per household. While the range of average benefit by decile in 2025 was $404 to $781 (first to ninth decile), the 2026 range is $65 to $557 (first and tenth decile). As the inflation rebates expire and income tax cuts double, higher-income households would gain a larger share of the overall tax benefits as they have higher tax liabilities than lower-income families.
 
 **Figure 10: Average Benefit Based on Household Income Decile**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*RREj76K4gSO-yu2y)
 
-In 2026, the reform would [reduce poverty by 2.5%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), down from 5.5% in 2025. However, it would lower child poverty more, from 6.4% in 2025 to 7.4% in 2026, likely due to the expansion of the ESCC. Deep poverty and deep child poverty impacts fall from 2025, [settling at 1.6% and 5.5%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), respectively.
+In 2026, the reform would [reduce poverty by 2.5%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), down from 5.5% in 2025. However, it would lower child poverty more, from 6.4% in 2025 to 7.4% in 2026, likely due to the expansion of the ESCC. Deep poverty and deep child poverty impacts fall from 2025, [settling at 1.6% and 5.5%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), respectively.
 
 **Figure 11: Poverty Impact (2025)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*5yY5SWB9W7PPe5s0)
 
-Income inequality [would decrease](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580) as it did in 2025. However, each inequality impact would be lower, including the Gini index (0.67% to 0.24%).
+Income inequality [would decrease](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580) as it did in 2025. However, each inequality impact would be lower, including the Gini index (0.67% to 0.24%).
 
 ## Conclusion
 
@@ -180,7 +180,7 @@ The impact of these proposals would shrink in 2026. The total cost would amount 
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 ## Appendix A: Impact Summary of Major Tax Proposals for 2025 and 2026
 

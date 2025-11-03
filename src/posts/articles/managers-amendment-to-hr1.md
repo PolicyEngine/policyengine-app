@@ -18,7 +18,7 @@ In this report, we demonstrate the impact of the manager's amendment through hyp
 
 - Lower the Gini index of income inequality by 0.15%
 
-_View the impact of the Manager's Amendment on [the economy](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) and [your household](https://policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps)._
+_View the impact of the Manager's Amendment on [the economy](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) and [your household](https://legacy.policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps)._
 
 ## Manager's Amendment Provisions
 
@@ -40,7 +40,7 @@ The manager's amendment further revised these policies, while also revising othe
 
 In sum, the manager's amendment:
 
-1. **Expanded the SALT deduction** between the [Ways and Means SALT cap](https://policyengine.org/us/research/ways-and-means-salt-cap) and the [SALT Caucus's proposed SALT cap](https://policyengine.org/us/research/salt-caucus-62k-cap)
+1. **Expanded the SALT deduction** between the [Ways and Means SALT cap](https://legacy.policyengine.org/us/research/ways-and-means-salt-cap) and the [SALT Caucus's proposed SALT cap](https://legacy.policyengine.org/us/research/salt-caucus-62k-cap)
 
 1. **Reduced the AMT exemption amount and exemption phase-out start** by changing the base year from 2017 to 2025 for inflation indexing
 
@@ -58,11 +58,11 @@ Under the new compromise, households could claim up to $40,000 in SALT ($20,000 
 
 ![](https://cdn-images-1.medium.com/max/3200/0*WWW4GvxooQQxEr1-)
 
-In addition to these changes, the manager's amendment increased the overall limitation on itemized deductions to 5/37 of the lesser of a household's total SALT deduction or the difference between their taxable income and the top income bracket's threshold. The 2/37 limitation remains for all other itemized deductions. Furthermore, the manager's amendment sets 2025 as the base year for alternative minimum tax inflation adjustments, lowering the AMT exemption amount and phase-out start. Each change will affect a household's eligible SALT deduction and [effective SALT cap](https://policyengine.org/us/research/introducing-salternative).
+In addition to these changes, the manager's amendment increased the overall limitation on itemized deductions to 5/37 of the lesser of a household's total SALT deduction or the difference between their taxable income and the top income bracket's threshold. The 2/37 limitation remains for all other itemized deductions. Furthermore, the manager's amendment sets 2025 as the base year for alternative minimum tax inflation adjustments, lowering the AMT exemption amount and phase-out start. Each change will affect a household's eligible SALT deduction and [effective SALT cap](https://legacy.policyengine.org/us/research/introducing-salternative).
 
 ## Household Impacts
 
-The changes to the SALT deduction, overall limitation on itemized deductions, and AMT would affect households that itemize their deductions and have state and local tax expenses greater than the initial limit in the Ways and Means bill. To understand this, let's examine a single adult in Texas making $500,000, with $40,000 in property taxes[^2] and $50,000 in other itemized deductions (e.g., charitable contributions or mortgage interest). Under the manager's amendment, they would see an [increase in their net income of $10,640](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps&household=53694) in 2026, compared to the Ways and Means OBBBA. Figure 2 displays how this filer's net income would change as their household earnings vary.
+The changes to the SALT deduction, overall limitation on itemized deductions, and AMT would affect households that itemize their deductions and have state and local tax expenses greater than the initial limit in the Ways and Means bill. To understand this, let's examine a single adult in Texas making $500,000, with $40,000 in property taxes[^2] and $50,000 in other itemized deductions (e.g., charitable contributions or mortgage interest). Under the manager's amendment, they would see an [increase in their net income of $10,640](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps&household=53694) in 2026, compared to the Ways and Means OBBBA. Figure 2 displays how this filer's net income would change as their household earnings vary.
 
 [^2]: While Texas lacks a state income tax, filers can also deduct their sales tax, either reported or estimated from IRS tables. PolicyEngine calculates state sales tax from these tables, which adds between $634 and $2,677 to this filer's SALT. Combined with the $40,000 property taxes, they will exceed the $40,400 SALT cap for 2026 at all income levels.
 
@@ -129,7 +129,7 @@ Filers in other situations, such as with high capital gains, could face larger i
 
 ## Microsimulation Results
 
-Using PolicyEngine's static microsimulation model, we project that the manager's amendment to the One Big Beautiful Big Act would [increase the cost of the tax package by $22.0 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the proposed changes go into effect in 2025, it would [increase federal revenues by $3.0 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2025&baseline=85188&dataset=enhanced_cps) this year.
+Using PolicyEngine's static microsimulation model, we project that the manager's amendment to the One Big Beautiful Big Act would [increase the cost of the tax package by $22.0 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the proposed changes go into effect in 2025, it would [increase federal revenues by $3.0 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2025&baseline=85188&dataset=enhanced_cps) this year.
 
 [^3]: We project that state tax revenues would increase by $0.2bn over the budget window (2026-2035).
 
@@ -149,19 +149,19 @@ Using PolicyEngine's static microsimulation model, we project that the manager's
 | 2035          | 1.0                                              |
 | **2026-2035** | **-22.0**                                        |
 
-The SALT cap would [increase the net income of 3.1% of US residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) in 2026 and decrease it for 3.3% of the population. Of individuals in the top income decile, 30% would experience a reduction in net income and 9% would experience a gain.
+The SALT cap would [increase the net income of 3.1% of US residents](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) in 2026 and decrease it for 3.3% of the population. Of individuals in the top income decile, 30% would experience a reduction in net income and 9% would experience a gain.
 
 **Figure 10: Winners and Losers of the Manager's Amendment to the One Big Beautiful Big Act (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*_U1Fx1HUtpJEQ5D8)
 
-Households in the top decile see their tax liability fall by [$347 on average](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps). The second income decile would see an average gain of $218 in 2026, potentially due to some high income filers in households with low- or negative-income filers.
+Households in the top decile see their tax liability fall by [$347 on average](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps). The second income decile would see an average gain of $218 in 2026, potentially due to some high income filers in households with low- or negative-income filers.
 
 **Figure 11: Average Impact of the Manager's Amendment to the One Big Beautiful Big Act (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*53N1NUVv92mC7TXB)
 
-When it comes to inequality, the SALT Caucus proposal would, in 2026, [lower the Gini index](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) by 0.15%, and lower the top 1%'s share of net income by 0.03%
+When it comes to inequality, the SALT Caucus proposal would, in 2026, [lower the Gini index](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) by 0.15%, and lower the top 1%'s share of net income by 0.03%
 
 ## Conclusion
 
@@ -177,7 +177,7 @@ These changes would reduce federal revenues by $22.0 billion over the ten-year w
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 ## Appendix A: Baseline Details
 

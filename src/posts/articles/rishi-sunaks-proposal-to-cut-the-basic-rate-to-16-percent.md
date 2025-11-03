@@ -10,7 +10,7 @@ PolicyEngine estimates that cutting the basic rate from 20p to 16p in 2022 would
 
 - Produce a mixed impact on income inequality
 
-[See the interactive simulation in PolicyEngine here.](https://policyengine.org/uk/population-impact?basic_rate=16)
+[See the interactive simulation in PolicyEngine here.](https://legacy.policyengine.org/uk/population-impact?basic_rate=16)
 
 ## Budgetary impact
 
@@ -18,7 +18,7 @@ The reform would lower tax revenues by £19.0 billion, and also lower benefit ou
 
 ![](https://cdn-images-1.medium.com/max/3200/0*EXIQtIvwQGyXNyM5)
 
-PolicyEngine is a “static” model, meaning that it assumes no behavioural responses. In its dynamic model that assumes behavioural responses, [HMRC estimates that a 1p change to basic rate would cost £5.25 billion in 2023–24](https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-june-2022) (PolicyEngine estimates that [lowering basic rate to 19p would cost £4.7 billion](https://policyengine.org/uk/population-impact?basic_rate=19)). A linear extrapolation would therefore produce a £21 billion budgetary estimate from HMRC.
+PolicyEngine is a “static” model, meaning that it assumes no behavioural responses. In its dynamic model that assumes behavioural responses, [HMRC estimates that a 1p change to basic rate would cost £5.25 billion in 2023–24](https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-june-2022) (PolicyEngine estimates that [lowering basic rate to 19p would cost £4.7 billion](https://legacy.policyengine.org/uk/population-impact?basic_rate=19)). A linear extrapolation would therefore produce a £21 billion budgetary estimate from HMRC.
 
 ## Poverty
 
@@ -50,4 +50,4 @@ For the income range where this household is eligible for Universal Credit, the 
 
 ![](https://cdn-images-1.medium.com/max/2628/0*UDmm9O3KZzHHvERV)
 
-To compute more impacts of Sunak’s proposed basic rate cut, [see how it would affect your own household](https://policyengine.org/uk/household?basic_rate=16&baseline_basic_rate=20), or create your own version of this reform, [view the simulation on the PolicyEngine.](https://policyengine.org/uk/population-impact?basic_rate=16&baseline_basic_rate=20)
+To compute more impacts of Sunak’s proposed basic rate cut, [see how it would affect your own household](https://legacy.policyengine.org/uk/household?basic_rate=16&baseline_basic_rate=20), or create your own version of this reform, [view the simulation on the PolicyEngine.](https://legacy.policyengine.org/uk/population-impact?basic_rate=16&baseline_basic_rate=20)

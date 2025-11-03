@@ -2,7 +2,7 @@ _The [UBI Center](http://ubicenter.org) contributed basic income policy paramete
 
 With PolicyEngine US, you can adjust hundreds of parameters defining federal and state tax and benefit programs, and then compute how adjusting those programs would affect society and households. But did you know you can also model policies that don’t currently exist, like basic income?
 
-To define policies that don’t exist, scroll past the _Simulation, US government_, and _State government_ parameter menus in our [_Policy_ page](http://policyengine.org/us/policy) and select _Third party_. Here you’ll find third-party-contributed policy parameters. Currently that includes _Congress_, which shows parameters that characterize the End Child Poverty Act (more on that below), and _UBI Center_,¹ which shows parameters that characterize basic or guaranteed income policies (we use the term _basic income_). Before it was signed into law, we characterized policies in the Inflation Reduction Act in the _Third party > Congress_ menu, too.
+To define policies that don’t exist, scroll past the _Simulation, US government_, and _State government_ parameter menus in our [_Policy_ page](http://legacy.policyengine.org/us/policy) and select _Third party_. Here you’ll find third-party-contributed policy parameters. Currently that includes _Congress_, which shows parameters that characterize the End Child Poverty Act (more on that below), and _UBI Center_,¹ which shows parameters that characterize basic or guaranteed income policies (we use the term _basic income_). Before it was signed into law, we characterized policies in the Inflation Reduction Act in the _Third party > Congress_ menu, too.
 
 ![Part of PolicyEngine’s basic income parameter menu from a mobile device.](https://cdn-images-1.medium.com/max/2000/1*-OToQxH1XvFoz4nqT73DXA.png)_Part of PolicyEngine’s basic income parameter menu from a mobile device._
 
@@ -30,7 +30,7 @@ To simulate that policy nationwide, enter 1114 in the top _Basic income_ paramet
 
 ![](https://cdn-images-1.medium.com/max/3200/0*eqOCDQgqARfOKWf2)
 
-[See the impact of a $1,114 per person payment in PolicyEngine here.](https://policyengine.org/us/population-impact?bi_amount=1114)
+[See the impact of a $1,114 per person payment in PolicyEngine here.](https://legacy.policyengine.org/us/population-impact?bi_amount=1114)
 
 ## Age-dependent basic income
 
@@ -66,7 +66,7 @@ To model the basic income for children, skip the first basic income amount and e
 
 You can use the _Third party > Congress > House > Rep Tlaib_ parameter menus to specify provisions 2 and 3, and the _US government > IRS > Credits > {Child, Earned income} tax credit > General_ parameter menus to specify provision 4.
 
-[See the End Child Poverty Act in PolicyEngine here.](https://policyengine.org/us/population-impact?abolish_eitc=1&end_child_poverty_act_adult_dependent_credit_amount=600&end_child_poverty_act_filer_credit_amount_HEAD_OF_HOUSEHOLD=600&end_child_poverty_act_filer_credit_amount_JOINT=1200&end_child_poverty_act_filer_credit_amount_SEPARATE=600&end_child_poverty_act_filer_credit_amount_SINGLE=600&end_child_poverty_act_filer_credit_amount_WIDOW=600&end_child_poverty_act_filer_credit_phase_out_start_HEAD_OF_HOUSEHOLD=20000&end_child_poverty_act_filer_credit_phase_out_start_JOINT=40000&end_child_poverty_act_filer_credit_phase_out_start_SEPARATE=20000&end_child_poverty_act_filer_credit_phase_out_start_SINGLE=20000&end_child_poverty_act_filer_credit_phase_out_start_WIDOW=20000&end_child_poverty_act_filer_credit_phase_out_rate=5&young_child_bi=4716&older_child_bi_age=19&abolish_non_refundable_ctc=1&abolish_refundable_ctc=1&young_adult_bi_age=20&young_child_bi_amount=4720)
+[See the End Child Poverty Act in PolicyEngine here.](https://legacy.policyengine.org/us/population-impact?abolish_eitc=1&end_child_poverty_act_adult_dependent_credit_amount=600&end_child_poverty_act_filer_credit_amount_HEAD_OF_HOUSEHOLD=600&end_child_poverty_act_filer_credit_amount_JOINT=1200&end_child_poverty_act_filer_credit_amount_SEPARATE=600&end_child_poverty_act_filer_credit_amount_SINGLE=600&end_child_poverty_act_filer_credit_amount_WIDOW=600&end_child_poverty_act_filer_credit_phase_out_start_HEAD_OF_HOUSEHOLD=20000&end_child_poverty_act_filer_credit_phase_out_start_JOINT=40000&end_child_poverty_act_filer_credit_phase_out_start_SEPARATE=20000&end_child_poverty_act_filer_credit_phase_out_start_SINGLE=20000&end_child_poverty_act_filer_credit_phase_out_start_WIDOW=20000&end_child_poverty_act_filer_credit_phase_out_rate=5&young_child_bi=4716&older_child_bi_age=19&abolish_non_refundable_ctc=1&abolish_refundable_ctc=1&young_adult_bi_age=20&young_child_bi_amount=4720)
 
 [This blog post](https://blog.policyengine.org/the-new-policyengine-us-population-impact-page-de68cb4ba71a) describes population-level results of the End Child Poverty Act in PolicyEngine. Numbers differ slightly as we’ve since updated from 2020 to 2021 data.
 
@@ -86,7 +86,7 @@ Then enter 50 in the _Basic income phase-out rate_ box in the _Phase-out_ menu.
 
 ![](https://cdn-images-1.medium.com/max/5880/1*aCzYTQ5LzMtutKHHQePGBg.png)
 
-[See the above-described version of the Seed Money Act in PolicyEngine here.³](https://policyengine.org/us/population-impact?bi_fpg_percent=100&bi_phase_out_rate=50)
+[See the above-described version of the Seed Money Act in PolicyEngine here.³](https://legacy.policyengine.org/us/population-impact?bi_fpg_percent=100&bi_phase_out_rate=50)
 
 ## Phasing out basic income over an income range
 
@@ -120,7 +120,7 @@ Your screen should look like this once this step is complete:
 
 Then define the basic income amounts ($4,500 for the two child categories and $12,500 for the three adult categories) and repeal the EITC using the steps from the End Child Poverty Act section of this post.
 
-[See Guaranteed Income for the 21st Century in PolicyEngine here.](https://policyengine.org/us/population-impact?young_child_bi=4500&older_child_bi=4500&young_adult_bi=12500&older_adult_bi=12500&senior_bi=12500&bi_phase_out_threshold_HEAD_OF_HOUSEHOLD=10000&bi_phase_out_threshold_JOINT=15000&bi_phase_out_threshold_SEPARATE=10000&bi_phase_out_threshold_SINGLE=10000&bi_phase_out_threshold_WIDOW=10000&bi_phase_out_by_rate=0&bi_phase_out_end_HEAD_OF_HOUSEHOLD=50000&bi_phase_out_end_JOINT=70000&bi_phase_out_end_SEPARATE=50000&bi_phase_out_end_SINGLE=50000&bi_phase_out_end_WIDOW=50000&abolish_eitc=1&older_adult_bi_amount=12500&older_child_bi_amount=4500&senior_bi_amount=12500&young_adult_bi_amount=12500&young_child_bi_amount=4500)
+[See Guaranteed Income for the 21st Century in PolicyEngine here.](https://legacy.policyengine.org/us/population-impact?young_child_bi=4500&older_child_bi=4500&young_adult_bi=12500&older_adult_bi=12500&senior_bi=12500&bi_phase_out_threshold_HEAD_OF_HOUSEHOLD=10000&bi_phase_out_threshold_JOINT=15000&bi_phase_out_threshold_SEPARATE=10000&bi_phase_out_threshold_SINGLE=10000&bi_phase_out_threshold_WIDOW=10000&bi_phase_out_by_rate=0&bi_phase_out_end_HEAD_OF_HOUSEHOLD=50000&bi_phase_out_end_JOINT=70000&bi_phase_out_end_SEPARATE=50000&bi_phase_out_end_SINGLE=50000&bi_phase_out_end_WIDOW=50000&abolish_eitc=1&older_adult_bi_amount=12500&older_child_bi_amount=4500&senior_bi_amount=12500&young_adult_bi_amount=12500&young_child_bi_amount=4500)
 
 Through these four policies, we’ve shown how to use PolicyEngine to compute the impact of basic income policies that vary in their amounts, age distribution, and phase-out. PolicyEngine has more controls we haven’t covered, like setting hard income limits (with no phase-out) and making the payments taxable.
 

@@ -20,7 +20,7 @@ If you’ve used the beta app, we think you’ll find the new version easier to 
 
 For more information:
 
-1. [Read our companion blog post](https://policyengine.org/us/blog/2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us) which walks through how to use the new app, using [full Child Tax Credit refundability](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=14&region=us&timePeriod=2023&baseline=2) as a case study
+1. [Read our companion blog post](https://legacy.policyengine.org/us/blog/2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us) which walks through how to use the new app, using [full Child Tax Credit refundability](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=14&region=us&timePeriod=2023&baseline=2) as a case study
 
 1. [Follow us on Twitter](http://twitter.com/thepolicyengine), where we’ll share tips and examples
 

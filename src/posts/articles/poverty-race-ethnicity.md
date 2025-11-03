@@ -2,7 +2,7 @@ As we observe Juneteenth, a day that marks the end of slavery in the United Stat
 
 ## Current poverty rates: a racial and ethnic breakdown
 
-In our commitment to bring transparency to the impact of public policies, we’re excited to extend PolicyEngine to include racial and ethnic breakdowns, supplementing our existing age and [sex](https://policyengine.org/us/blog/breaking-down-us-poverty-impacts-by-sex) analyses.
+In our commitment to bring transparency to the impact of public policies, we’re excited to extend PolicyEngine to include racial and ethnic breakdowns, supplementing our existing age and [sex](https://legacy.policyengine.org/us/blog/breaking-down-us-poverty-impacts-by-sex) analyses.
 
 To provide a comprehensive perspective, we use the Supplemental Poverty Measure (SPM) in our evaluations. This measure goes beyond the traditional Official Poverty Measure (OPM) by accounting for variables such as taxes, in-kind benefits, local housing costs, among others.
 
@@ -18,7 +18,7 @@ Applying current law to the 2021 Current Population Survey March Supplement, we 
 
 ## Policy reforms through a racial and ethnic lens
 
-To illustrate these new capabilities, consider the example of a [universal basic income of $100 per month](https://policyengine.org/us/policy?focus=policyOutput.racialPovertyImpact&reform=15208&region=us&timePeriod=2023&baseline=2). Our analysis reveals that this reform would lower the SPM poverty rate by 24%, with a more pronounced effect among Black and Hispanic Americans.
+To illustrate these new capabilities, consider the example of a [universal basic income of $100 per month](https://legacy.policyengine.org/us/policy?focus=policyOutput.racialPovertyImpact&reform=15208&region=us&timePeriod=2023&baseline=2). Our analysis reveals that this reform would lower the SPM poverty rate by 24%, with a more pronounced effect among Black and Hispanic Americans.
 
 ![](https://cdn-images-1.medium.com/max/2876/0*ZjUKWl8gUE0jKxVT)
 

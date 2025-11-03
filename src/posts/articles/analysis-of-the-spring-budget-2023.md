@@ -1,4 +1,4 @@
-[See the full impact on PolicyEngine here.](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=5847&region=uk&timePeriod=2023&baseline=1544)
+[See the full impact on PolicyEngine here.](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=5847&region=uk&timePeriod=2023&baseline=1544)
 
 Today saw the announcement of the 2023 Spring Budget for 2023, with significant changes to energy subsidies in particular. In this report, we analyse the budgetary, distributional, poverty, and inequality aspects of two of the largest reforms using data from the PolicyEngine UK microsimulation model.
 

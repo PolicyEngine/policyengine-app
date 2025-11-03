@@ -4,7 +4,7 @@ We're pleased to share that [MyFriendBen has launched in North Carolina](https:/
 
 Durham-based nonprofit [Code the Dream](https://codethedream.org), in partnership with [MyFriendBen](https://myfriendben.org) and [NC 211](https://nc211.org), has brought this tool to North Carolina residents. MyFriendBen-NC ([bennc.org](https://bennc.org)) offers North Carolinians a way to discover which benefits and tax credits they may qualify for, including food assistance, health insurance, child care subsidies, and more.
 
-The tool integrates with [PolicyEngine's open-source API](https://policyengine.org/us/api), which provides calculations for federal and state tax credits and major benefit programs like SNAP, Medicaid, SSI, and TANF. By using our computational models, MyFriendBen can generate personalized reports with over 90% accuracy in approximately six minutes.
+The tool integrates with [PolicyEngine's open-source API](https://legacy.policyengine.org/us/api), which provides calculations for federal and state tax credits and major benefit programs like SNAP, Medicaid, SSI, and TANF. By using our computational models, MyFriendBen can generate personalized reports with over 90% accuracy in approximately six minutes.
 
 ## Informing North Carolina Residents
 
@@ -35,7 +35,7 @@ We believe this model of collaboration—where specialized tools like our API ca
 
 Are you a developer or organization interested in integrating tax and benefit calculations into your own tools? The PolicyEngine API that powers MyFriendBen's calculations is available for your projects as well.
 
-[Our open-source API](https://policyengine.org/us/api) can help you:
+[Our open-source API](https://legacy.policyengine.org/us/api) can help you:
 
 - Calculate eligibility and benefit amounts for major programs like SNAP, Medicaid, SSI, and TANF
 - Estimate federal and state tax liabilities and credits

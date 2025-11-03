@@ -10,7 +10,7 @@ Our microsimulation model, assuming no changes to economic conditions, projects 
 
 - Expected to reduce the Gini index of inequality by 1.1%
 
-_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462)._
+_Use PolicyEngine to [view the full results](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) or calculate the [effect on your household](https://legacy.policyengine.org/us/household?focus=intro&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462)._
 
 ## How the rebate works
 
@@ -22,9 +22,9 @@ Eligible households receive the full payment if their adjusted gross income (AGI
 
 ## Household impacts
 
-Let's examine how the AWRA's tariff rebates could affect a hypothetical U.S. family. A married couple in Florida with two children earning $100,000 would receive the [full $2,400 rebate](https://policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55185) in 2026, assuming all family members have valid SSNs. However, if one parent does not meet the SSN requirement and does not qualify for the armed services exception, the entire household is ineligible and [receives no benefit](https://policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55186). If one child lacks a valid SSN, the household still qualifies [for $1,800](https://policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55197), the full amount minus $600 for the ineligible child.
+Let's examine how the AWRA's tariff rebates could affect a hypothetical U.S. family. A married couple in Florida with two children earning $100,000 would receive the [full $2,400 rebate](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55185) in 2026, assuming all family members have valid SSNs. However, if one parent does not meet the SSN requirement and does not qualify for the armed services exception, the entire household is ineligible and [receives no benefit](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55186). If one child lacks a valid SSN, the household still qualifies [for $1,800](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55197), the full amount minus $600 for the ineligible child.
 
-Additionally, if household earnings were to rise to $160,000, then the $2,400 benefit would [fall to $1,900](https://policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55199) as the rebate phaseout would now apply. The entire benefit would phase out once the household's AGI [reaches $198,000](https://policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55200).[^3] Table 1 summarizes the benefit amounts for each household scenario.
+Additionally, if household earnings were to rise to $160,000, then the $2,400 benefit would [fall to $1,900](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55199) as the rebate phaseout would now apply. The entire benefit would phase out once the household's AGI [reaches $198,000](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462&household=55200).[^3] Table 1 summarizes the benefit amounts for each household scenario.
 
 **Table 1: Summary of Household Impacts for a Married Couple with Two Children**
 
@@ -50,27 +50,27 @@ Figure 2 shows how the AWRA alters the household's marginal tax rates. The house
 
 ## Microsimulation results
 
-Using data from tax year 2024, the American Worker Rebate Act of 2025 [would cost $141.3 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462), according to PolicyEngine's static modeling. Due to interactions with state tax codes, the AWRA would also raise $58.9 million in state and local tax revenue.
+Using data from tax year 2024, the American Worker Rebate Act of 2025 [would cost $141.3 billion](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462), according to PolicyEngine's static modeling. Due to interactions with state tax codes, the AWRA would also raise $58.9 million in state and local tax revenue.
 
-The legislation would [raise the net income of 80.3%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) of residents in the U.S, though the degree to which they benefit varies by income decile. Overall, 30% of residents would experience a gain of more than 5% of their net income, including 93% of those in the lowest income decile. In the top income decile, 41% of residents would see a gain (all amounting to less than 5% in their net income).
+The legislation would [raise the net income of 80.3%](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) of residents in the U.S, though the degree to which they benefit varies by income decile. Overall, 30% of residents would experience a gain of more than 5% of their net income, including 93% of those in the lowest income decile. In the top income decile, 41% of residents would see a gain (all amounting to less than 5% in their net income).
 
 **Figure 3: Winners of the AWRA's Tariff Rebates**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*uFiy--rmBE7w_6L-)
 
-The [average household benefit](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) of the AWRA would be $973. The decile experiencing the largest gain is the seventh ($1,273), while the tenth would benefit the least with an average benefit of $469. This is due to the phaseout of the rebates.
+The [average household benefit](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) of the AWRA would be $973. The decile experiencing the largest gain is the seventh ($1,273), while the tenth would benefit the least with an average benefit of $469. This is due to the phaseout of the rebates.
 
 **Figure 4: Average Benefit of the AWRA's Tariff Rebates**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*bIQjYwzSnpQLt6Iw)
 
-We project the AWRA to [lower poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462), as defined by the Supplemental Poverty Measure, by 6.9%, with seniors seeing the largest reduction at 11.7%. Deep poverty would [fall by 7.5%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462), including a 15.2% reduction in deep child poverty.
+We project the AWRA to [lower poverty](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462), as defined by the Supplemental Poverty Measure, by 6.9%, with seniors seeing the largest reduction at 11.7%. Deep poverty would [fall by 7.5%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462), including a 15.2% reduction in deep child poverty.
 
 **Figure 5: Poverty Impact of the AWRA' Tariff Rebates**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*qSsl1Vo4_4slkDjA)
 
-The proposed legislation would also [lower the Gini index of inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) by 1.07%, and lower the share of net income held by the top 10% and 1% households by 0.8% and 0.84%, respectively.
+The proposed legislation would also [lower the Gini index of inequality](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&region=us&timePeriod=2024&baseline=2&dataset=enhanced_cps&reform=89462) by 1.07%, and lower the share of net income held by the top 10% and 1% households by 0.8% and 0.84%, respectively.
 
 ## Conclusion
 
@@ -78,7 +78,7 @@ The American Worker Rebate Act of 2025 would send direct payments to qualifying 
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 [^1]: Qualifying persons include the head and spouse of the household and any CTC-qualifying children. Adult dependents are not eligible for payments.
 

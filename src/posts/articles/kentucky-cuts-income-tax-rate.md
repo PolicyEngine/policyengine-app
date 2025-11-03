@@ -12,7 +12,7 @@ Key results for 2026:
 
 - Increases the Gini index of income inequality by 0.14%
 
-_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=2&region=ky&timePeriod=2026&baseline=76143) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=2&region=ky&timePeriod=2026&baseline=76143)._
+_Use PolicyEngine to [view the full results](https://legacy.policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=2&region=ky&timePeriod=2026&baseline=76143) or calculate the [effect on your household](https://legacy.policyengine.org/us/household?focus=intro&reform=2&region=ky&timePeriod=2026&baseline=76143)._
 
 ## Household Impacts
 
@@ -22,9 +22,9 @@ To understand the extent of this reform, it is important to note that higher-inc
 
 | Household Earnings |                                                                Change in Net Income                                                                 |
 | :----------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
-|      $20,000       |  [\+$58](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51467)   |
-|      $100,000      |  [\+$483](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51470)  |
-|      $500,000      | [\+$1,664](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51468) |
+|      $20,000       |  [\+$58](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51467)   |
+|      $100,000      |  [\+$483](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51470)  |
+|      $500,000      | [\+$1,664](https://legacy.policyengine.org/us/household?focus=householdOutput.netIncome&reform=2&region=ky&timePeriod=2026&baseline=76143&household=51468) |
 
 Below, Figure 1 displays the reduction in Kentucky income tax for a childless adult between $0 and $500,000 of household earnings. Since Kentucky's Family Size Credit fully offsets state tax liability for those below the federal poverty line, childless adults with income below $16,040 in 2026 will not benefit from the tax cut.[^1]
 
@@ -34,32 +34,32 @@ Below, Figure 1 displays the reduction in Kentucky income tax for a childless ad
 
 ## Statewide Impacts
 
-Using PolicyEngine static modeling, the individual income tax rate reduction enacted in Kentucky will [cost the state $684 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=2&region=ky&timePeriod=2026&baseline=76143) for tax year 2026. The measure would also increase federal revenues by $48 million, as residents would have less state income tax to take as an itemized deduction. On net, the tax cut would increase residents' net income by $636 million, without considering behavioral responses.
+Using PolicyEngine static modeling, the individual income tax rate reduction enacted in Kentucky will [cost the state $684 million](https://legacy.policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=2&region=ky&timePeriod=2026&baseline=76143) for tax year 2026. The measure would also increase federal revenues by $48 million, as residents would have less state income tax to take as an itemized deduction. On net, the tax cut would increase residents' net income by $636 million, without considering behavioral responses.
 
 **Figure 2: Budgetary Impact of Kentucky's Income Tax Cut**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*K9gfVVMZgO36y7L_)
 
-73% of Kentuckians will see an [increase in their net income](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=2&region=ky&timePeriod=2026&baseline=76143), including 99% of those in the top income decile and 6% of those in the bottom decile.
+73% of Kentuckians will see an [increase in their net income](https://legacy.policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=2&region=ky&timePeriod=2026&baseline=76143), including 99% of those in the top income decile and 6% of those in the bottom decile.
 
 **Figure 3: Winners of Kentucky's Income Tax Cut by Decile**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*c3r5UopZtVsyE3CZ)
 
-The tax cut will provide an [average benefit of $335](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=2&region=ky&timePeriod=2026&baseline=76143) per household, ranging from $5 in the bottom income decile to $1,470 in the top decile.
+The tax cut will provide an [average benefit of $335](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=2&region=ky&timePeriod=2026&baseline=76143) per household, ranging from $5 in the bottom income decile to $1,470 in the top decile.
 
 **Figure 4: Income Distribution of Kentucky's Income Tax Cut by Decile**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*thDpBTm7YsAjCpGU)
 
-The tax changes are projected to [reduce Kentucky's poverty rate by 1.3%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=2&region=ky&timePeriod=2026&baseline=76143), applying the Supplemental Poverty Measure, while leaving deep poverty unchanged. The income tax reduction will also increase the state's Gini index of income inequality [by 0.14%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=2&region=ky&timePeriod=2026&baseline=76143).
+The tax changes are projected to [reduce Kentucky's poverty rate by 1.3%](https://legacy.policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=2&region=ky&timePeriod=2026&baseline=76143), applying the Supplemental Poverty Measure, while leaving deep poverty unchanged. The income tax reduction will also increase the state's Gini index of income inequality [by 0.14%](https://legacy.policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=2&region=ky&timePeriod=2026&baseline=76143).
 
 ## Conclusion
 
-The 0.5pp rate reduction of Kentucky's income tax will lower state revenues by $684 million in 2026, while reducing poverty by 1.3% and increasing income inequality by 0.14%. The reform reduces tax liability for households across all income deciles, with higher-income households receiving larger benefits on both an [absolute](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=2&region=ky&timePeriod=2026&baseline=76143) and [relative](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=2&region=ky&timePeriod=2026&baseline=76143) basis.
+The 0.5pp rate reduction of Kentucky's income tax will lower state revenues by $684 million in 2026, while reducing poverty by 1.3% and increasing income inequality by 0.14%. The reform reduces tax liability for households across all income deciles, with higher-income households receiving larger benefits on both an [absolute](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=2&region=ky&timePeriod=2026&baseline=76143) and [relative](https://legacy.policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=2&region=ky&timePeriod=2026&baseline=76143) basis.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
-We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+We invite you to explore our [additional analyses](https://legacy.policyengine.org/us/research) and use [PolicyEngine](https://legacy.policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
 [^1]: Estimate of the one-person federal poverty line for 2026.

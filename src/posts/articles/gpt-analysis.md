@@ -1,4 +1,4 @@
-Just two weeks ago, we [unveiled our ChatGPT integration](https://policyengine.org/us/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration), which allowed users to generate policy analysis by adjusting parameters in PolicyEngine and interacting with [OpenAI’s chatbot](http://chat.openai.com). Shortly after, OpenAI granted us access to the [GPT-4 API](https://openai.com/product/gpt-4), and we’ve been hard at work finding the best ways to harness its power to enhance PolicyEngine’s capabilities.
+Just two weeks ago, we [unveiled our ChatGPT integration](https://legacy.policyengine.org/us/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration), which allowed users to generate policy analysis by adjusting parameters in PolicyEngine and interacting with [OpenAI’s chatbot](http://chat.openai.com). Shortly after, OpenAI granted us access to the [GPT-4 API](https://openai.com/product/gpt-4), and we’ve been hard at work finding the best ways to harness its power to enhance PolicyEngine’s capabilities.
 
 Today, we’re excited to launch our revamped **Analysis** product. Now, when you design or retrieve a policy reform in PolicyEngine, you can choose from three levels of policy knowledge and generate a comprehensive report that combines AI-generated computational content with interactive charts. Our goal is to provide a more engaging, personalized experience for our users. Here’s a look at how it works and what you can expect.
 
@@ -26,7 +26,7 @@ Once you’ve chosen a mode, you can generate a report. GPT-4 weaves a narrative
 
 In our mission to make public policy more personal and accessible, PolicyEngine now offers three audience modes for our built-in GPT-4 integration: ELI5, Normal, and Wonk. These modes cater to varying degrees of familiarity with policy analysis, giving users an instant, customized policy analysis experience.
 
-To better illustrate the differences between the modes, here are some quotes from each, applied to [President Biden’s proposal to restore the American Rescue Plan Act’s Earned Income Tax Credit expansion](https://policyengine.org/us/blog/2023-03-27-restoring-arpa-eitc):
+To better illustrate the differences between the modes, here are some quotes from each, applied to [President Biden’s proposal to restore the American Rescue Plan Act’s Earned Income Tax Credit expansion](https://legacy.policyengine.org/us/blog/2023-03-27-restoring-arpa-eitc):
 
 **ELI5:** “The ‘Restoring the ARPA EITC’ policy helps people with lower incomes get more money from the government. It makes it easier for younger and older people to get this help and gives them more money. This change costs the government about $9.8 billion and helps reduce poverty a little bit.”
 
@@ -46,7 +46,7 @@ PolicyEngine’s integrated GPT-4 capabilities and new audience modes offer inst
 
 ## Examples
 
-Each applies to the reform to [restore the ARPA EITC](https://policyengine.org/us/blog/2023-03-27-restoring-arpa-eitc).
+Each applies to the reform to [restore the ARPA EITC](https://legacy.policyengine.org/us/blog/2023-03-27-restoring-arpa-eitc).
 
 ## ELI5
 

@@ -1,6 +1,6 @@
 _Credit: World Economic Forum/Walter Duerst_
 
-[See the full impact on PolicyEngine here.](https://policyengine.org/uk/policy?reform=69728&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1)
+[See the full impact on PolicyEngine here.](https://legacy.policyengine.org/uk/policy?reform=69728&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1)
 
 The Chancellor Rachel Reeves has announced reforms to employer National Insurance (NI) contributions, marking the most substantial revenue-raising measure in the Autumn Budget 2024. The changes include raising the main rate from 13.8% to 15.0% while simultaneously lowering the Secondary Threshold at which employers begin contributing from £9,100 to £5,000 per year. Additionally, Reeves has raised the [Employment Allowance](https://www.gov.uk/claim-employment-allowance) from £5,000 to £10,000 and eliminated its cap. This analysis focuses on the rate rise and threshold reduction.
 

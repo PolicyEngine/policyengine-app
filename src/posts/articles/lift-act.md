@@ -12,13 +12,13 @@ The LIFT Act's Middle Class Tax Credit phases in with 100% of earnings up to a m
 | Head of household | $3,600         | $71,600         | $95,450       |
 | Joint             | $7,200         | $71,600         | $119,350      |
 
-This structure is depicted below. You can also calculate how the LIFT Act would affect your own household with **[this calculator](https://policyengine.org/us/household?reform=61627&focus=intro&region=enhanced_us&timePeriod=2024&baseline=2)**.
+This structure is depicted below. You can also calculate how the LIFT Act would affect your own household with **[this calculator](https://legacy.policyengine.org/us/household?reform=61627&focus=intro&region=enhanced_us&timePeriod=2024&baseline=2)**.
 
 ![Figure 1: LIFT Act Middle Class Tax Credit by filing status and earnings level (2024)](/images/posts/lift-act/trapezoids.png)
 
 # Static US Impact
 
-[PolicyEngine estimates](https://policyengine.org/us/policy?reform=61632&focus=policyOutput.policyBreakdown&region=enhanced_us&timePeriod=2024&baseline=2) that the MCTC would, in 2024:
+[PolicyEngine estimates](https://legacy.policyengine.org/us/policy?reform=61632&focus=policyOutput.policyBreakdown&region=enhanced_us&timePeriod=2024&baseline=2) that the MCTC would, in 2024:
 
 - Cost $411 billion
 - Lower poverty by 25.4%, with larger reductions for children, Blacks, Hispanics, and men
@@ -33,7 +33,7 @@ While the earnings requirement reduces the share of individuals in the bottom de
 
 PolicyEngine now supports behavioral responses: users can enter their own income and substitution elasticities, which govern how people work less when they have more income and are paid less on the margin, respectively. The MCTC would be expected to reduce work through the income effect, and both increase and reduce work through the substitution effect, as it reduces marginal tax rates by 100 percentage points in the phase-in and increases them by 15 percentage points in the phase-out.
 
-Applying elasticities from the Congressional Budget Office, we project that the MCTC would [reduce hours worked by 1.1%](https://policyengine.org/us/policy?reform=61633&focus=policyOutput.laborSupplyImpact.hours&region=enhanced_us&timePeriod=2024&baseline=2) and [earnings by 0.9%](https://policyengine.org/us/policy?reform=61633&focus=policyOutput.laborSupplyImpact.earnings.overall.relative&region=enhanced_us&timePeriod=2024&baseline=2). Substitution effects (the phase-out) explain most of these reductions. As a result, the tax credit's cost would rise by 10% to [$450 billion](https://policyengine.org/us/policy?reform=61633&focus=policyOutput.budgetaryImpact.overall&region=enhanced_us&timePeriod=2024&baseline=2), though the poverty impact would remain essentially unchanged at 25%.
+Applying elasticities from the Congressional Budget Office, we project that the MCTC would [reduce hours worked by 1.1%](https://legacy.policyengine.org/us/policy?reform=61633&focus=policyOutput.laborSupplyImpact.hours&region=enhanced_us&timePeriod=2024&baseline=2) and [earnings by 0.9%](https://legacy.policyengine.org/us/policy?reform=61633&focus=policyOutput.laborSupplyImpact.earnings.overall.relative&region=enhanced_us&timePeriod=2024&baseline=2). Substitution effects (the phase-out) explain most of these reductions. As a result, the tax credit's cost would rise by 10% to [$450 billion](https://legacy.policyengine.org/us/policy?reform=61633&focus=policyOutput.budgetaryImpact.overall&region=enhanced_us&timePeriod=2024&baseline=2), though the poverty impact would remain essentially unchanged at 25%.
 
 # Conclusion
 
@@ -54,4 +54,4 @@ The LIFT Act proposed by then-Senator Kamala Harris includes a Middle Class Tax 
 
 Incorporating behavioral responses adds about 10% to the cost, due to about 1% less labor supply. This results from income effects and substitution effects for those in the phase-out range, though some low-income earners would be projected to work more due to substitution effects.
 
-As Vice President Harris pursues her 2024 presidential campaign, she may balance her prior proposals like the LIFT Act with newer policies in [President Biden's budget](https://policyengine.org/us/research/biden-budget-2025). PolicyEngine stands ready to support evidence-based evaluation of potential reforms like these and those from across the political spectrum.
+As Vice President Harris pursues her 2024 presidential campaign, she may balance her prior proposals like the LIFT Act with newer policies in [President Biden's budget](https://legacy.policyengine.org/us/research/biden-budget-2025). PolicyEngine stands ready to support evidence-based evaluation of potential reforms like these and those from across the political spectrum.

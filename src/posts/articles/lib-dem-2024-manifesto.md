@@ -1,4 +1,4 @@
-_Distributional impact of the Liberal Democrat 2024 Manifesto. See the full impact score [here](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57826&region=uk&timePeriod=2028&baseline=1)._
+_Distributional impact of the Liberal Democrat 2024 Manifesto. See the full impact score [here](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57826&region=uk&timePeriod=2028&baseline=1)._
 
 ## Key findings
 
@@ -40,14 +40,14 @@ Combined with increases to education, healthcare and other public service budget
 
 | **Provision**                         | **Liberal Democrats (£bn)** | **PolicyEngine (£bn)**                                                                                                          |
 | ------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Carer's Allowance increase            | 1.4                         | [0.1](https://policyengine.org/uk/policy?reform=57787&focus=policyOutput.policyBreakdown&timePeriod=2028&region=uk&baseline=1)  |
-| Removing the two-child limit          | -                           | [3.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=54700&region=uk&timePeriod=2028&baseline=1)  |
-| Removing the benefit cap              | -                           | [0.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57793&region=uk&timePeriod=2028&baseline=1)  |
-| Total welfare reforms                 | 5.5                         | [5.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57795&region=uk&timePeriod=2028&baseline=1)  |
-| Increase education spending £6.6bn    | 6.6                         | [6.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57797&region=uk&timePeriod=2028&baseline=1)  |
-| Increase NHS spending £8.4bn          | 8.4                         | [8.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57798&region=uk&timePeriod=2028&baseline=1)  |
-| Increase other public spending £6.3bn | 6.3                         | [6.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57799&region=uk&timePeriod=2028&baseline=1)  |
-| Total spending changes                | 26.8                        | [26.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57824&region=uk&timePeriod=2028&baseline=1) |
+| Carer's Allowance increase            | 1.4                         | [0.1](https://legacy.policyengine.org/uk/policy?reform=57787&focus=policyOutput.policyBreakdown&timePeriod=2028&region=uk&baseline=1)  |
+| Removing the two-child limit          | -                           | [3.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=54700&region=uk&timePeriod=2028&baseline=1)  |
+| Removing the benefit cap              | -                           | [0.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57793&region=uk&timePeriod=2028&baseline=1)  |
+| Total welfare reforms                 | 5.5                         | [5.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57795&region=uk&timePeriod=2028&baseline=1)  |
+| Increase education spending £6.6bn    | 6.6                         | [6.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57797&region=uk&timePeriod=2028&baseline=1)  |
+| Increase NHS spending £8.4bn          | 8.4                         | [8.4](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57798&region=uk&timePeriod=2028&baseline=1)  |
+| Increase other public spending £6.3bn | 6.3                         | [6.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57799&region=uk&timePeriod=2028&baseline=1)  |
+| Total spending changes                | 26.8                        | [26.8](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57824&region=uk&timePeriod=2028&baseline=1) |
 
 ## Taxes
 
@@ -59,12 +59,12 @@ We estimate that of the remaining £21.3bn in tax rises, £17.7bn would be large
 
 | Provision                            | Liberal Democrats | PolicyEngine                                                                                                                    |
 | ------------------------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Raise AEA to £5,000                  | -                 | [0.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57808&region=uk&timePeriod=2028&baseline=1)  |
-| Effectively increase rates by 5p     | -                 | [5.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57817&region=uk&timePeriod=2028&baseline=1)  |
-| Total Capital Gains Tax reforms      | 5.2               | [5.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57813&region=uk&timePeriod=2028&baseline=1)  |
-| Increase taxes on capital £17.7bn    | 17.7              | [17.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57818&region=uk&timePeriod=2028&baseline=1) |
-| Increase taxes on consumption £3.6bn | 3.6               | [3.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57820&region=uk&timePeriod=2028&baseline=1)  |
-| Total tax reforms                    | 26.9              | [26.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57823&region=uk&timePeriod=2028&baseline=1) |
+| Raise AEA to £5,000                  | -                 | [0.3](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57808&region=uk&timePeriod=2028&baseline=1)  |
+| Effectively increase rates by 5p     | -                 | [5.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57817&region=uk&timePeriod=2028&baseline=1)  |
+| Total Capital Gains Tax reforms      | 5.2               | [5.2](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57813&region=uk&timePeriod=2028&baseline=1)  |
+| Increase taxes on capital £17.7bn    | 17.7              | [17.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57818&region=uk&timePeriod=2028&baseline=1) |
+| Increase taxes on consumption £3.6bn | 3.6               | [3.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57820&region=uk&timePeriod=2028&baseline=1)  |
+| Total tax reforms                    | 26.9              | [26.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57823&region=uk&timePeriod=2028&baseline=1) |
 
 ## Economic impact
 
