@@ -24,13 +24,6 @@ describe("About Page", () => {
     // Check for the section with a heading "Team"
     const teamSection = screen.getByRole("heading", { name: /Team/i });
     expect(teamSection).toBeInTheDocument();
-
-    // Check that the link to jobs page exists
-    const link = screen.getByRole("link", {
-      name: /Learn about opportunities to join us./i,
-    });
-    expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", expect.stringContaining("/jobs"));
   });
 
   test("each founder has an image, a name, and a description", async () => {

@@ -23,8 +23,8 @@ import {
   DownOutlined,
   DeploymentUnitOutlined,
   TeamOutlined,
-  UserAddOutlined,
   BankOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
