@@ -1,5 +1,14 @@
 [
   {
+    "title": "PolicyEngine 2.0 event report: The future of public policy analysis",
+    "description": "Highlights from the November 3, 2025 event at Central Hall Westminster showcasing PolicyEngine's latest innovations, real-world applications, and AI roadmap.",
+    "date": "2025-11-05",
+    "tags": ["uk", "event", "featured", "org"],
+    "filename": "policyengine-2-event-report.md",
+    "image": "2025-london-event.jpeg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "Two-child limit calculator",
     "description": "Explore policy reforms to the two-child benefit limit and their impacts on households, government spending, and child poverty.",
