@@ -6,7 +6,7 @@ The event featured presentations from PolicyEngine's team and external speakers,
 
 ## PolicyEngine's journey and vision
 
-Max Ghenis opened the event by tracing PolicyEngine's evolution from its origins at the UBI Centre in 2020 to its establishment as an independent nonprofit in 2021. Key milestones included early UK policy scoring demonstrations, US expansion in March 2022, development of rigorous economic simulation with representative datasets, and the launch of multiple access surfaces including the Python package and AI summarisation in 2023.
+Max Ghenis opened the event by tracing PolicyEngine's evolution from its origins at the UBI Centre in 2020 to its establishment as an independent nonprofit in 2021. Key milestones included early UK policy scoring demonstrations, US expansion in March 2022, development of economic simulation with representative datasets, and the launch of multiple access surfaces including the Python package and AI summarisation in 2023.
 
 Adoption has grown across organisations including the Green Party, Centre for Policy Studies, NIESR, IEA, Social Market Foundation, Liberal Democrats, and UK in a Changing Europe. In March 2025, HM Treasury began piloting PolicyEngine UK. The Nuffield Foundation's grant supports expansion with childcare integration, public services modelling, local datasets, validation dashboards, and AI-enhanced design.
 
@@ -70,8 +70,8 @@ For building software, they announced the beta launch of the policyengine-claude
 
 For improving models, two priorities were presented: continuing US local area modelling work with enhanced calibration methods while transferring these to UK constituencies and local authorities, and exploring synthetic panel generation to enable lifetime programme simulation (such as US Social Security solvency) where current cross-sectional survey data provides only snapshots.
 
-For augmenting software, they previewed PolicyEngine App v2's natural language capabilities: LLM extraction to pull relevant insights from the database based on natural language queries, and flexible visualisations to present insights through adaptive charts on an extensible report canvas. The presentation concluded with reflections on AI's promise—enabling unprecedented policy analysis that is more comprehensive, accurate, and accessible—balanced against challenges as AI transforms society through changing income patterns and creating new demands for policy research aligned with societal values.
+For augmenting software, they previewed PolicyEngine App v2's natural language capabilities: LLM extraction to pull relevant insights from the database based on natural language queries, and flexible visualisations to present insights through adaptive charts on an extensible report canvas. The presentation concluded with reflections on AI's potential to enable policy analysis that is more comprehensive, accurate, and accessible, balanced against challenges as AI transforms society through changing income patterns and creating new demands for policy research aligned with societal values.
 
 ## Looking ahead
 
-The event demonstrated PolicyEngine's technical capabilities and growing adoption across policy research, think tanks, and government. With continued support from the Nuffield Foundation and integration of AI technologies, PolicyEngine aims to expand access to rigorous policy analysis while maintaining accuracy and transparency in its modelling approach.
+The event demonstrated PolicyEngine's technical capabilities and growing adoption across policy research, think tanks, and government. With continued support from the Nuffield Foundation and integration of AI technologies, PolicyEngine aims to expand access to policy analysis while maintaining accuracy and transparency in its modelling approach.
