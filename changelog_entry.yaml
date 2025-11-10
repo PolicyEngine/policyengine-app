@@ -1,8 +1,4 @@
 - bump: patch
   changes:
-    changed:
-      - Updated two-child limit post with primary sources from IFS, IPPR, and Resolution Foundation
-      - Added specific years for all cost estimates
-      - Replaced secondary news links with direct links to research organisations
-      - Added appendix table comparing year-by-year cost estimates across organisations
-      - Corrected IFS estimates based on their October 2024 report showing £2.5bn for two-child limit removal alone
+    added:
+      - Added blog post: "PolicyEngine 2.0 event report: The future of public policy analysis"

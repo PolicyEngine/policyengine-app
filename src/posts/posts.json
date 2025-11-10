@@ -1,5 +1,14 @@
 [
   {
+    "title": "PolicyEngine London event 2025",
+    "description": "PolicyEngine hosted an event in London that presented new updates and capabilities, real-world policy research applications, local area modelling, and how to use AI in policy research.",
+    "date": "2025-11-10",
+    "tags": ["uk", "event", "featured"],
+    "filename": "policyengine-2-event-report.md",
+    "image": "2025-london-event.jpeg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "Two-child limit calculator",
     "description": "Explore policy reforms to the two-child benefit limit and their impacts on households, government spending, and child poverty.",
