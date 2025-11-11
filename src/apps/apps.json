@@ -21,6 +21,13 @@
     "tags": ["uk", "featured", "policy"]
   },
   {
+    "title": "UK public services spending analysis",
+    "description": "Explore how public services spending varies across demographic groups and regions in the UK, including NHS healthcare, education, and transport subsidies",
+    "url": "https://uk-public-services-imputation.vercel.app/",
+    "slug": "public-services-spending",
+    "tags": ["uk", "featured", "policy"]
+  },
+  {
     "title": "Rhode Island Child Tax Credit calculator",
     "description": "Interactive calculator for estimating Rhode Island Child Tax Credit benefits",
     "url": "https://frontend-neon-seven.vercel.app/",

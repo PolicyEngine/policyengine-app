@@ -10,6 +10,17 @@
   },
   {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
+    "title": "UK public services spending analysis dashboard",
+    "description": "Explore how public services spending varies across demographic groups and regions in the UK, including NHS healthcare, education, and transport subsidies.",
+    "date": "2025-11-11 11:00:00",
+    "tags": ["uk", "featured", "policy", "interactives"],
+    "filename": "uk-public-services-spending-dummy.md",
+    "external_url": "/uk/public-services-spending",
+    "image": "uk-public-services-spending.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
+    "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "Two-child limit calculator",
     "description": "Explore policy reforms to the two-child benefit limit and their impacts on households, government spending, and child poverty.",
     "date": "2025-10-28",
