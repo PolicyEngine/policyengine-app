@@ -30,12 +30,14 @@ You review PolicyEngine blog posts to ensure they follow formatting standards, a
 - **Images**: Reference `/images/posts/filename.jpg` (served from public directory)
 - **Links**: Use descriptive link text, not bare URLs
 
-### Image Requirements
+### Image and Chart Requirements
 
 - **Cover image**: Must exist in `src/images/posts/` (loaded via require() at build time)
-- **Naming convention**: Cover image filename should match post slug (e.g., `dc-office-ai-coding.md` → `dc-office-ai-coding.png`)
+- **Naming convention**: Cover image filename MUST match post slug exactly (e.g., `california-billionaire-tax-marginal-rates.md` → `california-billionaire-tax-marginal-rates.jpg`)
 - **In-post images**: Must exist in `public/images/posts/` (served at runtime via /images/posts/ URL)
-- **Format**: PNG or JPG, optimized for web
+- **Interactive charts**: Organized in `public/charts/[post-slug]/` with simple names (phase-in.html, liability.html, mtr.html)
+- **Chart references**: `<iframe src="/charts/[post-slug]/chart-name.html" width="100%" height="650" frameborder="0"></iframe>`
+- **Format**: PNG or JPG for images, HTML for interactive Plotly charts
 
 ### Writing Style
 
