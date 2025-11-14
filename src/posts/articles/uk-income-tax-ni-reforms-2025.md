@@ -414,7 +414,7 @@ Figure 4 shows that 63% of the population would see income gains from reducing t
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 5 shows that 74% of the population would see income changes from increasing the basic and higher income tax rates. Across all income deciles, less than 0.1% of the population gains more than 5%, 26% gain less than 5%, 64% see no change, and 10% lose more than 5%.
+Figure 5 shows that 74% of the population would experience income decreases from increasing the basic and higher income tax rates. Overall, 26% see no change, 64% lose less than 5%, and 10% lose more than 5%. The impact varies by income level, with higher-income deciles showing larger shares of people losing more than 5%.
 
 **Figure 5: Population share by income change from basic and higher rate income tax increase, 2026-27**
 
@@ -425,10 +425,10 @@ Figure 5 shows that 74% of the population would see income changes from increasi
       "name": "Gain more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#2C6496"},
-      "text": ["", "6%", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
       "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>"
@@ -437,10 +437,10 @@ Figure 5 shows that 74% of the population would see income changes from increasi
       "name": "Gain less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [26, 0, 10, 13, 11, 15, 19, 26, 35, 47, 0],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#C5D3E8"},
-      "text": ["26%", "", "10%", "13%", "11%", "15%", "19%", "26%", "35%", "47%", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
       "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>"
@@ -449,10 +449,10 @@ Figure 5 shows that 74% of the population would see income changes from increasi
       "name": "No change",
       "type": "bar",
       "orientation": "h",
-      "x": [64, 63, 74, 72, 80, 79, 77, 67, 62, 49, 77],
+      "x": [26, 6, 10, 13, 11, 15, 19, 26, 35, 47, 77],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#F0F0F0"},
-      "text": ["64%", "63%", "74%", "72%", "80%", "79%", "77%", "67%", "62%", "49%", "77%"],
+      "text": ["26%", "6%", "10%", "13%", "11%", "15%", "19%", "26%", "35%", "47%", "77%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
       "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>"
@@ -461,10 +461,10 @@ Figure 5 shows that 74% of the population would see income changes from increasi
       "name": "Loss less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19],
+      "x": [64, 63, 74, 72, 80, 79, 77, 67, 62, 49, 19],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#A0A0A0"},
-      "text": ["", "", "", "", "", "", "", "", "", "", "19%"],
+      "text": ["64%", "63%", "74%", "72%", "80%", "79%", "77%", "67%", "62%", "49%", "19%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
       "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>"
@@ -577,10 +577,10 @@ Figure 6 shows that 80% of the population would see income decreases from extend
       "name": "Gain less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 7, 0, 0, 0, 8, 14, 26, 27, 40, 0],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#C5D3E8"},
-      "text": ["", "7%", "", "", "", "8%", "14%", "26%", "27%", "40%", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
       "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>"
@@ -589,10 +589,10 @@ Figure 6 shows that 80% of the population would see income decreases from extend
       "name": "No change",
       "type": "bar",
       "orientation": "h",
-      "x": [20, 90, 96, 92, 92, 90, 84, 71, 70, 58, 72],
+      "x": [20, 7, 1, 4, 4, 8, 14, 26, 27, 40, 72],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#F0F0F0"},
-      "text": ["20%", "90%", "96%", "92%", "92%", "90%", "84%", "71%", "70%", "58%", "72%"],
+      "text": ["20%", "7%", "", "", "", "8%", "14%", "26%", "27%", "40%", "72%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
       "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>"
@@ -601,10 +601,10 @@ Figure 6 shows that 80% of the population would see income decreases from extend
       "name": "Loss less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [77, 0, 4, 8, 8, 2, 2, 3, 3, 2, 27],
+      "x": [77, 90, 96, 92, 92, 90, 84, 71, 70, 58, 27],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#A0A0A0"},
-      "text": ["77%", "", "", "8%", "8%", "", "", "", "", "", "27%"],
+      "text": ["77%", "90%", "96%", "92%", "92%", "90%", "84%", "71%", "70%", "58%", "27%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
       "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>"
@@ -613,7 +613,7 @@ Figure 6 shows that 80% of the population would see income decreases from extend
       "name": "Loss more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      "x": [3, 3, 3, 4, 4, 2, 2, 3, 3, 2, 1],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#616161"},
       "text": ["3%", "3%", "", "", "", "", "", "", "", "", ""],
@@ -706,7 +706,7 @@ Table 2 shows the change in overall poverty rate for each reform in 2026-27. Red
 
 ## Inequality impact
 
-The three reforms show minimal change in the Gini index, with the National Insurance rate reduction producing a [0.1% increase](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94906&region=uk&timePeriod=2026&baseline=1), the [income tax increase producing a 0.3% decrease](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94910&region=uk&timePeriod=2026&baseline=1), and the [threshold freeze extension](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) having no impact on income inequality.
+The three reforms show minimal change in the Gini index, with the National Insurance rate reduction producing a [0.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) increase, the income tax increase producing a [0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94910&region=uk&timePeriod=2026&baseline=1) decrease, and the threshold freeze extension having [no impact](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) on income inequality.
 
 ## Conclusion
 
