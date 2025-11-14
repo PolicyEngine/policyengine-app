@@ -1,21 +1,23 @@
 ## Introduction
 
-Chancellor Rachel Reeves [submitted](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) plans to the Office for Budget Responsibility involving three potential tax reforms: [increasing](https://www.thetimes.com/uk/politics/article/rachel-reeves-ditches-tax-raid-doctors-lawyers-f8hbbn7s3) the basic rate of income tax from 20% to 22%, reducing National Insurance contributions from 8% to 6%, and extending the income tax threshold freeze to 2029-30. The first two reforms would shift the tax burden from workers to groups not subject to National Insurance, including pensioners and landlords, while the threshold freeze would raise revenue through fiscal drag as inflation pushes more income into higher tax brackets.
+Chancellor Rachel Reeves [submitted](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) three potential tax reform options to the Office for Budget Responsibility for assessment. The options [included](https://www.thetimes.com/uk/politics/article/rachel-reeves-ditches-tax-raid-doctors-lawyers-f8hbbn7s3) increasing the basic and higher rates of income tax by 2 percentage points (from 20% to 22% and from 40% to 42%), reducing National Insurance contributions from 8% to 6%, and extending the income tax threshold freeze to 2029-30. The first two reforms would shift the tax burden from workers to groups not subject to National Insurance, including pensioners and landlords, while the threshold freeze would raise revenue through fiscal drag as inflation pushes more income into higher tax brackets.
 
-This analysis examines each reform using PolicyEngine's microsimulation model to assess impacts on government revenue, household finances, and poverty rates. We model the reforms individually to understand their effects on different income groups and the overall economy.
+This analysis examines each reform option using PolicyEngine's microsimulation model to assess their potential impacts on government revenue, household finances, and poverty rates. We model the reforms individually to understand their effects on different income groups and the overall economy.
 
 ## Budgetary impact
 
-Table 1 shows the budgetary impact of each reform across fiscal years 2026-27 through 2030-31. Reducing the National Insurance rate from 8% to 6% would cost [£11.7 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) in 2026-27, while increasing the income tax rate from 20% to 22% would raise [£14.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94361&region=uk&timePeriod=2026&baseline=1) in 2026-27. Extending the threshold freeze to 2029-30 would raise [£3.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29, when thresholds would otherwise be unfrozen after the existing freeze through 2027-28. Combined, all three reforms would raise [£37.7 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.budgetaryImpact&reform=94908&region=uk&timePeriod=2026&baseline=1&simYears=5) from 2026-27 to 2030-31.
+Table 1 shows the budgetary impact of each reform across fiscal years 2026-27 through 2029-30. Reducing the National Insurance rate from 8% to 6% would cost [£11.7 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) in 2026-27, while increasing the basic and higher income tax rates by 2 percentage points would raise [£18.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) in 2026-27. Extending the threshold freeze to 2029-30 would raise [£3.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29, when thresholds would otherwise be unfrozen after the existing freeze through 2027-28.
 
 **Table 1: Budgetary impact by reform (£ billions)**
 
-| Reform                           | 2026-27                                                                                                                                 | 2027-28 | 2028-29                                                                                                                               | 2029-30 | 2030-31 | 2026-31                                                                                                                                           |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NI rate reduction (8% to 6%)     | [-11.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) | -12.0   | -12.3                                                                                                                                 | -12.7   | -13.1   | -61.8                                                                                                                                             |
-| Income tax increase (20% to 22%) | [14.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94361&region=uk&timePeriod=2026&baseline=1)  | 14.9    | 15.4                                                                                                                                  | 15.9    | 16.5    | 77.3                                                                                                                                              |
-| Threshold freeze extension       | 0.0                                                                                                                                     | 0.0     | [3.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) | 7.2     | 11.0    | 22.0                                                                                                                                              |
-| Combined                         | 2.8                                                                                                                                     | 3.0     | 6.6                                                                                                                                   | 10.5    | 14.7    | [37.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.budgetaryImpact&reform=94908&region=uk&timePeriod=2026&baseline=1&simYears=5) |
+| Reform                                           | 2026-27                                                                                                                                 | 2027-28 | 2028-29                                                                                                                               | 2029-30 |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| NI rate reduction (8% to 6%)                     | [-11.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) | -12.0   | -12.3                                                                                                                                 | -12.7   |
+| Income tax increase (basic and higher rates +2pp) | [18.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1)  | 19.3    | 19.9                                                                                                                                  | 20.6    |
+| Threshold freeze extension                       | 0.0                                                                                                                                     | 0.0     | [3.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) | 7.2     |
+| Combined                                         | [6.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.budgetaryImpact&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false&simYears=5)                                                                                                                                     | 7.3     | 11.3                                                                                                                                  | 15.5    |
+
+These reforms were designed to address an estimated [£30 billion](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) gap in public finances following a downgrade in productivity forecasts by the Office for Budget Responsibility. The combined package of income tax increases and National Insurance reductions could have raised £6.9 billion in 2026-27, rising to £15.5 billion by 2029-30, while the threshold freeze extension would have contributed additional revenue in later years toward closing this fiscal gap.
 
 ## Distributional impact
 
@@ -102,18 +104,18 @@ Figure 1 shows the relative change in household income by income decile from red
 }
 ```
 
-### Income tax rate increase (20% to 22%)
+### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 2 shows the relative change in household income by income decile from increasing the income tax rate from 20% to 22% in 2026-27. All income deciles experience decreases in household income, with deciles 7, 8, and 9 seeing the largest reductions of 1.2% to 1.3%, while the lowest income decile decreases by 0.2%.
+Figure 2 shows the relative change in household income by income decile from increasing the basic and higher income tax rates by 2 percentage points in 2026-27. All income deciles experience decreases in household income, with deciles 8 and 9 seeing the largest reductions of 1.5% to 1.6%, while the lowest income decile decreases by 0.2%.
 
-**Figure 2: Change in household income by income decile from income tax rate increase, 2026-27**
+**Figure 2: Change in household income by income decile from basic and higher rate income tax increase, 2026-27**
 
 ```plotly
 {
   "data": [
     {
       "x": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      "y": [-0.002, -0.004, -0.004, -0.006, -0.008, -0.010, -0.012, -0.013, -0.013, -0.008],
+      "y": [-0.002, -0.004, -0.004, -0.006, -0.009, -0.011, -0.013, -0.015, -0.016, -0.015],
       "type": "bar",
       "marker": {
         "color": "#616161",
@@ -122,7 +124,7 @@ Figure 2 shows the relative change in household income by income decile from inc
         }
       },
       "hovertemplate": "Decile %{x}<br>Change: %{y:.1%}<extra></extra>",
-      "text": ["-0.2%", "-0.4%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.3%", "-1.3%", "-0.8%"],
+      "text": ["-0.2%", "-0.4%", "-0.4%", "-0.6%", "-0.9%", "-1.1%", "-1.3%", "-1.5%", "-1.6%", "-1.5%"],
       "textposition": "inside",
       "textfont": {
         "family": "Roboto Serif",
@@ -410,11 +412,11 @@ Figure 4 shows that 63% of the population would see income gains from reducing t
 }
 ```
 
-### Income tax rate increase (20% to 22%)
+### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 5 shows that 6% of the population would see income decreases from increasing the income tax rate. Across all income deciles, less than 0.1% of the population gains more than 5%, while 26% gain less than 5%, 68% see no change, and 6% lose more than 5%.
+Figure 5 shows that 74% of the population would see income changes from increasing the basic and higher income tax rates. Across all income deciles, less than 0.1% of the population gains more than 5%, 26% gain less than 5%, 64% see no change, and 10% lose more than 5%.
 
-**Figure 5: Population share by income change from income tax rate increase, 2026-27**
+**Figure 5: Population share by income change from basic and higher rate income tax increase, 2026-27**
 
 ```plotly
 {
@@ -447,10 +449,10 @@ Figure 5 shows that 6% of the population would see income decreases from increas
       "name": "No change",
       "type": "bar",
       "orientation": "h",
-      "x": [68, 86, 81, 77, 81, 79, 77, 68, 62, 49, 77],
+      "x": [64, 63, 74, 72, 80, 79, 77, 67, 62, 49, 77],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#F0F0F0"},
-      "text": ["68%", "86%", "81%", "77%", "81%", "79%", "77%", "68%", "62%", "49%", "77%"],
+      "text": ["64%", "63%", "74%", "72%", "80%", "79%", "77%", "67%", "62%", "49%", "77%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
       "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>"
@@ -459,7 +461,7 @@ Figure 5 shows that 6% of the population would see income decreases from increas
       "name": "Loss less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 19],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#A0A0A0"},
       "text": ["", "", "", "", "", "", "", "", "", "", "19%"],
@@ -471,10 +473,10 @@ Figure 5 shows that 6% of the population would see income decreases from increas
       "name": "Loss more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [6, 8, 9, 9, 8, 6, 4, 6, 3, 4, 4],
+      "x": [10, 31, 16, 15, 9, 6, 4, 6, 3, 4, 4],
       "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       "marker": {"color": "#616161"},
-      "text": ["6%", "8%", "9%", "9%", "8%", "6%", "", "6%", "", "", ""],
+      "text": ["10%", "31%", "16%", "15%", "9%", "6%", "", "6%", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
       "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>"
@@ -692,20 +694,20 @@ Figure 6 shows that 80% of the population would see income decreases from extend
 
 ## Poverty impact
 
-Table 2 shows the change in overall poverty rate for each reform in 2026-27. Reducing the National Insurance rate from 8% to 6% would reduce the overall poverty rate by [0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) in 2026-27. Increasing the income tax rate from 20% to 22% would raise the overall poverty rate by [1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94361&region=uk&timePeriod=2026&baseline=1) in 2026-27. Extending the threshold freeze to 2029-30 would raise the overall poverty rate by [0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29.
+Table 2 shows the change in overall poverty rate for each reform in 2026-27. Reducing the National Insurance rate from 8% to 6% would reduce the overall poverty rate by [0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) in 2026-27. Increasing the basic and higher income tax rates by 2 percentage points would raise the overall poverty rate by [1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94910&region=uk&timePeriod=2026&baseline=1) in 2026-27. Extending the threshold freeze to 2029-30 would raise the overall poverty rate by [0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29.
 
 **Table 2: Poverty impact by reform**
 
-| Reform                           | Change in poverty rate |
-| -------------------------------- | ---------------------- |
-| NI rate reduction (8% to 6%)     | -0.2%                  |
-| Income tax increase (20% to 22%) | 1.7%                   |
-| Threshold freeze extension       | 0.3%                   |
+| Reform                                           | Change in poverty rate |
+| ------------------------------------------------ | ---------------------- |
+| NI rate reduction (8% to 6%)                     | -0.2%                  |
+| Income tax increase (basic and higher rates +2pp) | 1.7%                   |
+| Threshold freeze extension                       | 0.3%                   |
 
 ## Inequality impact
 
-The three reforms show no substantial change in the Gini index, with the National Insurance rate reduction producing a [0.1% increase](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) while the [income tax increase](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94361&region=uk&timePeriod=2026&baseline=1) and [threshold freeze extension](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) have no impact on income inequality.
+The three reforms show minimal change in the Gini index, with the National Insurance rate reduction producing a [0.1% increase](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94906&region=uk&timePeriod=2026&baseline=1), the [income tax increase producing a 0.3% decrease](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94910&region=uk&timePeriod=2026&baseline=1), and the [threshold freeze extension](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) having no impact on income inequality.
 
 ## Conclusion
 
-Increasing the basic income tax rate from 20% to 22% would raise £14.5 billion in 2026-27 but increase poverty by 1.7%, while reducing National Insurance from 8% to 6% would cost £11.7 billion and reduce poverty by 0.2%. Extending the threshold freeze to 2029-30 would raise £3.5 billion in 2028-29 and increase poverty by 0.3%. Combined, the three reforms would raise £37.7 billion from 2026-27 to 2030-31.
+Increasing the basic and higher income tax rates by 2 percentage points would raise £18.6 billion in 2026-27 but increase poverty by 1.7% and reduce the Gini index by 0.3%, while reducing National Insurance from 8% to 6% would cost £11.7 billion and reduce poverty by 0.2%. Extending the threshold freeze to 2029-30 would raise £3.5 billion in 2028-29 and increase poverty by 0.3%.
