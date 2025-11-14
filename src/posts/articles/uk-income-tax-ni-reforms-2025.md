@@ -10,12 +10,12 @@ Table 1 shows the budgetary impact of each reform across fiscal years 2026-27 th
 
 **Table 1: Budgetary impact by reform (£ billions)**
 
-| Reform                                           | 2026-27                                                                                                                                 | 2027-28 | 2028-29                                                                                                                               | 2029-30 |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| NI rate reduction (8% to 6%)                     | [-11.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) | -12.0   | -12.3                                                                                                                                 | -12.7   |
-| Income tax increase (basic and higher rates +2pp) | [18.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1)  | 19.3    | 19.9                                                                                                                                  | 20.6    |
-| Threshold freeze extension                       | 0.0                                                                                                                                     | 0.0     | [3.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) | 7.2     |
-| Combined                                         | [6.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.budgetaryImpact&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false&simYears=5)                                                                                                                                     | 7.3     | 11.3                                                                                                                                  | 15.5    |
+| Reform                                            | 2026-27                                                                                                                                                                    | 2027-28 | 2028-29                                                                                                                               | 2029-30 |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| NI rate reduction (8% to 6%)                      | [-11.7](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1)                                    | -12.0   | -12.3                                                                                                                                 | -12.7   |
+| Income tax increase (basic and higher rates +2pp) | [18.6](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1)                                     | 19.3    | 19.9                                                                                                                                  | 20.6    |
+| Threshold freeze extension                        | 0.0                                                                                                                                                                        | 0.0     | [3.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) | 7.2     |
+| Combined                                          | [6.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.budgetaryImpact&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false&simYears=5) | 7.3     | 11.3                                                                                                                                  | 15.5    |
 
 These reforms were designed to address an estimated [£30 billion](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) gap in public finances following a downgrade in productivity forecasts by the Office for Budget Responsibility. The combined package of income tax increases and National Insurance reductions could have raised £6.9 billion in 2026-27, rising to £15.5 billion by 2029-30, while the threshold freeze extension would have contributed additional revenue in later years toward closing this fiscal gap.
 
@@ -698,11 +698,11 @@ Table 2 shows the change in overall poverty rate for each reform in 2026-27. Red
 
 **Table 2: Poverty impact by reform**
 
-| Reform                                           | Change in poverty rate |
-| ------------------------------------------------ | ---------------------- |
-| NI rate reduction (8% to 6%)                     | -0.2%                  |
+| Reform                                            | Change in poverty rate |
+| ------------------------------------------------- | ---------------------- |
+| NI rate reduction (8% to 6%)                      | -0.2%                  |
 | Income tax increase (basic and higher rates +2pp) | 1.7%                   |
-| Threshold freeze extension                       | 0.3%                   |
+| Threshold freeze extension                        | 0.3%                   |
 
 ## Inequality impact
 
