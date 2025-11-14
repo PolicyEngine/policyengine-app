@@ -412,7 +412,7 @@ Figure 4 shows that 63% of the population would see income gains from reducing t
 
 ### Income tax rate increase (20% to 22%)
 
-Figure 5 shows that 74.1% of the population would see income decreases from increasing the income tax rate. Across all income deciles, less than 0.1% of the population gains income, while 26% experience gains less than 5%, 68% see no change, and 6% lose more than 5%.
+Figure 5 shows that 6% of the population would see income decreases from increasing the income tax rate. Across all income deciles, less than 0.1% of the population gains more than 5%, while 26% gain less than 5%, 68% see no change, and 6% lose more than 5%.
 
 **Figure 5: Population share by income change from income tax rate increase, 2026-27**
 
@@ -552,7 +552,7 @@ Figure 5 shows that 74.1% of the population would see income decreases from incr
 
 ### Threshold freeze extension
 
-Figure 6 shows that 79.7% of the population would see income decreases from extending the threshold freeze. Across all income deciles, less than 0.1% of the population gains income, while 20% see no change, 77% lose less than 5%, and 3% lose more than 5%.
+Figure 6 shows that 80% of the population would see income decreases from extending the threshold freeze. Across all income deciles, less than 0.1% of the population gains income, while 20% see no change, 77% lose less than 5%, and 3% lose more than 5%.
 
 **Figure 6: Population share by income change from threshold freeze extension, 2026-27**
 
