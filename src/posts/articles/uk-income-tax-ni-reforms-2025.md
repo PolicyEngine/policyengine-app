@@ -1,6 +1,6 @@
 ## Introduction
 
-Chancellor Rachel Reeves reportedly [submitted](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) three potential tax reform options to the Office for Budget Responsibility for assessment on November 6, though these options were [not included](https://www.thetimes.com/uk/politics/article/rachel-reeves-ditches-tax-raid-doctors-lawyers-f8hbbn7s3) in a subsequent submission on November 13, ahead of the November 26 Autumn Budget. The options included increasing the basic and higher rates of income tax by 2 percentage points (from 20% to 22% and from 40% to 42%), reducing National Insurance contributions from 8% to 6%, and extending the income tax threshold freeze to 2029-30. The first two reforms would shift the tax burden from workers to groups not subject to National Insurance, including pensioners and landlords, while the threshold freeze would raise revenue through fiscal drag as inflation pushes more income into higher tax brackets.
+Chancellor Rachel Reeves reportedly [submitted](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) three potential tax reform options to the Office for Budget Responsibility for assessment on November 6, though these options were [not included](https://www.thetimes.com/uk/politics/article/rachel-reeves-ditches-tax-raid-doctors-lawyers-f8hbbn7s3) in a subsequent submission on November 13, ahead of the November 26 Autumn Budget. The options included increasing the basic and higher rates of income tax by 2 percentage points (from 20% to 22% and from 40% to 42%), reducing National Insurance contributions from 8% to 6%, and extending the income tax threshold freeze to 2029-30. The income tax increase would raise revenue from all income taxpayers, while the National Insurance reduction would lower taxes only on workers (not pensioners or landlords). The threshold freeze would increase revenue as nominal income growth moves more income into higher tax brackets without corresponding threshold adjustments.
 
 This analysis examines each reform option using PolicyEngine's microsimulation model to assess their potential impacts on government revenue, household finances, and poverty rates. We model the reforms individually to understand their effects on different income groups and the overall economy.
 
@@ -17,7 +17,7 @@ Table 1 shows the budgetary impact of each reform across fiscal years 2026-27 th
 | Threshold freeze extension                        | 0.0                                                                                                                                                                        | 0.0     | [3.5](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) | 7.2     |
 | Combined                                          | [6.9](https://legacy.policyengine.org/uk/policy?focus=policyOutput.budgetaryImpact&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false&simYears=5) | 7.3     | 11.3                                                                                                                                  | 15.5    |
 
-These reforms were designed to address an estimated [£30 billion](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) gap in public finances following a downgrade in productivity forecasts by the Office for Budget Responsibility. The combined package of income tax increases and National Insurance reductions could have raised £6.9 billion in 2026-27, rising to £15.5 billion by 2029-30, while the threshold freeze extension would have contributed additional revenue in later years toward closing this fiscal gap.
+The options were submitted amid an estimated [£30 billion](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) gap in public finances following a downgrade in productivity forecasts by the Office for Budget Responsibility. The combined package of income tax increases and National Insurance reductions would have raised £6.9 billion in 2026-27, rising to £15.5 billion by 2029-30, while the threshold freeze extension would have contributed additional revenue in later years.
 
 ## Distributional impact
 
@@ -274,7 +274,7 @@ Figure 3 shows the relative change in household income by income decile from ext
 
 ### National Insurance rate reduction (8% to 6%)
 
-Figure 4 shows that 63% of the population would see income gains from reducing the National Insurance rate. Across all income deciles, 3% of the population gains more than 5% in income, while 60% gain less than 5%. The distribution of winners varies across deciles, with higher-income deciles showing larger shares of gainers.
+Figure 4 shows the distribution of income changes from reducing the National Insurance rate. Across the population, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change. The share gaining income ranges from 17% in the lowest decile to 85% in decile 9.
 
 **Figure 4: Population share by income change from National Insurance rate reduction, 2026-27**
 
@@ -414,7 +414,7 @@ Figure 4 shows that 63% of the population would see income gains from reducing t
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 5 shows that 74% of the population would experience income decreases from increasing the basic and higher income tax rates. Overall, 26% see no change, 64% lose less than 5%, and 10% lose more than 5%. The impact varies by income level, with higher-income deciles showing larger shares of people losing more than 5%.
+Figure 5 shows the distribution of income changes from increasing the basic and higher income tax rates. Across the population, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%. The share losing more than 5% ranges from 4% in the lowest decile to 31% in the highest decile.
 
 **Figure 5: Population share by income change from basic and higher rate income tax increase, 2026-27**
 
@@ -554,7 +554,7 @@ Figure 5 shows that 74% of the population would experience income decreases from
 
 ### Threshold freeze extension
 
-Figure 6 shows that 80% of the population would see income decreases from extending the threshold freeze. Across all income deciles, less than 0.1% of the population gains income, while 20% see no change, 77% lose less than 5%, and 3% lose more than 5%.
+Figure 6 shows the distribution of income changes from extending the threshold freeze. Across the population, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%. The share experiencing income loss ranges from 28% in the lowest decile to 93% in decile 9.
 
 **Figure 6: Population share by income change from threshold freeze extension, 2026-27**
 
