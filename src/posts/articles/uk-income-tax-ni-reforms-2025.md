@@ -707,9 +707,9 @@ Figure 5 shows the relative change in household income by income decile from eac
 
 ### National Insurance rate reduction (8% to 6%)
 
-Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from reducing the National Insurance rate. Across the population, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change. The share gaining income ranges from 17% in the lowest decile to 85% in decile 9.
+Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from reducing the National Insurance rate across fiscal years 2026-27 through 2029-30. Use the play button to animate between years or drag the slider to view a specific year. In 2026-27, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change.
 
-**Figure 6: Population share by income change from National Insurance rate reduction, 2026-27**
+**Figure 6: Population share by income change from National Insurance rate reduction, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -718,61 +718,66 @@ Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
       "name": "Gain more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [3, 3, 6, 6, 5, 3, 2, 3, 1, 2, 2],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [2, 1, 2, 3, 2, 3, 5, 6, 6, 3, 0, 3],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#2C6496"},
-      "text": ["3%", "", "6%", "6%", "5%", "", "", "", "", "", ""],
+      "text": ["2%", "", "2%", "3%", "2%", "3%", "5%", "6%", "6%", "3%", "", "3%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Gain less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [60, 79, 79, 73, 76, 71, 64, 57, 45, 38, 15],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [15, 38, 44, 57, 64, 71, 76, 73, 79, 79, 0, 60],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#C5D3E8"},
-      "text": ["60%", "79%", "79%", "73%", "76%", "71%", "64%", "57%", "45%", "38%", "15%"],
+      "text": ["15%", "38%", "44%", "57%", "64%", "71%", "76%", "73%", "79%", "79%", "", "60%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
-      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "No change",
       "type": "bar",
       "orientation": "h",
-      "x": [37, 18, 15, 21, 19, 26, 34, 40, 54, 60, 83],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [83, 61, 54, 40, 34, 26, 19, 21, 15, 18, 0, 37],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#F0F0F0"},
-      "text": ["37%", "18%", "15%", "21%", "19%", "26%", "34%", "40%", "54%", "60%", "83%"],
+      "text": ["83%", "61%", "54%", "40%", "34%", "26%", "19%", "21%", "15%", "18%", "", "37%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
-      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Loss less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#A0A0A0"},
-      "text": ["", "", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Loss more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#616161"},
-      "text": ["", "", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     }
   ],
   "layout": {
@@ -798,7 +803,9 @@ Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
       "tickfont": {
         "family": "Roboto Serif"
       },
-      "tickvals": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "type": "category",
+      "categoryorder": "array",
+      "categoryarray": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "showgrid": false
     },
     "height": 500,
@@ -828,6 +835,88 @@ Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
     },
     "plot_bgcolor": "#ebf2fa",
     "paper_bgcolor": "#ebf2fa",
+    "updatemenus": [
+      {
+        "buttons": [
+          {
+            "args": [null, {
+              "frame": {"duration": 2000, "redraw": false},
+              "fromcurrent": true,
+              "transition": {"duration": 1000, "easing": "quadratic-in-out"}
+            }],
+            "label": "▶ Play",
+            "method": "animate"
+          }
+        ],
+        "direction": "left",
+        "pad": {"r": 10, "t": 10},
+        "showactive": false,
+        "type": "buttons",
+        "x": 0.1,
+        "xanchor": "left",
+        "y": 1.18,
+        "yanchor": "middle"
+      }
+    ],
+    "sliders": [
+      {
+        "active": 0,
+        "yanchor": "middle",
+        "xanchor": "center",
+        "currentvalue": {
+          "font": {"size": 20, "family": "Roboto Serif"},
+          "prefix": "Year: ",
+          "visible": false,
+          "xanchor": "center"
+        },
+        "transition": {"duration": 800, "easing": "cubic-in-out"},
+        "pad": {"b": 15, "t": 15, "l": 100},
+        "len": 0.75,
+        "x": 0.5,
+        "y": 1.18,
+        "ticklen": 8,
+        "tickwidth": 2,
+        "tickcolor": "#333",
+        "steps": [
+          {
+            "args": [["2026-27"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2026-27",
+            "method": "animate"
+          },
+          {
+            "args": [["2027-28"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2027-28",
+            "method": "animate"
+          },
+          {
+            "args": [["2028-29"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2028-29",
+            "method": "animate"
+          },
+          {
+            "args": [["2029-30"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2029-30",
+            "method": "animate"
+          }
+        ]
+      }
+    ],
     "images": [
       {
         "source": "/logo512.png",
@@ -841,15 +930,57 @@ Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
         "yanchor": "bottom"
       }
     ]
-  }
+  },
+  "frames": [
+    {
+      "name": "2026-27",
+      "data": [
+        {"x": [2, 1, 2, 3, 2, 3, 5, 6, 6, 3, 0, 3], "text": ["2%", "", "2%", "3%", "2%", "3%", "5%", "6%", "6%", "3%", "", "3%"]},
+        {"x": [15, 38, 44, 57, 64, 71, 76, 73, 79, 79, 0, 60], "text": ["15%", "38%", "44%", "57%", "64%", "71%", "76%", "73%", "79%", "79%", "", "60%"]},
+        {"x": [83, 61, 54, 40, 34, 26, 19, 21, 15, 18, 0, 37], "text": ["83%", "61%", "54%", "40%", "34%", "26%", "19%", "21%", "15%", "18%", "", "37%"]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]}
+      ]
+    },
+    {
+      "name": "2027-28",
+      "data": [
+        {"x": [2, 1, 2, 3, 2, 3, 6, 6, 6, 4, 0, 3], "text": ["2%", "", "2%", "3%", "2%", "3%", "6%", "6%", "6%", "4%", "", "3%"]},
+        {"x": [16, 40, 44, 57, 67, 69, 75, 73, 79, 78, 0, 60], "text": ["16%", "40%", "44%", "57%", "67%", "69%", "75%", "73%", "79%", "78%", "", "60%"]},
+        {"x": [82, 59, 54, 40, 31, 28, 19, 21, 15, 18, 0, 37], "text": ["82%", "59%", "54%", "40%", "31%", "28%", "19%", "21%", "15%", "18%", "", "37%"]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]}
+      ]
+    },
+    {
+      "name": "2028-29",
+      "data": [
+        {"x": [2, 1, 2, 3, 2, 3, 6, 7, 6, 4, 0, 4], "text": ["2%", "", "2%", "3%", "2%", "3%", "6%", "7%", "6%", "4%", "", "4%"]},
+        {"x": [15, 40, 44, 56, 65, 72, 75, 74, 77, 78, 0, 59], "text": ["15%", "40%", "44%", "56%", "65%", "72%", "75%", "74%", "77%", "78%", "", "59%"]},
+        {"x": [83, 59, 54, 41, 33, 25, 19, 19, 17, 18, 0, 37], "text": ["83%", "59%", "54%", "41%", "33%", "25%", "19%", "19%", "17%", "18%", "", "37%"]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]}
+      ]
+    },
+    {
+      "name": "2029-30",
+      "data": [
+        {"x": [2, 2, 2, 2, 4, 3, 7, 7, 6, 4, 0, 4], "text": ["2%", "2%", "2%", "2%", "4%", "3%", "7%", "7%", "6%", "4%", "", "4%"]},
+        {"x": [15, 38, 45, 58, 63, 72, 74, 74, 77, 78, 0, 59], "text": ["15%", "38%", "45%", "58%", "63%", "72%", "74%", "74%", "77%", "78%", "", "59%"]},
+        {"x": [83, 60, 53, 40, 33, 25, 19, 19, 17, 18, 0, 37], "text": ["83%", "60%", "53%", "40%", "33%", "25%", "19%", "19%", "17%", "18%", "", "37%"]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]}
+      ]
+    }
+  ]
 }
 ```
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from increasing the basic and higher income tax rates. Across the population, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%. The share losing more than 5% ranges from 4% in the lowest decile to 31% in the highest decile.
+Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from increasing the basic and higher income tax rates across fiscal years 2026-27 through 2029-30. Use the play button to animate between years or drag the slider to view a specific year. In 2026-27, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%.
 
-**Figure 7: Population share by income change from basic and higher rate income tax increase, 2026-27**
+**Figure 7: Population share by income change from basic and higher rate income tax increase, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -858,61 +989,66 @@ Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
       "name": "Gain more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#2C6496"},
-      "text": ["", "", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Gain less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#C5D3E8"},
-      "text": ["", "", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
-      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "No change",
       "type": "bar",
       "orientation": "h",
-      "x": [26, 6, 10, 13, 11, 15, 19, 26, 35, 47, 77],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [77, 47, 35, 26, 19, 15, 11, 13, 10, 6, 0, 26],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#F0F0F0"},
-      "text": ["26%", "6%", "10%", "13%", "11%", "15%", "19%", "26%", "35%", "47%", "77%"],
+      "text": ["77%", "47%", "35%", "26%", "19%", "15%", "11%", "13%", "10%", "6%", "", "26%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
-      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Loss less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [64, 63, 74, 72, 80, 79, 77, 67, 62, 49, 19],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [19, 49, 62, 68, 77, 79, 80, 72, 74, 63, 0, 64],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#A0A0A0"},
-      "text": ["64%", "63%", "74%", "72%", "80%", "79%", "77%", "67%", "62%", "49%", "19%"],
+      "text": ["19%", "49%", "62%", "68%", "77%", "79%", "80%", "72%", "74%", "63%", "", "64%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Loss more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [10, 31, 16, 15, 9, 6, 4, 6, 3, 4, 4],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [4, 4, 3, 6, 4, 6, 9, 15, 16, 31, 0, 10],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#616161"},
-      "text": ["10%", "31%", "16%", "15%", "9%", "6%", "", "6%", "", "", ""],
+      "text": ["4%", "4%", "3%", "6%", "4%", "6%", "9%", "15%", "16%", "31%", "", "10%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     }
   ],
   "layout": {
@@ -938,7 +1074,9 @@ Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
       "tickfont": {
         "family": "Roboto Serif"
       },
-      "tickvals": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "type": "category",
+      "categoryorder": "array",
+      "categoryarray": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "showgrid": false
     },
     "height": 500,
@@ -968,6 +1106,88 @@ Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
     },
     "plot_bgcolor": "#ebf2fa",
     "paper_bgcolor": "#ebf2fa",
+    "updatemenus": [
+      {
+        "buttons": [
+          {
+            "args": [null, {
+              "frame": {"duration": 2000, "redraw": false},
+              "fromcurrent": true,
+              "transition": {"duration": 1000, "easing": "quadratic-in-out"}
+            }],
+            "label": "▶ Play",
+            "method": "animate"
+          }
+        ],
+        "direction": "left",
+        "pad": {"r": 10, "t": 10},
+        "showactive": false,
+        "type": "buttons",
+        "x": 0.1,
+        "xanchor": "left",
+        "y": 1.18,
+        "yanchor": "middle"
+      }
+    ],
+    "sliders": [
+      {
+        "active": 0,
+        "yanchor": "middle",
+        "xanchor": "center",
+        "currentvalue": {
+          "font": {"size": 20, "family": "Roboto Serif"},
+          "prefix": "Year: ",
+          "visible": false,
+          "xanchor": "center"
+        },
+        "transition": {"duration": 800, "easing": "cubic-in-out"},
+        "pad": {"b": 15, "t": 15, "l": 100},
+        "len": 0.75,
+        "x": 0.5,
+        "y": 1.18,
+        "ticklen": 8,
+        "tickwidth": 2,
+        "tickcolor": "#333",
+        "steps": [
+          {
+            "args": [["2026-27"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2026-27",
+            "method": "animate"
+          },
+          {
+            "args": [["2027-28"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2027-28",
+            "method": "animate"
+          },
+          {
+            "args": [["2028-29"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2028-29",
+            "method": "animate"
+          },
+          {
+            "args": [["2029-30"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2029-30",
+            "method": "animate"
+          }
+        ]
+      }
+    ],
     "images": [
       {
         "source": "/logo512.png",
@@ -981,15 +1201,57 @@ Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
         "yanchor": "bottom"
       }
     ]
-  }
+  },
+  "frames": [
+    {
+      "name": "2026-27",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [77, 47, 35, 26, 19, 15, 11, 13, 10, 6, 0, 26], "text": ["77%", "47%", "35%", "26%", "19%", "15%", "11%", "13%", "10%", "6%", "", "26%"]},
+        {"x": [19, 49, 62, 68, 77, 79, 80, 72, 74, 63, 0, 64], "text": ["19%", "49%", "62%", "68%", "77%", "79%", "80%", "72%", "74%", "63%", "", "64%"]},
+        {"x": [4, 4, 3, 6, 4, 6, 9, 15, 16, 31, 0, 10], "text": ["4%", "4%", "3%", "6%", "4%", "6%", "9%", "15%", "16%", "31%", "", "10%"]}
+      ]
+    },
+    {
+      "name": "2027-28",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [77, 47, 34, 27, 16, 16, 10, 13, 10, 6, 0, 26], "text": ["77%", "47%", "34%", "27%", "16%", "16%", "10%", "13%", "10%", "6%", "", "26%"]},
+        {"x": [19, 48, 62, 67, 79, 77, 80, 70, 73, 61, 0, 63], "text": ["19%", "48%", "62%", "67%", "79%", "77%", "80%", "70%", "73%", "61%", "", "63%"]},
+        {"x": [4, 5, 4, 6, 5, 7, 10, 17, 17, 33, 0, 11], "text": ["4%", "5%", "4%", "6%", "5%", "7%", "10%", "17%", "17%", "33%", "", "11%"]}
+      ]
+    },
+    {
+      "name": "2028-29",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [77, 46, 33, 28, 18, 13, 10, 13, 10, 6, 0, 25], "text": ["77%", "46%", "33%", "28%", "18%", "13%", "10%", "13%", "10%", "6%", "", "25%"]},
+        {"x": [19, 49, 63, 66, 77, 80, 79, 70, 71, 62, 0, 64], "text": ["19%", "49%", "63%", "66%", "77%", "80%", "79%", "70%", "71%", "62%", "", "64%"]},
+        {"x": [4, 5, 4, 6, 5, 7, 11, 17, 19, 32, 0, 11], "text": ["4%", "5%", "4%", "6%", "5%", "7%", "11%", "17%", "19%", "32%", "", "11%"]}
+      ]
+    },
+    {
+      "name": "2029-30",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [77, 45, 35, 26, 18, 13, 10, 13, 10, 6, 0, 25], "text": ["77%", "45%", "35%", "26%", "18%", "13%", "10%", "13%", "10%", "6%", "", "25%"]},
+        {"x": [19, 52, 59, 68, 76, 79, 78, 70, 71, 60, 0, 63], "text": ["19%", "52%", "59%", "68%", "76%", "79%", "78%", "70%", "71%", "60%", "", "63%"]},
+        {"x": [4, 3, 6, 6, 6, 8, 12, 17, 19, 34, 0, 12], "text": ["4%", "3%", "6%", "6%", "6%", "8%", "12%", "17%", "19%", "34%", "", "12%"]}
+      ]
+    }
+  ]
 }
 ```
 
 ### Threshold freeze extension
 
-Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the distribution of income changes from extending the threshold freeze. Across the population, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%. The share experiencing income loss ranges from 28% in the lowest decile to 93% in decile 9.
+Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the distribution of income changes from extending the threshold freeze across fiscal years 2026-27 through 2029-30. The threshold freeze extension only applies from 2028-29 onward (current law already freezes thresholds through 2027-28). Use the play button to animate between years or drag the slider to view a specific year. In 2028-29, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%.
 
-**Figure 8: Population share by income change from threshold freeze extension, 2028-29**
+**Figure 8: Population share by income change from threshold freeze extension, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -998,61 +1260,66 @@ Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
       "name": "Gain more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#2C6496"},
-      "text": ["", "", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Gain less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#C5D3E8"},
-      "text": ["", "", "", "", "", "", "", "", "", "", ""],
+      "text": ["", "", "", "", "", "", "", "", "", "", "", ""],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
-      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "No change",
       "type": "bar",
       "orientation": "h",
-      "x": [20, 7, 1, 4, 4, 8, 14, 26, 27, 40, 72],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [72, 40, 27, 26, 14, 8, 4, 4, 1, 7, 0, 20],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#F0F0F0"},
-      "text": ["20%", "7%", "", "", "", "8%", "14%", "26%", "27%", "40%", "72%"],
+      "text": ["72%", "40%", "27%", "26%", "14%", "8%", "4%", "4%", "1%", "7%", "", "20%"],
       "textposition": "inside",
       "textfont": {"color": "#333", "size": 11},
-      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Loss less than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [77, 90, 96, 92, 92, 90, 84, 71, 70, 58, 27],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [26, 58, 70, 71, 84, 90, 92, 92, 96, 90, 0, 77],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#A0A0A0"},
-      "text": ["77%", "90%", "96%", "92%", "92%", "90%", "84%", "71%", "70%", "58%", "27%"],
+      "text": ["26%", "58%", "70%", "71%", "84%", "90%", "92%", "92%", "96%", "90%", "", "77%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     },
     {
       "name": "Loss more than 5%",
       "type": "bar",
       "orientation": "h",
-      "x": [3, 3, 3, 4, 4, 2, 2, 3, 3, 2, 1],
-      "y": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "x": [2, 2, 3, 3, 2, 2, 4, 4, 3, 3, 0, 3],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "marker": {"color": "#616161"},
-      "text": ["3%", "3%", "", "", "", "", "", "", "", "", ""],
+      "text": ["2%", "2%", "3%", "3%", "2%", "2%", "4%", "4%", "3%", "3%", "", "3%"],
       "textposition": "inside",
       "textfont": {"color": "white", "size": 11},
-      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>"
+      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
     }
   ],
   "layout": {
@@ -1078,7 +1345,9 @@ Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
       "tickfont": {
         "family": "Roboto Serif"
       },
-      "tickvals": ["All", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      "type": "category",
+      "categoryorder": "array",
+      "categoryarray": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
       "showgrid": false
     },
     "height": 500,
@@ -1108,6 +1377,88 @@ Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
     },
     "plot_bgcolor": "#ebf2fa",
     "paper_bgcolor": "#ebf2fa",
+    "updatemenus": [
+      {
+        "buttons": [
+          {
+            "args": [null, {
+              "frame": {"duration": 2000, "redraw": false},
+              "fromcurrent": true,
+              "transition": {"duration": 1000, "easing": "quadratic-in-out"}
+            }],
+            "label": "▶ Play",
+            "method": "animate"
+          }
+        ],
+        "direction": "left",
+        "pad": {"r": 10, "t": 10},
+        "showactive": false,
+        "type": "buttons",
+        "x": 0.1,
+        "xanchor": "left",
+        "y": 1.18,
+        "yanchor": "middle"
+      }
+    ],
+    "sliders": [
+      {
+        "active": 2,
+        "yanchor": "middle",
+        "xanchor": "center",
+        "currentvalue": {
+          "font": {"size": 20, "family": "Roboto Serif"},
+          "prefix": "Year: ",
+          "visible": false,
+          "xanchor": "center"
+        },
+        "transition": {"duration": 800, "easing": "cubic-in-out"},
+        "pad": {"b": 15, "t": 15, "l": 100},
+        "len": 0.75,
+        "x": 0.5,
+        "y": 1.18,
+        "ticklen": 8,
+        "tickwidth": 2,
+        "tickcolor": "#333",
+        "steps": [
+          {
+            "args": [["2026-27"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2026-27",
+            "method": "animate"
+          },
+          {
+            "args": [["2027-28"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2027-28",
+            "method": "animate"
+          },
+          {
+            "args": [["2028-29"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2028-29",
+            "method": "animate"
+          },
+          {
+            "args": [["2029-30"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2029-30",
+            "method": "animate"
+          }
+        ]
+      }
+    ],
     "images": [
       {
         "source": "/logo512.png",
@@ -1121,7 +1472,320 @@ Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
         "yanchor": "bottom"
       }
     ]
-  }
+  },
+  "frames": [
+    {
+      "name": "2026-27",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 100], "text": ["100%", "100%", "100%", "100%", "100%", "100%", "100%", "100%", "100%", "100%", "", "100%"]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]}
+      ]
+    },
+    {
+      "name": "2027-28",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 100], "text": ["100%", "100%", "100%", "100%", "100%", "100%", "100%", "100%", "100%", "100%", "", "100%"]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]}
+      ]
+    },
+    {
+      "name": "2028-29",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [72, 40, 27, 26, 14, 8, 4, 4, 1, 7, 0, 20], "text": ["72%", "40%", "27%", "26%", "14%", "8%", "4%", "4%", "1%", "7%", "", "20%"]},
+        {"x": [26, 58, 70, 71, 84, 90, 92, 92, 96, 90, 0, 77], "text": ["26%", "58%", "70%", "71%", "84%", "90%", "92%", "92%", "96%", "90%", "", "77%"]},
+        {"x": [2, 2, 3, 3, 2, 2, 4, 4, 3, 3, 0, 3], "text": ["2%", "2%", "3%", "3%", "2%", "2%", "4%", "4%", "3%", "3%", "", "3%"]}
+      ]
+    },
+    {
+      "name": "2029-30",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [71, 35, 20, 16, 10, 4, 3, 2, 1, 4, 0, 17], "text": ["71%", "35%", "20%", "16%", "10%", "4%", "3%", "2%", "1%", "4%", "", "17%"]},
+        {"x": [27, 62, 75, 81, 86, 93, 92, 92, 94, 92, 0, 79], "text": ["27%", "62%", "75%", "81%", "86%", "93%", "92%", "92%", "94%", "92%", "", "79%"]},
+        {"x": [2, 3, 5, 3, 4, 3, 5, 6, 5, 4, 0, 4], "text": ["2%", "3%", "5%", "3%", "4%", "3%", "5%", "6%", "5%", "4%", "", "4%"]}
+      ]
+    }
+  ]
+}
+```
+
+### Combined reform impact
+
+Figure 9 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false) the distribution of income changes from the combined reform package (income tax increase, National Insurance reduction, and threshold freeze extension) across fiscal years 2026-27 through 2029-30. Use the play button to animate between years or drag the slider to view a specific year. In 2026-27, 1% gain more than 5%, 20% gain less than 5%, 36% experience no change, 39% lose less than 5%, and 4% lose more than 5%.
+
+**Figure 9: Population share by income change from combined reform, 2026-27 to 2029-30**
+
+```plotly
+{
+  "data": [
+    {
+      "name": "Gain more than 5%",
+      "type": "bar",
+      "orientation": "h",
+      "x": [0, 1, 1, 2, 0, 0, 1, 1, 0, 0, 0, 1],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
+      "marker": {"color": "#2C6496"},
+      "text": ["", "", "", "", "", "", "", "", "", "", "", "1%"],
+      "textposition": "inside",
+      "textfont": {"color": "white", "size": 11},
+      "hovertemplate": "%{y}<br>Gain more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
+    },
+    {
+      "name": "Gain less than 5%",
+      "type": "bar",
+      "orientation": "h",
+      "x": [9, 19, 17, 22, 25, 31, 29, 27, 19, 6, 0, 20],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
+      "marker": {"color": "#C5D3E8"},
+      "text": ["9%", "19%", "17%", "22%", "25%", "31%", "29%", "27%", "19%", "6%", "", "20%"],
+      "textposition": "inside",
+      "textfont": {"color": "#333", "size": 11},
+      "hovertemplate": "%{y}<br>Gain less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
+    },
+    {
+      "name": "No change",
+      "type": "bar",
+      "orientation": "h",
+      "x": [82, 57, 53, 44, 41, 29, 19, 15, 17, 4, 0, 36],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
+      "marker": {"color": "#F0F0F0"},
+      "text": ["82%", "57%", "53%", "44%", "41%", "29%", "19%", "15%", "17%", "4%", "", "36%"],
+      "textposition": "inside",
+      "textfont": {"color": "#333", "size": 11},
+      "hovertemplate": "%{y}<br>No change: %{x}%<extra></extra>",
+      "showlegend": true
+    },
+    {
+      "name": "Loss less than 5%",
+      "type": "bar",
+      "orientation": "h",
+      "x": [7, 20, 27, 30, 31, 36, 47, 51, 58, 78, 0, 39],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
+      "marker": {"color": "#A0A0A0"},
+      "text": ["7%", "20%", "27%", "30%", "31%", "36%", "47%", "51%", "58%", "78%", "", "39%"],
+      "textposition": "inside",
+      "textfont": {"color": "white", "size": 11},
+      "hovertemplate": "%{y}<br>Loss less than 5%: %{x}%<extra></extra>",
+      "showlegend": true
+    },
+    {
+      "name": "Loss more than 5%",
+      "type": "bar",
+      "orientation": "h",
+      "x": [2, 3, 2, 2, 3, 4, 4, 6, 6, 12, 0, 4],
+      "y": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
+      "marker": {"color": "#616161"},
+      "text": ["2%", "3%", "2%", "2%", "3%", "4%", "4%", "6%", "6%", "12%", "", "4%"],
+      "textposition": "inside",
+      "textfont": {"color": "white", "size": 11},
+      "hovertemplate": "%{y}<br>Loss more than 5%: %{x}%<extra></extra>",
+      "showlegend": true
+    }
+  ],
+  "layout": {
+    "barmode": "stack",
+    "xaxis": {
+      "title": "Population share",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "ticksuffix": "%",
+      "tickvals": [0, 20, 40, 60, 80, 100],
+      "range": [0, 105],
+      "showgrid": false
+    },
+    "yaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "type": "category",
+      "categoryorder": "array",
+      "categoryarray": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", "All"],
+      "showgrid": false
+    },
+    "height": 500,
+    "margin": {
+      "l": 80,
+      "r": 200,
+      "b": 80,
+      "t": 100,
+      "pad": 4
+    },
+    "legend": {
+      "x": 1.02,
+      "y": 0.5,
+      "xanchor": "left",
+      "yanchor": "middle",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 12
+      },
+      "title": {
+        "text": "Change in income",
+        "font": {
+          "family": "Roboto Serif",
+          "size": 13
+        }
+      }
+    },
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa",
+    "updatemenus": [
+      {
+        "buttons": [
+          {
+            "args": [null, {
+              "frame": {"duration": 2000, "redraw": false},
+              "fromcurrent": true,
+              "transition": {"duration": 1000, "easing": "quadratic-in-out"}
+            }],
+            "label": "▶ Play",
+            "method": "animate"
+          }
+        ],
+        "direction": "left",
+        "pad": {"r": 10, "t": 10},
+        "showactive": false,
+        "type": "buttons",
+        "x": 0.1,
+        "xanchor": "left",
+        "y": 1.18,
+        "yanchor": "middle"
+      }
+    ],
+    "sliders": [
+      {
+        "active": 0,
+        "yanchor": "middle",
+        "xanchor": "center",
+        "currentvalue": {
+          "font": {"size": 20, "family": "Roboto Serif"},
+          "prefix": "Year: ",
+          "visible": false,
+          "xanchor": "center"
+        },
+        "transition": {"duration": 800, "easing": "cubic-in-out"},
+        "pad": {"b": 15, "t": 15, "l": 100},
+        "len": 0.75,
+        "x": 0.5,
+        "y": 1.18,
+        "ticklen": 8,
+        "tickwidth": 2,
+        "tickcolor": "#333",
+        "steps": [
+          {
+            "args": [["2026-27"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2026-27",
+            "method": "animate"
+          },
+          {
+            "args": [["2027-28"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2027-28",
+            "method": "animate"
+          },
+          {
+            "args": [["2028-29"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2028-29",
+            "method": "animate"
+          },
+          {
+            "args": [["2029-30"], {
+              "frame": {"duration": 800, "redraw": false},
+              "mode": "immediate",
+              "transition": {"duration": 800}
+            }],
+            "label": "2029-30",
+            "method": "animate"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ]
+  },
+  "frames": [
+    {
+      "name": "2026-27",
+      "data": [
+        {"x": [0, 1, 1, 2, 0, 0, 1, 1, 0, 0, 0, 1], "text": ["", "", "", "", "", "", "", "", "", "", "", "1%"]},
+        {"x": [9, 19, 17, 22, 25, 31, 29, 27, 19, 6, 0, 20], "text": ["9%", "19%", "17%", "22%", "25%", "31%", "29%", "27%", "19%", "6%", "", "20%"]},
+        {"x": [82, 57, 53, 44, 41, 29, 19, 15, 17, 4, 0, 36], "text": ["82%", "57%", "53%", "44%", "41%", "29%", "19%", "15%", "17%", "4%", "", "36%"]},
+        {"x": [7, 20, 27, 30, 31, 36, 47, 51, 58, 78, 0, 39], "text": ["7%", "20%", "27%", "30%", "31%", "36%", "47%", "51%", "58%", "78%", "", "39%"]},
+        {"x": [2, 3, 2, 2, 3, 4, 4, 6, 6, 12, 0, 4], "text": ["2%", "3%", "2%", "2%", "3%", "4%", "4%", "6%", "6%", "12%", "", "4%"]}
+      ]
+    },
+    {
+      "name": "2027-28",
+      "data": [
+        {"x": [0, 1, 1, 2, 0, 0, 1, 1, 0, 0, 0, 1], "text": ["", "", "", "", "", "", "", "", "", "", "", "1%"]},
+        {"x": [10, 19, 17, 23, 26, 29, 28, 25, 19, 6, 0, 20], "text": ["10%", "19%", "17%", "23%", "26%", "29%", "28%", "25%", "19%", "6%", "", "20%"]},
+        {"x": [81, 57, 51, 44, 37, 30, 19, 16, 16, 4, 0, 35], "text": ["81%", "57%", "51%", "44%", "37%", "30%", "19%", "16%", "16%", "4%", "", "35%"]},
+        {"x": [7, 19, 29, 29, 34, 37, 48, 52, 58, 78, 0, 39], "text": ["7%", "19%", "29%", "29%", "34%", "37%", "48%", "52%", "58%", "78%", "", "39%"]},
+        {"x": [2, 4, 2, 2, 3, 4, 4, 6, 7, 12, 0, 5], "text": ["2%", "4%", "2%", "2%", "3%", "4%", "4%", "6%", "7%", "12%", "", "5%"]}
+      ]
+    },
+    {
+      "name": "2028-29",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [1, 4, 4, 7, 6, 7, 6, 8, 7, 4, 0, 6], "text": ["", "", "", "7%", "6%", "7%", "6%", "8%", "7%", "", "", "6%"]},
+        {"x": [74, 50, 36, 32, 20, 13, 7, 10, 3, 1, 0, 24], "text": ["74%", "50%", "36%", "32%", "20%", "13%", "7%", "10%", "3%", "", "", "24%"]},
+        {"x": [22, 41, 56, 56, 70, 75, 80, 74, 74, 79, 0, 63], "text": ["22%", "41%", "56%", "56%", "70%", "75%", "80%", "74%", "74%", "79%", "", "63%"]},
+        {"x": [3, 5, 4, 5, 4, 5, 7, 8, 16, 16, 0, 7], "text": ["3%", "5%", "4%", "5%", "4%", "5%", "7%", "8%", "16%", "16%", "", "7%"]}
+      ]
+    },
+    {
+      "name": "2029-30",
+      "data": [
+        {"x": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "text": ["", "", "", "", "", "", "", "", "", "", "", ""]},
+        {"x": [1, 4, 3, 5, 5, 6, 6, 8, 6, 4, 0, 5], "text": ["", "", "", "5%", "5%", "6%", "6%", "8%", "6%", "", "", "5%"]},
+        {"x": [71, 36, 21, 20, 11, 6, 3, 3, 1, 2, 0, 17], "text": ["71%", "36%", "21%", "20%", "11%", "6%", "3%", "3%", "", "", "", "17%"]},
+        {"x": [25, 56, 70, 70, 78, 81, 82, 76, 75, 72, 0, 69], "text": ["25%", "56%", "70%", "70%", "78%", "81%", "82%", "76%", "75%", "72%", "", "69%"]},
+        {"x": [3, 4, 6, 5, 6, 7, 9, 13, 18, 22, 0, 9], "text": ["3%", "4%", "6%", "5%", "6%", "7%", "9%", "13%", "18%", "22%", "", "9%"]}
+      ]
+    }
+  ]
 }
 ```
 
