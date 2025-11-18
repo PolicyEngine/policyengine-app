@@ -1131,10 +1131,10 @@ Table 1 shows the change in absolute before-housing-costs poverty rate for each 
 
 **Table 1: Poverty impact by reform**
 
-| Reform                                            | Year    | Change in poverty rate                                                                                                                      |
-| ------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| NI rate reduction (8% to 6%)                      | 2026-27 | [-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1)     |
-| Income tax increase (basic and higher rates +2pp) | 2026-27 | [+1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1)     |
+| Reform                                            | Year    | Change in poverty rate                                                                                                                  |
+| ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| NI rate reduction (8% to 6%)                      | 2026-27 | [-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) |
+| Income tax increase (basic and higher rates +2pp) | 2026-27 | [+1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) |
 | Threshold freeze extension                        | 2028-29 | [+0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) |
 
 ## Inequality impact
