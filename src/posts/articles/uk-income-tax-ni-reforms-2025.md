@@ -1127,15 +1127,15 @@ Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ## Poverty impact
 
-Table 1 shows the change in absolute before-housing-costs poverty rate for each reform. Reducing the National Insurance rate from 8% to 6% would reduce the overall poverty rate by [0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) in 2026-27. Increasing the basic and higher income tax rates by 2 percentage points would raise the overall poverty rate by [1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94910&region=uk&timePeriod=2026&baseline=1) in 2026-27. Extending the threshold freeze to 2029-30 would raise the overall poverty rate by [0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29 (current law already freezes thresholds until 2027-28).
+Table 1 shows the change in absolute before-housing-costs poverty rate for each reform. Reducing the National Insurance rate from 8% to 6% would reduce the overall poverty rate by [0.2pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) in 2026-27. Increasing the basic and higher income tax rates by 2 percentage points would raise the overall poverty rate by [1.7pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94910&region=uk&timePeriod=2026&baseline=1) in 2026-27. Extending the threshold freeze to 2029-30 would raise the overall poverty rate by [0.3pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29 (current law already freezes thresholds until 2027-28).
 
 **Table 1: Poverty impact by reform**
 
 | Reform                                            | Year    | Change in poverty rate                                                                                                                  |
 | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| NI rate reduction (8% to 6%)                      | 2026-27 | [-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) |
-| Income tax increase (basic and higher rates +2pp) | 2026-27 | [+1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) |
-| Threshold freeze extension                        | 2028-29 | [+0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) |
+| NI rate reduction (8% to 6%)                      | 2026-27 | [-0.2pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) |
+| Income tax increase (basic and higher rates +2pp) | 2026-27 | [+1.7pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) |
+| Threshold freeze extension                        | 2028-29 | [+0.3pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) |
 
 ## Inequality impact
 
@@ -1143,4 +1143,4 @@ The three reforms show minimal change in the Gini index, with the National Insur
 
 ## Conclusion
 
-Increasing the basic and higher income tax rates by 2 percentage points would raise £18.6 billion in 2026-27 but increase absolute before-housing-costs poverty by 1.7% and reduce the Gini index by 0.3%, while reducing National Insurance from 8% to 6% would cost £11.7 billion and reduce poverty by 0.2%. Extending the threshold freeze to 2029-30 would raise £3.5 billion in 2028-29 and increase poverty by 0.3%.
+Increasing the basic and higher income tax rates by 2 percentage points would raise £18.6 billion in 2026-27 but increase absolute before-housing-costs poverty by 1.7pp and reduce the Gini index by 0.3%, while reducing National Insurance from 8% to 6% would cost £11.7 billion and reduce poverty by 0.2pp. Extending the threshold freeze to 2029-30 would raise £3.5 billion in 2028-29 and increase poverty by 0.3pp.
