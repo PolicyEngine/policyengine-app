@@ -1,6 +1,6 @@
 ## Introduction
 
-The Times [reported](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) that Chancellor Rachel Reeves informed the Office for Budget Responsibility on November 6 that she planned to increase the basic and higher income tax rates by 2 percentage points (from 20% to 22% and from 40% to 42%), reduce National Insurance contributions from 8% to 6%, and extend the income tax threshold freeze to 2029-30. The Financial Times subsequently [reported](https://www.ft.com/content/6cbb46b1-c075-453b-a9f9-7eb1e9120d9b) that Reeves did not include the income tax and National Insurance changes in her November 13 submission to the OBR, ahead of the November 26 Autumn Budget. Together, the first two reforms would raise net revenue of £6.9 billion in 2026-27: workers would face partially offsetting changes (lower National Insurance, higher income tax), while pensioners and landlords would pay only the income tax increase. The threshold freeze would raise revenue through fiscal drag as inflation pushes more income into higher tax brackets.
+The Times [reported](https://www.thetimes.com/uk/politics/article/rachel-reeves-budget-watchdog-raise-income-tax-plan-sr2wd8mp7) that Chancellor Rachel Reeves informed the Office for Budget Responsibility on November 6 that she planned to increase the basic and higher income tax rates by 2 percentage points (from 20% to 22% and from 40% to 42%), reduce National Insurance contributions from 8% to 6%, and extend the income tax threshold freeze to 2029-30; current law already [freezes](https://www.gov.uk/government/publications/the-personal-allowance-and-basic-rate-limit-for-income-tax-and-certain-national-insurance-contributions-nics-thresholds-from-6-april-2026-to-5-apr/income-tax-personal-allowance-and-the-basic-rate-limit-and-certain-national-insurance-contributions-thresholds-from-6-april-2026-to-5-april-2028) thresholds until 2027-28. The Financial Times subsequently [reported](https://www.ft.com/content/6cbb46b1-c075-453b-a9f9-7eb1e9120d9b) that Reeves did not include the income tax and National Insurance changes in her November 13 submission to the OBR, ahead of the November 26 Autumn Budget. Together, the first two reforms would raise net revenue of £6.9 billion in 2026-27: workers would face partially offsetting changes (lower National Insurance, higher income tax), while pensioners and landlords would pay only the income tax increase. The threshold freeze would raise revenue through fiscal drag as inflation pushes more income into higher tax brackets.
 
 This analysis examines each reform option using PolicyEngine's microsimulation model to assess their potential impacts on government revenue, household finances, and poverty rates. We model the reforms individually to understand their effects on different income groups and the overall economy.
 
@@ -23,7 +23,7 @@ The Times [reported](https://www.thetimes.com/uk/politics/article/rachel-reeves-
 
 ### National Insurance rate reduction (8% to 6%)
 
-Figure 1 shows the relative change in household income by income decile from reducing the National Insurance rate from 8% to 6% in 2026-27. Higher-income deciles experience larger percentage increases, with deciles 8 and 9 each gaining 1.1% in household income, while the lowest income decile gains 0.1%.
+Figure 1 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the relative change in household income by income decile from reducing the National Insurance rate from 8% to 6% in 2026-27. Higher-income deciles experience larger percentage increases, with deciles 8 and 9 each gaining 1.1% in household income, while the lowest income decile gains 0.1%.
 
 **Figure 1: Change in household income by income decile from National Insurance rate reduction, 2026-27**
 
@@ -106,7 +106,7 @@ Figure 1 shows the relative change in household income by income decile from red
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 2 shows the relative change in household income by income decile from increasing the basic and higher income tax rates by 2 percentage points in 2026-27. All income deciles experience decreases in household income, with deciles 8 and 9 seeing the largest reductions of 1.5% to 1.6%, while the lowest income decile decreases by 0.2%.
+Figure 2 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the relative change in household income by income decile from increasing the basic and higher income tax rates by 2 percentage points in 2026-27. All income deciles experience decreases in household income, with deciles 8 and 9 seeing the largest reductions of 1.5% to 1.6%, while the lowest income decile decreases by 0.2%.
 
 **Figure 2: Change in household income by income decile from basic and higher rate income tax increase, 2026-27**
 
@@ -189,7 +189,7 @@ Figure 2 shows the relative change in household income by income decile from inc
 
 ### Threshold freeze extension
 
-Figure 3 shows the relative change in household income by income decile from extending the threshold freeze to 2029-30. All income deciles experience decreases in household income, with decile 9 seeing the largest reduction of 0.32%, while the lowest income decile decreases by 0.08%.
+Figure 3 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the relative change in household income by income decile from extending the threshold freeze to 2029-30. All income deciles experience decreases in household income, with decile 9 seeing the largest reduction of 0.32%, while the lowest income decile decreases by 0.08%.
 
 **Figure 3: Change in household income by income decile from threshold freeze extension, 2028-29**
 
@@ -274,7 +274,7 @@ Figure 3 shows the relative change in household income by income decile from ext
 
 ### National Insurance rate reduction (8% to 6%)
 
-Figure 4 shows the distribution of income changes from reducing the National Insurance rate. Across the population, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change. The share gaining income ranges from 17% in the lowest decile to 85% in decile 9.
+Figure 4 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from reducing the National Insurance rate. Across the population, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change. The share gaining income ranges from 17% in the lowest decile to 85% in decile 9.
 
 **Figure 4: Population share by income change from National Insurance rate reduction, 2026-27**
 
@@ -414,7 +414,7 @@ Figure 4 shows the distribution of income changes from reducing the National Ins
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 5 shows the distribution of income changes from increasing the basic and higher income tax rates. Across the population, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%. The share losing more than 5% ranges from 4% in the lowest decile to 31% in the highest decile.
+Figure 5 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from increasing the basic and higher income tax rates. Across the population, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%. The share losing more than 5% ranges from 4% in the lowest decile to 31% in the highest decile.
 
 **Figure 5: Population share by income change from basic and higher rate income tax increase, 2026-27**
 
@@ -554,9 +554,9 @@ Figure 5 shows the distribution of income changes from increasing the basic and 
 
 ### Threshold freeze extension
 
-Figure 6 shows the distribution of income changes from extending the threshold freeze. Across the population, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%. The share experiencing income loss ranges from 28% in the lowest decile to 93% in decile 9.
+Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the distribution of income changes from extending the threshold freeze. Across the population, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%. The share experiencing income loss ranges from 28% in the lowest decile to 93% in decile 9.
 
-**Figure 6: Population share by income change from threshold freeze extension, 2026-27**
+**Figure 6: Population share by income change from threshold freeze extension, 2028-29**
 
 ```plotly
 {
@@ -698,15 +698,15 @@ Table 2 shows the change in absolute before-housing-costs poverty rate for each 
 
 **Table 2: Poverty impact by reform**
 
-| Reform                                            | Year    | Change in poverty rate |
-| ------------------------------------------------- | ------- | ---------------------- |
-| NI rate reduction (8% to 6%)                      | 2026-27 | -0.2%                  |
-| Income tax increase (basic and higher rates +2pp) | 2026-27 | +1.7%                  |
-| Threshold freeze extension                        | 2028-29 | +0.3%                  |
+| Reform                                            | Year    | Change in poverty rate                                                                                                                      |
+| ------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| NI rate reduction (8% to 6%)                      | 2026-27 | [-0.2%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1)     |
+| Income tax increase (basic and higher rates +2pp) | 2026-27 | [+1.7%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1)     |
+| Threshold freeze extension                        | 2028-29 | [+0.3%](<(https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1)>) |
 
 ## Inequality impact
 
-The three reforms show minimal change in the Gini index, with the National Insurance rate reduction producing a [0.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) increase, the income tax increase producing a [0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94910&region=uk&timePeriod=2026&baseline=1) decrease, and the threshold freeze extension having [no impact](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) on income inequality.
+The three reforms show minimal change in the Gini index, with the National Insurance rate reduction producing a [0.1%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) increase in 2026-27, the income tax increase producing a [0.3%](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=94910&region=uk&timePeriod=2026&baseline=1) decrease in 2026-27, and the threshold freeze extension having [no impact](https://legacy.policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) on income inequality in 2028-29.
 
 ## Conclusion
 
