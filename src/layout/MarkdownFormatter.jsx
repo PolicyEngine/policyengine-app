@@ -166,6 +166,7 @@ export function PlotlyChartCode({ data, backgroundColor }) {
           margin: margins,
           autosize: true,
         })}
+        frames={plotlyData.frames || []}
         config={{
           displayModeBar: false,
           responsive: true,
