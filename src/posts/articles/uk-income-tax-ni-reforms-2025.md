@@ -1789,11 +1789,11 @@ Table 1 shows the change in absolute before-housing-costs poverty rate for each 
 
 **Table 1: Poverty impact by reform**
 
-| Reform                                            | Fiscal year | Change in poverty rate (pp)                                                                                                           |
-| ------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| NI rate reduction (8% to 6%)                      | 2026-27     | [0pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94906&region=uk&timePeriod=2026&baseline=1) |
+| Reform                                            | Fiscal year | Change in poverty rate (pp)                                                                                                              |
+| ------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| NI rate reduction (8% to 6%)                      | 2026-27     | [0pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=94906&region=uk&timePeriod=2026&baseline=1)      |
 | Income tax increase (basic and higher rates +2pp) | 2026-27     | [+0.2pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) |
-| Threshold freeze extension                        | 2028-29     | [0pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=83092&region=uk&timePeriod=2028&baseline=1) |
+| Threshold freeze extension                        | 2028-29     | [0pp](https://legacy.policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=83092&region=uk&timePeriod=2028&baseline=1)      |
 
 Table 2 shows the net poverty impact from the combined reform package across fiscal years 2026-27 through 2029-30. The [combined package](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false) would have no impact on absolute before-housing-costs poverty in 2026-27, with the poverty impact increasing to 0.2 percentage points by 2029-30 as the threshold freeze extension effect accumulates alongside the income tax and National Insurance reforms.
 
@@ -1801,10 +1801,10 @@ Table 2 shows the net poverty impact from the combined reform package across fis
 
 | Fiscal year | Change in poverty rate (pp) |
 | ----------- | --------------------------- |
-| 2026-27     | 0pp                    |
-| 2027-28     | 0pp                    |
-| 2028-29     | +0.1pp                 |
-| 2029-30     | +0.2pp                 |
+| 2026-27     | 0pp                         |
+| 2027-28     | 0pp                         |
+| 2028-29     | +0.1pp                      |
+| 2029-30     | +0.2pp                      |
 
 ## Inequality impact
 
