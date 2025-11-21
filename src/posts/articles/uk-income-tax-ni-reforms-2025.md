@@ -1864,7 +1864,7 @@ The combined reform creates different outcomes for households depending on their
 
 At low contribution levels, the household experiences minimal impact. At moderate levels, the National Insurance reduction dominates, providing net gains. At higher levels, the income tax increase dominates, creating net losses.
 
-This pattern occurs because the National Insurance reduction applies to a broader income range (on earnings from £12,570 to £50,270), while the income tax increase affects all income above the personal allowance (£12,570). Pension contributions reduce taxable income for both taxes, but they create a larger proportional benefit from avoiding the National Insurance increase. Households with higher pension contributions have less income subject to National Insurance, reducing the benefit from the 2 percentage point rate cut while still facing the full impact of the 2 percentage point income tax increase on their remaining taxable income.
+This pattern occurs because the National Insurance reduction applies to a broader income range (on earnings from £12,570 to £50,270), while the income tax increase affects all income above the personal allowance (£12,570). Pension contributions reduce taxable income for both taxes, but they also reduce the benefit a household receives from the National Insurance reduction, since less of their income is subject to the lower NI rate. Households with higher pension contributions have less income subject to National Insurance, reducing the benefit from the 2 percentage point rate cut while still facing the full impact of the 2 percentage point income tax increase on their remaining taxable income.
 
 ## Poverty impact
 
