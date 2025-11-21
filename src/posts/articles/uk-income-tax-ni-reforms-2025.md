@@ -14,17 +14,17 @@ Consider a single earner with a gross income of £60,000 who contributes £10,00
 
 **Table 1: Example tax calculation for a single earner (£60k gross, £10k pension)**
 
-| Tax                                                  | Baseline (Current Law)                                   | Reform Package                                           | Change                       |
+| Tax                                                  | Baseline (current law)                                   | Reform package                                           | Change                       |
 | :--------------------------------------------------- | :------------------------------------------------------- | :------------------------------------------------------- | :--------------------------- |
-| **National Insurance**<br>_(Gross earnings £60,000)_ | **£3,210.60**<br>8% on £12,570–£50,270<br>2% on >£50,270 | **£2,456.60**<br>6% on £12,570–£50,270<br>2% on >£50,270 | **-£754.00**<br>_(Tax Cut)_  |
-| **Income Tax**<br>_(Taxable income £50,000)_         | **£7,486.00**<br>20% on £12,570–£50,270                  | **£8,234.60**<br>22% on £12,570–£50,270                  | **+£748.60**<br>_(Tax Rise)_ |
-| **Total Net Impact**                                 |                                                          |                                                          | **+£5.40**<br>_(Better off)_ |
+| **National Insurance**<br>_(Gross earnings £60,000)_ | **£3,210.60**<br>8% on £12,570–£50,270<br>2% on >£50,270 | **£2,456.60**<br>6% on £12,570–£50,270<br>2% on >£50,270 | **-£754.00**<br>_(Tax cut)_  |
+| **Income Tax**<br>_(Taxable income £50,000)_         | **£7,486.00**<br>20% on £12,570–£50,270                  | **£8,234.60**<br>22% on £12,570–£50,270                  | **+£748.60**<br>_(Tax rise)_ |
+| **Total net impact**                                 |                                                          |                                                          | **+£5.40**<br>_(Better off)_ |
 
 _Note: Pension contributions of £10,000 reduce taxable income for Income Tax but not for National Insurance._
 
 ### Varying earnings
 
-The combined reform creates different outcomes for households depending on their income level. Figure 1 shows how the net income change varies with gross household income, assuming a single earner making a £10,000 pension contribution.
+The combined reform creates different outcomes for households depending on their income level. [Figure 1 shows how the net income change varies with gross household income](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false&household=56492), assuming a single earner making a £10,000 pension contribution.
 
 **Figure 1: Change in household net income by gross income (with £10k pension contribution), 2026-27**
 
