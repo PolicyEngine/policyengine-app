@@ -34,21 +34,21 @@ An employee wanting to contribute £5,000 to their pension would:
 
 **Table 2: With £2,000 cap - £50,000 earner contributing £5,000 total**
 
-| Component                           | Amount      | Calculation                                            |
-| :---------------------------------- | :---------- | :----------------------------------------------------- |
-| Gross salary                        | £50,000     |                                                        |
-| Salary sacrifice                    | £2,000      | Capped at £2,000                                       |
-| Taxable salary                      | £48,000     | £50,000 - £2,000                                       |
-| Employee pension contribution       | £3,000      | Additional contribution (tax relief, no NI relief)     |
-| Taxable income                      | £45,000     | £48,000 - £3,000                                       |
-| Employee NI (8% on £12,570-£48,000) | £2,835      | 8% × (£48,000 - £12,570)                               |
-| Employer NI (15% on above £9,100)   | £5,835      | 15% × (£48,000 - £9,100)                               |
-| Income tax (20% on £12,570-£45,000) | £6,486      | 20% × (£45,000 - £12,570)                              |
-| **Take-home pay**                   | **£27,294** | £48,000 - £3,000 - £2,835 - £6,486                     |
-| **Total pension contribution**      | **£5,000**  | £2,000 salary sacrifice + £3,000 employee contribution |
-| **Employee loss vs current system** | **£241**    | £30,535 - £27,294 - £3,000                             |
+| Component                             | Amount      | Calculation                                            |
+| :------------------------------------ | :---------- | :----------------------------------------------------- |
+| Gross salary                          | £50,000     |                                                        |
+| Salary sacrifice                      | £2,000      | Capped at £2,000                                       |
+| Taxable salary                        | £48,000     | £50,000 - £2,000                                       |
+| Employee pension contribution         | £3,000      | Additional contribution (tax relief, no NI relief)     |
+| Taxable income                        | £45,000     | £48,000 - £3,000                                       |
+| Employee NI (8% on £12,570-£48,000)   | £2,835      | 8% × (£48,000 - £12,570)                               |
+| Employer NI (15% on above £9,100)     | £5,835      | 15% × (£48,000 - £9,100)                               |
+| Income tax (20% on £12,570-£45,000)   | £6,486      | 20% × (£45,000 - £12,570)                              |
+| **Take-home pay**                     | **£27,294** | £48,000 - £3,000 - £2,835 - £6,486                     |
+| **Total pension contribution**        | **£5,000**  | £2,000 salary sacrifice + £3,000 employee contribution |
+| **Additional employee NI vs current** | **£241**    | £2,835 - £2,594                                        |
 
-The employee loses £241 in NI relief on the £3,000 that switches from salary sacrifice to regular employee contribution (8% × £3,000 = £240, with rounding). The employer pays £450 more in NI (15% × £3,000).
+The employee pays £241 more in NI (£2,835 - £2,594). The employer pays £450 more in NI (15% × £3,000).
 
 ## Budgetary impact
 
@@ -213,4 +213,4 @@ The impact by income decile is: deciles 1-5 see changes from 0.000% to 0.006%, d
 
 ## Conclusion
 
-The cap would raise £1.85 billion in 2026-27, close to the government's £2 billion [estimate](https://www.ft.com/content/11602ac1-44fc-4b58-8b17-af5e851f5c95), affecting 410,000 workers who currently contribute above £2,000. The impact concentrates on higher earners, with the top income decile experiencing a 0.228% increase in employment income from higher NI payments.
+The cap would raise £1.85 billion in 2026-27, close to the government's £2 billion [estimate](https://www.ft.com/content/11602ac1-44fc-4b58-8b17-af5e851f5c95), affecting 410,000 workers who currently contribute above £2,000. The impact concentrates on higher earners, with the top income decile experiencing a 0.228% increase in employment income, leading to higher NI payments.
