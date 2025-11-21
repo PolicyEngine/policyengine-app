@@ -1,4 +1,4 @@
-- bump: patch
+- bump: minor
   changes:
-    changed:
-      - Added household-level impact analysis by pension contributions to UK income tax and NI reforms blog post
+    added:
+      - UK salary sacrifice cap analysis blog post
