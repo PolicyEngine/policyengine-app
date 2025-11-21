@@ -4,11 +4,112 @@ The Times [reported](https://www.thetimes.com/uk/politics/article/rachel-reeves-
 
 This analysis examines each reform option using PolicyEngine's microsimulation model to assess their potential impacts on government revenue, household finances, and poverty rates. Revenue impacts are modelled sequentially to capture interaction effects between reforms, while distributional impacts show each reform independently to understand their distinct effects on different income groups.
 
+## Household impact
+
+To understand how these reforms affect households, we first look at a step-by-step calculation for a specific example, and then examine how the impact varies with income.
+
+### Example calculation
+
+Consider a single earner with a gross income of £60,000 who contributes £10,000 (approx. 16.7%) to a workplace pension. We calculate their tax liabilities for the 2026-27 tax year under both the baseline (current law) and the proposed reform package. Note that in 2026-27, the proposed threshold freeze extension has not yet taken effect, so we focus on the rate changes: National Insurance (NI) reducing from 8% to 6%, and Income Tax (IT) increasing by 2 percentage points (20% to 22% basic, 40% to 42% higher).
+
+**Table 1: Example tax calculation for a single earner (£60k gross, £10k pension)**
+
+| Tax | Baseline (Current Law) | Reform Package | Change |
+| :--- | :--- | :--- | :--- |
+| **National Insurance**<br>*(Gross earnings £60,000)* | **£3,210.60**<br>8% on £12,570–£50,270<br>2% on >£50,270 | **£2,456.60**<br>6% on £12,570–£50,270<br>2% on >£50,270 | **-£754.00**<br>*(Tax Cut)* |
+| **Income Tax**<br>*(Taxable income £50,000)* | **£7,486.00**<br>20% on £12,570–£50,270 | **£8,234.60**<br>22% on £12,570–£50,270 | **+£748.60**<br>*(Tax Rise)* |
+| **Total Net Impact** | | | **+£5.40**<br>*(Better off)* |
+
+*Note: Pension contributions of £10,000 reduce taxable income for Income Tax but not for National Insurance.*
+
+### Varying earnings
+
+The combined reform creates different outcomes for households depending on their income level. Figure 1 shows how the net income change varies with gross household income, assuming a single earner making a £10,000 pension contribution.
+
+**Figure 1: Change in household net income by gross income (with £10k pension contribution), 2026-27**
+
+```plotly
+{
+  "data": [
+    {
+      "x": [0, 4000, 8000, 12000, 16000, 20000, 24000, 28000, 32000, 36000, 40000, 44000, 48000, 52000, 56000, 60000, 64000, 68000, 72000, 76000, 80000, 84000, 88000, 92000, 96000, 100000, 104000, 108000, 112000, 116000, 120000, 124000, 128000, 132000, 136000, 140000, 144000, 148000, 152000, 156000, 160000, 164000, 168000, 172000, 176000, 180000, 184000, 188000, 192000, 196000, 200000],
+      "y": [0, 0, 0, 0, 68, 148, 200, 200, 200, 200, 200, 200, 200, 166, 86, 6, -74, -154, -234, -314, -394, -474, -554, -634, -714, -794, -914, -1034, -1154, -1274, -1394, -1514, -1606, -1686, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748],
+      "type": "scatter",
+      "mode": "lines",
+      "line": {
+        "color": "#2C6496",
+        "width": 3
+      },
+      "hovertemplate": "Gross income: £%{x:,.0f}<br>Net income change: £%{y:,.0f}<extra></extra>"
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "title": "Gross household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": "£,.0f",
+      "showgrid": true,
+      "gridcolor": "#E5E5E5"
+    },
+    "yaxis": {
+      "title": "Change in household net income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": "£,.0f",
+      "showgrid": true,
+      "gridcolor": "#E5E5E5",
+      "zeroline": true,
+      "zerolinecolor": "#333",
+      "zerolinewidth": 2
+    },
+    "height": 500,
+    "margin": {
+      "l": 80,
+      "r": 40,
+      "b": 80,
+      "t": 80,
+      "pad": 4
+    },
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa",
+    "font": {
+      "family": "Roboto Serif"
+    },
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ]
+  }
+}
+```
+
+At low to moderate income levels (where the NI cut applies to most taxable earnings), households gain. However, as income rises, the Income Tax increase (which applies to all taxable income above the allowance) begins to outweigh the NI reduction (which is capped at the Upper Earnings Limit of £50,270).
+
+Crucially, pension contributions play a significant role. While they reduce taxable income for Income Tax, they do *not* reduce earnings for National Insurance (except in salary sacrifice arrangements, which are not assumed here). This means a pension contribution lowers the amount of income exposed to the 2 percentage point Income Tax hike, while the household retains the full benefit of the National Insurance cut on their gross earnings. Consequently, households with higher pension contributions are better protected against the tax rise.
+
 ## Budgetary impact
 
-Figure 1 shows the change in government revenue from each reform across fiscal years 2026-27 through 2029-30, using a stacking methodology where each reform is applied on top of the previous ones to capture interaction effects. The first reform, extending the threshold freeze to 2029-30, would raise [£3.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29, when thresholds would otherwise be unfrozen. The second reform, reducing the National Insurance rate from 8% to 6% applied on top of the freeze, would cost an additional [£11.7 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94938&region=uk&timePeriod=2026&baseline=83092) in 2026-27. The third reform, increasing the basic and higher income tax rates by 2 percentage points applied on top of both the freeze and NI reduction, would raise an additional [£18.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94911&region=uk&timePeriod=2026&baseline=94938) in 2026-27.
+Figure 2 shows the change in government revenue from each reform across fiscal years 2026-27 through 2029-30, using a stacking methodology where each reform is applied on top of the previous ones to capture interaction effects. The first reform, extending the threshold freeze to 2029-30, would raise [£3.5 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) in 2028-29, when thresholds would otherwise be unfrozen. The second reform, reducing the National Insurance rate from 8% to 6% applied on top of the freeze, would cost an additional [£11.7 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94938&region=uk&timePeriod=2026&baseline=83092) in 2026-27. The third reform, increasing the basic and higher income tax rates by 2 percentage points applied on top of both the freeze and NI reduction, would raise an additional [£18.6 billion](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94911&region=uk&timePeriod=2026&baseline=94938) in 2026-27.
 
-**Figure 1: Change in government revenue by reform, 2026-27 to 2029-30**
+**Figure 2: Change in government revenue by reform, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -146,9 +247,9 @@ The following distributional analyses show each reform independently against the
 
 ### National Insurance rate reduction (8% to 6%)
 
-Figure 2 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the relative change in household income by income decile from reducing the National Insurance rate from 8% to 6% in 2026-27. Higher-income deciles experience larger percentage increases, with deciles 8 and 9 each gaining 1.1% in household income, while the lowest income decile gains 0.1%.
+Figure 3 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the relative change in household income by income decile from reducing the National Insurance rate from 8% to 6% in 2026-27. Higher-income deciles experience larger percentage increases, with deciles 8 and 9 each gaining 1.1% in household income, while the lowest income decile gains 0.1%.
 
-**Figure 2: Change in household income by income decile from National Insurance rate reduction, 2026-27**
+**Figure 3: Change in household income by income decile from National Insurance rate reduction, 2026-27**
 
 ```plotly
 {
@@ -229,9 +330,9 @@ Figure 2 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 3 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the relative change in household income by income decile from increasing the basic and higher income tax rates by 2 percentage points in 2026-27. All income deciles experience decreases in household income, with deciles 8 and 9 seeing the largest reductions of 1.5% to 1.6%, while the lowest income decile decreases by 0.2%.
+Figure 4 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the relative change in household income by income decile from increasing the basic and higher income tax rates by 2 percentage points in 2026-27. All income deciles experience decreases in household income, with deciles 8 and 9 seeing the largest reductions of 1.5% to 1.6%, while the lowest income decile decreases by 0.2%.
 
-**Figure 3: Change in household income by income decile from basic and higher rate income tax increase, 2026-27**
+**Figure 4: Change in household income by income decile from basic and higher rate income tax increase, 2026-27**
 
 ```plotly
 {
@@ -312,9 +413,9 @@ Figure 3 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ### Threshold freeze extension
 
-Figure 4 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the relative change in household income by income decile from extending the threshold freeze to 2029-30. All income deciles experience decreases in household income, with decile 9 seeing the largest reduction of 0.32%, while the lowest income decile decreases by 0.08%.
+Figure 5 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the relative change in household income by income decile from extending the threshold freeze to 2029-30. All income deciles experience decreases in household income, with decile 9 seeing the largest reduction of 0.32%, while the lowest income decile decreases by 0.08%.
 
-**Figure 4: Change in household income by income decile from threshold freeze extension, 2028-29**
+**Figure 5: Change in household income by income decile from threshold freeze extension, 2028-29**
 
 ```plotly
 {
@@ -395,9 +496,9 @@ Figure 4 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ### Combined reform impact
 
-Figure 5 shows the relative change in household income by income decile from each reform component across fiscal years 2026-27 through 2029-30. The stacked bars show individual reform contributions: the threshold freeze extension (green), the National Insurance reduction (gray), and the income tax increase (blue). The line [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=94911&region=uk&timePeriod=2029&baseline=1&uk_local_areas_beta=false) the net combined effect across deciles. Use the play button to animate between years or drag the slider to view a specific year.
+Figure 6 shows the relative change in household income by income decile from each reform component across fiscal years 2026-27 through 2029-30. The stacked bars show individual reform contributions: the threshold freeze extension (green), the National Insurance reduction (gray), and the income tax increase (blue). The line [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=94911&region=uk&timePeriod=2029&baseline=1&uk_local_areas_beta=false) the net combined effect across deciles. Use the play button to animate between years or drag the slider to view a specific year.
 
-**Figure 5: Change in household income by reform component, 2026-27 to 2029-30**
+**Figure 6: Change in household income by reform component, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -701,9 +802,9 @@ Winner and loser status varies within income deciles based on individual circums
 
 ### National Insurance rate reduction (8% to 6%)
 
-Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from reducing the National Insurance rate across fiscal years 2026-27 through 2029-30. In 2026-27, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change.
+Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94906&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from reducing the National Insurance rate across fiscal years 2026-27 through 2029-30. In 2026-27, 3% gain more than 5% in income, 60% gain less than 5%, and 37% experience no change.
 
-**Figure 6: Population share by income change from National Insurance rate reduction, 2026-27 to 2029-30**
+**Figure 7: Population share by income change from National Insurance rate reduction, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -972,9 +1073,9 @@ Figure 6 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ### Income tax rate increase (basic and higher rates +2pp)
 
-Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from increasing the basic and higher income tax rates across fiscal years 2026-27 through 2029-30. In 2026-27, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%.
+Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=94910&region=uk&timePeriod=2026&baseline=1) the distribution of income changes from increasing the basic and higher income tax rates across fiscal years 2026-27 through 2029-30. In 2026-27, 26% experience no change, 64% lose less than 5%, and 10% lose more than 5%.
 
-**Figure 7: Population share by income change from basic and higher rate income tax increase, 2026-27 to 2029-30**
+**Figure 8: Population share by income change from basic and higher rate income tax increase, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -1243,9 +1344,9 @@ Figure 7 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ### Threshold freeze extension
 
-Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the distribution of income changes from extending the threshold freeze across fiscal years 2026-27 through 2029-30. The threshold freeze extension only applies from 2028-29 onward (current law already freezes thresholds through 2027-28). In 2028-29, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%.
+Figure 9 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=83092&region=uk&timePeriod=2028&baseline=1) the distribution of income changes from extending the threshold freeze across fiscal years 2026-27 through 2029-30. The threshold freeze extension only applies from 2028-29 onward (current law already freezes thresholds through 2027-28). In 2028-29, 20% experience no change, 77% lose less than 5%, and 3% lose more than 5%.
 
-**Figure 8: Population share by income change from threshold freeze extension, 2026-27 to 2029-30**
+**Figure 9: Population share by income change from threshold freeze extension, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -1514,9 +1615,9 @@ Figure 8 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.po
 
 ### Combined reform impact
 
-Figure 9 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false) the distribution of income changes from the combined reform package (income tax increase, National Insurance reduction, and threshold freeze extension) across fiscal years 2026-27 through 2029-30. In 2026-27, 1% gain more than 5%, 20% gain less than 5%, 36% experience no change, 39% lose less than 5%, and 4% lose more than 5%.
+Figure 10 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false) the distribution of income changes from the combined reform package (income tax increase, National Insurance reduction, and threshold freeze extension) across fiscal years 2026-27 through 2029-30. In 2026-27, 1% gain more than 5%, 20% gain less than 5%, 36% experience no change, 39% lose less than 5%, and 4% lose more than 5%.
 
-**Figure 9: Population share by income change from combined reform, 2026-27 to 2029-30**
+**Figure 10: Population share by income change from combined reform, 2026-27 to 2029-30**
 
 ```plotly
 {
@@ -1783,88 +1884,7 @@ Figure 9 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.wi
 }
 ```
 
-### Impact at the household level
 
-The combined reform creates different outcomes for households depending on their pension contribution levels. Consider a household with one person paying £10,000 in employee pension contributions in 2026-27. Figure 10 [shows](https://legacy.policyengine.org/uk/household?focus=householdOutput.earnings&reform=94911&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=false&household=56492) how their net income change varies.
-
-**Figure 10: Change in household net income by employee pension contributions, 2026-27**
-
-```plotly
-{
-  "data": [
-    {
-      "x": [0, 4000, 8000, 12000, 16000, 20000, 24000, 28000, 32000, 36000, 40000, 44000, 48000, 52000, 56000, 60000, 64000, 68000, 72000, 76000, 80000, 84000, 88000, 92000, 96000, 100000, 104000, 108000, 112000, 116000, 120000, 124000, 128000, 132000, 136000, 140000, 144000, 148000, 152000, 156000, 160000, 164000, 168000, 172000, 176000, 180000, 184000, 188000, 192000, 196000, 200000],
-      "y": [0, 0, 0, 0, 68, 148, 200, 200, 200, 200, 200, 200, 200, 166, 86, 6, -74, -154, -234, -314, -394, -474, -554, -634, -714, -794, -914, -1034, -1154, -1274, -1394, -1514, -1606, -1686, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748, -1748],
-      "type": "scatter",
-      "mode": "lines",
-      "line": {
-        "color": "#2C6496",
-        "width": 3
-      },
-      "hovertemplate": "Pension contributions: £%{x:,.0f}<br>Net income change: £%{y:,.0f}<extra></extra>"
-    }
-  ],
-  "layout": {
-    "xaxis": {
-      "title": "Employee pension contributions",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": "£,.0f",
-      "showgrid": true,
-      "gridcolor": "#E5E5E5"
-    },
-    "yaxis": {
-      "title": "Change in household net income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": "£,.0f",
-      "showgrid": true,
-      "gridcolor": "#E5E5E5",
-      "zeroline": true,
-      "zerolinecolor": "#333",
-      "zerolinewidth": 2
-    },
-    "height": 500,
-    "margin": {
-      "l": 80,
-      "r": 40,
-      "b": 80,
-      "t": 80,
-      "pad": 4
-    },
-    "plot_bgcolor": "#ebf2fa",
-    "paper_bgcolor": "#ebf2fa",
-    "font": {
-      "family": "Roboto Serif"
-    },
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ]
-  }
-}
-```
-
-At low contribution levels, the household experiences minimal impact. At moderate levels, the National Insurance reduction dominates, providing net gains. At higher levels, the income tax increase dominates, creating net losses.
-
-This pattern occurs because the National Insurance reduction applies to a broader income range (on earnings from £12,570 to £50,270), while the income tax increase affects all income above the personal allowance (£12,570). Pension contributions reduce taxable income for both taxes, but they also reduce the benefit a household receives from the National Insurance reduction, since less of their income is subject to the lower NI rate. Households with higher pension contributions have less income subject to National Insurance, reducing the benefit from the 2 percentage point rate cut while still facing the full impact of the 2 percentage point income tax increase on their remaining taxable income.
 
 ## Poverty impact
 
