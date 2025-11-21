@@ -7,8 +7,11 @@ CUSTOM_TITLES = {"2024-manifestos": "UK 2024 Election Manifestos"}
 # Load src/posts/posts.json
 with open("src/posts/posts.json") as f:
     posts: list = json.load(f)
-    post_by_slug = {post["filename"].split(".")[0]: post for post in posts}
-
+    post_by_slug = {
+    post["filename"].split(".")[0]: post
+    for post in posts
+    if "filename" in post
+}
 
 def get_title(path: str, query_params: dict):
     # /{country}/page => 'PolicyEngine COUNTRY | Page'
