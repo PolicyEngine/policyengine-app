@@ -3,75 +3,124 @@
     "title": "Analysing alternative income tax and National Insurance reform options for the UK",
     "description": "PolicyEngine analysis of alternative tax reform options: raising basic and higher income tax rates, cutting NI, and extending the threshold freeze.",
     "date": "2025-11-20 11:00:00",
-    "tags": ["uk", "policy", "featured"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
     "filename": "uk-income-tax-ni-reforms-2025.md",
-    "image": "Rachel_Reeves.jpg",
-    "authors": ["vahid-ahmadi"]
+    "image": "uk-income-tax-ni-reforms-2025.jpg",
+    "authors": [
+      "vahid-ahmadi"
+    ]
   },
   {
     "title": "PolicyEngine London event 2025",
     "description": "PolicyEngine hosted an event in London that presented new updates and capabilities, real-world policy research applications, local area modelling, and how to use AI in policy research.",
     "date": "2025-11-10",
-    "tags": ["uk", "event", "featured"],
+    "tags": [
+      "uk",
+      "event",
+      "featured"
+    ],
     "filename": "policyengine-2-event-report.md",
-    "image": "2025-london-event.jpeg",
-    "authors": ["vahid-ahmadi"]
+    "image": "policyengine-2-event-report.jpeg",
+    "authors": [
+      "vahid-ahmadi"
+    ]
   },
   {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "UK public services spending analysis dashboard",
     "description": "Explore how public services spending varies across demographic groups and regions in the UK, including NHS healthcare, education, and transport subsidies.",
     "date": "2025-11-11 11:00:00",
-    "tags": ["uk", "featured", "policy", "interactives"],
+    "tags": [
+      "uk",
+      "featured",
+      "policy",
+      "interactives"
+    ],
     "filename": "uk-public-services-spending-dummy.md",
     "external_url": "/uk/public-services-spending",
     "image": "uk-public-services-spending.jpg",
-    "authors": ["vahid-ahmadi"]
+    "authors": [
+      "vahid-ahmadi"
+    ]
   },
   {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "Two-child limit calculator",
     "description": "Explore policy reforms to the two-child benefit limit and their impacts on households, government spending, and child poverty.",
     "date": "2025-10-28",
-    "tags": ["uk", "featured", "policy", "interactives"],
+    "tags": [
+      "uk",
+      "featured",
+      "policy",
+      "interactives"
+    ],
     "filename": "uk-two-child-limit-comparison-dummy.md",
     "external_url": "/uk/two-child-limit-comparison",
     "image": "young-child-exemption-two-child-limit.jpg",
-    "authors": ["vahid-ahmadi"]
+    "authors": [
+      "vahid-ahmadi"
+    ]
   },
   {
     "title": "Marginal tax rates in California's proposed billionaire tax",
     "description": "The 5% tax creates marginal tax rates between 50% and 60% on wealth between $1 billion and $1.1 billion.",
     "date": "2025-10-25",
-    "tags": ["us"],
+    "tags": [
+      "us"
+    ],
     "filename": "california-billionaire-tax-marginal-rates.md",
     "image": "california-billionaire-tax-marginal-rates.jpg",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Comparing PolicyEngine and official UK poverty rates",
     "description": "We compare PolicyEngine poverty estimates with official DWP statistics and explain the methodological factors behind the differences.",
     "date": "2025-10-10 11:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "uk-poverty-analysis.md",
     "image": "uk-poverty-analysis.jpg"
   },
   {
     "title": "How removing the two-child benefit limit would affect the UK",
-    "description": "Removing the two-child limit would cost £2.8 billion in 2026-27 and reduce child poverty by 15.7%.",
+    "description": "Removing the two-child limit would cost \u00a32.8 billion in 2026-27 and reduce child poverty by 15.7%.",
     "date": "2025-10-06 11:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "uk-two-child-limit.md",
-    "image": "uk-reeves.jpg"
+    "image": "uk-two-child-limit.jpg"
   },
   {
     "title": "How we used Claude Code to choose our DC office",
     "description": "We used Claude Code to build an interactive comparison tool for choosing our DC office. The winner: Open Gov Hub. Join us Oct 22 to celebrate!",
     "date": "2025-10-05",
-    "tags": ["us", "org", "ai"],
-    "authors": ["max-ghenis", "daphne-hansell"],
+    "tags": [
+      "us",
+      "org",
+      "ai"
+    ],
+    "authors": [
+      "max-ghenis",
+      "daphne-hansell"
+    ],
     "filename": "dc-office-ai-coding.md",
     "image": "dc-office-ai-coding.png"
   },
@@ -79,26 +128,47 @@
     "title": "Introducing ACA-Calc: Calculate your household's premium tax credits",
     "description": "New interactive calculator shows how Affordable Care Act subsidies affect households under current enhanced schedule and original schedule.",
     "date": "2025-09-30",
-    "tags": ["us", "policy", "featured", "healthcare", "interactives"],
-    "authors": ["daphne-hansell"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "healthcare",
+      "interactives"
+    ],
+    "authors": [
+      "daphne-hansell"
+    ],
     "filename": "introducing-aca-calc.md",
-    "image": "biden-arpa.png"
+    "image": "introducing-aca-calc.png"
   },
   {
     "title": "How carbon tax and dividend policies affect UK households",
-    "description": "PolicyEngine analysis of £100/200 per tonne carbon taxes with full dividend redistribution shows approximately 71% of UK residents would gain.",
+    "description": "PolicyEngine analysis of \u00a3100/200 per tonne carbon taxes with full dividend redistribution shows approximately 71% of UK residents would gain.",
     "date": "2025-09-30 11:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "uk-carbon-tax-dividend.md",
-    "image": "uk-carbon-tax.png"
+    "image": "uk-carbon-tax-dividend.png"
   },
   {
     "title": "Enhanced Premium Tax Credits: Analyzing Household Impacts of an Extension Beyond 2025",
     "description": "PolicyEngine analyzes extending the enhanced premium tax credits enacted through the American Rescue Plan Act beyond their 2025 expiration.",
     "date": "2025-09-30",
-    "tags": ["us", "policy", "featured", "healthcare"],
-    "authors": ["daphne-hansell"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "healthcare"
+    ],
+    "authors": [
+      "daphne-hansell"
+    ],
     "filename": "enhanced-premium-tax-credits-extension.md",
     "image": "enhanced-premium-tax-credits-extension.jpg"
   },
@@ -106,53 +176,95 @@
     "title": "Event: PolicyEngine 2.0 and the Future of Public Policy Analysis",
     "description": "Join us on the afternoon of November 3rd in London for an exclusive showcase of PolicyEngine's latest innovations in evidence-based policy analysis, featuring live demos and networking.",
     "date": "2025-09-12",
-    "tags": ["uk", "org", "featured", "event"],
+    "tags": [
+      "uk",
+      "org",
+      "featured",
+      "event"
+    ],
     "filename": "sep-2025-london-event.md",
     "image": "sep-2025-london-event.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "PolicyEngine and NBER sign memorandum of understanding for TAXSIM emulator development",
     "description": "Partnership ensures continuity of tax microsimulation capabilities for the research community through open-source development.",
     "date": "2025-09-05",
-    "tags": ["us", "org", "featured"],
+    "tags": [
+      "us",
+      "org",
+      "featured"
+    ],
     "filename": "policyengine-nber-mou-taxsim.md",
     "image": "policyengine-nber-mou-taxsim.png",
-    "authors": ["max-ghenis", "pavel-makarchuk"]
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ]
   },
   {
     "title": "National Science Foundation awards PolicyEngine $300,000 grant",
     "description": "NSF's Pathways to Enable Open-Source Ecosystems program will support PolicyEngine's work to expand access to policy analysis tools.",
     "date": "2025-08-18",
-    "tags": ["us", "uk", "org", "featured"],
+    "tags": [
+      "us",
+      "uk",
+      "org",
+      "featured"
+    ],
     "filename": "nsf-pose-phase-1-grant.md",
-    "image": "nsf-official-logo.png",
-    "authors": ["max-ghenis"]
+    "image": "nsf-pose-phase-1-grant.png",
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Analysis of the American Worker Rebate Act of 2025",
     "description": "The bill would cost $141 billion and benefit 80% of American residents.",
     "date": "2025-08-13",
-    "tags": ["us", "tariffs", "featured"],
+    "tags": [
+      "us",
+      "tariffs",
+      "featured"
+    ],
     "filename": "american-worker-rebate-act.md",
     "image": "american-worker-rebate-act.jpg",
-    "authors": ["david-trimmer"]
+    "authors": [
+      "david-trimmer"
+    ]
   },
   {
     "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
     "description": "The Enhanced Current Population Survey now includes tip, overtime, and auto loan interest imputations, plus upcoming state and congressional district calibration.",
     "date": "2025-08-11",
-    "tags": ["us", "data", "featured"],
+    "tags": [
+      "us",
+      "data",
+      "featured"
+    ],
     "filename": "enhanced-cps-launch.md",
     "image": "enhanced-cps-launch.png",
-    "authors": ["max-ghenis", "nikhil-woodruff", "ben-ogorek", "maria-juaristi"]
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff",
+      "ben-ogorek",
+      "maria-juaristi"
+    ]
   },
   {
     "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "The One Big Beautiful Bill Act, household by household",
     "description": "Our latest interactive shows how the reconciliation bill affects each of 20,000 representative households across income levels, states, and provisions.",
     "date": "2025-08-11",
-    "tags": ["us", "policy", "featured", "reconciliation", "interactives"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "reconciliation",
+      "interactives"
+    ],
     "filename": "obbba-household-by-household-dummy.md",
     "external_url": "/us/obbba-household-by-household",
     "image": "obbba-household-by-household.png",
@@ -167,214 +279,365 @@
     "title": "Analysis of individual income tax provisions in the final reconciliation bill",
     "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
     "date": "2025-07-04",
-    "tags": ["us", "policy", "featured", "reconciliation"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "reconciliation"
+    ],
     "filename": "final-2025-reconciliation-tax.md",
     "image": "final-2025-reconciliation-tax.png",
-    "authors": ["david-trimmer", "pavel-makarchuk"]
+    "authors": [
+      "david-trimmer",
+      "pavel-makarchuk"
+    ]
   },
   {
     "title": "Introducing the OBBBA Household Explorer",
     "description": "New interactive tool reveals household-level impacts of the One Big Beautiful Bill Act.",
     "date": "2025-07-03",
-    "tags": ["us", "policy", "featured", "reconciliation"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "reconciliation"
+    ],
     "filename": "introducing-obbba-household-explorer.md",
     "image": "introducing-obbba-household-explorer.png",
-    "authors": ["max-ghenis", "pavel-makarchuk", "elena-cura"]
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk",
+      "elena-cura"
+    ]
   },
   {
     "title": "The 2025 American Family Act",
     "description": "The Child Tax Credit expansion would cost the federal government $2.5 trillion over ten years and lower child poverty by 25%.",
     "date": "2025-06-16",
-    "tags": ["us", "policy", "featured", "child-tax-credit"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "child-tax-credit"
+    ],
     "filename": "american-family-act-2025.md",
     "image": "american-family-act-2025.webp",
-    "authors": ["david-trimmer"]
+    "authors": [
+      "david-trimmer"
+    ]
   },
   {
     "title": "Childcare programmes in PolicyEngine UK",
     "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
     "date": "2025-06-06",
-    "tags": ["uk", "benefit", "featured"],
+    "tags": [
+      "uk",
+      "benefit",
+      "featured"
+    ],
     "filename": "uk-childcare-report.md",
-    "image": "uk_childcare_report.jpg",
-    "authors": ["vahid-ahmadi"]
+    "image": "uk-childcare-report.jpg",
+    "authors": [
+      "vahid-ahmadi"
+    ]
   },
   {
     "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
     "date": "2025-05-24",
-    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
-    "tags": ["us", "policy", "featured", "reconciliation"],
+    "authors": [
+      "pavel-makarchuk",
+      "david-trimmer",
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "reconciliation"
+    ],
     "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
     "filename": "managers-amendment-to-hr1.md",
     "image": "managers-amendment-to-hr1.png"
   },
   {
-    "title": "Montana Reduces Top Income Tax Rate and Expands EITC",
-    "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in 2027.",
+    "title": "Montana Reduces Top Income Tax Rate and Expands\u00a0EITC",
+    "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in\u00a02027.",
     "date": "2025-05-22",
-    "tags": ["us", "featured", "us-mt"],
+    "tags": [
+      "us",
+      "featured",
+      "us-mt"
+    ],
     "filename": "montana-tax-cuts-2026.md",
     "image": "montana-tax-cuts-2026.jpg",
-    "authors": ["david-trimmer"]
+    "authors": [
+      "david-trimmer"
+    ]
   },
   {
-    "title": "The SALT Caucus's Proposed Cap",
-    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
+    "title": "The SALT Caucus's Proposed\u00a0Cap",
+    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget\u00a0window.",
     "date": "2025-05-15",
-    "tags": ["us", "featured", "reconciliation"],
+    "tags": [
+      "us",
+      "featured",
+      "reconciliation"
+    ],
     "filename": "salt-caucus-62k-cap.md",
     "image": "salt-caucus-62k-cap.png",
-    "authors": ["david-trimmer"]
+    "authors": [
+      "david-trimmer"
+    ]
   },
   {
     "title": "Ways and Means Committee's SALT Cap",
     "description": "We project that limiting state and local tax deductions to $30,000, phasing down to $10,000 at high incomes, would raise $937 billion over the budget window.",
     "date": "2025-05-14",
-    "tags": ["us", "featured", "reconciliation"],
+    "tags": [
+      "us",
+      "featured",
+      "reconciliation"
+    ],
     "filename": "ways-and-means-salt-cap.md",
     "image": "ways-and-means-salt-cap.webp",
-    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"]
+    "authors": [
+      "pavel-makarchuk",
+      "david-trimmer",
+      "max-ghenis"
+    ]
   },
   {
     "title": "Tax changes in effect in April 2025",
-    "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of £1,133 per household.",
+    "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of \u00a31,133 per household.",
     "date": "2025-04-25",
-    "tags": ["uk", "tax", "policy", "featured"],
+    "tags": [
+      "uk",
+      "tax",
+      "policy",
+      "featured"
+    ],
     "filename": "impact-of-tax-changes-2025-2026.md",
-    "image": "uk_budget_box_hunt.jpg",
-    "authors": ["nikhil-woodruff"]
+    "image": "impact-of-tax-changes-2025-2026.jpg",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Analyzing Energy Policy with PolicyEngine",
     "description": "We provide an Earth Day recap of our capabilities in the US and UK.",
     "date": "2025-04-22",
-    "tags": ["us", "uk", "featured"],
+    "tags": [
+      "us",
+      "uk",
+      "featured"
+    ],
     "filename": "earth-day-2025.md",
     "image": "earth-day-2025.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "What's the SALTernative?",
-    "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
+    "description": "Introducing PolicyEngine\u2019s free SALT\u2011AMT calculator \u2014 an open\u2011source web app to model next year\u2019s SALT\u2011cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
     "date": "2025-04-21",
-    "tags": ["us", "featured", "reconciliation"],
+    "tags": [
+      "us",
+      "featured",
+      "reconciliation"
+    ],
     "filename": "introducing-salternative.md",
     "image": "introducing-salternative.png",
-    "authors": ["pavel-makarchuk", "max-ghenis"]
+    "authors": [
+      "pavel-makarchuk",
+      "max-ghenis"
+    ]
   },
   {
     "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
     "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
     "date": "2025-04-05",
-    "tags": ["us", "us-nc", "featured", "api", "benefit-access"],
+    "tags": [
+      "us",
+      "us-nc",
+      "featured",
+      "api",
+      "benefit-access"
+    ],
     "filename": "myfriendben-nc.md",
     "image": "myfriendben-nc.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "New Ways to Give to PolicyEngine",
     "description": "Exploring state tax credits for charitable giving.",
     "date": "2025-04-01",
-    "tags": ["us", "april-fools", "featured"],
+    "tags": [
+      "us",
+      "april-fools",
+      "featured"
+    ],
     "filename": "april-1st-2025.md",
     "image": "april-1st-2025.png",
-    "authors": ["daphne-hansell"]
+    "authors": [
+      "daphne-hansell"
+    ]
   },
   {
     "title": "Analysis of the Spring 2025 OBR forecast",
     "description": "PolicyEngine integrates the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
     "date": "2025-03-26",
-    "tags": ["uk", "impact", "featured"],
+    "tags": [
+      "uk",
+      "impact",
+      "featured"
+    ],
     "filename": "obr-forecast-2025.ipynb",
     "image": "obr-forecast-2025.jpg",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation",
     "description": "The UK government's finance ministry explores PolicyEngine as a potential supplement to existing models.",
     "date": "2025-03-24",
-    "tags": ["uk", "impact", "featured"],
+    "tags": [
+      "uk",
+      "impact",
+      "featured"
+    ],
     "filename": "hmt-policyengine-pilot.md",
-    "image": "analysis-of-the-spring-budget-2023.jpeg",
-    "authors": ["nikhil-woodruff"]
+    "image": "hmt-policyengine-pilot.jpeg",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Extending the Income Tax threshold freeze to 2030",
-    "description": "PolicyEngine estimates extending the personal allowance and higher rate threshold freeze would raise £12.2 billion over two years.",
+    "description": "PolicyEngine estimates extending the personal allowance and higher rate threshold freeze would raise \u00a312.2 billion over two years.",
     "date": "2025-03-25",
-    "tags": ["uk", "policy", "featured"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
     "filename": "income-tax-freeze.md",
-    "image": "uk_budget_box_hunt.jpg",
-    "authors": ["nikhil-woodruff"]
+    "image": "income-tax-freeze.jpg",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "PolicyEngine's 2022 year in review",
     "description": "A year of launches, analysis, and building for the future.",
     "date": "2022-12-30",
-    "tags": ["global", "impact"],
+    "tags": [
+      "global",
+      "impact"
+    ],
     "filename": "policyengine-2022-year-in-review.md",
     "image": "policyengine-2022-year-in-review.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "How machine learning tools make PolicyEngine more accurate",
     "description": "Today, we're launching new survey weights that cut deviations from administrative statistics by 97%.",
     "date": "2022-03-07",
-    "tags": ["uk", "technical"],
+    "tags": [
+      "uk",
+      "technical"
+    ],
     "filename": "how-machine-learning-tools-make-policyengine-more-accurate.md",
     "image": "how-machine-learning-tools-make-policyengine-more-accurate.png",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Enhancing the Current Population Survey for policy analysis",
     "description": "We've used modern data science techniques to make PolicyEngine the UK's most accurate microsimulation model. In 2023, we'll do the same in the US.",
     "date": "2022-12-28",
-    "tags": ["us", "technical"],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "filename": "enhancing-the-current-population-survey-for-policy-analysis.md",
     "image": "enhancing-the-current-population-survey-for-policy-analysis.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "How charitable contributions affect Americans' taxes",
     "description": "PolicyEngine estimates the tax impact of your donations for free.",
     "date": "2022-11-29",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "charitable-contributions.md",
     "image": "charitable-contributions.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Maryland's standard deduction",
     "description": "PolicyEngine computes the program's impact on Maryland and individual households.",
     "date": "2022-11-22",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "maryland-standard-deduction.md",
     "image": "maryland-standard-deduction.png",
-    "authors": ["kevin-foster"]
+    "authors": [
+      "kevin-foster"
+    ]
   },
   {
     "title": "From OpenFisca to PolicyEngine",
     "description": "OpenFisca has catapulted our progress, and now we've forked it into our own microsimulation framework.",
     "date": "2022-11-10",
-    "tags": ["global", "technical"],
+    "tags": [
+      "global",
+      "technical"
+    ],
     "filename": "from-openfisca-to-policyengine.md",
     "image": "from-openfisca-to-policyengine.png",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Oregon's Nonrefundable Exemption Credit",
     "description": "PolicyEngine computes the program's impact on Oregon and individual households.",
     "date": "2022-11-04",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "oregons-nonrefundable-exemption-credit.md",
     "image": "oregons-nonrefundable-exemption-credit.jpeg",
-    "authors": ["kevin-foster"]
+    "authors": [
+      "kevin-foster"
+    ]
   },
   {
     "title": "Stamp duties in PolicyEngine UK",
     "date": "2022-09-22",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "technical"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "technical"
+    ],
     "description": "The Times reported yesterday that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports\u2026",
     "filename": "stamp-duties-in-policyengine-uk.md",
     "image": "stamp-duties-in-policyengine-uk.jpg"
@@ -382,8 +645,13 @@
   {
     "title": "Prime Minister Liz Truss\u2019s energy bill price cap",
     "date": "2022-09-16",
-    "authors": ["max-ghenis"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "See the impact in PolicyEngine.",
     "filename": "prime-minister-liz-trusss-energy-bill-price-cap.md",
     "image": "prime-minister-liz-trusss-energy-bill-price-cap.jpg"
@@ -391,8 +659,13 @@
   {
     "title": "Raising the marriage allowance from 10% to 100%",
     "date": "2022-08-29",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "See the reform in PolicyEngine.",
     "filename": "raising-the-marriage-allowance-from-10-to-100.md",
     "image": "raising-the-marriage-allowance-from-10-to-100.jpg"
@@ -400,8 +673,14 @@
   {
     "title": "PolicyEngine launches in Washington state",
     "date": "2022-08-10",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "technical", "us-wa"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "technical",
+      "us-wa"
+    ],
     "description": "Washingtonians can now compute the impacts of the Working Families Tax Credit and federal reforms.",
     "filename": "policyengine-launches-in-washington-state.md",
     "image": "policyengine-launches-in-washington-state.jpg"
@@ -409,8 +688,13 @@
   {
     "title": "Electric vehicle tax credits under current law and the Inflation Reduction Act",
     "date": "2022-08-05",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "policy"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "description": "Use PolicyEngine US to analyze provisions of the potential reconciliation bill.",
     "filename": "electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act.md",
     "image": "electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act.jpg"
@@ -418,8 +702,13 @@
   {
     "title": "Rishi Sunak\u2019s proposal to cut the basic rate to 16 percent",
     "date": "2022-08-01",
-    "authors": ["max-ghenis"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "See the interactive simulation on PolicyEngine",
     "filename": "rishi-sunaks-proposal-to-cut-the-basic-rate-to-16-percent.md",
     "image": "rishi-sunaks-proposal-to-cut-the-basic-rate-to-16-percent.jpg"
@@ -427,8 +716,13 @@
   {
     "title": "The new PolicyEngine US Population Impact page",
     "date": "2022-07-01",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "technical"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "description": "You design the policy. We compute the poverty, inequality, and budgetary impacts.",
     "filename": "the-new-policyengine-us-population-impact-page.md",
     "image": "the-new-policyengine-us-population-impact-page.jpg"
@@ -436,8 +730,13 @@
   {
     "title": "PolicyEngine at the BIG Conference and the Beeck Center\u2019s Rules as Code Demo Day",
     "date": "2022-06-09",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "impact"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "impact"
+    ],
     "description": "Register for the BIG Conference June 23\u201325 and the Rules as Code Demo Day June 28",
     "filename": "policyengine-at-the-basic-income-guarantee-conference-and-the-beeck-centers-rules-as-code-demo-day.md",
     "image": "policyengine-at-the-basic-income-guarantee-conference-and-the-beeck-centers-rules-as-code-demo-day.jpg"
@@ -445,8 +744,13 @@
   {
     "title": "Impact of the Chancellor\u2019s Cost of Living Support package",
     "date": "2022-05-26",
-    "authors": ["max-ghenis"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "See the analysis in PolicyEngine UK",
     "filename": "impact-of-the-chancellors-cost-of-living-support-package.md",
     "image": "impact-of-the-chancellors-cost-of-living-support-package.jpg"
@@ -454,8 +758,13 @@
   {
     "title": "How developers can explore the PolicyEngine API",
     "date": "2022-04-29",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["global", "technical"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "global",
+      "technical"
+    ],
     "description": "The UK API explorer and US API explorer describe variables and policy parameters in our models.",
     "filename": "how-developers-can-explore-the-policyengine-api.md",
     "image": "how-developers-can-explore-the-policyengine-api.jpg"
@@ -463,8 +772,13 @@
   {
     "title": "Make Everyone a Policymaker",
     "date": "2021-10-15",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["global", "impact"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "global",
+      "impact"
+    ],
     "description": "Today we're (re)launching PolicyEngine to give the public unprecedented insight into the tax and benefit system.",
     "filename": "make-everyone-a-policymaker.md",
     "image": "make-everyone-a-policymaker.webp"
@@ -472,8 +786,13 @@
   {
     "title": "Analysing Autumn Budget Universal Credit reforms with PolicyEngine",
     "date": "2021-10-30",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "See how the reform affects the UK population or your household.",
     "filename": "analysing-autumn-budget-universal-credit-reforms-with-policyengine.md",
     "image": "analysing-autumn-budget-universal-credit-reforms-with-policyengine.webp"
@@ -481,8 +800,13 @@
   {
     "title": "Income Tax cuts Rishi Sunak is reportedly considering",
     "date": "2021-12-04",
-    "authors": ["max-ghenis"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "Explore the basic rate and additional rate cuts in PolicyEngine.",
     "filename": "income-tax-cuts-rishi-sunak-is-reportedly-considering.md",
     "image": "income-tax-cuts-rishi-sunak-is-reportedly-considering.webp"
@@ -490,8 +814,13 @@
   {
     "title": "PolicyEngine's 2021 year in review",
     "date": "2021-12-29",
-    "authors": ["max-ghenis"],
-    "tags": ["global", "impact"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "global",
+      "impact"
+    ],
     "description": "PolicyEngine's inaugural year was a substantial one for public policy.",
     "filename": "policyengines-2021-year-in-review.md",
     "image": "policyengines-2021-year-in-review.webp"
@@ -499,8 +828,13 @@
   {
     "title": "The Green Party Manifesto at PolicyFest",
     "date": "2022-01-26",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "Explore the Green Party Manifesto on PolicyEngine.",
     "filename": "the-green-party-manifesto-at-policyfest.md",
     "image": "the-green-party-manifesto-at-policyfest.webp"
@@ -508,8 +842,13 @@
   {
     "title": "PolicyEngine arrives stateside",
     "date": "2022-03-31",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "impact"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "impact"
+    ],
     "description": "Today, we're beta-launching PolicyEngine US and several other new features.",
     "filename": "policyengine-comes-stateside.md",
     "image": "policyengine-comes-stateside.webp"
@@ -517,8 +856,13 @@
   {
     "title": "How PolicyEngine estimates the effects of UK carbon taxes",
     "date": "2022-04-23",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "technical"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "technical"
+    ],
     "description": "By fusing datasets with machine learning, we empower anyone to integrate custom carbon taxes with other tax and benefit reforms.",
     "filename": "how-policyengine-estimates-the-effects-of-uk-carbon-taxes.md",
     "image": "how-policyengine-estimates-the-effects-of-uk-carbon-taxes.png"
@@ -526,8 +870,13 @@
   {
     "title": "Tax cuts in Prime Minister Truss's Growth Plan 2022",
     "date": "2022-09-23",
-    "authors": ["max-ghenis"],
-    "tags": ["uk", "policy"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "description": "See the impact on the population and on your household in PolicyEngine UK.",
     "filename": "tax-cuts-in-prime-minister-trusss-growth-plan.md",
     "image": "tax-cuts-in-prime-minister-trusss-growth-plan.png"
@@ -535,8 +884,13 @@
   {
     "title": "How to simulate basic and guaranteed income policies in PolicyEngine US",
     "date": "2022-09-27",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "technical"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "description": "From universal basic income to age-dependent means-tested payments, we've got you covered.",
     "filename": "how-to-simulate-basic-and-guaranteed-income-policies-in-policyengine-us.md",
     "image": "how-to-simulate-basic-and-guaranteed-income-policies-in-policyengine-us.png"
@@ -544,17 +898,27 @@
   {
     "title": "PolicyEngine launches in New York state",
     "date": "2022-10-21",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "policy"],
-    "description": "New Yorkers can now estimate their state income taxes alongside federal taxes and benefits — and change the rules, too.",
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "policy"
+    ],
+    "description": "New Yorkers can now estimate their state income taxes alongside federal taxes and benefits \u2014 and change the rules, too.",
     "filename": "policyengine-launches-in-new-york-state.md",
     "image": "policyengine-launches-in-new-york-state.webp"
   },
   {
     "title": "Computing your Oregon Earned Income Tax Credit in PolicyEngine",
     "date": "2022-10-24",
-    "authors": ["kevin-foster"],
-    "tags": ["us", "policy"],
+    "authors": [
+      "kevin-foster"
+    ],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "description": "We walk you through it step by step.",
     "filename": "computing-your-oregon-earned-income-tax-credit.md",
     "image": "computing-your-oregon-earned-income-tax-credit.png"
@@ -562,17 +926,27 @@
   {
     "title": "Estimating your Supplemental Security Income benefits in PolicyEngine",
     "date": "2022-10-28",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "policy"],
-    "description": "Enter your household information, and our free web app will estimate your SSI — plus other taxes and benefits.",
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "policy"
+    ],
+    "description": "Enter your household information, and our free web app will estimate your SSI \u2014 plus other taxes and benefits.",
     "filename": "estimating-your-supplemental-security-income-benefits-in-policyengine.md",
     "image": "estimating-your-supplemental-security-income-benefits-in-policyengine.webp"
   },
   {
     "title": "Updating PolicyEngine to reflect SNAP reform in the omnibus bill",
     "date": "2022-12-23",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "technical"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "description": "A step-by-step guide to syncing our code with the latest legislation.",
     "filename": "updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill.md",
     "image": "updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill.webp"
@@ -580,8 +954,13 @@
   {
     "title": "From idea to impact: scoring a policy reform on the new PolicyEngine UK",
     "date": "2023-01-12",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "technical"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "technical"
+    ],
     "description": "A walkthrough of the new app on a UK tax-benefit reform.",
     "filename": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-uk.md",
     "image": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-uk.png"
@@ -589,8 +968,13 @@
   {
     "title": "From idea to impact: scoring a policy reform on the new PolicyEngine US",
     "date": "2023-01-12",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["us", "technical"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "description": "A walkthrough of the new app on a US tax-benefit reform.",
     "filename": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us.md",
     "image": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us.png"
@@ -598,8 +982,13 @@
   {
     "title": "The New PolicyEngine",
     "date": "2023-01-12 00:00:01",
-    "authors": ["max-ghenis"],
-    "tags": ["us", "impact"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "impact"
+    ],
     "description": "We're exiting beta with the most accessible tax and benefit model ever built.",
     "filename": "us-the-new-policyengine.md",
     "image": "us-the-new-policyengine.png"
@@ -607,8 +996,13 @@
   {
     "title": "The New PolicyEngine",
     "date": "2023-01-12 00:00:01",
-    "authors": ["max-ghenis"],
-    "tags": ["uk", "impact"],
+    "authors": [
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "impact"
+    ],
     "description": "We're taking economic policy to the next level with the most accessible tax and benefit model ever built.",
     "filename": "uk-the-new-policyengine.md",
     "image": "uk-the-new-policyengine.png"
@@ -616,8 +1010,14 @@
   {
     "title": "How would reforms affect cliffs?",
     "date": "2023-02-02 21:00:00",
-    "authors": ["max-ghenis", "nikhil-woodruff"],
-    "tags": ["us", "policy"],
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "description": "We've added a new feature to the US version of PolicyEngine that lets you see how your reforms affect cliffs.",
     "filename": "how-would-reforms-affect-cliffs.md",
     "image": "how-would-reforms-affect-cliffs.png"
@@ -626,350 +1026,576 @@
     "title": "Reform UK's Emergency Recovery Plan",
     "description": "See the UK party's proposed deficit-funded tax cuts in PolicyEngine",
     "date": "2023-02-09 11:15:00",
-    "tags": ["uk", "policy"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "filename": "reform-uks-emergency-recovery-plan.md",
     "image": "reform-uks-emergency-recovery-plan.png",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "The Child Tax Credit in 2023",
     "description": "We review how the program works and compute its impact with PolicyEngine US.",
     "date": "2023-02-09 00:00:00",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "the-child-tax-credit-in-2023.md",
     "image": "the-child-tax-credit-in-2023.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Restoration of the American Rescue Plan Act's expanded Child Tax Credit",
     "description": "PolicyEngine computes how the 2021 policy would affect Americans and America in 2023.",
     "date": "2023-02-10 00:00:00",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.md",
     "image": "restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "OpenFisca wins Edge of Government's Innovation Award",
     "description": "The success of Rules as Code and its impact on citizens.",
     "date": "2023-02-15 00:00:00",
-    "tags": ["global", "impact"],
+    "tags": [
+      "global",
+      "impact"
+    ],
     "filename": "openfisca-wins-edge-of-government-innovation-award.md",
     "image": "openfisca-wins-edge-of-government-innovation-award.jpeg",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Massachusetts Governor Maura Healey's FY 2024 Budget Recommendation",
     "description": "PolicyEngine estimates the distributional impact of two provisions and the household impact of four provisions.",
     "date": "2023-03-03 00:00:00",
-    "tags": ["us", "us-ma", "policy"],
+    "tags": [
+      "us",
+      "us-ma",
+      "policy"
+    ],
     "filename": "massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.md",
     "image": "massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.webp",
-    "authors": ["max-ghenis", "nicholas-rodelo"]
+    "authors": [
+      "max-ghenis",
+      "nicholas-rodelo"
+    ]
   },
   {
     "title": "The UK's extended Energy Price Guarantee",
     "description": "Analysis by PolicyEngine on the expected effects on income, poverty, and inequality.",
     "date": "2023-03-05 07:30:00",
-    "tags": ["uk", "policy"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "filename": "projected-impact-of-the-uks-extended-energy-price-guarantee.md",
     "image": "projected-impact-of-the-uks-extended-energy-price-guarantee.png",
-    "authors": ["nikhil-woodruff", "max-ghenis"]
+    "authors": [
+      "nikhil-woodruff",
+      "max-ghenis"
+    ]
   },
   {
     "title": "Breaking down poverty impacts by sex",
-    "description": "PolicyEngine estimates the impact of customizable policy reforms on poverty — overall, by age, and now by sex.",
+    "description": "PolicyEngine estimates the impact of customizable policy reforms on poverty \u2014 overall, by age, and now by sex.",
     "date": "2023-03-08 07:30:00",
-    "tags": ["us", "technical"],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "filename": "breaking-down-us-poverty-impacts-by-sex.md",
-    "image": "breaking-down-poverty-impacts-by-sex.png",
-    "authors": ["max-ghenis"]
+    "image": "breaking-down-us-poverty-impacts-by-sex.png",
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Breaking down poverty impacts by sex",
-    "description": "PolicyEngine estimates the impact of customisable policy reforms on poverty — overall, by age, and now by sex.",
+    "description": "PolicyEngine estimates the impact of customisable policy reforms on poverty \u2014 overall, by age, and now by sex.",
     "date": "2023-03-08 07:30:00",
-    "tags": ["uk", "technical"],
+    "tags": [
+      "uk",
+      "technical"
+    ],
     "filename": "breaking-down-uk-poverty-impacts-by-sex.md",
-    "image": "breaking-down-poverty-impacts-by-sex.png",
-    "authors": ["nikhil-woodruff"]
+    "image": "breaking-down-uk-poverty-impacts-by-sex.png",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Analysis of the Spring Budget 2023",
     "description": "PolicyEngine analysis estimates the impact of the EPG extension and the fuel duty freeze.",
     "date": "2023-03-15 18:10:00",
-    "tags": ["uk", "policy"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
     "filename": "analysis-of-the-spring-budget-2023.md",
     "image": "analysis-of-the-spring-budget-2023.jpeg",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Automate policy analysis with PolicyEngine's new ChatGPT integration",
     "description": "Score an economic impact in a few clicks. Write a report in one more.",
     "date": "2023-03-17 11:00:00",
-    "tags": ["global", "technical"],
+    "tags": [
+      "global",
+      "technical"
+    ],
     "filename": "automate-policy-analysis-with-policy-engines-new-chatgpt-integration.md",
     "image": "automate-policy-analysis-with-policy-engines-new-chatgpt-integration.png",
-    "authors": ["nikhil-woodruff", "chat-gpt"]
+    "authors": [
+      "nikhil-woodruff",
+      "chat-gpt"
+    ]
   },
   {
     "title": "Oregon's nonrefundable exemption credit: a closer look",
     "description": "PolicyEngine computes the program's impact on Oregon and individual households.",
     "date": "2023-03-15",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "oregons-nonrefundable-exemption-credit.md",
     "image": "oregons-nonrefundable-exemption-credit.jpeg",
-    "authors": ["kevin-foster"]
+    "authors": [
+      "kevin-foster"
+    ]
   },
   {
     "title": "How much should James Medlock donate to GiveDirectly?",
     "description": "We built a mini-app with the policyengine-us Python package to crunch the implications of a Twitter bet.",
     "date": "2023-03-23 01:00:00",
-    "tags": ["us", "technical"],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "filename": "medlock-donation-calculator.md",
     "image": "medlock-donation-calculator.png",
-    "authors": ["max-ghenis", "nikhil-woodruff"]
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "FiscalSim and PolicyEngine: Emphasizing collaboration and open-source acknowledgment",
     "description": "The Center for Growth and Opportunity launches FiscalSim, a US policy-computing web app drawing heavily from PolicyEngine's work.",
     "date": "2023-03-24 01:00:00",
-    "tags": ["us", "technical"],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "filename": "fiscalsim.md",
     "image": "fiscalsim.png",
-    "authors": ["max-ghenis", "nikhil-woodruff"]
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Restoring the American Rescue Plan's Earned Income Tax Credit Expansion",
     "description": "We review how the expansion works and model its impact with PolicyEngine US.",
     "date": "2023-03-27 01:00:00",
-    "tags": ["us", "policy"],
+    "tags": [
+      "us",
+      "policy"
+    ],
     "filename": "restoring-arpa-eitc.md",
-    "image": "eitc.webp",
-    "authors": ["arthur-wright"]
+    "image": "restoring-arpa-eitc.webp",
+    "authors": [
+      "arthur-wright"
+    ]
   },
   {
     "title": "Breaking down policy impacts by wealth decile",
     "description": "Income isn't everything.",
     "date": "2023-03-28 09:00:00",
-    "tags": ["uk", "technical"],
+    "tags": [
+      "uk",
+      "technical"
+    ],
     "filename": "breaking-down-policy-impacts-by-wealth-decile.md",
     "image": "breaking-down-policy-impacts-by-wealth-decile.png",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "The District Child Tax Credit proposal",
     "description": "Analysis of DC Councilmember Zachary Parker's new legislation.",
     "date": "2023-04-02 09:00:00",
-    "tags": ["us", "us-dc", "policy"],
+    "tags": [
+      "us",
+      "us-dc",
+      "policy"
+    ],
     "filename": "district-child-tax-credit.md",
     "image": "district-child-tax-credit.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Announcing the addition of Kansas income tax to PolicyEngine",
     "description": "We've expanded our tax calculator and customizable reform simulator to the Sunflower State.",
     "date": "2023-04-03 09:00:00",
-    "tags": ["us", "us-ks", "policy"],
+    "tags": [
+      "us",
+      "us-ks",
+      "policy"
+    ],
     "filename": "kansas-income-tax.md",
     "image": "kansas-income-tax.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Revolutionizing policy analysis with AI",
     "description": "Discover PolicyEngine's new GPT-4 integration and audience modes.",
     "date": "2023-04-03 16:00:00",
-    "tags": ["global", "technical"],
+    "tags": [
+      "global",
+      "technical"
+    ],
     "filename": "gpt-analysis.md",
-    "image": "ai-analysis.png",
-    "authors": ["nikhil-woodruff", "chat-gpt"]
+    "image": "gpt-analysis.png",
+    "authors": [
+      "nikhil-woodruff",
+      "chat-gpt"
+    ]
   },
   {
     "title": "Introducing California income tax analysis on PolicyEngine",
     "description": "Expanding our tax calculator and reform simulator capabilities to the most populous state.",
     "date": "2023-04-07 09:00:00",
-    "tags": ["us", "us-ca", "policy"],
+    "tags": [
+      "us",
+      "us-ca",
+      "policy"
+    ],
     "filename": "california-income-tax.md",
     "image": "california-income-tax.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "PolicyEngine adds New York Family Assistance (TANF) to US model",
     "description": "Enhancing analysis of public policy impacts on needy families.",
     "date": "2023-04-08 09:00:00",
-    "tags": ["us", "us-ny", "policy"],
+    "tags": [
+      "us",
+      "us-ny",
+      "policy"
+    ],
     "filename": "new-york-tanf.md",
     "image": "new-york-tanf.png",
-    "authors": ["max-ghenis", "donglai-xu", "lin-tao"]
+    "authors": [
+      "max-ghenis",
+      "donglai-xu",
+      "lin-tao"
+    ]
   },
   {
     "title": "Analysis of the DC Financial Support for Families with Children Amendment Act",
     "description": "Evaluating Councilmember Zachary Parker's second Child Tax Credit proposal of 2023.",
     "date": "2023-04-16 09:00:00",
-    "tags": ["us", "us-dc", "policy"],
+    "tags": [
+      "us",
+      "us-dc",
+      "policy"
+    ],
     "filename": "dc-financial-support-for-families-with-children.md",
     "image": "dc-financial-support-for-families-with-children.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Introducing Utah State Income Tax Analysis on PolicyEngine",
     "description": "Expanding our tax calculator and reform simulator capabilities to the Beehive State.",
     "date": "2023-04-17 09:00:00",
-    "tags": ["us", "us-ut", "policy"],
+    "tags": [
+      "us",
+      "us-ut",
+      "policy"
+    ],
     "filename": "introducing-utah-state-income-tax-analysis-on-policyengine.md",
     "image": "introducing-utah-state-income-tax-analysis-on-policyengine.webp",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Building the roots of PolicyEngine Nigeria",
     "description": "We're expanding PolicyEngine's reach by empowering Nigerians to understand personal income tax policies.",
     "date": "2023-04-21 09:00:00",
-    "tags": ["ng", "technical"],
+    "tags": [
+      "ng",
+      "technical"
+    ],
     "filename": "building-the-roots-of-policyengine-nigeria.md",
     "image": "building-the-roots-of-policyengine-nigeria.webp",
-    "authors": ["nikhil-woodruff", "max-ghenis"]
+    "authors": [
+      "nikhil-woodruff",
+      "max-ghenis"
+    ]
   },
   {
-    "title": "Kansas's Flat Tax Proposal — SB169",
+    "title": "Kansas's Flat Tax Proposal\u200a\u2014\u200aSB169",
     "description": "We review how the bill works and model its impact with PolicyEngine US.",
     "date": "2023-04-23 09:00:00",
-    "tags": ["us", "us-ks", "policy"],
+    "tags": [
+      "us",
+      "us-ks",
+      "policy"
+    ],
     "filename": "kansas-flat-income-tax-sb-169.md",
     "image": "kansas-flat-income-tax-sb-169.webp",
-    "authors": ["arthur-wright"]
+    "authors": [
+      "arthur-wright"
+    ]
   },
   {
     "title": "Digital Public Goods Alliance recognizes PolicyEngine as a Digital Public Good",
     "description": "The UN-endorsed initiative highlights PolicyEngine's open source approach to supporting the Sustainable Development Goals.",
     "date": "2023-04-26 09:00:00",
-    "tags": ["global", "impact"],
+    "tags": [
+      "global",
+      "impact"
+    ],
     "filename": "digital-public-goods-alliance-recognizes-policyengine-as-a-digital-public-good.md",
     "image": "digital-public-goods-alliance-recognizes-policyengine-as-a-digital-public-good.webp",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "How PolicyEngine shaped the outcome of the $1 million bet James Medlock won today",
     "description": "Our free tax calculator helped determine Balaji Srinivasan's $500,000 payments to Medlock and GiveDirectly.",
     "date": "2023-05-02 16:00:00",
-    "tags": ["us", "technical"],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "filename": "medlock-wins.md",
     "image": "medlock-wins.png",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Analysis of Guaranteed Income for the 21st Century",
     "description": "The proposal from the New School and the Economic Security Project would lower poverty and inequality while expanding cliffs.",
     "date": "2023-06-08 13:45:00",
     "filename": "analysis-of-guaranteed-income-for-the-21st-century.md",
-    "tags": ["us", "featured", "policy"],
+    "tags": [
+      "us",
+      "featured",
+      "policy"
+    ],
     "image": "analysis-of-guaranteed-income-for-the-21st-century.jpg",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Analysis of the Working Families Tax Cut Act",
     "description": "How the proposal to increase the standard deduction would affect households and society.",
     "date": "2023-06-08 20:00:00",
     "filename": "malliotakis-steel-working-families-tax-cut-act.md",
-    "tags": ["us", "featured", "policy"],
-    "image": "malliotakis-steel-working-families-tax-credit-act.png",
-    "authors": ["max-ghenis", "nikhil-woodruff"]
+    "tags": [
+      "us",
+      "featured",
+      "policy"
+    ],
+    "image": "malliotakis-steel-working-families-tax-cut-act.png",
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Unveiling poverty impacts by race and ethnicity",
     "description": "A new feature from PolicyEngine reveals how customizable tax and benefit reforms affect poverty rates for Black, White, Hispanic, and other Americans.",
     "date": "2023-06-19 20:00:00",
     "filename": "poverty-race-ethnicity.md",
-    "tags": ["us", "technical"],
+    "tags": [
+      "us",
+      "technical"
+    ],
     "image": "poverty-race-ethnicity.jpg",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Scott Winship's individualized Earned Income Tax Credit proposal",
     "description": "An analysis and note on the value of open-source models.",
     "date": "2023-07-14 08:00:00",
     "filename": "winship-individualized-eitc.md",
-    "tags": ["us", "policy", "featured"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
     "image": "winship-individualized-eitc.jpg",
-    "authors": ["max-ghenis"]
+    "authors": [
+      "max-ghenis"
+    ]
   },
   {
     "title": "Dive Into New Mexico's Income Tax Analysis on PolicyEngine",
     "description": "Expanding our tax calculator and reform simulator capabilities to the Land of Enchantment.",
     "date": "2023-08-02 16:00:00",
     "filename": "new-mexico-income-tax-launch.md",
-    "tags": ["us", "us-nm", "featured", "policy"],
+    "tags": [
+      "us",
+      "us-nm",
+      "featured",
+      "policy"
+    ],
     "image": "new-mexico-income-tax-launch.png",
-    "authors": ["max-ghenis", "pavel-makarchuk"]
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ]
   },
   {
     "title": "Repealing the Universal Credit two-child limit",
     "description": "How removing the limit of some benefits to two children would affect the UK in 2023.",
     "date": "2023-08-07 16:00:00",
     "filename": "repealing_the_two_child_limit.md",
-    "tags": ["uk", "policy"],
-    "image": "two_child_limit.png",
-    "authors": ["nikhil-woodruff"]
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "image": "repealing_the_two_child_limit.png",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "New King's College London research uses PolicyEngine",
-    "description": "A ‘Citizens' Economic Council' explores PolicyEngine-scored tax-benefit impacts.",
+    "description": "A \u2018Citizens' Economic Council' explores PolicyEngine-scored tax-benefit impacts.",
     "date": "2023-11-04 09:00:00",
     "filename": "citizens-economic-council.md",
-    "tags": ["uk", "impact"],
+    "tags": [
+      "uk",
+      "impact"
+    ],
     "image": "citizens-economic-council.png",
-    "authors": ["nikhil-woodruff"]
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Autumn Statement 2023 tax-benefit reforms",
     "description": "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
     "date": "2023-11-22 17:25",
     "filename": "autumn-statement-2023.md",
-    "tags": ["uk", "policy"],
-    "image": "jeremy-hunt.jpg",
-    "authors": ["nikhil-woodruff"]
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "image": "autumn-statement-2023.jpg",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Autumn 2023 model calibration update",
     "description": "Evaluating PolicyEngine's model performance with the latest official statistics.",
     "date": "2023-12-04 09:00:00",
     "filename": "uk-calibration-2023-q4.ipynb",
-    "tags": ["uk", "technical"],
-    "image": "uk-calibration-dec-2023-update.png",
-    "authors": ["nikhil-woodruff"]
+    "tags": [
+      "uk",
+      "technical"
+    ],
+    "image": "uk-calibration-2023-q4.png",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Preliminary analysis of the Wyden-Smith Child Tax Credit expansion",
     "description": "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit's refundable component.",
     "date": "2024-01-11 12:00:00",
     "filename": "wyden-smith-ctc.md",
-    "tags": ["us", "impact", "featured", "child-tax-credit"],
-    "image": "wyden.jpeg",
-    "authors": ["max-ghenis", "pavel-makarchuk"]
+    "tags": [
+      "us",
+      "impact",
+      "featured",
+      "child-tax-credit"
+    ],
+    "image": "wyden-smith-ctc.jpeg",
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ]
   },
   {
     "title": "Spring Budget 2024 proposals",
     "description": "PolicyEngine estimates reported likely tax-benefit reforms ahead of the UK Spring Budget.",
     "date": "2024-03-04 09:00:00",
     "filename": "spring-budget-2024.ipynb",
-    "tags": ["uk", "policy"],
-    "image": "jeremy-hunt-with-budget-box.jpg",
-    "authors": ["anthony-volk", "nikhil-woodruff"]
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "image": "spring-budget-2024.jpg",
+    "authors": [
+      "anthony-volk",
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Spring Budget 2024",
     "description": "PolicyEngine estimates the impact of the UK Spring Budget.",
     "date": "2024-03-06 09:00:00",
     "filename": "uk-2024-spring-budget.ipynb",
-    "tags": ["uk", "policy"],
-    "image": "uk_budget_box_hunt.jpg",
-    "authors": ["nikhil-woodruff", "anthony-volk"]
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "image": "uk-2024-spring-budget.jpg",
+    "authors": [
+      "nikhil-woodruff",
+      "anthony-volk"
+    ]
   },
   {
     "title": "Beta-launch: PolicyEngine's enhanced microdata for policy analysis",
     "description": "By integrating and calibrating multiple datasets, PolicyEngine makes world-class tax-benefit microsimulation modeling available to anyone.",
     "date": "2024-03-25 09:00:00",
-    "tags": ["us", "technical", "featured"],
-    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "tags": [
+      "us",
+      "technical",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ],
     "filename": "enhanced-cps-beta.md",
     "image": "enhanced-cps-beta.png"
   },
@@ -977,8 +1603,14 @@
     "title": "Child Tax Credit Provisions of the Tax Relief for American Workers and Families Act",
     "description": "How the Wyden-Smith bipartisan tax package would affect families through 2025.",
     "date": "2024-03-25 09:00:00",
-    "tags": ["us", "policy", "featured"],
-    "authors": ["max-ghenis"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis"
+    ],
     "filename": "trafwa-ctc.md",
     "image": "trafwa-ctc.webp"
   },
@@ -986,8 +1618,15 @@
     "title": "Individual income tax provisions of President Biden's 2025 Budget",
     "description": "PolicyEngine projects the impact of expanding tax credits and raising taxes on high-income filers.",
     "date": "2024-03-27 09:00:00",
-    "tags": ["us", "policy", "featured"],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "biden-budget-2025.md",
     "image": "biden-budget-2025.jpeg"
   },
@@ -995,8 +1634,14 @@
     "title": "PolicyEngine launches state income tax modeling nationwide",
     "description": "Free, open-source platform now covers all 50 states and D.C., just in time for tax season.",
     "date": "2024-04-15 09:00:00",
-    "tags": ["us", "policy", "featured"],
-    "authors": ["pavel-makarchuk"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "pavel-makarchuk"
+    ],
     "filename": "state-tax-model-beta.md",
     "image": "state-tax-model-beta.png"
   },
@@ -1004,17 +1649,27 @@
     "title": "PolicyEngine's Spring 2024 update",
     "description": "How PolicyEngine compares to the latest external forecasts.",
     "date": "2024-04-16 09:00:00",
-    "tags": ["uk", "policy"],
-    "image": "uk_march_update.png",
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "image": "obr-forecast-update-spring-24.png",
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "obr-forecast-update-spring-24.ipynb"
   },
   {
     "title": "The Triple Lock Plus",
     "description": "PolicyEngine estimates the impact of the UK government's proposed pension uprating policy reform.",
     "date": "2024-05-28 09:00:00",
-    "tags": ["uk", "policy"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "uk-triple-lock-plus.ipynb",
     "image": "uk-triple-lock-plus.jpg"
   },
@@ -1022,17 +1677,29 @@
     "title": "The Liberal Democrat Manifesto",
     "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-11 16:30:00",
-    "tags": ["uk", "policy"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "lib-dem-2024-manifesto.md",
-    "image": "lib-dem-manifesto-2024.jpeg"
+    "image": "lib-dem-2024-manifesto.jpeg"
   },
   {
     "title": "The Conservative Manifesto",
     "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-12 16:30:00",
-    "tags": ["uk", "policy"],
-    "authors": ["nikhil-woodruff", "pavel-makarchuk", "anthony-volk"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "authors": [
+      "nikhil-woodruff",
+      "pavel-makarchuk",
+      "anthony-volk"
+    ],
     "filename": "conservative-2024-manifesto.md",
     "image": "conservative-2024-manifesto.png"
   },
@@ -1040,8 +1707,14 @@
     "title": "The Labour Party Manifesto",
     "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-29 14:00:00",
-    "tags": ["uk", "policy"],
-    "authors": ["nikhil-woodruff", "anthony-volk"],
+    "tags": [
+      "uk",
+      "policy"
+    ],
+    "authors": [
+      "nikhil-woodruff",
+      "anthony-volk"
+    ],
     "filename": "labour-2024-manifesto.md",
     "image": "labour-2024-manifesto.png"
   },
@@ -1049,8 +1722,15 @@
     "title": "PolicyEngine Powers Niskanen Center's Analysis",
     "description": "Three new reports from the Niskanen Center think tank demonstrate PolicyEngine's tax and benefit reform model.",
     "date": "2024-07-12 09:00:00",
-    "tags": ["us", "policy", "featured"],
-    "authors": ["max-ghenis", "ben-gross"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis",
+      "ben-gross"
+    ],
     "filename": "niskanen-center-analysis.md",
     "image": "niskanen-center-analysis.jpg"
   },
@@ -1058,17 +1738,33 @@
     "title": "Kamala Harris's LIFT Act Middle Class Tax Credit",
     "description": "A comprehensive analysis of the Vice President's 2018 proposal.",
     "date": "2024-07-22 01:00:00",
-    "tags": ["us", "policy", "featured", "2024-election"],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "2024-election"
+    ],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "lift-act.md",
     "image": "lift-act.jpg"
   },
   {
-    "title": "Analysis of JD Vance’s Suggested $5,000 Child Tax Credit Expansion",
-    "description": "Impacts of the vice presidential nominee’s reform depend largely on its uncertain refundability.",
+    "title": "Analysis of JD Vance\u2019s Suggested $5,000 Child Tax Credit Expansion",
+    "description": "Impacts of the vice presidential nominee\u2019s reform depend largely on its uncertain refundability.",
     "date": "2024-08-11 01:00:00",
-    "tags": ["us", "policy", "featured", "2024-election"],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "2024-election"
+    ],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "vance-ctc.md",
     "image": "vance-ctc.jpg"
   },
@@ -1076,8 +1772,15 @@
     "title": "PolicyEngine at the 117th Annual Conference on Taxation",
     "description": "Exploring AI applications and enhanced data for tax policy analysis.",
     "date": "2024-08-13 01:00:00",
-    "tags": ["us", "policy", "conferences"],
-    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "tags": [
+      "us",
+      "policy",
+      "conferences"
+    ],
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ],
     "filename": "nta-2024.md",
     "image": "nta-2024.png"
   },
@@ -1085,17 +1788,30 @@
     "title": "Validation against the Survey of Personal Incomes",
     "description": "Evaluating PolicyEngine's model performance against the UK SPI.",
     "date": "2024-08-14 01:00:00",
-    "tags": ["uk", "technical"],
-    "authors": ["anthony-volk"],
+    "tags": [
+      "uk",
+      "technical"
+    ],
+    "authors": [
+      "anthony-volk"
+    ],
     "filename": "uk-spi-validation.ipynb",
     "image": "uk-spi-validation.png"
   },
   {
-    "title": "Kamala Harris’s Child Tax Credit Proposal",
-    "description": "We analyze the Democratic nominee’s proposal to expand the 2021 expansion, giving $6,000 to parents of newborns.",
+    "title": "Kamala Harris\u2019s Child Tax Credit Proposal",
+    "description": "We analyze the Democratic nominee\u2019s proposal to expand the 2021 expansion, giving $6,000 to parents of newborns.",
     "date": "2024-08-17 01:00:00",
-    "tags": ["us", "2024-election", "policy", "featured"],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "tags": [
+      "us",
+      "2024-election",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "harris-ctc.md",
     "image": "harris-ctc.webp"
   },
@@ -1103,8 +1819,16 @@
     "title": "Individual Income Tax Provisions in Minnesota Bill HF1938 (2023)",
     "description": "The reform signed by Governor Tim Walz expanded credits for low-income families, reduced taxes for middle-income retirees, and raised taxes for high-income filers.",
     "date": "2024-08-21 01:00:00",
-    "tags": ["us", "2024-election", "policy", "featured", "minnesota"],
-    "authors": ["pavel-makarchuk"],
+    "tags": [
+      "us",
+      "2024-election",
+      "policy",
+      "featured",
+      "minnesota"
+    ],
+    "authors": [
+      "pavel-makarchuk"
+    ],
     "filename": "mn-hf1938-walz.md",
     "image": "mn-hf1938-walz.webp"
   },
@@ -1112,8 +1836,15 @@
     "title": "How the Rent Relief Act of 2019 Varies with Income and Location",
     "description": "We show the impact on different households of the tax credit bill introduced by then-Senator Kamala Harris.",
     "date": "2024-08-22 01:00:00",
-    "tags": ["us", "2024-election", "policy", "featured"],
-    "authors": ["max-ghenis"],
+    "tags": [
+      "us",
+      "2024-election",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis"
+    ],
     "filename": "rent-relief-act.md",
     "image": "rent-relief-act.png"
   },
@@ -1121,131 +1852,227 @@
     "title": "How the Oregon Rebate May Affect Poverty Rates",
     "description": "Our model finds the ballot measure could reduce poverty by between 22% and 35%, without macroeconomic effects.",
     "date": "2024-09-29 01:00:00",
-    "tags": ["us", "2024-election", "policy", "us-or"],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "tags": [
+      "us",
+      "2024-election",
+      "policy",
+      "us-or"
+    ],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "oregon-rebate.md",
     "image": "oregon-rebate.png"
   },
   {
     "title": "Exempting Social Security Benefits from Income Taxation",
-    "description": "PolicyEngine projects that former President Donald Trump’s proposal would cost $1.4 trillion over the budget window.",
+    "description": "PolicyEngine projects that former President Donald Trump\u2019s proposal would cost $1.4 trillion over the budget window.",
     "date": "2024-10-07 01:00:00",
-    "tags": ["us", "2024-election", "policy", "featured"],
-    "authors": ["david-trimmer"],
+    "tags": [
+      "us",
+      "2024-election",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "david-trimmer"
+    ],
     "filename": "social-security-tax-exemption.md",
     "image": "social-security-tax-exemption.webp"
   },
   {
     "title": "Labour's reforms to VAT tax on private schools",
-    "description": "PolicyEngine projects Labour's private school tax plan would raise £7.7 billion over five years, mainly affecting wealthier households.",
+    "description": "PolicyEngine projects Labour's private school tax plan would raise \u00a37.7 billion over five years, mainly affecting wealthier households.",
     "date": "2024-10-17 01:00:00",
-    "tags": ["uk", "tax", "policy", "vat"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "tax",
+      "policy",
+      "vat"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "school-vat.md",
-    "image": "classroom-2093744.jpg"
+    "image": "school-vat.jpg"
   },
   {
     "title": "Levying VAT on private school fees in the Autumn Budget",
-    "description": "PolicyEngine projects the reforms to private school VAT would raise £1.5 billion in 2025.",
+    "description": "PolicyEngine projects the reforms to private school VAT would raise \u00a31.5 billion in 2025.",
     "date": "2024-10-31 15:00:00",
-    "tags": ["uk", "tax", "policy", "vat", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "tax",
+      "policy",
+      "vat",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "vat-school-comparison.md",
-    "image": "vat-school-comparison-post.jpg"
+    "image": "vat-school-comparison.jpg"
   },
   {
     "title": "How PolicyEngine UK models behavioural responses",
     "description": "PolicyEngine has enhanced its modelling with behavioural responses, including income, substitution and capital gains elasticities.",
     "date": "2024-11-12 15:00:00",
-    "tags": ["uk", "policy", "behavioural-responses", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "policy",
+      "behavioural-responses",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "behavioural-responses.md",
     "image": "behavioural-responses.jpg"
   },
   {
     "title": "Benefits uprating 2025/26",
-    "description": "PolicyEngine projects Labour's 1.7% benefits uprating would cost £2.5 billion, mainly benefiting lower-income households.",
+    "description": "PolicyEngine projects Labour's 1.7% benefits uprating would cost \u00a32.5 billion, mainly benefiting lower-income households.",
     "date": "2024-10-31 15:00:00",
-    "tags": ["uk", "benefit", "inflation"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "benefit",
+      "inflation"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "Benefit-uprating-25.md",
-    "image": "benefit-uprating-post-pic.jpg"
+    "image": "Benefit-uprating-25.jpg"
   },
   {
     "title": "Capital Gains Tax reforms in the Autumn Budget 2024",
-    "description": "PolicyEngine estimates that the UK's 2024 Capital Gains Tax reforms will raise £6.4 billion between 2025-2029.",
+    "description": "PolicyEngine estimates that the UK's 2024 Capital Gains Tax reforms will raise \u00a36.4 billion between 2025-2029.",
     "date": "2024-11-06 15:00:00",
-    "tags": ["uk", "tax", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "tax",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "cgt-autumn-budget.md",
     "image": "cgt-autumn-budget.jpg"
   },
   {
-    "title": "Kamala Harris’s Earned Income Tax Credit Expansion Proposal",
+    "title": "Kamala Harris\u2019s Earned Income Tax Credit Expansion Proposal",
     "description": "PolicyEngine projects that restoring the American Rescue Plan policy would cost $144 billion (static) or $201 billion (dynamic) over a decade, while lowering poverty by 1.6% in 2025.",
     "date": "2024-10-24 01:00:00",
-    "tags": ["us", "2024-election", "policy", "featured"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "us",
+      "2024-election",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "harris-eitc.md",
     "image": "harris-eitc.webp"
   },
   {
     "title": "Autumn Budget policy choices",
-    "description": "PolicyEngine estimates that four reported tax reforms would raise £23 billion per year",
+    "description": "PolicyEngine estimates that four reported tax reforms would raise \u00a323 billion per year",
     "date": "2024-10-24 16:30:00",
-    "tags": ["uk", "autumn-budget", "featured", "policy"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "autumn-budget",
+      "featured",
+      "policy"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "autumn-budget-2024-policy-choices.ipynb",
-    "image": "autumn-budget-policy-choices.png"
+    "image": "autumn-budget-2024-policy-choices.png"
   },
   {
     "title": "Levying employer National Insurance on pension contributions",
-    "description": "PolicyEngine estimates the now-scrapped Autumn Budget reform would have raised between £10 and £18 billion per year, depending on how employers pass it on to wages.",
+    "description": "PolicyEngine estimates the now-scrapped Autumn Budget reform would have raised between \u00a310 and \u00a318 billion per year, depending on how employers pass it on to wages.",
     "date": "2024-10-26 09:00:00",
-    "tags": ["uk", "autumn-budget", "policy"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "autumn-budget",
+      "policy"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "autumn-budget-2024-employer-nic-pension-contributions.md",
     "image": "autumn-budget-2024-employer-nic-pension-contributions.png"
   },
   {
     "title": "Extending the Tax Cuts and Jobs Act",
     "date": "2024-10-28 00:00:01",
-    "authors": ["david-trimmer"],
-    "tags": ["us", "2024-election", "featured"],
+    "authors": [
+      "david-trimmer"
+    ],
+    "tags": [
+      "us",
+      "2024-election",
+      "featured"
+    ],
     "description": "PolicyEngine projects extending the TCJA individual tax provisions would cost $3.9 trillion over a ten-year budget window.",
     "filename": "tcja-extension.md",
     "image": "tcja-extension.jpg"
   },
   {
     "title": "Employer National Insurance reforms in the Autumn Budget 2024",
-    "description": "PolicyEngine projects the reforms to employer NI would raise £23 billion in 2025 and affect two thirds of people.",
+    "description": "PolicyEngine projects the reforms to employer NI would raise \u00a323 billion in 2025 and affect two thirds of people.",
     "date": "2024-10-30 16:30:00",
-    "tags": ["uk", "autumn-budget", "policy", "featured"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "autumn-budget",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "autumn-budget-24-employer-ni.md",
     "image": "autumn-budget-24-employer-ni.png"
   },
   {
     "title": "Fuel duty reforms in the Autumn Budget 2024",
-    "description": "PolicyEngine projects the reforms to fuel duty will cost £2.4 billion in 2025.",
+    "description": "PolicyEngine projects the reforms to fuel duty will cost \u00a32.4 billion in 2025.",
     "date": "2024-10-30 17:30:00",
-    "tags": ["uk", "autumn-budget", "policy", "featured"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "autumn-budget",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "autumn-budget-24-fuel-duty.md",
     "image": "autumn-budget-24-fuel-duty.png"
   },
   {
     "title": "Donald Trump's Economic Agenda",
-    "description": "PolicyEngine projects three provisions of Donald Trump’s tax plan would cost $5.4 trillion over the next ten years.",
+    "description": "PolicyEngine projects three provisions of Donald Trump\u2019s tax plan would cost $5.4 trillion over the next ten years.",
     "date": "2024-10-31 17:30:00",
-    "tags": ["us", "election", "donald-trump", "featured"],
-    "authors": ["david-trimmer"],
+    "tags": [
+      "us",
+      "election",
+      "donald-trump",
+      "featured"
+    ],
+    "authors": [
+      "david-trimmer"
+    ],
     "filename": "trump-2024.md",
     "image": "trump-2024.webp"
   },
   {
-    "title": "How Would Each Presidential Candidate’s Economic Plans Affect Your Household?",
-    "description": "PolicyEngine has created a personalized calculator for the 2024 presidential election’s tax proposals.",
+    "title": "How Would Each Presidential Candidate\u2019s Economic Plans Affect Your Household?",
+    "description": "PolicyEngine has created a personalized calculator for the 2024 presidential election\u2019s tax proposals.",
     "date": "2024-11-03 17:30:00",
     "tags": [
       "us",
@@ -1255,7 +2082,10 @@
       "featured",
       "interactives"
     ],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "introducing-2024-election-calculator.md",
     "image": "introducing-2024-election-calculator.png"
   },
@@ -1263,17 +2093,29 @@
     "title": "Federal Tax Inflation Adjustments for Tax Year 2025",
     "description": "PolicyEngine has updated all relevant federal tax parameters based on the latest IRS announcements.",
     "date": "2024-11-19 09:30:00",
-    "tags": ["us", "featured"],
-    "authors": ["david-trimmer"],
+    "tags": [
+      "us",
+      "featured"
+    ],
+    "authors": [
+      "david-trimmer"
+    ],
     "filename": "federal-tax-inflation-adjustments-2025.md",
-    "image": "fed_tax_inflation_adjustments.webp"
+    "image": "federal-tax-inflation-adjustments-2025.webp"
   },
   {
     "title": "Introducing GiveCalc",
     "description": "Calculate the true cost of charitable giving.",
     "date": "2024-12-03 09:30:00",
-    "tags": ["us", "featured", "giving"],
-    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "tags": [
+      "us",
+      "featured",
+      "giving"
+    ],
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk"
+    ],
     "filename": "givecalc.md",
     "image": "givecalc.png"
   },
@@ -1281,8 +2123,14 @@
     "title": "Louisiana Transitions to a Flat Tax",
     "description": "Analysis of the individual tax changes signed into law by Governor Jeff Landry.",
     "date": "2024-12-10 09:30:00",
-    "tags": ["us", "featured", "louisiana"],
-    "authors": ["david-trimmer"],
+    "tags": [
+      "us",
+      "featured",
+      "louisiana"
+    ],
+    "authors": [
+      "david-trimmer"
+    ],
     "filename": "louisiana-flat-tax.md",
     "image": "louisiana-flat-tax.webp"
   },
@@ -1290,35 +2138,57 @@
     "title": "NEO Philanthropy Awards $200,000 Grant to PolicyEngine",
     "description": "Economic Mobility & Opportunity Fund supports expanding access to policy analysis tools.",
     "date": "2024-12-18 09:30:00",
-    "tags": ["us", "featured"],
-    "authors": ["max-ghenis"],
+    "tags": [
+      "us",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis"
+    ],
     "filename": "neo-philanthropy.md",
     "image": "neo-philanthropy.png"
   },
   {
-    "title": "Nuffield Foundation awards £250k to enhance PolicyEngine UK",
+    "title": "Nuffield Foundation awards \u00a3250k to enhance PolicyEngine UK",
     "description": "Grant will support expanding and localising tax-benefit microsimulation capabilities.",
     "date": "2024-12-19 14:00:00",
-    "tags": ["uk", "featured"],
-    "authors": ["max-ghenis"],
+    "tags": [
+      "uk",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis"
+    ],
     "filename": "uk-nuffield-grant.md",
     "image": "uk-nuffield-grant.png"
   },
   {
     "title": "New AI Feature Helps People Understand Their Taxes and Benefits",
-    "description": "We’re applying large language models to clarify complex policy rules.",
+    "description": "We\u2019re applying large language models to clarify complex policy rules.",
     "date": "2024-12-26 09:00:00",
-    "tags": ["us", "featured", "ai"],
-    "authors": ["anthony-volk"],
+    "tags": [
+      "us",
+      "featured",
+      "ai"
+    ],
+    "authors": [
+      "anthony-volk"
+    ],
     "filename": "us-household-ai.md",
     "image": "us-household-ai.png"
   },
   {
     "title": "New AI feature helps people understand their taxes and benefits",
-    "description": "We’re applying large language models to clarify complex policy rules.",
+    "description": "We\u2019re applying large language models to clarify complex policy rules.",
     "date": "2024-12-26 09:00:00",
-    "tags": ["uk", "featured", "ai"],
-    "authors": ["anthony-volk"],
+    "tags": [
+      "uk",
+      "featured",
+      "ai"
+    ],
+    "authors": [
+      "anthony-volk"
+    ],
     "filename": "uk-household-ai.md",
     "image": "uk-household-ai.png"
   },
@@ -1326,7 +2196,12 @@
     "title": "PolicyEngine US Launches Behavioral Responses",
     "description": "We've expanded our modeling framework to capture how policy changes affect labor supply.",
     "date": "2024-12-27 09:00:00",
-    "tags": ["us", "policy", "behavioral-responses", "featured"],
+    "tags": [
+      "us",
+      "policy",
+      "behavioral-responses",
+      "featured"
+    ],
     "authors": [
       "max-ghenis",
       "nikhil-woodruff",
@@ -1334,32 +2209,52 @@
       "vahid-ahmadi"
     ],
     "filename": "us-behavioral-responses.md",
-    "image": "behavioural-responses.jpg"
+    "image": "us-behavioral-responses.jpg"
   },
   {
     "title": "PolicyEngine UK in 2024: A year in review",
     "description": "From AI-powered analysis to election impact, we transformed policy research through technology.",
     "date": "2024-12-28 09:00:00",
-    "tags": ["uk", "year-in-review", "featured"],
-    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "year-in-review",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ],
     "filename": "uk-year-in-review-2024.md",
-    "image": "year-in-review-2024.png"
+    "image": "uk-year-in-review-2024.png"
   },
   {
     "title": "PolicyEngine US in 2024: A year in review",
     "description": "From state-level modeling to AI-powered analysis, we expanded the frontier of policy research through technology.",
     "date": "2024-12-29 09:00:00",
-    "tags": ["us", "year-in-review", "featured"],
-    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "tags": [
+      "us",
+      "year-in-review",
+      "featured"
+    ],
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ],
     "filename": "us-year-in-review-2024.md",
-    "image": "year-in-review-2024.png"
+    "image": "us-year-in-review-2024.png"
   },
   {
     "title": "Analysis of the Family First Act",
     "description": "We project that Representative Blake Moore's Child Tax Credit bill would raise revenue and reduce poverty.",
     "date": "2025-01-17 09:00:00",
-    "tags": ["us", "policy", "featured"],
-    "authors": ["pavel-makarchuk"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "pavel-makarchuk"
+    ],
     "filename": "family-first-act.md",
     "image": "family-first-act.jpg"
   },
@@ -1367,8 +2262,15 @@
     "title": "The New York Working Families Tax Credit",
     "description": "A comprehensive analysis of the proposal from New York State Senator Andrew Gounardes.",
     "date": "2025-01-21 09:00:00",
-    "tags": ["us", "policy", "featured", "us-ny"],
-    "authors": ["david-trimmer"],
+    "tags": [
+      "us",
+      "policy",
+      "featured",
+      "us-ny"
+    ],
+    "authors": [
+      "david-trimmer"
+    ],
     "filename": "ny-wftc.md",
     "image": "ny-wftc.webp"
   },
@@ -1376,16 +2278,29 @@
     "title": "How We're Improving our API in 2025",
     "description": "PolicyEngine's API target architecture for 2025.",
     "date": "2025-02-05",
-    "tags": ["technical", "global"],
-    "authors": ["michael-smit"],
+    "tags": [
+      "technical",
+      "global"
+    ],
+    "authors": [
+      "michael-smit"
+    ],
     "filename": "api-v2.md",
     "image": "api-v2.webp"
   },
   {
     "title": "The Proposed New York City Child Tax Credit",
     "date": "2025-02-18 00:00:01",
-    "authors": ["david-trimmer"],
-    "tags": ["us", "us-ny-nyc", "featured", "child tax credit", "policy"],
+    "authors": [
+      "david-trimmer"
+    ],
+    "tags": [
+      "us",
+      "us-ny-nyc",
+      "featured",
+      "child tax credit",
+      "policy"
+    ],
     "description": "Analysis of Senate Bill S2238, introduced by Senator Andrew Gounardes.",
     "filename": "nyc-ctc-s2238.md",
     "image": "nyc-ctc-s2238.webp"
@@ -1394,34 +2309,61 @@
     "title": "Kentucky Cuts Income Tax Rate",
     "description": "Analysis of lowering Kentucky's 4% income tax rate to 3.5%.",
     "date": "2025-02-26",
-    "tags": ["us", "us-ky", "policy", "featured"],
+    "tags": [
+      "us",
+      "us-ky",
+      "policy",
+      "featured"
+    ],
     "filename": "kentucky-cuts-income-tax-rate.md",
     "image": "kentucky-cuts-income-tax-rate.webp",
-    "authors": ["david-trimmer"]
+    "authors": [
+      "david-trimmer"
+    ]
   },
   {
     "title": "The Family Income Supplemental Credit (FISC) Act",
-    "description": "Representative Jared Golden’s Child Tax Credit reform would cost $193 billion in 2026 while reducing poverty and inequality.",
+    "description": "Representative Jared Golden\u2019s Child Tax Credit reform would cost $193 billion in 2026 while reducing poverty and inequality.",
     "date": "2025-03-05",
-    "tags": ["us", "policy", "featured"],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
     "filename": "fisc-act.md",
-    "image": "jared-golden.jpeg",
-    "authors": ["pavel-makarchuk"]
+    "image": "fisc-act.jpeg",
+    "authors": [
+      "pavel-makarchuk"
+    ]
   },
   {
     "title": "Exempting young children from the two-child limit",
     "description": "Analysis of the potential impact of limiting the two-child limit to families with children under 5 years old.",
     "date": "2025-03-06 00:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi", "pavel-makarchuk"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi",
+      "pavel-makarchuk"
+    ],
     "filename": "young-child-exemption-two-child-limit.md",
     "image": "young-child-exemption-two-child-limit.jpg"
   },
   {
     "title": "New York Governor Hochul's Tax Proposals",
     "date": "2025-03-07",
-    "authors": ["david-trimmer"],
-    "tags": ["us", "us-ny", "featured", "policy"],
+    "authors": [
+      "david-trimmer"
+    ],
+    "tags": [
+      "us",
+      "us-ny",
+      "featured",
+      "policy"
+    ],
     "description": "PolicyEngine analyzed several individual income tax policies included in Governor Kathy Hochul's FY2026 budget.",
     "filename": "ny-hochul-budget.md",
     "image": "ny-hochul-budget.jpg"
@@ -1429,53 +2371,93 @@
   {
     "title": "The impact of Personal Independence Payment, and freezing its level in 2025",
     "date": "2025-03-11",
-    "authors": ["nikhil-woodruff"],
-    "tags": ["uk", "policy", "featured"],
+    "authors": [
+      "nikhil-woodruff"
+    ],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
     "description": "How the disability benefit, and one reform the government is reportedly considering, affect the UK household sector.",
     "filename": "pip-and-freeze.md",
-    "image": "pip_and_freeze.jpg"
+    "image": "pip-and-freeze.jpg"
   },
   {
     "title": "Analysis of Michigan HB 4170",
     "date": "2025-03-26",
-    "authors": ["pavel-makarchuk"],
-    "tags": ["us", "policy", "featured"],
-    "description": "We project the bill, which would reduce Michigan’s tax rate from 4.25% to 4.05%, would cost $644 million in 2025.",
+    "authors": [
+      "pavel-makarchuk"
+    ],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "description": "We project the bill, which would reduce Michigan\u2019s tax rate from 4.25% to 4.05%, would cost $644 million in 2025.",
     "filename": "michigan-bill-hb4170.ipynb",
     "image": "michigan-bill-hb4170.jpg"
   },
   {
     "title": "Restricting eligibility for the Personal Independence Payment Daily Living part",
     "date": "2025-03-18",
-    "authors": ["nikhil-woodruff", "max-ghenis"],
-    "tags": ["uk", "policy", "featured"],
-    "description": "We simulate potential realisations of the Government's new £5 billion reform.",
+    "authors": [
+      "nikhil-woodruff",
+      "max-ghenis"
+    ],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "description": "We simulate potential realisations of the Government's new \u00a35 billion reform.",
     "filename": "uk-pip-reforms.md",
     "image": "uk-pip-reforms.jpg"
   },
   {
     "title": "The Tax Cuts for Workers Act",
     "date": "2025-06-16",
-    "authors": ["pavel-makarchuk", "max-ghenis"],
-    "tags": ["us", "policy", "featured"],
-    "description": "We simulate the new bill to restore the American Rescue Plan Act’s Earned Income Tax Credit expansion.",
+    "authors": [
+      "pavel-makarchuk",
+      "max-ghenis"
+    ],
+    "tags": [
+      "us",
+      "policy",
+      "featured"
+    ],
+    "description": "We simulate the new bill to restore the American Rescue Plan Act\u2019s Earned Income Tax Credit expansion.",
     "filename": "tax-cuts-for-workers-act.ipynb",
     "image": "tax-cuts-for-workers-act.png"
   },
   {
     "title": "Benefits in PolicyEngine",
     "date": "2025-05-28 00:00:00",
-    "authors": ["vahid-ahmadi"],
-    "tags": ["uk", "policy", "featured", "benefit"],
+    "authors": [
+      "vahid-ahmadi"
+    ],
+    "tags": [
+      "uk",
+      "policy",
+      "featured",
+      "benefit"
+    ],
     "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
     "filename": "uk-benefits-post.md",
-    "image": "uk-benefit-post.png"
+    "image": "uk-benefits-post.png"
   },
   {
-    "title": "Idaho’s New Individual Income Tax Changes",
+    "title": "Idaho\u2019s New Individual Income Tax Changes",
     "date": "2025-04-01",
-    "authors": ["david-trimmer"],
-    "tags": ["us", "us-id", "featured", "policy"],
+    "authors": [
+      "david-trimmer"
+    ],
+    "tags": [
+      "us",
+      "us-id",
+      "featured",
+      "policy"
+    ],
     "description": "The lower top marginal rate and larger grocery tax credit will cost the state $225 million in 2025.",
     "filename": "idaho-2025-tax-change.ipynb",
     "image": "idaho-2025-tax-change.jpg"
@@ -1484,53 +2466,94 @@
     "title": "Taxes in PolicyEngine",
     "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
     "date": "2025-04-08 00:00:00",
-    "tags": ["uk", "policy", "featured", "tax"],
-    "authors": ["vahid-ahmadi", "nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured",
+      "tax"
+    ],
+    "authors": [
+      "vahid-ahmadi",
+      "nikhil-woodruff"
+    ],
     "filename": "uk-taxes-post.md",
-    "image": "uk-tax-post.jpg"
+    "image": "uk-taxes-post.jpg"
   },
   {
     "title": "Utah Cuts Income Tax Rate and Expands Credits",
     "date": "2025-05-01",
-    "authors": ["david-trimmer"],
-    "tags": ["us", "us-ut", "featured", "policy"],
-    "description": "Utah’s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
+    "authors": [
+      "david-trimmer"
+    ],
+    "tags": [
+      "us",
+      "us-ut",
+      "featured",
+      "policy"
+    ],
+    "description": "Utah\u2019s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
     "filename": "utah-income-tax-changes.ipynb",
     "image": "utah-income-tax-changes.jpg"
   },
   {
     "title": "Reform UK's tax-benefit reform proposals",
-    "description": "Nigel Farage has confirmed that Reform UK's manifesto will include four tax-benefit reforms that PolicyEngine estimates would cost £75 billion in 2025-26.",
+    "description": "Nigel Farage has confirmed that Reform UK's manifesto will include four tax-benefit reforms that PolicyEngine estimates would cost \u00a375 billion in 2025-26.",
     "date": "2025-05-27 19:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "farage-speech-may-2025.ipynb",
     "image": "farage-speech-may-2025.jpg"
   },
   {
     "title": "Extending the Winter Fuel Allowance",
-    "description": "The government has reversed its Winter Fuel Allowance means testing, expanding eligibility to 9 million pensioners through a £35,000 income threshold.",
+    "description": "The government has reversed its Winter Fuel Allowance means testing, expanding eligibility to 9 million pensioners through a \u00a335,000 income threshold.",
     "date": "2025-06-11 11:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["nikhil-woodruff"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "nikhil-woodruff"
+    ],
     "filename": "wfa-means-test.ipynb",
-    "image": "wfa-repeal.jpeg"
+    "image": "wfa-means-test.jpeg"
   },
   {
     "title": "How changing the VAT threshold affects UK revenues",
-    "description": "PolicyEngine's new firm microsimulation model estimates revenue and business impacts of VAT thresholds from £70,000 to £120,000.",
+    "description": "PolicyEngine's new firm microsimulation model estimates revenue and business impacts of VAT thresholds from \u00a370,000 to \u00a3120,000.",
     "date": "2025-09-10 11:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "policy",
+      "featured"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "uk-vat-thresholds.md",
-    "image": "uk-vat-reeves.jpg"
+    "image": "uk-vat-thresholds.jpg"
   },
   {
     "title": "Testing multi-agent AI workflows for policy research",
     "description": "A multi-agent Claude Code system fared better on distributional analysis than benefit interactions; insights inform our forthcoming plugin.",
     "date": "2025-10-28",
-    "tags": ["uk", "us", "featured", "technology", "ai"],
-    "authors": ["vahid-ahmadi"],
+    "tags": [
+      "uk",
+      "us",
+      "featured",
+      "technology",
+      "ai"
+    ],
+    "authors": [
+      "vahid-ahmadi"
+    ],
     "filename": "multi-agent-workflows-policy-research.md",
     "image": "multi-agent-workflows-policy-research.png"
   }
