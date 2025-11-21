@@ -140,7 +140,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
             </div>
             <div className="how-it-works-image">
               <img
-                src={require("../../images/posts/ai-analysis.png")}
+                src={require("../../images/posts/gpt-analysis.png")}
                 alt="AI-powered analysis"
                 className="architecture-img"
               />
