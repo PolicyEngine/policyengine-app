@@ -103,7 +103,7 @@ The combined reform creates different outcomes for households depending on their
 
 At low to moderate income levels (where the NI cut applies to most taxable earnings), households gain. However, as income rises, the Income Tax increase (which applies to all taxable income above the allowance) begins to outweigh the NI reduction (which is capped at the Upper Earnings Limit of £50,270).
 
-Crucially, pension contributions play a significant role. While they reduce taxable income for Income Tax, they do _not_ reduce earnings for National Insurance (except in salary sacrifice arrangements, which are not assumed here). This means a pension contribution lowers the amount of income exposed to the 2 percentage point Income Tax hike, while the household retains the full benefit of the National Insurance cut on their gross earnings. Consequently, households with higher pension contributions are better protected against the tax rise.
+Pension contributions affect how the reforms impact households. While they reduce taxable income for Income Tax, they do _not_ reduce earnings for National Insurance (except in salary sacrifice arrangements, which are not assumed here). A pension contribution lowers the amount of income exposed to the 2 percentage point Income Tax increase, while the household receives the National Insurance cut on their gross earnings. As a result, households with pension contributions face a smaller net tax increase than those without.
 
 ## Budgetary impact
 
