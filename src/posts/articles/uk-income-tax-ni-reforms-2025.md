@@ -14,13 +14,13 @@ Consider a single earner with a gross income of £60,000 who contributes £10,00
 
 **Table 1: Example tax calculation for a single earner (£60k gross, £10k pension)**
 
-| Tax | Baseline (Current Law) | Reform Package | Change |
-| :--- | :--- | :--- | :--- |
-| **National Insurance**<br>*(Gross earnings £60,000)* | **£3,210.60**<br>8% on £12,570–£50,270<br>2% on >£50,270 | **£2,456.60**<br>6% on £12,570–£50,270<br>2% on >£50,270 | **-£754.00**<br>*(Tax Cut)* |
-| **Income Tax**<br>*(Taxable income £50,000)* | **£7,486.00**<br>20% on £12,570–£50,270 | **£8,234.60**<br>22% on £12,570–£50,270 | **+£748.60**<br>*(Tax Rise)* |
-| **Total Net Impact** | | | **+£5.40**<br>*(Better off)* |
+| Tax                                                  | Baseline (Current Law)                                   | Reform Package                                           | Change                       |
+| :--------------------------------------------------- | :------------------------------------------------------- | :------------------------------------------------------- | :--------------------------- |
+| **National Insurance**<br>_(Gross earnings £60,000)_ | **£3,210.60**<br>8% on £12,570–£50,270<br>2% on >£50,270 | **£2,456.60**<br>6% on £12,570–£50,270<br>2% on >£50,270 | **-£754.00**<br>_(Tax Cut)_  |
+| **Income Tax**<br>_(Taxable income £50,000)_         | **£7,486.00**<br>20% on £12,570–£50,270                  | **£8,234.60**<br>22% on £12,570–£50,270                  | **+£748.60**<br>_(Tax Rise)_ |
+| **Total Net Impact**                                 |                                                          |                                                          | **+£5.40**<br>_(Better off)_ |
 
-*Note: Pension contributions of £10,000 reduce taxable income for Income Tax but not for National Insurance.*
+_Note: Pension contributions of £10,000 reduce taxable income for Income Tax but not for National Insurance._
 
 ### Varying earnings
 
@@ -103,7 +103,7 @@ The combined reform creates different outcomes for households depending on their
 
 At low to moderate income levels (where the NI cut applies to most taxable earnings), households gain. However, as income rises, the Income Tax increase (which applies to all taxable income above the allowance) begins to outweigh the NI reduction (which is capped at the Upper Earnings Limit of £50,270).
 
-Crucially, pension contributions play a significant role. While they reduce taxable income for Income Tax, they do *not* reduce earnings for National Insurance (except in salary sacrifice arrangements, which are not assumed here). This means a pension contribution lowers the amount of income exposed to the 2 percentage point Income Tax hike, while the household retains the full benefit of the National Insurance cut on their gross earnings. Consequently, households with higher pension contributions are better protected against the tax rise.
+Crucially, pension contributions play a significant role. While they reduce taxable income for Income Tax, they do _not_ reduce earnings for National Insurance (except in salary sacrifice arrangements, which are not assumed here). This means a pension contribution lowers the amount of income exposed to the 2 percentage point Income Tax hike, while the household retains the full benefit of the National Insurance cut on their gross earnings. Consequently, households with higher pension contributions are better protected against the tax rise.
 
 ## Budgetary impact
 
@@ -1883,8 +1883,6 @@ Figure 10 [shows](https://legacy.policyengine.org/uk/policy?focus=policyOutput.w
   ]
 }
 ```
-
-
 
 ## Poverty impact
 
