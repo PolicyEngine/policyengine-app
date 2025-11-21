@@ -1,4 +1,4 @@
 - bump: patch
   changes:
-    added:
-      - Added blog post analyzing income tax and National Insurance reforms
+    changed:
+      - Added household-level impact analysis by pension contributions to UK income tax and NI reforms blog post

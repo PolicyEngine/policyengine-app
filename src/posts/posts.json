@@ -5,7 +5,7 @@
     "date": "2025-11-20 11:00:00",
     "tags": ["uk", "policy", "featured"],
     "filename": "uk-income-tax-ni-reforms-2025.md",
-    "image": "Rachel_Reeves.jpg",
+    "image": "uk-income-tax-ni-reforms-2025.jpg",
     "authors": ["vahid-ahmadi"]
   },
   {
@@ -14,7 +14,7 @@
     "date": "2025-11-10",
     "tags": ["uk", "event", "featured"],
     "filename": "policyengine-2-event-report.md",
-    "image": "2025-london-event.jpeg",
+    "image": "policyengine-2-event-report.jpeg",
     "authors": ["vahid-ahmadi"]
   },
   {
@@ -64,7 +64,7 @@
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-two-child-limit.md",
-    "image": "uk-reeves.jpg"
+    "image": "uk-two-child-limit.jpg"
   },
   {
     "title": "How we used Claude Code to choose our DC office",
@@ -82,7 +82,7 @@
     "tags": ["us", "policy", "featured", "healthcare", "interactives"],
     "authors": ["daphne-hansell"],
     "filename": "introducing-aca-calc.md",
-    "image": "biden-arpa.png"
+    "image": "introducing-aca-calc.png"
   },
   {
     "title": "How carbon tax and dividend policies affect UK households",
@@ -91,7 +91,7 @@
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-carbon-tax-dividend.md",
-    "image": "uk-carbon-tax.png"
+    "image": "uk-carbon-tax-dividend.png"
   },
   {
     "title": "Enhanced Premium Tax Credits: Analyzing Household Impacts of an Extension Beyond 2025",
@@ -126,7 +126,7 @@
     "date": "2025-08-18",
     "tags": ["us", "uk", "org", "featured"],
     "filename": "nsf-pose-phase-1-grant.md",
-    "image": "nsf-official-logo.png",
+    "image": "nsf-pose-phase-1-grant.png",
     "authors": ["max-ghenis"]
   },
   {
@@ -196,7 +196,7 @@
     "date": "2025-06-06",
     "tags": ["uk", "benefit", "featured"],
     "filename": "uk-childcare-report.md",
-    "image": "uk_childcare_report.jpg",
+    "image": "uk-childcare-report.jpg",
     "authors": ["vahid-ahmadi"]
   },
   {
@@ -209,8 +209,8 @@
     "image": "managers-amendment-to-hr1.png"
   },
   {
-    "title": "Montana Reduces Top Income Tax Rate and Expands EITC",
-    "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in 2027.",
+    "title": "Montana Reduces Top Income Tax Rate and Expands EITC",
+    "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in 2027.",
     "date": "2025-05-22",
     "tags": ["us", "featured", "us-mt"],
     "filename": "montana-tax-cuts-2026.md",
@@ -218,8 +218,8 @@
     "authors": ["david-trimmer"]
   },
   {
-    "title": "The SALT Caucus's Proposed Cap",
-    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
+    "title": "The SALT Caucus's Proposed Cap",
+    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
     "date": "2025-05-15",
     "tags": ["us", "featured", "reconciliation"],
     "filename": "salt-caucus-62k-cap.md",
@@ -241,7 +241,7 @@
     "date": "2025-04-25",
     "tags": ["uk", "tax", "policy", "featured"],
     "filename": "impact-of-tax-changes-2025-2026.md",
-    "image": "uk_budget_box_hunt.jpg",
+    "image": "impact-of-tax-changes-2025-2026.jpg",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -295,7 +295,7 @@
     "date": "2025-03-24",
     "tags": ["uk", "impact", "featured"],
     "filename": "hmt-policyengine-pilot.md",
-    "image": "analysis-of-the-spring-budget-2023.jpeg",
+    "image": "hmt-policyengine-pilot.jpeg",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -304,7 +304,7 @@
     "date": "2025-03-25",
     "tags": ["uk", "policy", "featured"],
     "filename": "income-tax-freeze.md",
-    "image": "uk_budget_box_hunt.jpg",
+    "image": "income-tax-freeze.jpg",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -375,12 +375,12 @@
     "date": "2022-09-22",
     "authors": ["nikhil-woodruff"],
     "tags": ["uk", "technical"],
-    "description": "The Times reported yesterday that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports\u2026",
+    "description": "The Times reported yesterday that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports…",
     "filename": "stamp-duties-in-policyengine-uk.md",
     "image": "stamp-duties-in-policyengine-uk.jpg"
   },
   {
-    "title": "Prime Minister Liz Truss\u2019s energy bill price cap",
+    "title": "Prime Minister Liz Truss’s energy bill price cap",
     "date": "2022-09-16",
     "authors": ["max-ghenis"],
     "tags": ["uk", "policy"],
@@ -416,7 +416,7 @@
     "image": "electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act.jpg"
   },
   {
-    "title": "Rishi Sunak\u2019s proposal to cut the basic rate to 16 percent",
+    "title": "Rishi Sunak’s proposal to cut the basic rate to 16 percent",
     "date": "2022-08-01",
     "authors": ["max-ghenis"],
     "tags": ["uk", "policy"],
@@ -434,16 +434,16 @@
     "image": "the-new-policyengine-us-population-impact-page.jpg"
   },
   {
-    "title": "PolicyEngine at the BIG Conference and the Beeck Center\u2019s Rules as Code Demo Day",
+    "title": "PolicyEngine at the BIG Conference and the Beeck Center’s Rules as Code Demo Day",
     "date": "2022-06-09",
     "authors": ["max-ghenis"],
     "tags": ["us", "impact"],
-    "description": "Register for the BIG Conference June 23\u201325 and the Rules as Code Demo Day June 28",
+    "description": "Register for the BIG Conference June 23–25 and the Rules as Code Demo Day June 28",
     "filename": "policyengine-at-the-basic-income-guarantee-conference-and-the-beeck-centers-rules-as-code-demo-day.md",
     "image": "policyengine-at-the-basic-income-guarantee-conference-and-the-beeck-centers-rules-as-code-demo-day.jpg"
   },
   {
-    "title": "Impact of the Chancellor\u2019s Cost of Living Support package",
+    "title": "Impact of the Chancellor’s Cost of Living Support package",
     "date": "2022-05-26",
     "authors": ["max-ghenis"],
     "tags": ["uk", "policy"],
@@ -682,7 +682,7 @@
     "date": "2023-03-08 07:30:00",
     "tags": ["us", "technical"],
     "filename": "breaking-down-us-poverty-impacts-by-sex.md",
-    "image": "breaking-down-poverty-impacts-by-sex.png",
+    "image": "breaking-down-us-poverty-impacts-by-sex.png",
     "authors": ["max-ghenis"]
   },
   {
@@ -691,7 +691,7 @@
     "date": "2023-03-08 07:30:00",
     "tags": ["uk", "technical"],
     "filename": "breaking-down-uk-poverty-impacts-by-sex.md",
-    "image": "breaking-down-poverty-impacts-by-sex.png",
+    "image": "breaking-down-uk-poverty-impacts-by-sex.png",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -745,7 +745,7 @@
     "date": "2023-03-27 01:00:00",
     "tags": ["us", "policy"],
     "filename": "restoring-arpa-eitc.md",
-    "image": "eitc.webp",
+    "image": "restoring-arpa-eitc.webp",
     "authors": ["arthur-wright"]
   },
   {
@@ -781,7 +781,7 @@
     "date": "2023-04-03 16:00:00",
     "tags": ["global", "technical"],
     "filename": "gpt-analysis.md",
-    "image": "ai-analysis.png",
+    "image": "gpt-analysis.png",
     "authors": ["nikhil-woodruff", "chat-gpt"]
   },
   {
@@ -871,7 +871,7 @@
     "date": "2023-06-08 20:00:00",
     "filename": "malliotakis-steel-working-families-tax-cut-act.md",
     "tags": ["us", "featured", "policy"],
-    "image": "malliotakis-steel-working-families-tax-credit-act.png",
+    "image": "malliotakis-steel-working-families-tax-cut-act.png",
     "authors": ["max-ghenis", "nikhil-woodruff"]
   },
   {
@@ -907,7 +907,7 @@
     "date": "2023-08-07 16:00:00",
     "filename": "repealing_the_two_child_limit.md",
     "tags": ["uk", "policy"],
-    "image": "two_child_limit.png",
+    "image": "repealing_the_two_child_limit.png",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -925,7 +925,7 @@
     "date": "2023-11-22 17:25",
     "filename": "autumn-statement-2023.md",
     "tags": ["uk", "policy"],
-    "image": "jeremy-hunt.jpg",
+    "image": "autumn-statement-2023.jpg",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -934,7 +934,7 @@
     "date": "2023-12-04 09:00:00",
     "filename": "uk-calibration-2023-q4.ipynb",
     "tags": ["uk", "technical"],
-    "image": "uk-calibration-dec-2023-update.png",
+    "image": "uk-calibration-2023-q4.png",
     "authors": ["nikhil-woodruff"]
   },
   {
@@ -943,7 +943,7 @@
     "date": "2024-01-11 12:00:00",
     "filename": "wyden-smith-ctc.md",
     "tags": ["us", "impact", "featured", "child-tax-credit"],
-    "image": "wyden.jpeg",
+    "image": "wyden-smith-ctc.jpeg",
     "authors": ["max-ghenis", "pavel-makarchuk"]
   },
   {
@@ -952,7 +952,7 @@
     "date": "2024-03-04 09:00:00",
     "filename": "spring-budget-2024.ipynb",
     "tags": ["uk", "policy"],
-    "image": "jeremy-hunt-with-budget-box.jpg",
+    "image": "spring-budget-2024.jpg",
     "authors": ["anthony-volk", "nikhil-woodruff"]
   },
   {
@@ -961,7 +961,7 @@
     "date": "2024-03-06 09:00:00",
     "filename": "uk-2024-spring-budget.ipynb",
     "tags": ["uk", "policy"],
-    "image": "uk_budget_box_hunt.jpg",
+    "image": "uk-2024-spring-budget.jpg",
     "authors": ["nikhil-woodruff", "anthony-volk"]
   },
   {
@@ -1005,7 +1005,7 @@
     "description": "How PolicyEngine compares to the latest external forecasts.",
     "date": "2024-04-16 09:00:00",
     "tags": ["uk", "policy"],
-    "image": "uk_march_update.png",
+    "image": "obr-forecast-update-spring-24.png",
     "authors": ["nikhil-woodruff"],
     "filename": "obr-forecast-update-spring-24.ipynb"
   },
@@ -1025,7 +1025,7 @@
     "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff"],
     "filename": "lib-dem-2024-manifesto.md",
-    "image": "lib-dem-manifesto-2024.jpeg"
+    "image": "lib-dem-2024-manifesto.jpeg"
   },
   {
     "title": "The Conservative Manifesto",
@@ -1142,7 +1142,7 @@
     "tags": ["uk", "tax", "policy", "vat"],
     "authors": ["vahid-ahmadi"],
     "filename": "school-vat.md",
-    "image": "classroom-2093744.jpg"
+    "image": "school-vat.jpg"
   },
   {
     "title": "Levying VAT on private school fees in the Autumn Budget",
@@ -1151,7 +1151,7 @@
     "tags": ["uk", "tax", "policy", "vat", "featured"],
     "authors": ["vahid-ahmadi"],
     "filename": "vat-school-comparison.md",
-    "image": "vat-school-comparison-post.jpg"
+    "image": "vat-school-comparison.jpg"
   },
   {
     "title": "How PolicyEngine UK models behavioural responses",
@@ -1169,7 +1169,7 @@
     "tags": ["uk", "benefit", "inflation"],
     "authors": ["vahid-ahmadi"],
     "filename": "Benefit-uprating-25.md",
-    "image": "benefit-uprating-post-pic.jpg"
+    "image": "Benefit-uprating-25.jpg"
   },
   {
     "title": "Capital Gains Tax reforms in the Autumn Budget 2024",
@@ -1196,7 +1196,7 @@
     "tags": ["uk", "autumn-budget", "featured", "policy"],
     "authors": ["nikhil-woodruff"],
     "filename": "autumn-budget-2024-policy-choices.ipynb",
-    "image": "autumn-budget-policy-choices.png"
+    "image": "autumn-budget-2024-policy-choices.png"
   },
   {
     "title": "Levying employer National Insurance on pension contributions",
@@ -1266,7 +1266,7 @@
     "tags": ["us", "featured"],
     "authors": ["david-trimmer"],
     "filename": "federal-tax-inflation-adjustments-2025.md",
-    "image": "fed_tax_inflation_adjustments.webp"
+    "image": "federal-tax-inflation-adjustments-2025.webp"
   },
   {
     "title": "Introducing GiveCalc",
@@ -1334,7 +1334,7 @@
       "vahid-ahmadi"
     ],
     "filename": "us-behavioral-responses.md",
-    "image": "behavioural-responses.jpg"
+    "image": "us-behavioral-responses.jpg"
   },
   {
     "title": "PolicyEngine UK in 2024: A year in review",
@@ -1343,7 +1343,7 @@
     "tags": ["uk", "year-in-review", "featured"],
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "uk-year-in-review-2024.md",
-    "image": "year-in-review-2024.png"
+    "image": "uk-year-in-review-2024.png"
   },
   {
     "title": "PolicyEngine US in 2024: A year in review",
@@ -1352,7 +1352,7 @@
     "tags": ["us", "year-in-review", "featured"],
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "us-year-in-review-2024.md",
-    "image": "year-in-review-2024.png"
+    "image": "us-year-in-review-2024.png"
   },
   {
     "title": "Analysis of the Family First Act",
@@ -1405,7 +1405,7 @@
     "date": "2025-03-05",
     "tags": ["us", "policy", "featured"],
     "filename": "fisc-act.md",
-    "image": "jared-golden.jpeg",
+    "image": "fisc-act.jpeg",
     "authors": ["pavel-makarchuk"]
   },
   {
@@ -1433,7 +1433,7 @@
     "tags": ["uk", "policy", "featured"],
     "description": "How the disability benefit, and one reform the government is reportedly considering, affect the UK household sector.",
     "filename": "pip-and-freeze.md",
-    "image": "pip_and_freeze.jpg"
+    "image": "pip-and-freeze.jpg"
   },
   {
     "title": "Analysis of Michigan HB 4170",
@@ -1469,7 +1469,7 @@
     "tags": ["uk", "policy", "featured", "benefit"],
     "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
     "filename": "uk-benefits-post.md",
-    "image": "uk-benefit-post.png"
+    "image": "uk-benefits-post.png"
   },
   {
     "title": "Idaho’s New Individual Income Tax Changes",
@@ -1487,7 +1487,7 @@
     "tags": ["uk", "policy", "featured", "tax"],
     "authors": ["vahid-ahmadi", "nikhil-woodruff"],
     "filename": "uk-taxes-post.md",
-    "image": "uk-tax-post.jpg"
+    "image": "uk-taxes-post.jpg"
   },
   {
     "title": "Utah Cuts Income Tax Rate and Expands Credits",
@@ -1514,7 +1514,7 @@
     "tags": ["uk", "policy", "featured"],
     "authors": ["nikhil-woodruff"],
     "filename": "wfa-means-test.ipynb",
-    "image": "wfa-repeal.jpeg"
+    "image": "wfa-means-test.jpeg"
   },
   {
     "title": "How changing the VAT threshold affects UK revenues",
@@ -1523,7 +1523,7 @@
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-vat-thresholds.md",
-    "image": "uk-vat-reeves.jpg"
+    "image": "uk-vat-thresholds.jpg"
   },
   {
     "title": "Testing multi-agent AI workflows for policy research",
