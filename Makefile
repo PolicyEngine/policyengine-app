@@ -2,6 +2,7 @@ REACT_APP_DEBUG ?= false
 
 install:
 	npm ci
+	cp .env.example .env
 	pip3 install -U black
 
 build:
