@@ -30,18 +30,18 @@ This analysis assumes a full behavioral response: employees would shift excess c
 
 **Table 2: With £2,000 cap - £50,000 earner contributing £5,000 total**
 
-| Component                             | Amount      | Calculation                                            |
-| :------------------------------------ | :---------- | :----------------------------------------------------- |
-| Gross salary                          | £50,000     |                                                        |
-| Salary sacrifice                      | £2,000      | Capped at £2,000                                       |
-| Taxable salary                        | £48,000     | £50,000 - £2,000                                       |
-| Employee pension contribution         | £3,000      | Additional contribution (tax relief, no NI relief)     |
-| Taxable income                        | £45,000     | £48,000 - £3,000                                       |
-| Employee NI (8% on £12,570-£48,000)   | £2,835      | 8% × (£48,000 - £12,570)                               |
-| Employer NI (15% on above £9,100)     | £5,835      | 15% × (£48,000 - £9,100)                               |
-| Income tax (20% on £12,570-£45,000)   | £6,486      | 20% × (£45,000 - £12,570)                              |
-| **Take-home pay**                     | **£27,294** | £48,000 - £3,000 - £2,835 - £6,486                     |
-| **Total pension contribution**        | **£5,000**  | £2,000 salary sacrifice + £3,000 employee contribution |
+| Component                           | Amount      | Calculation                                            |
+| :---------------------------------- | :---------- | :----------------------------------------------------- |
+| Gross salary                        | £50,000     |                                                        |
+| Salary sacrifice                    | £2,000      | Capped at £2,000                                       |
+| Taxable salary                      | £48,000     | £50,000 - £2,000                                       |
+| Employee pension contribution       | £3,000      | Additional contribution (tax relief, no NI relief)     |
+| Taxable income                      | £45,000     | £48,000 - £3,000                                       |
+| Employee NI (8% on £12,570-£48,000) | £2,835      | 8% × (£48,000 - £12,570)                               |
+| Employer NI (15% on above £9,100)   | £5,835      | 15% × (£48,000 - £9,100)                               |
+| Income tax (20% on £12,570-£45,000) | £6,486      | 20% × (£45,000 - £12,570)                              |
+| **Take-home pay**                   | **£27,294** | £48,000 - £3,000 - £2,835 - £6,486                     |
+| **Total pension contribution**      | **£5,000**  | £2,000 salary sacrifice + £3,000 employee contribution |
 
 ## Budgetary impact
 
@@ -52,11 +52,11 @@ Under baseline policy, total salary sacrifice contributions amount to £4.04 bil
 **Table 3: Revenue impact of £2,000 salary sacrifice cap, 2026-27 to 2029-30**
 
 | Fiscal year | Revenue increase (£bn) |
-| :---------- | :-------------------- |
-| 2026-27     | 1.85                  |
-| 2027-28     | 1.86                  |
-| 2028-29     | 1.88                  |
-| 2029-30     | 1.90                  |
+| :---------- | :--------------------- |
+| 2026-27     | 1.85                   |
+| 2027-28     | 1.86                   |
+| 2028-29     | 1.88                   |
+| 2029-30     | 1.90                   |
 
 ## Distributional analysis
 
