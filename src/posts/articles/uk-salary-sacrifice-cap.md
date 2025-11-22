@@ -45,7 +45,7 @@ This analysis assumes a full behavioral response: employees would shift excess c
 
 ## Budgetary impact
 
-PolicyEngine's microsimulation [estimates](https://gist.github.com/vahid-ahmadi/778f329d245a1e3675c16338c1fa7c41) that in 2026-27, 653,000 people make pension contributions through salary sacrifice arrangements. Of these, 410,000 people (62.8% of these contributors) would exceed the £2,000 cap and face higher National Insurance costs.
+PolicyEngine's microsimulation [estimates](https://gist.github.com/vahid-ahmadi/da3dc1f9c2e26ee319ef4e04c34d3be3) that in 2026-27, 653,000 people make pension contributions through salary sacrifice arrangements. Of these, 410,000 people (62.8% of these contributors) would exceed the £2,000 cap and face higher National Insurance costs.
 
 Under baseline policy, total salary sacrifice contributions amount to £4.04 billion. With the cap in place, salary sacrifice would fall to £1.09 billion, with the remaining £2.95 billion shifting to regular employee pension contributions. This shift would generate a government budgetary impact of £1.85 billion in 2026-27, rising to £1.90 billion by 2029-30, as shown in Table 3.
 
@@ -60,7 +60,7 @@ Under baseline policy, total salary sacrifice contributions amount to £4.04 bil
 
 ## Distributional analysis
 
-Figure 1 [shows](https://gist.github.com/vahid-ahmadi/778f329d245a1e3675c16338c1fa7c41) the average percentage change in household net income after pension deductions by income decile. The impact rises with income, from near zero for the bottom five deciles to 0.3% for the top decile.
+Figure 1 [shows](https://gist.github.com/vahid-ahmadi/da3dc1f9c2e26ee319ef4e04c34d3be3) the average percentage change in household net income after pension deductions by income decile. The impact rises with income, from near zero for the bottom five deciles to 0.3% for the top decile.
 
 **Figure 1: Average percentage change in household net income after pension deductions by decile, 2026-27**
 
