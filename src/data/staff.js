@@ -27,8 +27,7 @@ export const staff = {
   pavel_makarchuk: {
     name: "Pavel Makarchuk",
     bio: `is the Director of Growth at PolicyEngine. He earned a bachelor's
-degree in Economics from Marist College where he researched the economic
-implications of forced migration.`,
+degree in Economics from Marist College.`,
     image: require("../images/authors/pavel-makarchuk.jpeg"),
   },
   anthony_volk: {
