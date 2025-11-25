@@ -26,10 +26,10 @@ Computer Science from the University of Durham.`,
 export const staff = {
   pavel_makarchuk: {
     name: "Pavel Makarchuk",
-    bio: `is a Policy Modeling Manager at PolicyEngine. He earned a bachelor’s
+    bio: `is the Director of Growth at PolicyEngine. He earned a bachelor's
 degree in Economics from Marist College where he researched the economic
 implications of forced migration.`,
-    image: require("../images/authors/pavel-makarchuk.png"),
+    image: require("../images/authors/pavel-makarchuk.jpeg"),
   },
   anthony_volk: {
     name: "Anthony Volk",
@@ -82,6 +82,17 @@ The Rochester Institute of Technology.`,
     mathematical finance from the University of California, Irvine, and a master's degree
     in business analytics from Boston University.`,
     image: require("../images/authors/ziming-hua.jpg"),
+  },
+};
+
+export const contractors = {
+  ben_ogorek: {
+    name: "Ben Ogorek",
+    bio: `is a data scientist at PolicyEngine. He co-founded Google's People
+Analytics Data Science team and previously held data science leadership
+positions at Spencer Health Solutions and Nationwide Insurance. Ben holds a PhD
+in Statistics from North Carolina State University.`,
+    image: require("../images/authors/ben-ogorek.jpeg"),
   },
 };
 

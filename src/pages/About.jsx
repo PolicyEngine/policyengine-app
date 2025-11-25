@@ -3,7 +3,7 @@ import Footer from "../layout/Footer.jsx";
 import Section from "../layout/Section.jsx";
 import style from "../style/index.js";
 import PageHeader from "../layout/PageHeader.jsx";
-import { founders, staff, advisors } from "../data/staff.js";
+import { founders, staff, contractors, advisors } from "../data/staff.js";
 import useDisplayCategory from "../hooks/useDisplayCategory.js";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -49,6 +49,12 @@ export default function About() {
           <h2 style={{ color: style.colors.WHITE }}>Team</h2>
           {Object.keys(staff).map((member, index) => {
             return <InvertedBio key={index} member={staff[member]} />;
+          })}
+        </Section>
+        <Section>
+          <h2>Contractors</h2>
+          {Object.keys(contractors).map((member, index) => {
+            return <Bio key={index} member={contractors[member]} />;
           })}
         </Section>
         <div style={{ display: "none" }}>
