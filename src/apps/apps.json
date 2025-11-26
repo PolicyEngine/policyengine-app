@@ -28,6 +28,13 @@
     "tags": ["uk", "featured", "policy"]
   },
   {
+    "title": "UK Autumn Budget 2025 analysis",
+    "description": "Interactive tool to explore revenue and distributional impacts of UK Autumn Budget 2025 policies across income deciles, constituencies, and household types",
+    "url": "https://uk-autumn-budget-dashboard.vercel.app/",
+    "slug": "uk-autumn-budget-2025",
+    "tags": ["uk", "featured", "policy"]
+  },
+  {
     "title": "Rhode Island Child Tax Credit calculator",
     "description": "Interactive calculator for estimating Rhode Island Child Tax Credit benefits",
     "url": "https://frontend-neon-seven.vercel.app/",

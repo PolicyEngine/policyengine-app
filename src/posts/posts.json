@@ -1,5 +1,16 @@
 [
   {
+    "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
+    "title": "UK Autumn Budget 2025 analysis dashboard",
+    "description": "Interactive tool to explore revenue and distributional impacts of UK Autumn Budget 2025 policies across income deciles, constituencies, and household types.",
+    "date": "2025-11-26 11:00:00",
+    "tags": ["uk", "featured", "policy", "interactives"],
+    "filename": "uk-autumn-budget-2025-dummy.md",
+    "external_url": "/uk/uk-autumn-budget-2025",
+    "image": "uk-autumn-budget-2025.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
     "title": "Analysing alternative income tax and National Insurance reform options for the UK",
     "description": "PolicyEngine analysis of alternative tax reform options: raising basic and higher income tax rates, cutting NI, and extending the threshold freeze.",
     "date": "2025-11-20 11:00:00",
