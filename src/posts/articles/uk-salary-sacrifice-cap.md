@@ -68,7 +68,9 @@ PolicyEngine's microsimulation estimates that 4.9 million people make pension co
 
 Under baseline policy, total salary sacrifice contributions amount to £22.7 billion. With the cap in place, £13.8 billion in excess contributions would shift to regular employee pension contributions.
 
-The policy is scheduled to take effect from April 2029. PolicyEngine estimates the cap would raise **£3.2 billion** in 2029-30, compared to the OBR's estimate of £4.9 billion (static) or £4.7 billion (post-behavioural). The difference likely reflects modeling assumptions about employer and employee responses.
+The policy is scheduled to take effect from April 2029. PolicyEngine estimates the cap would raise **£3.2 billion** in 2029-30 under our baseline assumptions (employers spread costs, employees maintain pension contributions), compared to the OBR's estimate of £4.9 billion (static) or £4.7 billion (post-behavioural). Revenue estimates vary significantly based on behavioural assumptions:
+
+<iframe src="https://policyengine.github.io/uk-salary-sacrifice-analysis/revenue-by-year.html" width="100%" height="550" frameborder="0"></iframe>
 
 **Table 3: Revenue impact of £2,000 salary sacrifice cap**
 
@@ -81,6 +83,10 @@ PolicyEngine's estimate of £3.2 billion is 35% below the OBR's static estimate 
 ## Distributional analysis
 
 The cap is progressive: lower-income households are largely unaffected while higher earners bear the burden. This reflects both the concentration of salary sacrifice usage among higher earners and the tendency for high earners to contribute amounts exceeding the £2,000 cap.
+
+<iframe src="https://policyengine.github.io/uk-salary-sacrifice-analysis/distributional-impact.html" width="100%" height="550" frameborder="0"></iframe>
+
+Under the baseline scenario (employers spread costs, employees maintain pension contributions), the top income decile experiences an average 0.65% reduction in disposable income (£200/year), while lower deciles see minimal impact. Toggle between scenarios to see how different behavioural assumptions affect the distributional pattern.
 
 ## Conclusion
 
