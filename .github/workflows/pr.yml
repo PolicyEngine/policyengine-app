@@ -24,7 +24,7 @@ jobs:
         # by our package.json.
         # Hopefully this allows us to catch problems
         # with differing versions ahead of time.
-        node-version: [22.x]
+        node-version: [24.x]
 
     steps:
       - uses: actions/checkout@v6
