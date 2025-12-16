@@ -399,7 +399,12 @@ export default function HouseholdPage(props) {
             ? "Household impact"
             : "Household variables"
         }
-        middle={<HouseholdLeftSidebar metadata={metadata} />}
+        middle={
+          <HouseholdLeftSidebar
+            metadata={metadata}
+            householdInput={householdInput}
+          />
+        }
         right={middle}
         left={
           <HouseholdRightSidebar
@@ -443,15 +448,21 @@ function HouseholdLeftSidebar(props) {
     metadata.countryId,
   );
 
+  const modifiedNames = getModifiedVariableNames(
+    props.householdInput,
+    metadata,
+  );
+  const modifiedTree = markTreeModified(displayTree, modifiedNames);
+
   return (
     <div>
       {!isOnOutput && (
         <div style={{ padding: 10 }}>
-          <VariableSearch metadata={metadata} />
+          <VariableSearch metadata={metadata} modifiedNames={modifiedNames} />
         </div>
       )}
       <StackedMenu
-        firstTree={displayTree}
+        firstTree={modifiedTree}
         selected={selected}
         onSelect={onSelect}
         secondTree={HOUSEHOLD_OUTPUT_TREE[0].children}
@@ -596,4 +607,103 @@ export function getHouseholdYear(householdInput) {
     return householdYearArr[0];
   }
   return defaultYear;
+}
+
+function getModifiedVariableNames(householdInput, metadata) {
+  if (!householdInput) return new Set();
+  const modified = new Set();
+  const variables = metadata.variables;
+  const householdYear = getHouseholdYear(householdInput);
+
+  for (const entityPlural in householdInput) {
+    for (const entity in householdInput[entityPlural]) {
+      for (const variable in householdInput[entityPlural][entity]) {
+        if (!(variable in variables)) continue;
+        const currentVal =
+          householdInput[entityPlural][entity][variable][householdYear];
+        const defaultVal = variables[variable].defaultValue;
+
+        if (currentVal !== defaultVal) {
+          if (currentVal === null && defaultVal !== null) {
+            continue;
+          }
+          if (currentVal !== null) {
+            // Suppress "modified" status for default values of added entities (spouse/children)
+            if (variable === "age") {
+              if (entity === "your partner" && Number(currentVal) === 40) {
+                continue;
+              }
+              // Child defaults are 10
+              if (
+                entity !== "you" &&
+                entity !== "your partner" &&
+                Number(currentVal) === 10
+              ) {
+                continue;
+              }
+            }
+
+            modified.add(variable);
+          }
+        }
+      }
+    }
+  }
+
+  // Special Handling due to structural changes not captured by variable logic alone
+
+  // Tax Year: menu item 'input.household.taxYear' -> 'taxYear'
+  if (Number(householdYear) !== Number(defaultYear)) {
+    modified.add("taxYear");
+  }
+
+  // Marital Status
+  // Logic: If 'marital_status' variable changed (captured above), OR if 'your partner' exists in people
+  if (householdInput.people && householdInput.people["your partner"]) {
+    modified.add("maritalStatus");
+  }
+  // Map 'marital_status' (variable) to 'maritalStatus' (menu item)
+  if (modified.has("marital_status")) {
+    modified.add("maritalStatus");
+  }
+
+  // Children
+  // Logic: If there are people other than 'you' and 'your partner'
+  if (householdInput.people) {
+    const hasChildren = Object.keys(householdInput.people).some(
+      (key) => key !== "you" && key !== "your partner",
+    );
+    if (hasChildren) {
+      modified.add("children");
+    }
+  }
+
+  // County
+  // Map 'county' (variable) to 'countyName' (menu item)
+  if (modified.has("county")) {
+    modified.add("countyName");
+  }
+
+  return modified;
+}
+
+function markTreeModified(tree, modifiedNames) {
+  return tree.map((node) => {
+    let isModified = false;
+    let children = null;
+
+    if (node.children) {
+      children = markTreeModified(node.children, modifiedNames);
+      isModified = children.some((child) => child.modified);
+    } else {
+      const varName = node.name.split(".").pop();
+      isModified = modifiedNames.has(varName);
+    }
+
+    return {
+      ...node,
+      children,
+      modified: isModified,
+    };
+  });
 }

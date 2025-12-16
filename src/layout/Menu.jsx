@@ -34,6 +34,7 @@ function MenuItem(props) {
         style={{
           fontSize: 16,
           color: disabled && style.colors.DARK_GRAY,
+          fontWeight: props.modified ? "bold" : "normal",
           fontFamily: "Roboto Serif",
           margin: 5,
         }}
@@ -54,13 +55,17 @@ function MenuItem(props) {
         )}
         {selected === name ? "" : adjustedLabel || name.split(".").pop()}
         {isBeta && betaBadge}
+        {props.modified && (
+          <span style={{ marginLeft: 5, color: style.colors.BLUE }}>•</span>
+        )}
       </p>
     </motion.div>
   );
 }
 
 function MenuItemGroup(props) {
-  const { name, label, selected, children, onSelect, disabled } = props;
+  const { name, label, selected, children, onSelect, disabled, modified } =
+    props;
   const betaBadge = <Tag color={style.colors.TEAL_ACCENT}>BETA</Tag>;
   const isBeta = label.includes(" (experimental)");
   const adjustedLabel = isBeta ? label.slice(0, -14) : label;
@@ -97,6 +102,7 @@ function MenuItemGroup(props) {
             label={capitalize(child.label)}
             selected={selected}
             onSelect={onSelect}
+            modified={child.modified}
           >
             {child.children}
           </MenuItemGroup>,
@@ -110,6 +116,7 @@ function MenuItemGroup(props) {
             label={capitalize(child.label)}
             selected={selected}
             onSelect={onSelect}
+            modified={child.modified}
           />,
         );
       }
@@ -144,7 +151,14 @@ function MenuItemGroup(props) {
         }}
         whileHover={!disabled && { backgroundColor: "white" }}
       >
-        <p style={{ fontSize: 16, fontFamily: "Roboto Serif", margin: 5 }}>
+        <p
+          style={{
+            fontSize: 16,
+            fontFamily: "Roboto Serif",
+            margin: 5,
+            fontWeight: modified ? "bold" : "normal",
+          }}
+        >
           {selected === name && (
             <span
               style={{
@@ -159,6 +173,9 @@ function MenuItemGroup(props) {
           )}
           {selected === name ? "" : adjustedLabel || name.split(".").pop()}
           {isBeta && betaBadge}
+          {modified && (
+            <span style={{ marginLeft: 5, color: style.colors.BLUE }}>•</span>
+          )}
         </p>
       </motion.div>
       {expandedComponentSpace}
@@ -180,6 +197,7 @@ export default function Menu(props) {
           label={capitalize(item.label)}
           selected={selected || ""}
           onSelect={onSelect}
+          modified={item.modified}
         >
           {item.children}
         </MenuItemGroup>,
@@ -193,6 +211,7 @@ export default function Menu(props) {
           label={item.label}
           selected={selected || ""}
           onSelect={onSelect}
+          modified={item.modified}
         />,
       );
     }

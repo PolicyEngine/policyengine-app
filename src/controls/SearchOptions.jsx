@@ -24,7 +24,6 @@ export default function SearchOptions(props) {
       showSearch
       options={filteredOptions}
       optionFilterProp="children"
-      selectorBg={"red"}
       onSelect={(value) => {
         if (options.find((option) => option.value === value)) {
           setValue(value);
@@ -39,9 +38,12 @@ export default function SearchOptions(props) {
           onSearch(text);
         }
       }}
-      filterOption={(input, option) =>
-        (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-      }
+      filterOption={(input, option) => {
+        const label = option?.searchLabel ?? option?.label ?? "";
+        return (typeof label === "string" ? label : "")
+          .toLowerCase()
+          .includes(input.toLowerCase());
+      }}
       style={style || { width: 200, marginLeft: 10, marginRight: 10 }}
       placeholder={
         value
