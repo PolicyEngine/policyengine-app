@@ -1,4 +1,4 @@
-PolicyEngine has been awarded a $248,525 grant from [Arnold Ventures](https://www.arnoldventures.org/) to develop state and congressional district-level breakdowns in PolicyEngine US. This 20-month project (April 2025 – December 2026) will enable policymakers, researchers, and advocates to see how tax and benefit reforms affect their specific constituents—all 435 congressional districts.
+PolicyEngine has been awarded a $273,500 grant from [Arnold Ventures](https://www.arnoldventures.org/) to develop state and congressional district-level breakdowns in PolicyEngine US. This project will enable policymakers, researchers, and advocates to see how tax and benefit reforms affect their specific constituents—all 435 congressional districts.
 
 ## Why district-level analysis matters
 
