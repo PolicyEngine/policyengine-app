@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { useEffect, useRef, useState } from "react";
 
 export default function AppPage() {
-  const { appName } = useParams();
+  const { appName, countryId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const iframeRef = useRef(null);
@@ -15,6 +15,8 @@ export default function AppPage() {
 
   // Check if this is an OBBBA app that needs special handling
   const isOBBBAApp = app?.slug === "obbba-household-by-household";
+  // Check if this is the year-in-review app that needs country context
+  const isYearInReviewApp = app?.slug === "2025-year-in-review";
   const [initialUrl, setInitialUrl] = useState(null);
 
   // Construct iframe URL with parameters (for OBBBA app only on initial load)
@@ -31,11 +33,22 @@ export default function AppPage() {
         : baseUrl;
 
       setInitialUrl(url);
-    } else if (!isOBBBAApp) {
-      // For non-OBBBA apps, just use the app URL
+    } else if (isYearInReviewApp && !initialUrl) {
+      // Year-in-review app uses path-based routing for country (e.g., /uk or /us)
+      const country = countryId || "us";
+      setInitialUrl(`${app.url}/${country}`);
+    } else if (!isOBBBAApp && !isYearInReviewApp) {
+      // For other apps, just use the app URL
       setInitialUrl(app.url);
     }
-  }, [app, location.search, initialUrl, isOBBBAApp]);
+  }, [
+    app,
+    location.search,
+    initialUrl,
+    isOBBBAApp,
+    isYearInReviewApp,
+    countryId,
+  ]);
 
   // Listen for messages from OBBBA iframe
   useEffect(() => {

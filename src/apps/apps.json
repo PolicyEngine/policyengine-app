@@ -33,5 +33,12 @@
     "url": "https://frontend-neon-seven.vercel.app/",
     "slug": "rhode-island-ctc-calculator",
     "tags": ["us", "policy"]
+  },
+  {
+    "title": "2025 Year in Review",
+    "description": "Interactive exploration of PolicyEngine's 2025 achievements, impact, and milestones",
+    "url": "https://policyengine.github.io/2025-year-in-review",
+    "slug": "2025-year-in-review",
+    "tags": ["us", "uk", "featured"]
   }
 ]
