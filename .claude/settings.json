@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "marketplaces": [
+      "PolicyEngine/policyengine-claude"
+    ],
+    "auto_install": [
+      "country-models@policyengine-claude"
+    ]
+  }
+}
