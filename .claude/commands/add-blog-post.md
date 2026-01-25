@@ -155,7 +155,7 @@ mv src/posts/posts.json.tmp src/posts/posts.json
 
 ```bash
 # If dev server not running
-npm start
+bun run start
 
 # Open post
 open http://localhost:3000/us/research/[filename]
@@ -176,7 +176,7 @@ open http://localhost:3000/us/research/[filename]
 make format
 
 # Check no lint errors
-npm run lint -- --max-warnings=0
+bun run lint -- --max-warnings=0
 ```
 
 ## Example: Creating Event Post

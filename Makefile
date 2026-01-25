@@ -1,21 +1,21 @@
 REACT_APP_DEBUG ?= false
 
 install:
-	npm ci
+	bun install --frozen-lockfile
 	pip3 install -U black
 
 build:
-	npm run build
+	bun run build
 
 debug-no-lint:
-	ESLINT_NO_DEV_ERRORS=true npm start
+	ESLINT_NO_DEV_ERRORS=true bun run start
 
 debug:
-	REACT_APP_DEBUG=true npm start
+	REACT_APP_DEBUG=true bun run start
 
 test:
 	node metadata_fetch.mjs
-	npm run test
+	bun run test
 
 deploy-setup:
 	cp gcp/.gcloudignore ./.gcloudignore
@@ -35,4 +35,4 @@ deploy: build deploy-setup
 
 format:
 	black . -l 79
-	npm run fix
+	bun run fix

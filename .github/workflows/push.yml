@@ -20,8 +20,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "24.x"
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
       - name: Install repository
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Run tests
         run: make test
       - name: Upload coverage reports to Codecov

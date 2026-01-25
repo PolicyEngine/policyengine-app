@@ -15,12 +15,12 @@ Before merging ANY PR:
 
 ## Build & Test Commands
 
-- Install: `make install` (npm ci & black)
-- Start dev server: `make debug` (or `npm start`)
-- Run all tests: `make test` or `npm run test`
-- Run single test: `npx jest path/to/test.js` or with pattern: `npx jest -t "test name pattern"`
+- Install: `make install` (bun install & black)
+- Start dev server: `make debug` (or `bun run start`)
+- Run all tests: `make test` or `bun run test`
+- Run single test: `bunx jest path/to/test.js` or with pattern: `bunx jest -t "test name pattern"`
 - Lint & format: `make format` (runs prettier & eslint fix, **use this before committing**)
-- Check lint only: `npm run lint`
+- Check lint only: `bun run lint`
 - Coverage report: Check the `coverage/` directory after running tests
 
 ## Code Style Guidelines
@@ -67,7 +67,7 @@ Before merging ANY PR:
 - Follow the "PolicyEngine React commandments" in `src/README.md` for component structure
 - Add docstrings to all components and graceful error handling
 - When making changes, follow existing patterns in the codebase
-- Run `npm run lint -- --max-warnings=0` locally to ensure the CI pipeline will pass (CI uses zero tolerance for warnings)
+- Run `bun run lint -- --max-warnings=0` locally to ensure the CI pipeline will pass (CI uses zero tolerance for warnings)
 
 ## Accessibility Guidelines
 

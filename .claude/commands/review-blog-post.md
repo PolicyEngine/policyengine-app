@@ -110,7 +110,7 @@ echo "Reviewing post: $POST_SLUG"
 ```bash
 # Ensure dev server is running
 if ! curl -s http://localhost:3000 > /dev/null; then
-    echo "⚠️  Dev server not running. Start with: npm start"
+    echo "⚠️  Dev server not running. Start with: bun run start"
 else
     # Open the post
     open http://localhost:3000/us/research/$POST_SLUG
@@ -188,7 +188,7 @@ fi
 #### Final Steps
 
 - [ ] make format run successfully
-- [ ] npm run lint passes with --max-warnings=0
+- [ ] bun run lint passes with --max-warnings=0
 - [ ] Tested in dev server
 - [ ] All QA agents approve
 ```
@@ -365,7 +365,7 @@ Post is ready to publish when:
 - ✅ All 3 QA agents approve
 - ✅ Screenshots show no visual issues
 - ✅ All checklist items checked
-- ✅ make format and npm run lint pass
+- ✅ make format and bun run lint pass
 - ✅ Tested in dev server
 
 ## Usage Examples

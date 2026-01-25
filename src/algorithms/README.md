@@ -9,7 +9,7 @@ npx tsc
 To test the code, type:
 
 ```bash
-npm run test
+bun run test
 ```
 
 This will run all tests in the [**tests**](../__tests__/) folder.

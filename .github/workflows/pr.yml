@@ -31,16 +31,17 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
-          cache: npm
           node-version: ${{ matrix.node-version }}
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
       - name: Install repository
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Validate blog posts
-        run: npm run validate-posts
+        run: bun run validate-posts
       - name: Lint repository
-        run: npm run lint
+        run: bun run lint
       - name: Build package
-        run: npm run build
+        run: bun run build
       - name: Test repository
         run: make test
       - name: Upload coverage reports to Codecov

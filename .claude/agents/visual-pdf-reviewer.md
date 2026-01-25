@@ -27,7 +27,7 @@ You capture the rendered blog post as multiple screenshots from the live browser
 if curl -s http://localhost:3000 > /dev/null; then
     echo "✅ Dev server is running"
 else
-    echo "❌ Dev server not running - start with: npm start"
+    echo "❌ Dev server not running - start with: bun run start"
     exit 1
 fi
 ```
