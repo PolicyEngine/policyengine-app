@@ -1,5 +1,14 @@
 [
   {
+    "title": "Launching OBBBA, Household by Household: A New Way to See How Tax Reform Affects You",
+    "description": "Experience how the One Big Beautiful Bill Act impacts 40,000 American households through our immersive visualization tool.",
+    "date": "2025-07-24",
+    "tags": ["us", "policy", "featured", "reconciliation", "visualization"],
+    "filename": "introducing-obbba-household-by-household.md",
+    "image": "obbba-household-by-household-hero.png",
+    "authors": ["max-ghenis", "pavel-makarchuk"]
+  },
+  {
     "title": "Analysing alternative income tax and National Insurance reform options for the UK",
     "description": "PolicyEngine analysis of alternative tax reform options: raising basic and higher income tax rates, cutting NI, and extending the threshold freeze.",
     "date": "2025-11-20 11:00:00",
