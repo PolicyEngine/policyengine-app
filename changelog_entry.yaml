@@ -2,3 +2,4 @@
   changes:
     changed:
       - Added household-level impact analysis by pension contributions to UK income tax and NI reforms blog post
+      - Updated UK LSR parameter paths to use British spelling (`labour_supply_responses`) to match policyengine-uk rename.
