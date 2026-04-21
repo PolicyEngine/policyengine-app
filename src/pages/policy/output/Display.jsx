@@ -20,6 +20,8 @@ import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
 import { Link } from "react-router-dom";
 import MultiYearBudgetaryImpact from "./budget/MultiYearBudgetaryImpact";
+import CiteTROButton from "../../../controls/CiteTROButton";
+import VersionBadge from "../../../controls/VersionBadge";
 
 /**
  *
@@ -160,6 +162,7 @@ export function DisplayImpact(props) {
     policy,
     metadata,
     showPolicyImpactPopup,
+    troData,
   } = props;
   const countryId = useCountryId();
   const urlParams = new URLSearchParams(window.location.search);
@@ -236,6 +239,7 @@ export function DisplayImpact(props) {
         metadata={metadata}
         policy={policy}
         showPolicyImpactPopup={showPolicyImpactPopup}
+        troData={troData}
       >
         {pane}
       </LowLevelDisplay>
@@ -268,9 +272,11 @@ export function LowLevelDisplay(props) {
     metadata,
     policy,
     showPolicyImpactPopup,
+    troData,
   } = props;
 
   const mobile = useMobile();
+  const countryId = useCountryId();
 
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
 
@@ -331,6 +337,25 @@ export function LowLevelDisplay(props) {
   const print = useReactToPrint({
     content: () => componentRef.current,
   });
+
+  // TRO components - only show if TRO data is available from the API
+  const citeTROButton = troData ? (
+    <CiteTROButton
+      troData={troData}
+      country={countryId}
+      simulationType="policy"
+      buttonText="Cite"
+      buttonType="text"
+    />
+  ) : null;
+
+  const versionBadge = troData?.manifest ? (
+    <VersionBadge
+      manifest={troData.manifest}
+      troUrl={troData.tro_url}
+      size="small"
+    />
+  ) : null;
 
   let bottomText = "";
   let bottomLink = null;
@@ -413,6 +438,8 @@ export function LowLevelDisplay(props) {
           twitterLink={twitterLink}
           facebookLink={facebookLink}
           linkedInLink={linkedInLink}
+          extraActions={citeTROButton}
+          versionBadge={versionBadge}
         />
       )}
       <PolicyImpactPopup

@@ -10,6 +10,9 @@ import PoliciesModelledPopup from "../../../modals/PoliciesModelledPopup";
 import React from "react";
 import { message } from "antd";
 import ResultActions from "layout/ResultActions";
+import CiteTROButton from "../../../controls/CiteTROButton";
+import VersionBadge from "../../../controls/VersionBadge";
+import useCountryId from "../../../hooks/useCountryId";
 
 export default function HouseholdOutput(props) {
   const [searchParams] = useSearchParams();
@@ -26,8 +29,10 @@ export default function HouseholdOutput(props) {
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
     year,
+    troData,
   } = props;
   const mobile = useMobile();
+  const countryId = useCountryId();
 
   let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
   let baselineLabel = policy.baseline.label || `Policy #${baselinePolicyId}`;
@@ -131,6 +136,25 @@ export default function HouseholdOutput(props) {
   const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 
+  // TRO components - only show if TRO data is available from the API
+  const citeTROButton = troData ? (
+    <CiteTROButton
+      troData={troData}
+      country={countryId}
+      simulationType="household"
+      buttonText="Cite"
+      buttonType="text"
+    />
+  ) : null;
+
+  const versionBadge = troData?.manifest ? (
+    <VersionBadge
+      manifest={troData.manifest}
+      troUrl={troData.tro_url}
+      size="small"
+    />
+  ) : null;
+
   return (
     <ResultsPanel>
       <ResultActions
@@ -138,6 +162,8 @@ export default function HouseholdOutput(props) {
         twitterLink={twitterLink}
         facebookLink={facebookLink}
         linkedInLink={linkedInLink}
+        extraActions={citeTROButton}
+        versionBadge={versionBadge}
       />
       {pane}
     </ResultsPanel>

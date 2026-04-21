@@ -46,6 +46,7 @@ export function FetchAndDisplayImpact(props) {
   const [impact, setImpact] = useState(null);
   const [singleYearResults, setSingleYearResults] = useState(null); // Only used for multi-year simulations
   const [multiYearImpact, setMultiYearImpact] = useState(null); // Only used for multi-year simulations
+  const [troData, setTroData] = useState(null); // TRO data from API
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
@@ -258,6 +259,10 @@ export function FetchAndDisplayImpact(props) {
             clearInterval(interval);
           } else {
             setImpact(data.result);
+            // Extract TRO data if available in response
+            if (data.tro) {
+              setTroData(data.tro);
+            }
             setSecondsElapsed(0);
             clearInterval(interval);
           }
@@ -348,6 +353,7 @@ export function FetchAndDisplayImpact(props) {
       policy={policy}
       metadata={metadata}
       showPolicyImpactPopup={showPolicyImpactPopup}
+      troData={troData}
     />
   );
 }
@@ -389,6 +395,10 @@ export function FetchAndDisplayCliffImpact(props) {
             setError(data.message);
           } else {
             setImpact(data.result);
+            // Extract TRO data if available in response
+            if (data.tro) {
+              setTroData(data.tro);
+            }
           }
         })
         .catch((err) => {

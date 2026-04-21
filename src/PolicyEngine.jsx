@@ -62,6 +62,7 @@ import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
 import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
+import TROPage from "./pages/TROPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -346,6 +347,7 @@ export default function PolicyEngine() {
           <Route path="benefits" element={<BenefitAccessPage />} />
           <Route path="education" element={<EducationPage />} />
           <Route path="open-source" element={<OpenSourcePage />} />
+          <Route path="trace/:troId" element={<TROPage />} />
           <Route path=":appName" element={<AppPage />} />
 
           <Route

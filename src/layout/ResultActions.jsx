@@ -32,6 +32,8 @@ import React from "react";
  * @param {string} props.facebookLink link for facebook button
  * @param {string} props.linkedInLink link for linkedin button
  * @param {string} props.print callback for print button
+ * @param {React.ReactNode} props.extraActions additional action buttons to display
+ * @param {React.ReactNode} props.versionBadge version badge to display
  *
  * @returns
  */
@@ -44,6 +46,8 @@ export default function ResultActions(props) {
     facebookLink,
     linkedInLink,
     print,
+    extraActions,
+    versionBadge,
   } = props;
   const iconStyle = { fontSize: 20 };
   const btnSize = "small";
@@ -51,16 +55,34 @@ export default function ResultActions(props) {
     <div
       style={{
         display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
+        flexDirection: "column",
+        gap: 16,
         backgroundColor: style.colors.WHITE,
-        justifyContent: "center",
-        alignItems: "center",
         paddingBottom: 40,
-        gap: 5,
       }}
     >
-      {downloadPng && (
+      {versionBadge && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: 8,
+          }}
+        >
+          {versionBadge}
+        </div>
+      )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 5,
+        }}
+      >
+        {downloadPng && (
         <Tooltip title="Download the result as a png file">
           <Button
             type="text"
@@ -122,6 +144,8 @@ export default function ResultActions(props) {
           />
         </Tooltip>
       )}
+      {extraActions}
+      </div>
     </div>
   );
 }
