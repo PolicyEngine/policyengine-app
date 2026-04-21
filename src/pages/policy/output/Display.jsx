@@ -18,6 +18,7 @@ import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
+import VersionBadge from "../../../layout/VersionBadge";
 import { Link } from "react-router-dom";
 import MultiYearBudgetaryImpact from "./budget/MultiYearBudgetaryImpact";
 
@@ -352,19 +353,34 @@ export function LowLevelDisplay(props) {
   //eslint-disable-next-line
   const bottomElements =
     mobile & !embed ? null : (
-      <p
+      <div
         style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          flexWrap: "wrap",
           marginBottom: 0,
-          fontSize: "12px",
         }}
       >
-        {bottomText}
-        {bottomLink && (
-          <a href={bottomLink} target="_blank" rel="noreferrer">
-            Learn more
-          </a>
-        )}
-      </p>
+        <p
+          style={{
+            marginBottom: 0,
+            fontSize: "12px",
+          }}
+        >
+          {bottomText}
+          {bottomLink && (
+            <a href={bottomLink} target="_blank" rel="noreferrer">
+              Learn more
+            </a>
+          )}
+        </p>
+        <VersionBadge
+          countryId={metadata.countryId}
+          modelVersion={selectedVersion}
+          dataset={dataset}
+        />
+      </div>
     );
 
   // If ?embed=True, just show `pane`, full screen.

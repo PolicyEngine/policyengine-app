@@ -10,6 +10,7 @@ import PoliciesModelledPopup from "../../../modals/PoliciesModelledPopup";
 import React from "react";
 import { message } from "antd";
 import ResultActions from "layout/ResultActions";
+import VersionBadge from "../../../layout/VersionBadge";
 
 export default function HouseholdOutput(props) {
   const [searchParams] = useSearchParams();
@@ -131,6 +132,9 @@ export default function HouseholdOutput(props) {
   const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 
+  const selectedVersion = urlParams.get("version") || metadata.version;
+  const dataset = urlParams.get("dataset");
+
   return (
     <ResultsPanel>
       <ResultActions
@@ -140,6 +144,24 @@ export default function HouseholdOutput(props) {
         linkedInLink={linkedInLink}
       />
       {pane}
+      {householdBaseline && !loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginTop: 16,
+            paddingTop: 12,
+            borderTop: "1px solid #eee",
+          }}
+        >
+          <VersionBadge
+            countryId={metadata.countryId}
+            modelVersion={selectedVersion}
+            dataset={dataset}
+            compact
+          />
+        </div>
+      )}
     </ResultsPanel>
   );
 }
