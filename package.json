@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@aciesai/fips-county-codes": "^1.0.4",
-    "@ant-design/icons": "^5.6.1",
+    "@ant-design/icons": "^6.2.5",
     "@auth0/auth0-react": "^2.3.0",
     "@babel/preset-react": "^7.27.1",
     "@n8tb1t/use-scroll-position": "^2.0.3",
