@@ -1,5 +1,14 @@
 [
   {
+    "title": "Introducing PolicyBench: how accurately can AI compute taxes and benefits?",
+    "description": "We tested 13 frontier language models on real household tax and benefit calculations, with no tools, scored against PolicyEngine.",
+    "date": "2026-06-16 09:00:00",
+    "tags": ["us", "featured"],
+    "filename": "policybench.md",
+    "image": "policybench.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "Analysing alternative income tax and National Insurance reform options for the UK",
     "description": "PolicyEngine analysis of alternative tax reform options: raising basic and higher income tax rates, cutting NI, and extending the threshold freeze.",
     "date": "2025-11-20 11:00:00",
