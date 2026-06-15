@@ -4,15 +4,13 @@ People increasingly ask AI models to help them understand their taxes and benefi
 
 # The setup
 
-PolicyBench evaluates 13 frontier models on 100 US households drawn from PolicyEngine's populace microdata, across 18 tax and benefit outputs per household, for tax year 2026. The headline metric is the within-1% hit rate: the share of outputs a model gets within 1% of PolicyEngine's value.
+PolicyBench evaluates 13 frontier models on 100 US households drawn from PolicyEngine's populace microdata, across 18 tax and benefit outputs per household, for tax year 2026.
 
-We lead with within-1% rather than exact match because 84% of the reference outputs are exact zeros, since most households are not eligible for most programs. A model that always answered zero would score 84% on exact match without performing any calculation, so within-1% measures accuracy on the positive cases, where rule comprehension is tested.
+The headline metric is the within-1% hit rate: the share of outputs a model gets within 1% of PolicyEngine's value. We use within-1% rather than exact match because 84% of the reference outputs are exact zeros, since most households are not eligible for most programs. A model that always answered zero would score 84% on exact match without computing anything, so within-1% measures accuracy on the cases that require an actual calculation.
 
-# The results
+# GPT-5.5 leads
 
-GPT-5.5 ranks first, with 82.6% of outputs within 1% of PolicyEngine's value. The highest-scoring model still misses 17.4% of outputs. The second through ninth models fall between 76.9% and 79.1%; GPT-5.4 nano scores lowest, at 63.2%.
-
-The newest model does not score highest. Claude Opus 4.8 scores 73.8% and ranks 10th of 13, below Claude Opus 4.7 at 78.3%, which ranks 4th.
+GPT-5.5 ranks first, with 82.6% of outputs within 1% of PolicyEngine's value. The second through ninth models fall between 76.9% and 79.1%, and GPT-5.4 nano scores lowest, at 63.2%.
 
 | Rank | Model                         | Within-1% |
 | ---- | ----------------------------- | --------- |
@@ -30,13 +28,19 @@ The newest model does not score highest. Claude Opus 4.8 scores 73.8% and ranks 
 | 12   | GPT-5.4 mini                  | 72.3%     |
 | 13   | GPT-5.4 nano                  | 63.2%     |
 
-# What models miss
+# Taxes are harder than benefits
 
-Models identify when a program does not apply more accurately than they compute the positive amounts. Multi-step income tax, federal and state, is the lowest-scoring output: getting it right requires selecting the correct income concepts, exclusions, thresholds, and sequencing before any final subtraction.
+The clearest pattern in the results is the split between taxes and benefits. Across all 13 models, 93.7% of benefit outputs land within 1% of PolicyEngine, against 76.8% of tax outputs.
+
+Income tax drives the gap. Federal and state income tax before credits score around 52% within 1%, the lowest of any output, because each is a multi-step dollar calculation: the model has to select the right income concepts, apply exclusions and thresholds, and sequence them correctly before arriving at a number. Payroll tax, at 72.5%, sits in between.
+
+Benefit eligibility is where models do best. Medicare, WIC, SSI, TANF, and school-meal eligibility mostly clear 90% within 1%. Part of that is that many of these outputs are yes/no eligibility flags rather than amounts, and part is that most households are not eligible — a correct "does not apply" is easier than a correct dollar figure.
+
+The exception clarifies the pattern: SNAP, a benefit paid as a computed amount, scores 77.5%, closer to the tax outputs than to the eligibility flags. The divide is less about taxes versus benefits as categories and more about computed amounts versus eligibility. Models are reliable at deciding whether a program applies and less reliable at computing how much.
 
 # Auditing the errors
 
-We reviewed every one of the 3,300 wrong cells by hand. All 3,300 were model errors; none were PolicyEngine reference errors.
+A benchmark is only as good as its reference. We reviewed every one of the 3,300 wrong cells by hand. All 3,300 were model errors; none were PolicyEngine reference errors.
 
 # The data and code are open
 
