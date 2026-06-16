@@ -45,6 +45,7 @@ import style from "./style";
 import RedirectToCountry from "./routing/RedirectToCountry";
 import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
+import ExternalRedirect from "./routing/ExternalRedirect";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
 import DeveloperLayout from "./pages/DeveloperLayout";
@@ -346,6 +347,11 @@ export default function PolicyEngine() {
           <Route path="benefits" element={<BenefitAccessPage />} />
           <Route path="education" element={<EducationPage />} />
           <Route path="open-source" element={<OpenSourcePage />} />
+          {/* Vanity redirect: /[countryId]/policybench -> policybench.org */}
+          <Route
+            path="policybench"
+            element={<ExternalRedirect to="https://policybench.org" />}
+          />
           <Route path=":appName" element={<AppPage />} />
 
           <Route
@@ -392,6 +398,11 @@ export default function PolicyEngine() {
           {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
           <Route path="blog/:postName" element={<RedirectBlogPost />} />
         </Route>
+        {/* Vanity redirect: bare /policybench -> policybench.org */}
+        <Route
+          path="/policybench"
+          element={<ExternalRedirect to="https://policybench.org" />}
+        />
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
         <Route path="/uk/2024-manifestos" element={<ManifestosComparison />} />
         <Route
