@@ -1,11 +1,11 @@
 [
   {
     "title": "Introducing PolicyBench: how accurately can AI compute taxes and benefits?",
-    "description": "We tested 13 frontier language models on real household tax and benefit calculations, with no tools, scored against PolicyEngine.",
+    "description": "We tested 13 frontier language models on 100 representative US households, with no tools, scored against PolicyEngine. GPT-5.5 leads, getting 80.3% exactly right.",
     "date": "2026-06-16 09:00:00",
     "tags": ["us", "featured"],
-    "filename": "policybench.md",
-    "image": "policybench.png",
+    "filename": "introducing-policybench.md",
+    "image": "introducing-policybench.png",
     "authors": ["max-ghenis"]
   },
   {
