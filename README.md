@@ -1,3 +1,17 @@
+> [!IMPORTANT]
+> ## This repository is deprecated and no longer maintained
+>
+> **[policyengine.org](https://policyengine.org) is now served by [`PolicyEngine/policyengine-app-v2`](https://github.com/PolicyEngine/policyengine-app-v2)** (a modern Next.js application). This repository — the original Create React App front end — no longer powers the live site and is being archived.
+>
+> **Where things moved:**
+> - **The live app and website:** [policyengine.org](https://policyengine.org), built from [`policyengine-app-v2`](https://github.com/PolicyEngine/policyengine-app-v2).
+> - **New issues and pull requests:** please open them on [`policyengine-app-v2`](https://github.com/PolicyEngine/policyengine-app-v2/issues). Issues filed here will not be actioned.
+> - **The previous version** remains available at [legacy.policyengine.org](https://legacy.policyengine.org) for reference.
+>
+> The content below is retained for historical reference only.
+
+---
+
 # Welcome :wave: !
 
 This is the official front-end app of PolicyEngine, a non-profit with the mission of computing the impact of public policy for the world. <br/><br/>
