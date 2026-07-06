@@ -7,6 +7,7 @@ import {
   getImplementationCode,
   sanitizeStringToPython,
 } from "data/reformDefinitionCode";
+import { POPULACE_US_DEFAULT_DATASET_URI } from "data/countries";
 import {
   baselinePolicyUS,
   baselinePolicyUK,
@@ -262,7 +263,7 @@ describe("Test getImplementationCode", () => {
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain("baseline = Microsimulation(reform=baseline)");
   });
-  test("If US state, return lines with pooled 3-year CPS dataset", () => {
+  test("If US state, return lines with the certified populace-us dataset", () => {
     let testPolicy = JSON.parse(JSON.stringify(baselinePolicyUS));
     testPolicy = {
       ...testPolicy,
@@ -286,10 +287,10 @@ describe("Test getImplementationCode", () => {
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      'baseline = Microsimulation(dataset="hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5")',
+      `baseline = Microsimulation(dataset="${POPULACE_US_DEFAULT_DATASET_URI}")`,
     );
     expect(output).toContain(
-      'reformed = Microsimulation(reform=reform, dataset="hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5")',
+      `reformed = Microsimulation(reform=reform, dataset="${POPULACE_US_DEFAULT_DATASET_URI}")`,
     );
   });
   test("If dataset provided, return lines with dataset", () => {
@@ -303,10 +304,10 @@ describe("Test getImplementationCode", () => {
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      'baseline = Microsimulation(dataset="hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5")',
+      `baseline = Microsimulation(dataset="${POPULACE_US_DEFAULT_DATASET_URI}")`,
     );
   });
-  test("If dataset provided alongside US state, return lines with dataset, not Pooled 3-Year CPS", () => {
+  test("If dataset provided alongside US state, return lines with dataset, not the state fallback", () => {
     const output = getImplementationCode(
       "policy",
       "ks",
@@ -317,7 +318,7 @@ describe("Test getImplementationCode", () => {
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      'baseline = Microsimulation(dataset="hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5")',
+      `baseline = Microsimulation(dataset="${POPULACE_US_DEFAULT_DATASET_URI}")`,
     );
   });
 });

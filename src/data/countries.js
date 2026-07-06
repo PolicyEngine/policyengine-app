@@ -53,12 +53,21 @@ export const STATUS_TEXT_COLORS = {
   Pending: colors.BLACK,
 };
 
+// The certified populace-us dataset that policyengine.py resolves as its
+// default US microdata (see src/policyengine/data/bundle/manifest.json's
+// data_releases.us.default_dataset_uri in PolicyEngine/policyengine.py).
+// This pins the certified revision so "Reproduce in Python" snippets stay
+// byte-reproducible; bump the revision suffix when populace-us is
+// re-certified (see PolicyEngine/populace#204 for the migration history).
+export const POPULACE_US_DEFAULT_DATASET_URI =
+  "hf://policyengine/populace-us/populace_us_2024.h5@populace-us-2024-sparse-l0-refit-57k-71a0887-national-only-20260701";
+
 // Map dataset keywords to their equivalents
 // in the actual US package; at the moment,
 // this only applies to the "enhanced_cps"
 // dataset selection
 export const DEFAULT_DATASETS = {
-  enhanced_cps: "hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5",
+  enhanced_cps: POPULACE_US_DEFAULT_DATASET_URI,
 };
 
 const DEFAULT_US_HOUSEHOLD = {

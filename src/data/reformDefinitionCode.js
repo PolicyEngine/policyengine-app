@@ -1,6 +1,6 @@
 import { optimiseHousehold } from "../api/variables";
 import { defaultYear } from "./constants";
-import { DEFAULT_DATASETS } from "./countries";
+import { DEFAULT_DATASETS, POPULACE_US_DEFAULT_DATASET_URI } from "./countries";
 import { wrappedJsonStringify } from "./wrappedJson";
 
 export function getReproducibilityCodeBlock(
@@ -184,8 +184,10 @@ export function getImplementationCode(
   if (hasDatasetSpecified) {
     datasetText = DEFAULT_DATASETS[dataset];
   } else if (isState) {
-    datasetText =
-      "hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5";
+    // State-level runs use the same certified populace-us national dataset;
+    // state regions scope it by state_fips rather than shipping a separate
+    // state-level file (see PolicyEngine/populace#204).
+    datasetText = POPULACE_US_DEFAULT_DATASET_URI;
   }
 
   const datasetSpecifier = datasetText ? `dataset="${datasetText}"` : "";
